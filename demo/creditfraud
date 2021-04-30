@@ -1,0 +1,7 @@
+load art
+list targets
+interact creditfraud
+list attacks
+use hop_skip_jump
+set sample_index=6899 targeted=1 target_class=0 init_eval=100 max_eval=500
+run

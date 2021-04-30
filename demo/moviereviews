@@ -1,0 +1,5 @@
+load textattack
+list targets
+interact moviereviews
+use deepwordbug
+run
