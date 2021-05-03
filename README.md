@@ -25,21 +25,6 @@ Choose one of these methods to get started quickly:
 
 For more information including alternative installation instructions, please visit our [wiki](https://github.com/Azure/counterfit/wiki).
 
-### Option 1: Deploy now on Azure via Azure Shell
-To run Counterfit from your browser
-1. Click the button below to initiate small resource deployment to your Azure account.
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fcounterfit%2Fmaster%2Finfrastructure%2Fazuredeploy.json) 
-
-2. In the configuration blade, specify your subscription and resource group.
-3. In your [Azure Shell](https://shell.azure.com), type the following, replacing `RESOURCE_GROUP` with the name of the resource group selected in the previous step.
-```
-az container exec --resource-group RESOURCE_GROUP –name counterfit –exec-command '/bin/bash'
-```
-4. Within the container, launch Counterfit.
-```
-python counterfit.py
-```
 
 ### Option 2: Setup an Anaconda Python environment and install locally
 
