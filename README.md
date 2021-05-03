@@ -34,7 +34,7 @@ To run Counterfit from your browser
 2. In the configuration blade, specify your subscription and resource group.
 3. In your [Azure Shell](https://shell.azure.com), type the following, replacing `RESOURCE_GROUP` with the name of the resource group selected in the previous step.
 ```
-az container exec --resource-group RESOURCE_GROUP –name counterfit –exec-command '/bin/bash'
+az container exec --resource-group RESOURCE_GROUP -name counterfit --exec-command '/bin/bash'
 ```
 4. Within the container, launch Counterfit.
 ```
