@@ -20,12 +20,12 @@ Counterfit is a command-line tool and generic automation layer for assessing the
 
 ## Getting Started
 Choose one of these methods to get started quickly:
-* [Option 1: Deploy via Azure Shell](#Option-1-Deploy-now-on-Azure-via-Azure-Shell) -- requires an Azure account (try it [free](https://azure.microsoft.com/en-us/free/))
+* [Option 1: Deploy via Azure Shell](#Option-1-Deploy-now-on-Azure-via-Azure-Shell)
 * [Option 2: Setup an Anaconda Python environment and install locally](#Option-2-Setup-an-Anaconda-Python-environment-and-install-locally)
 
 For more information including alternative installation instructions, please visit our [wiki](https://github.com/Azure/counterfit/wiki).
 
-### Option 1: Deploy now on Azure via Azure Shell
+### Option 1: Deploy via Azure Shell
 To run Counterfit from your browser
 1. Click the button below to initiate small resource deployment to your Azure account.
 
