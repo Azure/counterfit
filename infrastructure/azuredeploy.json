@@ -4,7 +4,7 @@
     "parameters": {
       "containerGroupName": {
         "type": "string",
-        "defaultValue": "counterfitcontainergroup",
+        "defaultValue": "counterfit",
         "metadata": {
           "description": "Name for the container group"
         }
