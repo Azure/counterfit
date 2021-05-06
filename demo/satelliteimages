@@ -1,0 +1,7 @@
+load art
+list targets
+interact satelliteimages
+list attacks
+use hop_skip_jump
+set sample_index=0 init_size=50 max_iter=20 max_eval=500
+run
