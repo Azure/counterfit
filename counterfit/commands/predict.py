@@ -9,8 +9,8 @@ from typing import Any, List
 from counterfit.core.run_scan_utils import get_printable_batch, printable_numpy
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "--sample_index", type=int, default=None, help="Send the selected sample to the target model")
-parser.add_argument("-?", "--random", action="store_true", help="Send a randomly selected sample to the target model")
+parser.add_argument("-i", "--index", type=int, default=None, help="Send the selected sample to the target model")
+parser.add_argument("-s", "--surprise", action="store_true", help="Send a randomly selected sample to the target model")
 parser.add_argument("-r", "--result", action="store_true", help="Send the result of the active_attack to the target model")
 
 
@@ -41,17 +41,17 @@ def do_predict(self, args):
     else:
         target = CFState.get_instance().active_target
 
-    if sum([args.random, args.sample_index is not None, args.result]) > 1:
-        self.pwarning("\n [!] must specify only one of {random, sample_index, result}.\n")
+    if sum([args.surprise, args.index is not None, args.result]) > 1:
+        self.pwarning("\n [!] must specify only one of {surprise, index, result}.\n")
         return
 
     heading1 = "Sample Index"
-    if args.random:
+    if args.surprise:
         sample_index = random.randint(0, len(target.X) - 1)
         samples = set_attack_samples(target, sample_index)
 
-    elif args.sample_index:  # default behavior
-        sample_index = args.sample_index
+    elif args.index:  # default behavior
+        sample_index = args.index
         samples = set_attack_samples(target, sample_index)
 
     elif args.result:

@@ -1,5 +1,8 @@
 import cmd2
 import argparse
+import random
+
+import numpy as np
 
 from collections import namedtuple
 from counterfit.core.state import CFState
@@ -43,8 +46,9 @@ parser_sample.add_argument(
     "--index",
     default=None,
     type=int,
-    help="sample index to show (defaults to the sample_index set in the active attack)",
+    help="show user set index sample",
 )
+parser_sample.add_argument("-s", "--surprise", action="store_true", help="show a random sample")
 parser_sample.add_argument("-r", "--result", action="store_true", help="show the result of the active attack")
 
 # show results
@@ -263,46 +267,74 @@ def show_options(self, args):
 
     self.poutput("\n" + show_attack_options(attack))
 
+def get_samples(target, index=0):
+    if hasattr(index, "__iter__"):
+        # (unused) multiple index
+        out = np.array([target.X[i] for i in index])
+        batch_shape = (-1,) + target.model_input_shape
+    elif isinstance(target.X[index], str):
+        # array of strings (textattack)
+        out = np.array(target.X[index])
+        batch_shape = (-1,)
+    else:
+        # array of arrays (art)
+        out = np.atleast_2d(target.X[index])
+        batch_shape = (-1,) + target.model_input_shape
+    samples = out.reshape(batch_shape)
+    return samples
 
 def show_sample(self, args):
-    try:
-        target = CFState.get_instance().active_target
-        attack = target.active_attack
-    except AttributeError:
-        self.pwarning("\n [!] Interact with a target and set an active target first.\n")
+    
+    target = CFState.get_instance().active_target
+    if not target:
+        self.pwarning("\n [!] Not interacting with a target. Set the active target with `interact`.\n")
+        return
+    
+    if sum([args.surprise, args.index is not None, args.result]) > 1:
+        self.pwarning("\n [!] must specify only one of {surprise, index, result}.\n")
         return
 
-    if attack is None:
-        self.pwarning("\n [!] No active attack. Try 'use'.\n")
-        return
-
-    if args.index is not None and args.result:
-        self.pwarning("\n [!] Cannot specify both an index and a result.\n")
-        return
-
-    if args.result:
+    elif sum([args.surprise, args.index is not None, args.result]) == 0:
+        # "show sample" with an active target uses the current sample_index as input
         try:
-            samples = target.active_attack.results["final"]["input"]
-            sample_index = [target.active_attack.attack_id] * len(samples)
-            heading1 = "attack id"
-        except (KeyError, AttributeError):
-            self.p("\n [!] No results found. First 'run' an attack.\n")
+            args.index = target.active_attack.sample_index
+        except (ValueError, AttributeError):
+            self.pwarning("\n [!] No active attack. Please provide valid arguments. Try 'show sample -i 2' or 'show sample -s'.\n")
             return
-    elif args.index is None:
-        restore_index = attack.sample_index
-        target.set_attack_samples(attack.sample_index)
-        samples = attack.samples
-        target.set_attack_samples(restore_index)
-        sample_index = attack.sample_index
-        heading1 = None
-    else:
-        restore_index = attack.sample_index
-        target.set_attack_samples(args.index)
-        samples = attack.samples
-        target.set_attack_samples(restore_index)
-        sample_index = args.index
-        heading1 = None
 
+    if isinstance(args.index, int):
+        sample_index = args.index
+        target_x_len = len(target.X) - 1
+        if sample_index > target_x_len:
+            self.pwarning("\n [!] Entered index is out of bounds. Please provide index in the range {0} and {1} including.\n".format(0, target_x_len))
+            return
+        samples = get_samples(target, sample_index)
+        heading1 = None
+        
+    elif args.surprise:
+        sample_index = random.randint(0, len(target.X) - 1)
+        samples = get_samples(target, index=sample_index)
+        heading1 = None
+        
+    elif args.result:
+        attack = target.active_attack
+        if not attack:
+            self.pwarning("\n [!] No active attack. load respective framework and try 'use'.\n")
+            return
+        if args.index is not None and args.result:
+            self.pwarning("\n [!] Cannot specify both an index and a result.\n")
+            return
+        try:
+            samples = attack.results["final"]["input"]
+            sample_index = [attack.attack_id] * len(samples)
+            heading1 = "attack id"
+        except (KeyError, AttributeError, TypeError):
+            self.pwarning("\n [!] No results found. First 'run' an attack.\n")
+            return
+    else:
+        self.pwarning("\n [!] Please provide valid arguments. Try 'show sample -i 2' or 'show sample -s'.\n")
+        return
+    
     self.poutput(show_current_sample(target, get_printable_batch(target, samples), heading1, sample_index))
 
 

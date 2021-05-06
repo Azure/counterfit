@@ -63,12 +63,12 @@ python counterfit.py
 ## Learn More
 
 Visit our [wiki](https://github.com/Azure/counterfit/wiki) for more detailed instructions on
-* Basic Use
-* Tutorials
-* Key Concepts
-* Assessment Guidance
-* Extending Counterfit
-* Advanced Use
+* [Basic Use](https://github.com/Azure/counterfit/wiki/Basic-Use)
+* [Tutorials](https://github.com/Azure/counterfit/wiki/Tutorials)
+* [Counterfit Internals](https://github.com/Azure/counterfit/wiki/Internals)
+* [Advanced Use](https://github.com/Azure/counterfit/wiki/Advanced-Use)
+* [Assessment Guidance](https://github.com/Azure/counterfit/wiki/Assessment-Guidance)
+* [Defensive Guidance](https://github.com/Azure/counterfit/wiki/Defensive-Guidance)
 
 ## Acknowledgments
 
