@@ -1,7 +1,6 @@
-from counterfit.core.attacks import Attack
-from hyperopt import hp
-
 from art.attacks.evasion import BoundaryAttack
+from hyperopt import hp
+from counterfit.core.attacks import Attack
 
 
 class BoundaryAttackWrapper(Attack):

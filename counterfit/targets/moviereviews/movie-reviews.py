@@ -1,14 +1,14 @@
+import copy
 import pickle
 import re
-import copy 
 
 import numpy as np
 import pandas as pd
-from torch import nn
 import torch
+from torch import nn
 
 from counterfit.core import config
-from counterfit.core.state import TextTarget, Target
+from counterfit.core.state import TextTarget
 
 class MovieReviewsSentimentLSTM(nn.Module):
     """pre-trained LSTM model on 25 epochs for building sentiment analysis model on IMDB movies review dataset. 

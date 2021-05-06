@@ -1,9 +1,6 @@
-import cmd2
 import argparse
-
-from counterfit.core.state import CFState, Target
-from counterfit.core import state
-
+import cmd2
+from counterfit.core.state import CFState
 
 parser = argparse.ArgumentParser()
 # including this print the correct help message

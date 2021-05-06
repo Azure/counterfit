@@ -1,6 +1,6 @@
 from collections import defaultdict
-import pytest
 from unittest.mock import Mock
+import pytest
 
 from counterfit.core.state import CFState
 

@@ -1,16 +1,13 @@
-import numpy as np
-import functools
 import datetime
-import time
+import functools
 import os
-
+import time
 from collections import namedtuple
+import numpy as np
+from PIL import Image
 from tqdm import tqdm
-
 from counterfit.core import wrappers, enums
 from counterfit.core.interfaces import AbstractTarget
-
-from PIL import Image
 
 Query = namedtuple('Query', ['input', 'output', 'label'])
 

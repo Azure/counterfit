@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.kuleshov_2017 import Kuleshov2017
+from counterfit.core.state import Attack
 
 
 class KuleshovAttackWrapper(Attack):

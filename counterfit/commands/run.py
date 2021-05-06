@@ -1,8 +1,7 @@
 import argparse
 import cmd2
-
-from counterfit.core.state import CFState
 from counterfit.core.run_scan_utils import get_run_summary, get_printable_run_summary
+from counterfit.core.state import CFState
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-l", "--log", action="store_true", help="log all actions")

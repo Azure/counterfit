@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.textfooler_jin_2019 import TextFoolerJin2019
+from counterfit.core.state import Attack
 
 
 class TextFoolerAttackWrapper(Attack):

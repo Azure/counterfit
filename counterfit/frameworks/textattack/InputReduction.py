@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.input_reduction_feng_2018 import InputReductionFeng2018
+from counterfit.core.state import Attack
 
 
 class InputReductionAttackWrapper(Attack):

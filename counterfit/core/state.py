@@ -1,15 +1,13 @@
 # state.py: holds global state of attacks and targets
 import importlib
-import uuid
-
+import inspect
 import os
 import sys
-import inspect
+import uuid
 from collections import defaultdict
-
 from counterfit.core import config
 from counterfit.core.attacks import Attack
-from counterfit.core.targets import Target, ArtTarget, TextTarget
+from counterfit.core.targets import Target
 
 
 class CFState:

@@ -1,7 +1,6 @@
 import datetime
 
 import pytest
-from unittest.mock import patch
 
 from counterfit.core.attacks import Attack
 
@@ -83,6 +82,3 @@ class TestAttack:
         attack_handler.append_log(log_entry)
         attack_handler.append_log(log_entry)
         assert len(attack_handler._logs) == 3
-    
-
-    

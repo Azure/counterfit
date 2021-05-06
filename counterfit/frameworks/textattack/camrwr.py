@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.pruthi_2019 import Pruthi2019
+from counterfit.core.state import Attack
 
 
 class CAMRWRAttackWrapper(Attack):

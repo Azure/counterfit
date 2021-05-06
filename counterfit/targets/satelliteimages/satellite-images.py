@@ -1,10 +1,10 @@
 import numpy as np
-import torchvision.models as models
-from torchvision import transforms
-from torch import nn
 import torch
-from torch.nn import functional as F
+import torchvision.models as models
 from PIL import Image
+from torch import nn
+from torch.nn import functional as F
+from torchvision import transforms
 
 from counterfit.core import config
 from counterfit.core.state import ArtTarget

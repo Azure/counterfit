@@ -1,5 +1,4 @@
 import setuptools
-import os
 import sys
 
 if sys.version_info[:2] < (3, 7):

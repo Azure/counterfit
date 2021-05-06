@@ -1,6 +1,6 @@
 from art.attacks.evasion import ThresholdAttack
-from counterfit.core.attacks import Attack
 from hyperopt import hp
+from counterfit.core.attacks import Attack
 
 
 class ThresholdAttackWrapper(Attack):

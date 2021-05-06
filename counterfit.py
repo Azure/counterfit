@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 import warnings
 from counterfit.core import config
 from counterfit.core.state import CFState

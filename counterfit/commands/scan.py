@@ -1,13 +1,11 @@
-import random
-import json
-
 import argparse
-import cmd2
+import json
+import random
 from collections import defaultdict
-
+import cmd2
+from counterfit.core.run_scan_utils import get_run_summary, get_printable_run_summary, get_scan_summary, \
+    get_printable_scan_summary
 from counterfit.core.state import CFState
-from counterfit.core.run_scan_utils import get_run_summary, get_printable_run_summary, get_scan_summary, get_printable_scan_summary
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--iterations", default=1, type=int, help="number of iterations of each algorithm")

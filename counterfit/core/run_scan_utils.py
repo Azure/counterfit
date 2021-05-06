@@ -1,13 +1,12 @@
-import numpy as np
-import Levenshtein  # pip install python-Levenshtein
-from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
-from cmd2 import ansi
-from typing import Any, List
-import json
-import os
 import functools
 import hashlib
-
+import json
+import os
+from typing import Any, List
+import Levenshtein  # pip install python-Levenshtein
+import numpy as np
+from cmd2 import ansi
+from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
 
 bold_yellow = functools.partial(ansi.style, fg=ansi.fg.bright_yellow, bold=True)
 

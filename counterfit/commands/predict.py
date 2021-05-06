@@ -1,12 +1,12 @@
-from counterfit.core.state import CFState
 import argparse
-import cmd2
 import random
+from typing import Any, List
+import cmd2
 import numpy as np
 from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
-from typing import Any, List
 
 from counterfit.core.run_scan_utils import get_printable_batch, printable_numpy
+from counterfit.core.state import CFState
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--sample_index", type=int, default=None, help="Send the selected sample to the target model")

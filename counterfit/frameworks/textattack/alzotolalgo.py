@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.genetic_algorithm_alzantot_2018 import GeneticAlgorithmAlzantot2018
+from counterfit.core.state import Attack
 
 
 class GAAttackWrapper(Attack):

@@ -1,9 +1,9 @@
 import datetime
 import uuid
-
+import numpy as np
 from hyperopt import pyll
-import numpy
-from counterfit.core import config, wrappers, enums
+
+from counterfit.core import enums
 from counterfit.core.interfaces import AbstractAttack
 
 
@@ -45,7 +45,7 @@ class Attack(AbstractAttack):
     def _param_floats_to_ints(self, parameters):
         new_parameters = {}
         for k, v in parameters.items():
-            if isinstance(v, float) and v < numpy.inf:
+            if isinstance(v, float) and v < np.inf:
                 if int(v) == v:
                     v = int(v)
             new_parameters[k] = v

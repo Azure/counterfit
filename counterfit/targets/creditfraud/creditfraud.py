@@ -1,10 +1,8 @@
 import pickle
-
-import numpy as np
-from counterfit.core.state import ArtTarget
-from counterfit.core import config
-
 import warnings
+import numpy as np
+from counterfit.core import config
+from counterfit.core.state import ArtTarget
 
 
 class CreditFraud(ArtTarget):

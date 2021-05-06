@@ -1,11 +1,10 @@
-import cmd2
 import argparse
 import re
-
+from collections import namedtuple
 from typing import Any, List
+import cmd2
 from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
 
-from collections import namedtuple
 from counterfit.core.state import CFState
 
 parser = argparse.ArgumentParser()

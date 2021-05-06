@@ -1,12 +1,9 @@
-import questionary
-import os
-import importlib
-import cmd2
-import inspect
 import argparse
-
-from counterfit.core.state import CFState
+import os
+import cmd2
+import questionary
 from counterfit.core import config
+from counterfit.core.state import CFState
 
 parser = argparse.ArgumentParser()
 # including this print the correct help message

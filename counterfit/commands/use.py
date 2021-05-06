@@ -1,8 +1,7 @@
-import cmd2
 import argparse
+import cmd2
 
 from counterfit.core.state import CFState
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument("attack", choices=CFState.get_instance().loaded_attacks.keys())

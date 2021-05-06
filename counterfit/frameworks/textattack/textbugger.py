@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.textbugger_li_2018 import TextBuggerLi2018
+from counterfit.core.state import Attack
 
 
 class TextBuggerAttackWrapper(Attack):

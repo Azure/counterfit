@@ -1,7 +1,6 @@
 import numpy as np
-
-from art.estimators.estimator import BaseEstimator, NeuralNetworkMixin
 from art.estimators.classification import ClassifierMixin
+from art.estimators.estimator import BaseEstimator, NeuralNetworkMixin
 
 
 class BlackBoxClassifierWrapper(BaseEstimator, NeuralNetworkMixin, ClassifierMixin):

@@ -1,11 +1,10 @@
-import cmd2
 import argparse
-
 from collections import namedtuple
-from counterfit.core.state import CFState
-from counterfit.core.run_scan_utils import get_printable_batch, get_run_summary, get_printable_run_summary
-from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
 from typing import Any, List
+import cmd2
+from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
+from counterfit.core.run_scan_utils import get_printable_batch, get_run_summary, get_printable_run_summary
+from counterfit.core.state import CFState
 
 # show
 base_parser = argparse.ArgumentParser()

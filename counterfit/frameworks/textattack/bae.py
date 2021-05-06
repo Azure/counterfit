@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.bae_garg_2019 import BAEGarg2019
+from counterfit.core.state import Attack
 
 
 class BAEAttackWrapper(Attack):

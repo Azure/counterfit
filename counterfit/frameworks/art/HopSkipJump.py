@@ -1,7 +1,7 @@
 import numpy as np
 from art.attacks.evasion import HopSkipJump
-from counterfit.core.attacks import Attack
 from hyperopt import hp
+from counterfit.core.attacks import Attack
 
 
 class HopSkipJumpWrapper(Attack):

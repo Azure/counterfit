@@ -1,7 +1,7 @@
 import numpy as np
 from art.attacks.evasion import SquareAttack
-from counterfit.core.attacks import Attack
 from hyperopt import hp
+from counterfit.core.attacks import Attack
 
 
 class SquareAttackWrapper(Attack):

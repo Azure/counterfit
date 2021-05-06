@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.deepwordbug_gao_2018 import DeepWordBugGao2018
+from counterfit.core.state import Attack
 
 
 class DeepWordBugWrapper(Attack):

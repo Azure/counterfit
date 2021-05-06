@@ -1,14 +1,13 @@
+import inspect
 import os
 import pkgutil
-import inspect
-import types
 import sys
-
+import types
+from typing import Any
 from cmd2 import Cmd
 from cmd2 import ansi
-from typing import Any
-from counterfit.core.state import CFState
 from counterfit.core import config
+from counterfit.core.state import CFState
 
 
 class Terminal(Cmd):

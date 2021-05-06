@@ -1,5 +1,4 @@
 import pickle
-
 import numpy as np
 from counterfit.core.state import ArtTarget
 

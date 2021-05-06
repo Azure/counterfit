@@ -1,8 +1,8 @@
-import cmd2
 import argparse
 from typing import Any, List
-from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
+from cmd2.table_creator import Column, SimpleTable
 from counterfit.core.state import CFState
+import cmd2
 
 parser = argparse.ArgumentParser()
 parser.add_argument("type", choices=["targets", "attacks", "frameworks"])

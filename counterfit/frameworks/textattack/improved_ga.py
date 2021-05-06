@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.iga_wang_2019 import IGAWang2019
+from counterfit.core.state import Attack
 
 
 class ImprovedGAAttackWrapper(Attack):

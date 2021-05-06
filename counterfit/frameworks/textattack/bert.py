@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.bert_attack_li_2020 import BERTAttackLi2020
+from counterfit.core.state import Attack
 
 
 class BERTAttackWrapper(Attack):

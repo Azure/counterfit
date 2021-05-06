@@ -1,6 +1,5 @@
-from counterfit.core.state import Attack
-
 from textattack.attack_recipes.pwws_ren_2019 import PWWSRen2019
+from counterfit.core.state import Attack
 
 
 class PWWSAttackWrapper(Attack):
