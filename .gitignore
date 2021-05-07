@@ -106,6 +106,9 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# IDE config
 .vscode
+.idea
+
 counterfit/logs
 targets/*/images

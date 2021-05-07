@@ -5,6 +5,7 @@
 
 import abc
 
+
 # Target
 class AbstractTarget(abc.ABC):
     """Abstract Target class for all the targets"""

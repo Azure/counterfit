@@ -8,7 +8,9 @@ from counterfit.core.interfaces import AbstractAttack
 
 
 class Attack(AbstractAttack):
-    """Attack class inherits AbstractAttack and sets attack parameters. It also persists attack results and logs to json configuration file"""
+    """Attack class inherits AbstractAttack and sets attack parameters.
+    It also persists attack results and logs to json configuration file.
+    """
 
     def __init__(self, status=enums.AttackStatus.pending.value):
         self.attack_id = uuid.uuid4().hex[:8]
@@ -25,8 +27,11 @@ class Attack(AbstractAttack):
         # Results of the attack
         self.results = []
 
-        # set creation time
+        # Set creation time
         self.created_time = datetime.datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
+
+        # Parameters
+        self.parameters = dict()
 
     def set_attack_parameters(self, parameters):
         if parameters == "default":
@@ -42,6 +47,7 @@ class Attack(AbstractAttack):
             print("\n[!] Parameters arguement not understood. Setting default.")
             self.parameters = self.default
 
+    @staticmethod
     def _param_floats_to_ints(self, parameters):
         new_parameters = {}
         for k, v in parameters.items():
