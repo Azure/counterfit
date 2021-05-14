@@ -16,7 +16,7 @@ parser.add_argument("-t", "--terminate", action="store_true", help="Stop the RES
 @cmd2.with_category("Counterfit Commands")
 @cmd2.with_argparser(parser)
 def do_serve(self, args):
-    """Servepredictions with a REST API"""
+    """ Serve predictions with a REST API"""
     if args.start:
         port = args.port
         self.pwarning("\n Starting the server on port {}.".format(port))

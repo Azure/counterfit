@@ -51,7 +51,7 @@ class Server():
            Server.__instance = self
    
    def __app_factory(self):
-       """Create the flask app that exposes the api"""
+       """ Create the flask app that exposes the api"""
        app = Flask(__name__)
        
        @app.route("/predict")
@@ -87,7 +87,7 @@ class Server():
    def __run_flask(self, port):
        self.app.run(port=self.port)
    def __predict(self, args):
-       """Clone of the command do_predict function which I could not call directly"""
+       """ Clone of the command do_predict function which could not be called directly"""
        if CFState.get_instance().active_target is None:
            print("\n [!] must first `interact` with a target.\n")
            return
@@ -115,7 +115,7 @@ class Server():
 
 
 def set_attack_samples(target, sample_index=0):
-    # Duplicated as I could not import commands as a module
+    # Duplicated as commands could not be imported as a module
     if hasattr(sample_index, "__iter__"):
         # (unused) multiple index
         out = np.array([target.X[i] for i in sample_index])
