@@ -39,7 +39,13 @@ def get_printable_batch(target, samples):
             basename = f"{target.model_name}-sample-{_id}"
             filename = target._save_image(image, filename=basename)
             result.append(filename)
-
+    elif target.model_data_type == 'exe':
+        result = []
+        for exe in samples:
+            _id = hashlib.md5(target._key(exe)).hexdigest()[:8]
+            basename = f"{target.model_name}-sample-{_id}"
+            filename = target._save_exe(exe, basename)
+            result.append(filename)
     else:  # numpy
         result = printable_numpy(samples)
 
@@ -83,6 +89,9 @@ def get_run_summary(target, attack=None):
         metric = "% Eucl. dist."
         eps = np.finfo("float32").eps
         rel_distance = np.sqrt(np.nansum(np.square(i_f - i_0), axis=1)) / (np.linalg.norm(i_0, axis=1) + eps)
+    elif target.model_data_type == "exe":
+        metric = "TODO"
+        rel_distance = [0]
     else:
         raise ValueError("Unexpected model_data_type")
 

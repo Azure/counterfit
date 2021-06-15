@@ -21,3 +21,8 @@ lightgbm==3.1.1
 
 # testing framework
 pytest==6.1.1
+
+# secml and secml-malware
+secml>=0.14
+secml-malware>=0.2.2
+git+https://github.com/elastic/ember.git

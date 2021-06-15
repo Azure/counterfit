@@ -2,6 +2,8 @@ import numpy as np
 
 from art.estimators.estimator import BaseEstimator, NeuralNetworkMixin
 from art.estimators.classification import ClassifierMixin
+from secml.array import CArray
+from secml_malware.attack.blackbox.c_wrapper_phi import CWrapperPhi
 
 
 class BlackBoxClassifierWrapper(BaseEstimator, NeuralNetworkMixin, ClassifierMixin):
@@ -67,3 +69,17 @@ class BlackBoxClassifierWrapper(BaseEstimator, NeuralNetworkMixin, ClassifierMix
             predictions[begin:end] = self._predictions(X[begin:end])
 
         return predictions
+
+
+class SecMLBlackBoxClassifierWrapper:
+    """This counterfit class wraps the BlackBox SecML malware class"""
+
+    def __init__(self, model : CWrapperPhi, prediction_function):
+        self._wrapper = model
+        self._wrapper.predict = prediction_function
+
+    def predict(self, x : CArray):
+        return self._wrapper.predict(x, return_decision_function=True)
+
+    def extract_features(self, x : CArray):
+        return self._wrapper.extract_features(x)

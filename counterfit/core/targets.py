@@ -1,16 +1,20 @@
-import numpy as np
-import functools
 import datetime
-import time
+import functools
 import os
-
+import time
+from abc import ABC
 from collections import namedtuple
+
+import magic
+import numpy as np
+from PIL import Image
+from secml.array import CArray
+from secml_malware.attack.blackbox.c_wrapper_phi import CWrapperPhi
+from secml_malware.attack.blackbox.ga.c_base_genetic_engine import CGeneticAlgorithm
 from tqdm import tqdm
 
-from counterfit.core import wrappers, enums
+from counterfit.core import wrappers, enums, config
 from counterfit.core.interfaces import AbstractTarget
-
-from PIL import Image
 
 Query = namedtuple('Query', ['input', 'output', 'label'])
 
@@ -68,7 +72,7 @@ class Target(AbstractTarget):
             # compare all new labels to all target classes (both as np arrays)
             return new_labels == np.array(self.model_output_classes)[self.active_attack.target_class]
         else:
-            return new_labels != np.array(old_labels)        
+            return new_labels != np.array(old_labels)
 
     def outputs_to_labels(self, output):
         # default multiclass label selector via argmax
@@ -79,7 +83,7 @@ class Target(AbstractTarget):
     @staticmethod
     def _key(array):
         return np.array(array).data.tobytes()
-    
+
     def _submit_with_cache(self, batch_input):
         # submit to model, with caching
         self.num_evaluations += len(batch_input)
@@ -137,13 +141,13 @@ class Target(AbstractTarget):
         outp = self._submit(inp)
         labels = np.atleast_1d(self.outputs_to_labels(outp))  # call the model predict function and send perturbed text
         # convert to named-tuple in raw list format (JSON compatibility)
-        return Query(np.array(inp).tolist(), 
-                     np.array(outp).tolist(), 
+        return Query(np.array(inp).tolist(),
+                     np.array(outp).tolist(),
                      np.array(labels).tolist())
 
     def _save_image(self, array, suffix='', extension='png', filename=None):
         assert self.model_data_type == "image", "Saving non-'image' types as an image is not supported"
-        module_path = "/".join(self.__module__.split(".")[:-1])              
+        module_path = "/".join(self.__module__.split(".")[:-1])
         if filename is None:
             filename = f"{module_path}/results/{self.model_name}-{self.active_attack.attack_id}"
             if "results" not in os.listdir(module_path):
@@ -173,18 +177,18 @@ class Target(AbstractTarget):
 
         elif len(self.model_input_shape) == 2:  # grayscale
             im = Image.fromarray(array, 'L')
-        
+
         else:
             raise ValueError("Expecting at least 2-dimensional image in model_input_shape")
 
         im.save(filename)
         return filename
-    
+
     def init_run_attack(self):
         # get initial query input/output/label
         initial = self._get_query(self.active_attack.samples)
         self.active_attack.results = {'initial': initial._asdict()}
-        
+
     def run_attack(self, logging=False):
         t0 = time.time()
         queries0 = self.num_evaluations
@@ -241,7 +245,7 @@ class ArtTarget(Target):
 
     def _run_art_attack(self, logging):
         # Adversarial Robustness Toolkit
-        
+
         # initialize attack
         attack_cls = self.active_attack.attack_cls(
             self._as_blackbox_art_target(
@@ -263,7 +267,7 @@ class ArtTarget(Target):
         return adv_examples
 
     def _run_attack(self, logging):
-        return self._run_art_attack(logging)        
+        return self._run_art_attack(logging)
 
 
 class TextTarget(Target):
@@ -304,3 +308,87 @@ class TextTarget(Target):
 
     def _run_attack(self, logging):
         return self._run_textattack_attack(logging)
+
+
+class SecMLMalwareTarget(Target, ABC):
+    model: CWrapperPhi = None
+    model_data_type = 'exe'
+    model_output_classes = ["goodware", "malware"]
+    model_location = "local"
+
+    model_input_shape = (1,)
+    sample_input_path = os.path.join(config.targets_path, 'malware', 'samples', 'malware')
+    X = []
+
+    def __init__(self):
+        malware_files = os.listdir(self.sample_input_path)
+        max_length = 0
+        xx = []
+        for f in malware_files:
+            complete_path = os.path.join(self.sample_input_path, f)
+            if 'PE' not in magic.from_file(complete_path):
+                continue
+            with open(complete_path, 'rb') as h:
+                code = h.read()
+            x_i = np.frombuffer(code, dtype=np.uint8)
+            max_length = max(max_length, len(x_i))
+            xx.append(x_i)
+        self.X = [np.append(x_i, [256] * (max_length - len(x_i))) for x_i in xx]
+
+    @staticmethod
+    def _save_exe(exe, path):
+        with open(path, 'wb') as h:
+            x_real = exe.astype(np.uint8).tolist()
+            x_real_adv = b''.join([bytes([i]) for i in x_real])
+            h.write(x_real_adv)
+
+    def outputs_to_labels(self, output: np.ndarray):
+        # default multiclass label selector via argmax
+        # user can override this function if, for example, one wants to choose a specific threshold
+        output = np.atleast_2d(output)
+        return [self.model_output_classes[i] for i in output.argmax(axis=1)]
+
+    def _submit(self, batch_input: CArray, return_decision_function=True):
+        # submit to model, without caching
+        self.num_evaluations += batch_input.shape[0]
+        self.actual_evaluations += batch_input.shape[0]
+        return self.__call__(batch_input)
+
+    def set_attack_samples(self, index=0):
+        out = self.X[index]
+        self.active_attack.sample_index = index
+        self.active_attack.samples = out
+
+    def __call__(self, x):
+        if type(x) != CArray:
+            x = CArray(x)
+        _, scores = self.model.predict(x, return_decision_function=True)
+        return scores.tondarray()
+
+    def _create_blackbox_wrapper(self, logging):
+        func = functools.partial(self._submit_with_logging, return_decision_function=True,
+                                 attack_name=self.active_attack.attack_name, attack_id=self.active_attack.attack_id)
+        prediction_function = func if logging else self._submit
+
+        model = wrappers.SecMLBlackBoxClassifierWrapper(self.model, prediction_function)
+        return model
+
+    def _run_attack(self, logging):
+        model = self.model
+        problem = self.active_attack.attack_cls(model, **self.active_attack.parameters)
+        engine = CGeneticAlgorithm(problem)
+        X = np.atleast_2d(self.active_attack.samples)
+        adv_examples = []
+        max_length = 0
+        for i in range(X.shape[0]):
+            x_i = X[i, :]
+            y_pred, scores, adv_ds, f_opt = engine.run(CArray(x_i), CArray([1]))
+            adv_x = adv_ds.X[0, :]
+            adv_examples.append(adv_x)
+            max_length = max(max_length, adv_x.shape[1])
+        carray_adv_examples = np.zeros((X.shape[0], max_length)) + 256
+        for i, x_i in enumerate(adv_examples):
+            carray_adv_examples[i, :x_i.shape[1]] = x_i.tondarray()
+        self.active_attack.status = enums.AttackStatus.completed
+        return carray_adv_examples
+

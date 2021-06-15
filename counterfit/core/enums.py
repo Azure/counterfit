@@ -14,6 +14,7 @@ class ModelLocation(Enum):
 class AttackFramework(Enum):
     art = "art"
     textattack = "textattack"
+    secml = "secml"
 
 
 class AttackCategory(Enum):
