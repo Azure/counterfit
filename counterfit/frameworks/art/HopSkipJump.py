@@ -16,7 +16,7 @@ class HopSkipJumpWrapper(Attack):
         "targeted": hp.choice("hsj_targeted", [False, True]),
         "norm": hp.choice("hsj_norm", [2, np.inf]),
         "max_iter": hp.quniform("hsj_maxiter", 10, 100, 1),
-        "max_eval": hp.quniform("hsj_maxeval", 300, 10000, 1),
+        "max_eval": hp.quniform("hsj_maxeval", 300, 1000, 1),
         "init_eval": hp.quniform("hsj_initeval", 10, 200, 1),
         "init_size": hp.quniform("hsj_initsize", 10, 200, 1),
     }
@@ -25,7 +25,7 @@ class HopSkipJumpWrapper(Attack):
         "targeted": False,
         "norm": 2,
         "max_iter": 50,
-        "max_eval": 10000,
+        "max_eval": 1000,
         "init_eval": 100,
         "init_size": 100,
     }
