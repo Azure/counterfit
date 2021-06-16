@@ -15,7 +15,7 @@ class ZooAttackWrapper(Attack):
         "confidence": hp.uniform("zoo_conf", 0.0, 0.2),
         "targeted": hp.choice("zoo_targ", [False, True]),
         "learning_rate": hp.uniform("zoo_lr", 1e-3, 1e-1),
-        "max_iter": hp.quniform("zoo_maxiter", 5, 20, 1),
+        "max_iter": hp.quniform("zoo_maxiter", 5, 10, 1),
         "binary_search_steps": hp.quniform("zoo_steps", 1, 5, 1),
         "initial_const": hp.uniform("zoo_init", 1e-4, 1e-2),
         "abort_early": hp.choice("zoo_abort", [False, True]),

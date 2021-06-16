@@ -50,7 +50,7 @@ def do_predict(self, args):
         sample_index = random.randint(0, len(target.X) - 1)
         samples = set_attack_samples(target, sample_index)
 
-    elif args.index:  # default behavior
+    elif args.index is not None:  # default behavior
         sample_index = args.index
         samples = set_attack_samples(target, sample_index)
 

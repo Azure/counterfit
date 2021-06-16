@@ -19,7 +19,7 @@ def shallow_dict_to_fixed_width(d):
 def printable_numpy(batch):
     o = np.get_printoptions()
     np.set_printoptions(
-        threshold=30, precision=3, floatmode="maxprec_equal", formatter=dict(float=lambda x: f"{x:4.3f}")
+        threshold=30, precision=2, floatmode="maxprec_equal", formatter=dict(float=lambda x: f"{x:4.2f}")
     )
     result = [str(np.array(row)).replace("\n", " ") for row in batch]
     np.set_printoptions(

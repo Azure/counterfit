@@ -61,10 +61,14 @@ def do_set(self, args):
     # convert string "True"/"true" and "False"/"false" to boolean
     for i, v in enumerate(params_to_update):
         if type(default_params.get(v[0], None)) is bool:
-            if v[1].lower() == "true" or int(v[1]) == 1:
-                params_to_update[i] = (v[0], True)
-            elif v[1].lower() == "false" or int(v[1]) == 0:
-                params_to_update[i] = (v[0], False)
+            try:
+                val = bool(int(v[1]))
+            except ValueError:  # string isn't a base-10 number like "0" or "1"
+                if v[1].lower() == "true":
+                    val = True
+                elif v[1].lower() == "false":
+                    val = False
+            params_to_update[i] = (v[0], val)
 
     # create new params struct using default values where no new values are spec'd
     new_params = params_struct(**{i[0]: type(default_params.get(i[0], ""))(i[1]) for i in params_to_update})
