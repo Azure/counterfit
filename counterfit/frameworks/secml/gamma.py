@@ -5,13 +5,14 @@ from secml_malware.attack.blackbox.c_gamma_evasion import CGammaEvasionProblem
 from secml_malware.attack.blackbox.c_gamma_sections_evasion import CGammaSectionsEvasionProblem
 
 from counterfit.core import config
+from counterfit.core.attacks import Attack
 from counterfit.core.enums import AttackStatus
-from counterfit.frameworks.secml.base import ByteBasedBlackBox
+from counterfit.frameworks.secml.byte_based import ByteBasedBlackBox
 
-GOODWARE_FOLDER = os.path.join(config.targets_path, 'malware', 'samples', 'goodware')
+GOODWARE_FOLDER = os.path.join(config.targets_path, 'pe_malware', 'samples', 'goodware')
 
 
-class GammaPaddingAttack(ByteBasedBlackBox):
+class GammaPaddingAttack(ByteBasedBlackBox, Attack):
 	attack_cls = CGammaEvasionProblem
 	attack_name = "gamma-padding"
 	default = {
@@ -50,7 +51,7 @@ class GammaPaddingAttack(ByteBasedBlackBox):
 		self.attack_cls.__init__ = lambda mw, **kw: CGammaEvasionProblem(section_population, mw, **kw)
 
 
-class GammaSectionInjectionAttack(ByteBasedBlackBox):
+class GammaSectionInjectionAttack(ByteBasedBlackBox, Attack):
 	attack_cls = CGammaSectionsEvasionProblem
 	attack_name = "gamma-section-injection"
 	default = {

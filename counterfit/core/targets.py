@@ -16,6 +16,8 @@ from tqdm import tqdm
 from counterfit.core import wrappers, enums, config
 from counterfit.core.interfaces import AbstractTarget
 
+PE_MALWARE_FOLDER = 'pe_malware'
+
 Query = namedtuple('Query', ['input', 'output', 'label'])
 
 
@@ -313,12 +315,12 @@ class TextTarget(Target):
 
 class SecMLMalwareTarget(Target, ABC):
 	model: CWrapperPhi = None
-	model_data_type = 'exe'
+	model_data_type = "PE"
 	model_output_classes = ["goodware", "malware"]
 	model_location = "local"
 
 	model_input_shape = (1,)
-	sample_input_path = os.path.join(config.targets_path, 'malware', 'samples', 'malware')
+	sample_input_path = os.path.join(config.targets_path, PE_MALWARE_FOLDER, 'samples', 'malware')
 	X = []
 
 	def __init__(self):
@@ -327,7 +329,7 @@ class SecMLMalwareTarget(Target, ABC):
 		xx = []
 		for f in malware_files:
 			complete_path = os.path.join(self.sample_input_path, f)
-			if 'PE' not in magic.from_file(complete_path):
+			if "PE" not in magic.from_file(complete_path):
 				continue
 			with open(complete_path, 'rb') as h:
 				code = h.read()
@@ -363,7 +365,9 @@ class SecMLMalwareTarget(Target, ABC):
 	def __call__(self, x):
 		if type(x) != CArray:
 			x = CArray(x)
+		x = x.atleast_2d()
 		labels, scores = self.model.predict(x, return_decision_function=True)
+		labels, scores = labels.atleast_2d(), scores.atleast_2d()
 		return labels.tondarray(), scores.tondarray()
 
 	def _create_blackbox_wrapper(self, logging):

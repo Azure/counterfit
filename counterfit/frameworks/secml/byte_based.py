@@ -1,12 +1,21 @@
+from abc import ABC
+
 import numpy as np
 from secml_malware.attack.blackbox.c_black_box_format_exploit_evasion import CBlackBoxFormatExploitEvasionProblem
 from secml_malware.attack.blackbox.c_black_box_padding_evasion import CBlackBoxPaddingEvasionProblem
 from secml_malware.attack.blackbox.c_blackbox_header_problem import CBlackBoxHeaderEvasionProblem
 
-from counterfit.frameworks.secml.base import ByteBasedBlackBox
+from counterfit.core.attacks import Attack
 
 
-class DOSHeaderAttack(ByteBasedBlackBox):
+class ByteBasedBlackBox(ABC):
+	attack_type = "evasion"
+	tags = ["PE", "CArray"]
+	category = "blackbox"
+	framework = "secml"
+
+
+class DOSHeaderAttack(ByteBasedBlackBox, Attack):
 	attack_cls = CBlackBoxHeaderEvasionProblem
 	attack_name = "header"
 	default = {
@@ -24,7 +33,7 @@ class DOSHeaderAttack(ByteBasedBlackBox):
 	}
 
 
-class PaddingAttack(ByteBasedBlackBox):
+class PaddingAttack(ByteBasedBlackBox, Attack):
 	attack_cls = CBlackBoxPaddingEvasionProblem
 	attack_name = "padding"
 	default = {
@@ -41,7 +50,7 @@ class PaddingAttack(ByteBasedBlackBox):
 	}
 
 
-class ContentShiftingAttack(ByteBasedBlackBox):
+class ContentShiftingAttack(ByteBasedBlackBox, Attack):
 	attack_cls = CBlackBoxFormatExploitEvasionProblem
 	attack_name = "content-shifting"
 	default = {
