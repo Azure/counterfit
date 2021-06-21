@@ -76,10 +76,19 @@ class SecMLBlackBoxClassifierWrapper:
 
     def __init__(self, model : CWrapperPhi, prediction_function):
         self._wrapper = model
-        self._wrapper.predict = prediction_function
+        self._prediction_function = prediction_function
 
-    def predict(self, x : CArray):
-        return self._wrapper.predict(x, return_decision_function=True)
+    def predict(self, x : CArray, return_decision_function : bool = True):
+        padding_position = x.find(x == 256)
+        if padding_position:
+            x = x[0, :padding_position[0]]
+        feature_vector = self.extract_features(x)
+        labels, scores =  self._prediction_function(feature_vector)
+        return CArray(labels), CArray(scores)
+
+    @property
+    def classifier(self):
+        return self._wrapper.classifier
 
     def extract_features(self, x : CArray):
         return self._wrapper.extract_features(x)
