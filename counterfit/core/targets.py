@@ -336,7 +336,7 @@ class SecMLMalwareTarget(Target, ABC):
 			x_i = np.frombuffer(code, dtype=np.uint8)
 			max_length = max(max_length, len(x_i))
 			xx.append(x_i)
-		self.X = [np.append(x_i, [256] * (max_length - len(x_i))) for x_i in xx]
+		self.X = [np.append(x_i, [256] * (max_length - len(x_i))).astype(np.uint8) for x_i in xx]
 
 	@staticmethod
 	def _save_exe(exe, path):
