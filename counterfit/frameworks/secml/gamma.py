@@ -52,8 +52,7 @@ class SectionsGammaWrapper(CGammaSectionsEvasionProblem):
 				 is_debug: bool = False,
 				 hard_label: bool = False,
 				 threshold: float = 0.5,
-				 loss: str = 'l1',
-				 random_names: bool = True):
+				 loss: str = 'l1'):
 		section_population, _ = self.create_section_population_from_folder(goodware_folder, how_many_sections,
 																		which_sections)
 		super().__init__(section_population,
@@ -65,8 +64,7 @@ class SectionsGammaWrapper(CGammaSectionsEvasionProblem):
 						 is_debug,
 						 hard_label,
 						 threshold,
-						 loss,
-						 random_names)
+						 loss)
 
 
 class GammaPaddingAttack(ByteBasedBlackBox, Attack):
