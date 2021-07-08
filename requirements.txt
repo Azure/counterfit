@@ -1,5 +1,4 @@
-
-# counterfit
+# counterfit
 cmd2==1.3.11
 numpy==1.18.5
 requests==2.24.0
@@ -8,24 +7,24 @@ scipy==1.4.1
 questionary==1.9.0
 python-Levenshtein==0.12.2
 
-# frameworks
+# frameworks
 adversarial-robustness-toolbox>=1.5
 textattack
 torchvision==0.9.0
 torch==1.8.0
-tensorflow-hub==0.12.0 # to run textbugger, bae_garg and textfooler attacks
-torchfile==0.1.0 # to run fga_jia_2019 attack
+tensorflow
+tensorflow-hub==0.12.0 # to run textbugger, bae_garg and textfooler attacks
+torchfile==0.1.0 # to run fga_jia_2019 attack
 
 h5py==2.10
 lightgbm==3.1.1
 
-# testing framework
+# testing framework
 pytest==6.1.1
 
-# secml and secml-malware
+# secml and secml-malware
 secml>=0.14
 secml-malware>=0.2.3.1
+libmagic
+python-magic
 git+https://github.com/elastic/ember.git
-
-libmagic==1.0
-python-magic-bin==0.4.14
