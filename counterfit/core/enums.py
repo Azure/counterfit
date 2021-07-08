@@ -4,6 +4,8 @@ from enum import Enum
 class ModelDataType(Enum):
     text = "text"
     image = "image"
+    pe = "pe"
+    tabular = "tabular"
 
 
 class ModelLocation(Enum):

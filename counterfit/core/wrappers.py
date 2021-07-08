@@ -16,9 +16,11 @@ class BlackBoxClassifierWrapper(BaseEstimator, NeuralNetworkMixin, ClassifierMix
         self._predictions = submit_sample
         self._input_shape = model_input_shape
         self._nb_classes = nb_output_classes
-        self._clip_values = clip_values  # Tuple of the form `(min, max)` of floats or `np.ndarray` representing the minimum and maximum values allowed for features. If arrays are provided, each value will be considered the bound for a feature, thus
+        # Tuple of the form `(min, max)` of floats or `np.ndarray` representing the minimum and maximum values allowed for features. If arrays are provided, each value will be considered the bound for a feature, thus
+        self._clip_values = clip_values
         # the shape of clip values needs to match the total number of features.
-        self._channels_first = channels_first  # Boolean to indicate index of the color channels in the sample `X`.
+        # Boolean to indicate index of the color channels in the sample `X`.
+        self._channels_first = channels_first
 
     def fit(self, X, y):
         pass
@@ -59,7 +61,8 @@ class BlackBoxClassifierWrapper(BaseEstimator, NeuralNetworkMixin, ClassifierMix
         :rtype: format as expected by the `model`
         """
 
-        predictions = np.zeros((X.shape[0], self._nb_classes), dtype=np.float32)
+        predictions = np.zeros(
+            (X.shape[0], self._nb_classes), dtype=np.float32)
         for batch_index in range(int(np.ceil(X.shape[0] / float(batch_size)))):
             begin, end = (
                 batch_index * batch_size,
@@ -74,22 +77,23 @@ class BlackBoxClassifierWrapper(BaseEstimator, NeuralNetworkMixin, ClassifierMix
 class SecMLBlackBoxClassifierWrapper:
     """This counterfit class wraps the BlackBox SecML malware class"""
 
-    def __init__(self, model : CWrapperPhi, prediction_function):
+    def __init__(self, model: CWrapperPhi, prediction_function):
         self._wrapper = model
         self._prediction_function = prediction_function
 
-    def predict(self, x : CArray, return_decision_function : bool = True):
+    def predict(self, x: CArray, return_decision_function: bool = True):
         # padding_position = x.find(x == 256)
         # if padding_position:
         #     x = x[0, :padding_position[0]]
         # feature_vector = self.extract_features(x)
         labels, scores = self._prediction_function(x)
-        labels, scores = CArray(labels).atleast_2d(), CArray(scores).atleast_2d()
+        labels, scores = CArray(
+            labels).atleast_2d(), CArray(scores).atleast_2d()
         return labels, scores
 
     @property
     def classifier(self):
         return self._wrapper.classifier
 
-    def extract_features(self, x : CArray):
+    def extract_features(self, x: CArray):
         return self._wrapper.extract_features(x)

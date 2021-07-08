@@ -26,3 +26,6 @@ pytest==6.1.1
 secml>=0.14
 secml-malware>=0.2.3.1
 git+https://github.com/elastic/ember.git
+
+libmagic==1.0
+python-magic-bin==0.4.14
