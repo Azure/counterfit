@@ -203,8 +203,7 @@ class Target(AbstractTarget):
         actual_queries0 = self.actual_evaluations
 
         # run the attack
-        resulting_samples = self._run_attack(
-            logging)  # call the specific method
+        resulting_samples = self._run_attack(logging)  # call the specific method
 
         # get result input/output/label
         final = self._get_query(resulting_samples)
@@ -341,19 +340,23 @@ class SecMLMalwareTarget(Target):
 
     @staticmethod
     def _save_exe(exe, path):
-        with open(path, 'wb') as h:
-            x_real = exe.astype(np.uint8).tolist()
-            x_real_adv = b''.join([bytes([i]) for i in x_real])
-            h.write(x_real_adv)
+        print(f"Not implemented: save exe as {path}")
+        # from IPython import embed
+        # embed()
+        # with open(path, 'wb') as h:
+        #     x_real = exe.astype(np.uint8).tolist()
+        #     x_real_adv = b''.join([bytes([i]) for i in x_real])
+        #     h.write(x_real_adv)
 
-    def _submit(self, batch_input: CArray):
-        # submit to model, without caching
-        self.num_evaluations += batch_input.shape[0]
-        self.actual_evaluations += batch_input.shape[0]
-        return self.__call__(batch_input)
+    def _submit(self, batch):
+    # 'batch' can be a list of bytes or a CArray        # submit to model, without caching
+        n = batch.shape[0] if hasattr(batch, 'shape') else len(batch)
+        self.num_evaluations += n
+        self.actual_evaluations += n
+        return self.__call__(batch)
 
     def set_attack_samples(self, index=0):
-        out = self.X[index]
+        out = np.array([self.X[i] for i in index]) if hasattr(index, '__iter__') else [self.X[index]]
         self.active_attack.sample_index = index
         self.active_attack.samples = out
 
@@ -368,29 +371,33 @@ class SecMLMalwareTarget(Target):
 
     def _run_attack(self, logging):
         model = self._create_blackbox_wrapper(logging)
-        problem = self.active_attack.attack_cls(
-            model, **self.active_attack.parameters)
+        try:
+            problem = self.active_attack.attack_cls(model_wrapper=model, **self.active_attack.parameters)
+        except:
+            from IPython import embed
+            embed()
         engine = CGeneticAlgorithm(problem)
-        X = np.atleast_2d(self.active_attack.samples)
+
+        # run Genetic Algorithm on
         adv_examples = []
         max_length = 0
-        for i in range(X.shape[0]):
-            x_i = X[i, :]
-            y_pred, scores, adv_ds, f_opt = engine.run(
-                CArray(x_i), CArray([1]))
+
+        for x_i in self.active_attack.samples:
+            xx = CArray(np.frombuffer(x_i, dtype='uint8'))
+            y_pred, scores, adv_ds, f_opt = engine.run(xx.atleast_2d(), CArray([1]))
             adv_x = adv_ds.X[0, :]
             adv_examples.append(adv_x)
-            max_length = max(max_length, adv_x.shape[1])
-        carray_adv_examples = np.zeros((X.shape[0], max_length)) + 256
-        for i, x_i in enumerate(adv_examples):
-            carray_adv_examples[i, :x_i.shape[1]] = x_i.tondarray()
         self.active_attack.status = enums.AttackStatus.completed
-        return carray_adv_examples
+        return adv_examples
 
     def _get_query(self, batch):
         inp = batch
         _, outp = self._submit(inp)
-        labels = np.atleast_1d(self.outputs_to_labels(outp))
+        try:
+            labels = np.atleast_1d(self.outputs_to_labels(outp))
+        except ValueError:
+            from IPython import embed
+            embed()
 
         return Query(np.array(inp).tolist(),
                      np.array(outp).tolist(),

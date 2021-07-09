@@ -1,3 +1,4 @@
+from traitlets.traitlets import default
 import cmd2
 import argparse
 import re
@@ -31,35 +32,43 @@ def do_set(self, args):
     if not args.what:
         self.pwarning('\n [!] No arguments specified.  Try "set <param>=<value>".\n')
 
+    # create default params struct
+    default_params = {k: v for k, v in CFState.get_instance().active_target.active_attack.default.items()}
+    default_params["sample_index"] = 0
+    default_params["target_class"] = 0
+
+    # get the type for appropriate typecasting for parsing
+    type_dict = {k: type(v) for k, v in default_params.items()}
+
     # create structure to ensure all params are present and ordered properly. Defaults to current params to prevent over writing with default values
     params_struct = namedtuple(
         "params",
-        [i for i in CFState.get_instance().active_target.active_attack.parameters.keys()]
-        + ["sample_index", "target_class"],
-        defaults=list(CFState.get_instance().active_target.active_attack.parameters.values())
-        + [
-            CFState.get_instance().active_target.active_attack.sample_index,
-            CFState.get_instance().active_target.active_attack.target_class,
-        ],
+        list(default_params.keys()),
+        defaults=list(default_params.values())
     )
-
-    # parse parameters and new values from the args
-    try:
-        params_to_update = re.findall(r"(\w+)\s?=\s?([\w\.]+)", " ".join(args.what))
-    except:
-        self.pwarning("\n [!] Failed to parse arguments.\n")
-        return
-
-    # create default params struct
-    default_params = {k: v for k, v in CFState.get_instance().active_target.active_attack.default.items()}
-    default_params["sample_index"] = CFState.get_instance().active_target.active_attack.sample_index
-    default_params["target_class"] = CFState.get_instance().active_target.active_attack.target_class
 
     # ensure all current params exist and are ordered correctly
     default_params = params_struct(**default_params)._asdict()
 
-    # convert string "True"/"true" and "False"/"false" to boolean
+    # parse parameters and new values from the args
+    try:
+        params_to_update = re.findall(r"(\w+)\s?=\s?([\w\.]+)", " ".join(args.what))
+        # parse for rvalue=`lvalue`, where anything inside `` is an acceptable string
+        params_to_update.extend(re.findall(r"(\w+)\s?=\s?(`.*`)", " ".join(args.what)))
+
+    except:
+        self.pwarning("\n [!] Failed to parse arguments.\n")
+        return
+
+    # parsing special cases
     for i, v in enumerate(params_to_update):
+        # allow python eval with `` block in the rvalue
+        if v[1].strip().startswith('`') and v[1].strip().endswith('`'):
+            val = eval(v[1][1:-1])
+            params_to_update[i] = (v[0], val)
+            type_dict[v[0]] = type(val)
+
+        # convert string "True"/"true" and "False"/"false" to boolean
         if type(default_params.get(v[0], None)) is bool:
             if v[1].lower() == "true" or int(v[1]) == 1:
                 params_to_update[i] = (v[0], True)
@@ -67,7 +76,7 @@ def do_set(self, args):
                 params_to_update[i] = (v[0], False)
 
     # create new params struct using default values where no new values are spec'd
-    new_params = params_struct(**{i[0]: type(default_params.get(i[0], ""))(i[1]) for i in params_to_update})
+    new_params = params_struct(**{i[0]: type_dict[i[0]](i[1]) for i in params_to_update})
 
     # create current params struct
     current_params = {k: v for k, v in CFState.get_instance().active_target.active_attack.parameters.items()}
@@ -102,7 +111,7 @@ def do_set(self, args):
             data_list.append([param, str(default_value), str(previous_value), str(new_value)])
 
         else:
-            data_list.append([param, str(default_value)[:11], str(previous_value)[:11], ""])
+            data_list.append([param, str(default_value), str(previous_value), ""])
 
     st = SimpleTable(columns)
     print()

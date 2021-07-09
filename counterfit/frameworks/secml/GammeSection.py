@@ -11,9 +11,9 @@ class GammaSectionInjectionAttack(Attack):
     category = "blackbox"
     framework = "secml"
     default = {
-        'how_many_sections': 75,
-        'which_sections': ['.rdata'],
-        'goodware_folder': None,
+        #'how_many_sections': 75,
+        'section_population': ['.rdata'],
+        # 'goodware_folder': None,
         'population_size': 10,
         'penalty_regularizer': 1e-7,
         'iterations': 100,
@@ -26,9 +26,9 @@ class GammaSectionInjectionAttack(Attack):
     }
 
     random = {
-        'how_many_sections': np.random.randint(10, 100),
-        'which_sections': np.random.choice(['.rdata', '.text', '.reloc', '.data']),
-        'goodware_folder': None,
+        #'how_many_sections': np.random.randint(10, 100),
+        'section_population': np.random.choice(['.rdata', '.text', '.reloc', '.data']),
+        # 'goodware_folder': None,
         'population_size': np.random.randint(5, 20),
         'penalty_regularizer': pow(10, -np.random.randint(4, 8)),
         'iterations': np.random.randint(50, 500),
