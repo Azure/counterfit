@@ -5,6 +5,9 @@ import time
 from collections import namedtuple
 
 import numpy as np
+import shutil
+import tempfile
+import pyminizip
 from counterfit.core import enums, wrappers
 from counterfit.core.interfaces import AbstractTarget
 from PIL import Image
@@ -232,6 +235,19 @@ class Target(AbstractTarget):
                 filenames.append(self._save_image(
                     array, suffix=f'final-{i}-label-{final_label}'))
                 self.active_attack.results['final']['images'] = filenames
+        elif self.model_data_type == 'PE':
+            module_path = "/".join(self.__module__.split(".")[:-1])
+            if "results" in os.listdir(module_path):
+                shutil.rmtree(module_path+"/results", ignore_errors=True)
+            filenames = []
+            with tempfile.TemporaryDirectory() as tmpdirname:
+                for i, array in enumerate(final[0]):  # loop over final PEs
+                    final_label = self.active_attack.results["final"]["label"][i]
+                    filenames.append(self._save_exe(
+					array, suffix=f'final-{i}-label-{final_label}', temp_dir=tmpdirname))
+                self.active_attack.results['final']['images'] = filenames
+                zip_path = f"{module_path}/results/{self.model_name}.zip"
+                self._create_zip_password_protected(tmpdirname, zip_path)
 
     def _run_attack(self, logging):
         raise NotImplementedError()
@@ -338,15 +354,38 @@ class SecMLMalwareTarget(Target):
     def __init__(self) -> None:
         super().__init__()
 
-    @staticmethod
-    def _save_exe(exe, path):
-        print(f"Not implemented: save exe as {path}")
-        # from IPython import embed
-        # embed()
-        # with open(path, 'wb') as h:
-        #     x_real = exe.astype(np.uint8).tolist()
-        #     x_real_adv = b''.join([bytes([i]) for i in x_real])
-        #     h.write(x_real_adv)
+    def _save_exe(self, exe, suffix='', extension='', filename=None, temp_dir=None):
+        assert self.model_data_type == "PE", "Saving non-'PE' types as an PE is not supported"
+        module_path = "/".join(self.__module__.split(".")[:-1])
+        if filename is None:
+            filename = f"{temp_dir}/{self.model_name}-{self.active_attack.attack_id}"
+            if "results" not in os.listdir(module_path):
+                os.mkdir(f"{module_path}/results")
+        if suffix:
+            filename += f'-{suffix}'
+        # filename += f'.{extension}'
+        exe = exe.tondarray()[0]
+        with open(filename, 'wb') as h:
+            x_real = exe.astype(np.uint8).tolist()
+            x_real_adv = b''.join([bytes([i]) for i in x_real])
+            h.write(x_real_adv)
+        return filename
+    
+    def _create_zip_password_protected(self, folder_path, output_path, password='infected'):
+        """
+        Zip the contents of an entire folder and encrypt with the password.
+        """
+        contents = os.walk(folder_path)
+        try:
+            compression_lvl = 5
+            file_paths = []
+            for root, folders, files in contents:
+                for file_name in files:
+                    abs_path = os.path.join(root, file_name)
+                    file_paths.append(abs_path)
+            pyminizip.compress_multiple(file_paths, [], output_path, password, compression_lvl)
+        except (IOError, OSError) as io_error:
+            print(io_error)
 
     def _submit(self, batch):
     # 'batch' can be a list of bytes or a CArray        # submit to model, without caching

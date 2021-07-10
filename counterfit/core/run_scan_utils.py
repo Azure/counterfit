@@ -5,6 +5,8 @@ from cmd2 import ansi
 from typing import Any, List
 import json
 import os
+import tempfile
+import shutil
 import functools
 import hashlib
 
@@ -40,12 +42,7 @@ def get_printable_batch(target, samples):
             filename = target._save_image(image, filename=basename)
             result.append(filename)
     elif target.model_data_type == "PE":
-        result = []
-        for exe in samples:
-            _id = hashlib.md5(target._key(exe)).hexdigest()[:8]
-            basename = f"{target.model_name}-sample-{_id}"
-            filename = target._save_exe(exe, basename)
-            result.append(filename)
+        result = samples
     else:  # numpy
         result = printable_numpy(samples)
 
@@ -97,7 +94,7 @@ def get_run_summary(target, attack=None):
 
     result = (
         attack.results["final"]["images"]
-        if target.model_data_type == "image"
+        if target.model_data_type == "image" or target.model_data_type == "PE"
         else get_printable_batch(target, samples=i_f)
     )
 
