@@ -240,13 +240,14 @@ class Target(AbstractTarget):
             if "results" in os.listdir(module_path):
                 shutil.rmtree(module_path+"/results", ignore_errors=True)
             filenames = []
+            zip_path = f"{module_path}/results/{self.model_name}.zip"
             with tempfile.TemporaryDirectory() as tmpdirname:
                 for i, array in enumerate(final[0]):  # loop over final PEs
                     final_label = self.active_attack.results["final"]["label"][i]
-                    filenames.append(self._save_exe(
-					array, suffix=f'final-{i}-label-{final_label}', temp_dir=tmpdirname))
+                    self._save_exe(
+					array, suffix=f'final-{i}-label-{final_label}', temp_dir=tmpdirname)
+                    filenames.append(zip_path)
                 self.active_attack.results['final']['images'] = filenames
-                zip_path = f"{module_path}/results/{self.model_name}.zip"
                 self._create_zip_password_protected(tmpdirname, zip_path)
 
     def _run_attack(self, logging):
@@ -412,9 +413,8 @@ class SecMLMalwareTarget(Target):
         model = self._create_blackbox_wrapper(logging)
         try:
             problem = self.active_attack.attack_cls(model_wrapper=model, **self.active_attack.parameters)
-        except:
-            from IPython import embed
-            embed()
+        except Exception as e:
+            print(e)
         engine = CGeneticAlgorithm(problem)
 
         # run Genetic Algorithm on
@@ -435,8 +435,7 @@ class SecMLMalwareTarget(Target):
         try:
             labels = np.atleast_1d(self.outputs_to_labels(outp))
         except ValueError:
-            from IPython import embed
-            embed()
+            print(ValueError)
 
         return Query(np.array(inp).tolist(),
                      np.array(outp).tolist(),

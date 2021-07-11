@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import sys
 import cmd2
 import requests
 from counterfit.core.state import CFState
@@ -22,14 +23,15 @@ def do_upload(self, args):
     """
     api_token = args.apitoken
     user = args.user
-    # UPLOAD_API_ENDPOINT = 'https://api.mlsec.io/api/post_one_zip/new/?url=%2Fzipfile%2F&api_token={0}'.format(api_token)
+    if api_token is None or user is None:
+        self.perror("\n [!] Please set api_token and user parameter to upload the zip file using `upload -u USERNAME -k APITOKEN`.\n")
     ZIP_END_POINT = 'https://api.mlsec.io/api/post_one_zip/new/'
     if not CFState.get_instance().active_target:
         self.pwarning("\n [!] Not interacting with a target. Set the active target with `interact`.\n")
         return
     module_path = "/".join(CFState.get_instance().active_target.__module__.split(".")[:-1])
     if "results" not in os.listdir(module_path):
-        self.pwarning("\n [!] Run the attack using `scan`.\n")
+        self.pwarning("\n [!] Load the `secml` framework and run the attack using `run or scan`.\n")
         return
 
     filename = f"{module_path}/results/{CFState.get_instance().active_target.model_name}.zip"

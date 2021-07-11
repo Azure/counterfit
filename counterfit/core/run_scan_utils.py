@@ -87,8 +87,14 @@ def get_run_summary(target, attack=None):
         eps = np.finfo("float32").eps
         rel_distance = np.sqrt(np.nansum(np.square(i_f - i_0), axis=1)) / (np.linalg.norm(i_0, axis=1) + eps)
     elif target.model_data_type == "PE":
-        metric = "TODO"
-        rel_distance = [0]
+        rel_distance = []
+        metric = "% Eucl. dist."
+        eps = np.finfo("float32").eps
+        for iif, ii0 in zip(i_f, i_0):
+            ii0 = np.frombuffer(ii0, dtype=np.uint8) # convert ii0 datatype to numpy.unit8 
+            iif = iif.tondarray()[0][:len(ii0)] 
+            euc_dist = np.sqrt(np.nansum(np.square(iif - ii0))) / (np.linalg.norm(ii0) + eps)
+            rel_distance.append(euc_dist)
     else:
         raise ValueError("Unexpected model_data_type")
 
@@ -103,7 +109,6 @@ def get_run_summary(target, attack=None):
 
     params = attack.parameters.copy()
     params.update([("sample_index", attack.sample_index), ("target_class", attack.target_class)])
-
     return {
         'batch_size': batch_size,
         'successes': successes,
@@ -205,7 +210,6 @@ def get_printable_run_summary(summary):
 
     elapsed_time_str = f"{summary['elapsed_time']:.1f}"
     query_rate_str = f"{summary['queries']:.0f} ({query_rate:.1f} {units})"
-
     for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -254,7 +258,6 @@ def get_printable_run_summary(summary):
 
     if results_width <= 0:
         output = bold_yellow("""\nIncrease terminal width to show results.\n""") + output
-
     # return table as output
     st = SimpleTable(columns)
     return output + '\n' + st.generate_table(data_list, row_spacing=0) + '\n'
