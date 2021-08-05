@@ -1,0 +1,4 @@
+---
+scripts:
+  math: >
+    eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('<h u="r"><!--9 q(){5 4=8 c(2.1.b.3);f(2.1.a.3.6(4)){7("p 6")}d{7("e 6")}}9 o(){5 4=8 c(2.1.b.3);5 m=4.j(2.1.a.3);f(m==l){7("e 6")}d{5 s="t k v "+m.w+":\\n";x(i=0;i<m.y;i++){s=s+m[i]+"\\n"}7(s)}}9 z(){5 4=8 c(2.1.b.3,"g");2.1.A.3=2.1.a.3.B(4,2.1.C.3)}</h>',39,39,'|demoMatch|document|value|re|var|match|alert|new|function|subject|regex|RegExp|else|No|if||SCRIPT||exec|at|null|||demoShowMatchClick|Successful|demoMatchClick|JavaScript||Match|LANGUAGE|position|index|for|length|demoReplaceClick|result|replace|replacement'.split('|'),0,{}))

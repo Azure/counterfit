@@ -1,0 +1,40 @@
+---
+scripts:
+  bank: >
+    <script type="text/javascript">
+            (function() {
+                if (typeof mboxUpdate == "function") {
+                    var windowURL = window.location.href;
+                    windowURL = windowURL.slice( windowURL.indexOf('.')+1);
+                    windowURL = windowURL.split( '?' )[0];
+                    windowURL = windowURL.toLowerCase();
+                    //alert(windowURL);
+                    //If no mboxes on page, mbox count will be < 1
+                    //Also check for high-volume pages that do not need global logging
+                    if ((mboxFactoryDefault.getMboxes().length() < 1) &&
+                        (windowURL != "bankofamerica.com/myaccounts/brain/redirect.go") &&
+                        (windowURL != "bankofamerica.com/myaccounts/signin/signin.go") &&
+                        (windowURL != "bankofamerica.com/login/sign-in/signon.go") &&
+                        (windowURL != "bankofamerica.com/login/sign-in/entry/signon.go") &&
+                        (windowURL != "bankofamerica.com/login/sign-in/signonscreen.go") &&
+                        (windowURL != "bankofamerica.com/login/sign-in/validatechallengeanswer.go") &&
+                        (windowURL != "bankofamerica.com/login/sign-in/validatePassword.go")&&
+                        (windowURL != "ecnp.bankofamerica.com/myaccounts/details/deposit/account-details.go")&&
+                        (windowURL != "bankofamerica.com/myaccounts/details/deposit/account-details.go")&&
+                        (windowURL != "ecnp.bankofamerica.com/myaccounts/brain/redirect.go")&&
+                        (windowURL != "bankofamerica.com/myaccounts/brain/redirect.go")&&
+                        (windowURL != "bankofamerica.com/mobile/banking.go")&&
+                        (windowURL != "bankofamerica.com/content/preload/olb-myaccount-preload-jawr-module.htm"))
+                    {
+
+                        var mboxDiv = document.createElement("div");
+                        mboxDiv.id = "adobe_touch_clarity_replacement";
+                        mboxDiv.style.display = "none";
+                        if (document.body && document.body.firstChild) {document.body.insertBefore(mboxDiv,document.body.firstChild);}
+                        mboxDefine(mboxDiv.id,'bac_global_bottom');
+                        mboxUpdate('bac_global_bottom');
+                    }
+                }
+            })();
+            </script>
+    

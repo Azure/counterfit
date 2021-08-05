@@ -1,0 +1,30 @@
+
+# counterfit
+cmd2==1.3.11
+numpy==1.18.5
+requests==2.24.0
+hyperopt==0.2.3
+scipy==1.4.1
+questionary==1.9.0
+python-Levenshtein==0.12.2
+pyminizip==0.2.4
+
+# frameworks
+adversarial-robustness-toolbox>=1.5
+textattack
+torchvision==0.9.0
+torch==1.8.0
+tensorflow-hub==0.12.0 # to run textbugger, bae_garg and textfooler attacks
+torchfile==0.1.0 # to run fga_jia_2019 attack
+bs4==0.0.1
+pyyaml==5.4.1
+traitlets==5.0.5  # required for Windows
+
+h5py==2.10
+lightgbm==3.1.1
+
+# testing framework
+pytest==6.1.1
+
+# ember
+git+https://github.com/elastic/ember.git

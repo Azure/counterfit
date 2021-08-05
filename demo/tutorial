@@ -1,0 +1,7 @@
+load art
+list targets
+interact tutorial
+list attacks
+use hop_skip_jump
+set sample_index=0 init_size=50 max_eval=1000
+run
