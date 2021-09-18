@@ -1,0 +1,12 @@
+!echo BEGIN MIMICRY
+interact mlsecmalwarenotarget
+load mlsecevade
+use mimicry-pe
+
+set sample_index=`list(range(50))` #everything
+#set sample_index=`[5, 6, 13, 42]` #no imports 
+#set sample_index=`[25]`#no imports, no sections
+#set sample_index=`[4, 19, 20, 35]` #no imports, no sections, no renaming
+
+run
+!echo BEGIN MIMICRY

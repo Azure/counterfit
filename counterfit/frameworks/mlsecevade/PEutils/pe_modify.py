@@ -96,7 +96,44 @@ class PEFileModifier(object):
         os.unlink(tmpfilename)
 
         return
+        
+    def modify_optional_header(self, boh):
+        pe = lief.PE.parse(raw=list(self.bytez))
 
+        for key in boh.keys():
+            pe.optional_header.__setattr__(key, boh[key])
+
+        self.bytez = self._build(pe)
+
+    def add_all_imports(self, imports_dict, disable = False):
+        pe = lief.PE.parse(raw=list(self.bytez))
+        
+        for library in imports_dict.keys():
+            lib = pe.add_library(library)
+            for f in imports_dict[library]:
+                existing_functions = {e.name for e in lib.entries}
+                if f not in existing_functions:
+                    lib.add_entry(f)
+                    
+        if disable:
+            pe.optional_header.dll_characteristics &= ~lief.PE.DLL_CHARACTERISTICS.DYNAMIC_BASE
+            pe.optional_header.dll_characteristics &= ~lief.PE.DLL_CHARACTERISTICS.NX_COMPAT
+            
+        self.bytez = self._build(pe, True)
+        return
+
+    def add_section_w_size(self, section_name: str, characteristics: int, section_content: bytes, size=None):
+        pe = lief.PE.parse(raw=list(self.bytez))
+        if self._ispacked(pe):
+            return  # don't mess with sections if the file is packed
+        replace_name = '.' + ''.join(list(map(chr, [random.randint(ord('a'), ord('z')) for _ in range(6)])))  # example: .nzomcu
+        self._section_rename_if_exists(pe, section_name, replace_name)  # rename if exists
+        section = lief.PE.Section(name=section_name, content=list(section_content), characteristics=characteristics)
+        if size != None:
+            section.size = size
+        pe.add_section(section, lief.PE.SECTION_TYPES.UNKNOWN)
+        self.bytez = self._build(pe)
+        
     @property
     def content(self):
         return bytes(self.bytez)
