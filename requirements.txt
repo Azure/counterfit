@@ -6,7 +6,7 @@ requests==2.24.0
 hyperopt==0.2.3
 scipy==1.4.1
 questionary==1.9.0
-python-Levenshtein==0.12.2
+rapidfuzz==1.8.2
 
 # frameworks
 adversarial-robustness-toolbox>=1.5

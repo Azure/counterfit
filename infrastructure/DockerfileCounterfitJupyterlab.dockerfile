@@ -12,7 +12,7 @@ RUN apt-get update \
 USER 1000
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt 
-RUN pip install tensorflow python-Levenshtein
+RUN pip install tensorflow rapidfuzz
 RUN git clone https://github.com/Azure/counterfit.git \
    && cd counterfit \
    && python -c 'import ssl, nltk; ssl._create_default_https_context = ssl._create_unverified_context; nltk.download("stopwords")' \

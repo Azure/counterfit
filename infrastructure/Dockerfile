@@ -14,7 +14,7 @@ WORKDIR /home/counterfituser
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install tensorflow python-Levenshtein
+RUN pip install tensorflow rapidfuzz
 
 USER counterfituser
 

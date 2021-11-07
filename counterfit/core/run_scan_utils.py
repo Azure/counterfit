@@ -1,5 +1,5 @@
 import numpy as np
-import Levenshtein  # pip install python-Levenshtein
+from rapidfuzz import string_metric  # pip install rapidfuzz
 from cmd2.table_creator import Column, SimpleTable, HorizontalAlignment
 from cmd2 import ansi
 from typing import Any, List
@@ -74,7 +74,7 @@ def get_run_summary(target, attack=None):
     if target.model_data_type == "text":
         # Levenshtein distance
         metric = "% edit dist."
-        distances = [Levenshtein.distance(iif, ii0) for iif, ii0 in zip(i_f, i_0)]
+        distances = [string_metric.levenshtein(iif, ii0) for iif, ii0 in zip(i_f, i_0)]
         rel_distance = [d / len(ii0) for d, ii0 in zip(distances, i_0)]
     elif target.model_data_type == "numpy" or target.model_data_type == "image":
         # l2 norm
