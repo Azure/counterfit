@@ -1,6 +1,0 @@
-counterfit.report.report\_generator.printable\_numpy
-====================================================
-
-.. currentmodule:: counterfit.report.report_generator
-
-.. autofunction:: printable_numpy

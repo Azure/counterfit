@@ -1,6 +1,0 @@
-counterfit.commands.new.nix\_path
-=================================
-
-.. currentmodule:: counterfit.commands.new
-
-.. autofunction:: nix_path

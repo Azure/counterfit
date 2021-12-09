@@ -1,6 +1,0 @@
-counterfit.commands.list.list\_frameworks
-=========================================
-
-.. currentmodule:: counterfit.commands.list
-
-.. autofunction:: list_frameworks

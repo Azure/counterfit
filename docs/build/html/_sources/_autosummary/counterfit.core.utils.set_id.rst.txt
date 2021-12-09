@@ -1,6 +1,0 @@
-counterfit.core.utils.set\_id
-=============================
-
-.. currentmodule:: counterfit.core.utils
-
-.. autofunction:: set_id

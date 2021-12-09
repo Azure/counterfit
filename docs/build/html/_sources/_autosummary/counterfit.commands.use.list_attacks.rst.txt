@@ -1,6 +1,0 @@
-counterfit.commands.use.list\_attacks
-=====================================
-
-.. currentmodule:: counterfit.commands.use
-
-.. autofunction:: list_attacks

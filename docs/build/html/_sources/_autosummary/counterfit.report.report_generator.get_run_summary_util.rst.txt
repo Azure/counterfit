@@ -1,6 +1,0 @@
-counterfit.report.report\_generator.get\_run\_summary\_util
-===========================================================
-
-.. currentmodule:: counterfit.report.report_generator
-
-.. autofunction:: get_run_summary_util

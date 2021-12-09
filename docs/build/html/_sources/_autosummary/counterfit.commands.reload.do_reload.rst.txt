@@ -1,6 +1,0 @@
-counterfit.commands.reload.do\_reload
-=====================================
-
-.. currentmodule:: counterfit.commands.reload
-
-.. autofunction:: do_reload

@@ -1,6 +1,0 @@
-counterfit.core.utils.get\_subclasses
-=====================================
-
-.. currentmodule:: counterfit.core.utils
-
-.. autofunction:: get_subclasses

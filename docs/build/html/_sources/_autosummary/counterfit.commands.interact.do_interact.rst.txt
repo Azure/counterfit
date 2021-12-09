@@ -1,6 +1,0 @@
-counterfit.commands.interact.do\_interact
-=========================================
-
-.. currentmodule:: counterfit.commands.interact
-
-.. autofunction:: do_interact

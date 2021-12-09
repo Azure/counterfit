@@ -1,6 +1,0 @@
-counterfit.commands.run.do\_run
-===============================
-
-.. currentmodule:: counterfit.commands.run
-
-.. autofunction:: do_run

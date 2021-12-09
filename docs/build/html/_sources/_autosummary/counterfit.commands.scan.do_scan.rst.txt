@@ -1,6 +1,0 @@
-counterfit.commands.scan.do\_scan
-=================================
-
-.. currentmodule:: counterfit.commands.scan
-
-.. autofunction:: do_scan

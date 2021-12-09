@@ -1,6 +1,0 @@
-counterfit.logging.logging.get\_attack\_logger\_obj
-===================================================
-
-.. currentmodule:: counterfit.logging.logging
-
-.. autofunction:: get_attack_logger_obj

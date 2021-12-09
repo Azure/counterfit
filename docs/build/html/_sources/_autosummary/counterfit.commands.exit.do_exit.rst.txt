@@ -1,6 +1,0 @@
-counterfit.commands.exit.do\_exit
-=================================
-
-.. currentmodule:: counterfit.commands.exit
-
-.. autofunction:: do_exit

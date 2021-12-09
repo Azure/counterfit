@@ -1,6 +1,0 @@
-counterfit.report.report\_generator.get\_target\_data\_type\_obj
-================================================================
-
-.. currentmodule:: counterfit.report.report_generator
-
-.. autofunction:: get_target_data_type_obj

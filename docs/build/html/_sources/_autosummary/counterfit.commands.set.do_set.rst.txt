@@ -1,6 +1,0 @@
-counterfit.commands.set.do\_set
-===============================
-
-.. currentmodule:: counterfit.commands.set
-
-.. autofunction:: do_set

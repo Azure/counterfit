@@ -112,7 +112,6 @@ venv.bak/
 counterfit/targets/*/results
 
 # docs
-docs/source/_autosummary
-docs/build/doctrees/_autosummary
-docs/notebooks
+counterfit/docs/source/_autosummary
+counterfit/docs/build/doctrees/_autosummary
 docs/build/doctrees

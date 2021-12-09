@@ -1,6 +1,0 @@
-counterfit.commands.list.do\_list
-=================================
-
-.. currentmodule:: counterfit.commands.list
-
-.. autofunction:: do_list

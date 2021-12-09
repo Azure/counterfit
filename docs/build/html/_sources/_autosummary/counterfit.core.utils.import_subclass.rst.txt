@@ -1,6 +1,0 @@
-counterfit.core.utils.import\_subclass
-======================================
-
-.. currentmodule:: counterfit.core.utils
-
-.. autofunction:: import_subclass

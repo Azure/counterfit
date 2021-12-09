@@ -1,6 +1,0 @@
-counterfit.commands.list.list\_targets
-======================================
-
-.. currentmodule:: counterfit.commands.list
-
-.. autofunction:: list_targets

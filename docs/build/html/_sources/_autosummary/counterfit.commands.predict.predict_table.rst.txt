@@ -1,6 +1,0 @@
-counterfit.commands.predict.predict\_table
-==========================================
-
-.. currentmodule:: counterfit.commands.predict
-
-.. autofunction:: predict_table

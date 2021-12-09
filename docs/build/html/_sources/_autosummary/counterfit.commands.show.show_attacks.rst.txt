@@ -1,6 +1,0 @@
-counterfit.commands.show.show\_attacks
-======================================
-
-.. currentmodule:: counterfit.commands.show
-
-.. autofunction:: show_attacks

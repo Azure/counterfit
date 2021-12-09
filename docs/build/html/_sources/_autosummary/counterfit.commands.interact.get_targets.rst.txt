@@ -1,6 +1,0 @@
-counterfit.commands.interact.get\_targets
-=========================================
-
-.. currentmodule:: counterfit.commands.interact
-
-.. autofunction:: get_targets

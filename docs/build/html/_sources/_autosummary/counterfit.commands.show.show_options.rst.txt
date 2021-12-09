@@ -1,6 +1,0 @@
-counterfit.commands.show.show\_options
-======================================
-
-.. currentmodule:: counterfit.commands.show
-
-.. autofunction:: show_options

@@ -1,6 +1,0 @@
-counterfit.commands.predict.do\_predict
-=======================================
-
-.. currentmodule:: counterfit.commands.predict
-
-.. autofunction:: do_predict
