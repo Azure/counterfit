@@ -1,0 +1,25 @@
+counterfit.logging.logging.JSONLogger
+=====================================
+
+.. currentmodule:: counterfit.logging.logging
+
+.. autoclass:: JSONLogger
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~JSONLogger.log
+   
+   
+
+   
+   
+   

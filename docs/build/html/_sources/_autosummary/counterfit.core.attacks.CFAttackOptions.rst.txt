@@ -1,0 +1,30 @@
+counterfit.core.attacks.CFAttackOptions
+=======================================
+
+.. currentmodule:: counterfit.core.attacks
+
+.. autoclass:: CFAttackOptions
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CFAttackOptions.get_all_options
+      ~CFAttackOptions.get_current_options
+      ~CFAttackOptions.get_default_options
+      ~CFAttackOptions.save_options
+      ~CFAttackOptions.save_previous_options
+      ~CFAttackOptions.set_options
+   
+   
+
+   
+   
+   

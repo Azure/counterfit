@@ -1,0 +1,29 @@
+counterfit.core.output.CFPrint
+==============================
+
+.. currentmodule:: counterfit.core.output
+
+.. autoclass:: CFPrint
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CFPrint.failed
+      ~CFPrint.info
+      ~CFPrint.output
+      ~CFPrint.success
+      ~CFPrint.warn
+   
+   
+
+   
+   
+   

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.frameworks.textattack.textattack &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_autosummary/counterfit.core.html">counterfit.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_autosummary/counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_autosummary/counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_autosummary/counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_autosummary/counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_autosummary/counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>counterfit.frameworks.textattack.textattack</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for counterfit.frameworks.textattack.textattack</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+
+<span class="kn">from</span> <span class="nn">textattack</span> <span class="kn">import</span> <span class="n">Attacker</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">textattack.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">textattack.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="kn">from</span> <span class="nn">counterfit.core.attacks</span> <span class="kn">import</span> <span class="n">CFAttack</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.frameworks</span> <span class="kn">import</span> <span class="n">Framework</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.utils</span> <span class="kn">import</span> <span class="n">get_subclasses</span>
+<span class="kn">from</span> <span class="nn">counterfit.report.report_generator</span> <span class="kn">import</span> <span class="n">get_target_data_type_obj</span>
+
+<div class="viewcode-block" id="TextAttackFramework"><a class="viewcode-back" href="../../../../_autosummary/counterfit.frameworks.textattack.textattack.TextAttackFramework.html#counterfit.frameworks.textattack.textattack.TextAttackFramework">[docs]</a><span class="k">class</span> <span class="nc">TextAttackFramework</span><span class="p">(</span><span class="n">Framework</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="TextAttackFramework.load"><a class="viewcode-back" href="../../../../_autosummary/counterfit.frameworks.textattack.textattack.TextAttackFramework.html#counterfit.frameworks.textattack.textattack.TextAttackFramework.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">config_path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_from_config</span><span class="p">(</span><span class="n">config_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_attacks</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">load_attacks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">base_import</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span>
+            <span class="s2">&quot;textattack.attack_recipes&quot;</span><span class="p">)</span>
+        <span class="n">attacks</span> <span class="o">=</span> <span class="n">get_subclasses</span><span class="p">(</span><span class="n">base_import</span><span class="o">.</span><span class="n">AttackRecipe</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">attack_class</span> <span class="ow">in</span> <span class="n">attacks</span><span class="p">:</span>
+            <span class="n">attack_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;\w+&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">attack_class</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">attack_type</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">attack_category</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">attack_data_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+            <span class="n">attack_subcategories</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">attack_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;No&quot;</span><span class="p">:</span> <span class="s2">&quot;params&quot;</span><span class="p">}</span>
+
+            <span class="c1"># Create the Attack Object</span>
+            <span class="k">if</span> <span class="n">attack_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attacks</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_attack</span><span class="p">(</span>
+                    <span class="n">attack_name</span><span class="o">=</span><span class="n">attack_name</span><span class="p">,</span>
+                    <span class="n">attack_class</span><span class="o">=</span><span class="n">attack_class</span><span class="p">,</span>
+                    <span class="n">attack_type</span><span class="o">=</span><span class="n">attack_type</span><span class="p">,</span>
+                    <span class="n">attack_category</span><span class="o">=</span><span class="n">attack_category</span><span class="p">,</span>
+                    <span class="n">attack_data_tags</span><span class="o">=</span><span class="n">attack_data_tags</span><span class="p">,</span>
+                    <span class="n">attack_subcategories</span><span class="o">=</span><span class="n">attack_subcategories</span><span class="p">,</span>
+                    <span class="n">attack_default_params</span><span class="o">=</span><span class="n">attack_params</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfattack</span><span class="p">):</span>
+        <span class="c1"># return Dataset([(&quot;This is a test&quot;, 1)])</span>
+        <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cfattack</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="n">cfattack</span><span class="o">.</span><span class="n">initial_labels</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">attack</span><span class="p">):</span>
+
+        <span class="k">class</span> <span class="nc">TextAttackWrapperObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predict_wrapper</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">predict_wrapper</span>
+
+            <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">new_attack</span> <span class="o">=</span> <span class="n">attack</span><span class="o">.</span><span class="n">build</span><span class="p">(</span>
+            <span class="n">TextAttackWrapperObject</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">predict_wrapper</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">new_attack</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfattack</span><span class="p">):</span>
+
+        <span class="c1"># get labels for samples and zip with samples</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">cfattack</span><span class="p">)</span>
+
+        <span class="n">new_attack</span> <span class="o">=</span> <span class="n">Attacker</span><span class="p">(</span><span class="n">cfattack</span><span class="o">.</span><span class="n">attack</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">new_attack</span><span class="o">.</span><span class="n">attack_dataset</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">perturbed_text</span><span class="p">()</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">post_attack_processing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfattack</span><span class="p">:</span> <span class="n">CFAttack</span><span class="p">):</span>
+
+        <span class="n">current_datatype</span> <span class="o">=</span> <span class="n">cfattack</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">target_data_type</span>
+        <span class="n">current_dt_report_gen</span> <span class="o">=</span> <span class="n">get_target_data_type_obj</span><span class="p">(</span><span class="n">current_datatype</span><span class="p">)</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">current_dt_report_gen</span><span class="o">.</span><span class="n">get_run_summary</span><span class="p">(</span><span class="n">cfattack</span><span class="p">)</span>
+        <span class="n">current_dt_report_gen</span><span class="o">.</span><span class="n">print_run_summary</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">check_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfattack</span><span class="p">:</span> <span class="n">CFAttack</span><span class="p">):</span>
+        <span class="n">final_outputs</span><span class="p">,</span> <span class="n">final_labels</span> <span class="o">=</span> <span class="n">cfattack</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">get_sample_labels</span><span class="p">(</span>
+            <span class="n">cfattack</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">new_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">final_labels</span><span class="p">)</span>
+        <span class="n">old_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">cfattack</span><span class="o">.</span><span class="n">initial_labels</span><span class="p">)</span>
+
+        <span class="n">cfattack</span><span class="o">.</span><span class="n">final_labels</span> <span class="o">=</span> <span class="n">final_labels</span>
+        <span class="n">cfattack</span><span class="o">.</span><span class="n">final_outputs</span> <span class="o">=</span> <span class="n">final_outputs</span>
+
+        <span class="n">success_arr</span> <span class="o">=</span> <span class="n">new_labels</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">old_labels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">success_arr</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

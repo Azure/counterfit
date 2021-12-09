@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.commands.new &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.core.html">counterfit.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>counterfit.commands.new</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for counterfit.commands.new</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">cmd2</span> <span class="kn">import</span> <span class="n">Cmd2ArgumentParser</span><span class="p">,</span> <span class="n">with_argparser</span><span class="p">,</span> <span class="n">with_category</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">questionary</span>
+<span class="kn">from</span> <span class="nn">pydoc</span> <span class="kn">import</span> <span class="n">locate</span>
+
+<span class="kn">from</span> <span class="nn">counterfit.core.state</span> <span class="kn">import</span> <span class="n">CFState</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">counterfit.report.report_generator</span> <span class="kn">import</span> <span class="n">get_data_type_obj_map</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.output</span> <span class="kn">import</span> <span class="n">CFPrint</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">Cmd2ArgumentParser</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="nix_path"><a class="viewcode-back" href="../../../_autosummary/counterfit.commands.new.nix_path.html#counterfit.commands.new.nix_path">[docs]</a><span class="k">def</span> <span class="nf">nix_path</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;[summary]</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (str): [description]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: [description]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_path</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">new_path</span></div>
+
+
+<div class="viewcode-block" id="do_new"><a class="viewcode-back" href="../../../_autosummary/counterfit.commands.new.do_new.html#counterfit.commands.new.do_new">[docs]</a><span class="nd">@with_argparser</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+<span class="nd">@with_category</span><span class="p">(</span><span class="s2">&quot;Counterfit Commands&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">do_new</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Optional wizard to aid in creating a new attack target.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        args (argparse.Namespace): [description]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">target_name</span> <span class="o">=</span> <span class="n">questionary</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="s2">&quot;Target name (Please provide alphabets as input without digits and/or special characters. For ex, mnist):&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+    <span class="n">target_name</span> <span class="o">=</span> <span class="n">target_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">available_data_types</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">get_data_type_obj_map</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">target_data_type</span> <span class="o">=</span> <span class="n">questionary</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="s2">&quot;What data type?&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">available_data_types</span><span class="p">)</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">target_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">targets_path</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Config</span><span class="o">.</span><span class="n">targets_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Config</span><span class="o">.</span><span class="n">targets_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">/__init__.py&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Config</span><span class="o">.</span><span class="n">targets_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">.py&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2"># Generated by counterfit #</span>
+
+<span class="s2">from counterfit.core.targets import Target</span>
+
+<span class="s2">class </span><span class="si">{</span><span class="n">target_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">(Target):</span>
+<span class="s2">    target_name = &quot;</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">    target_data_type = &quot;</span><span class="si">{</span><span class="n">target_data_type</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">    target_endpoint = &quot;&quot;</span>
+<span class="s2">    target_input_shape = ()</span>
+<span class="s2">    target_output_classes = []</span>
+<span class="s2">    target_classifier = &quot;&quot;</span>
+<span class="s2">    X = []</span>
+
+<span class="s2">    def load(self):</span>
+<span class="s2">        self.X = []</span>
+
+<span class="s2">    def predict(self, x):</span>
+<span class="s2">        return x</span>
+<span class="s2">&quot;&quot;&quot;</span>
+                <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write target file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">CFPrint</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2"> already exists. Choose a new name.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Instantiate the new target</span>
+
+    <span class="n">module_path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Config</span><span class="o">.</span><span class="n">targets_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span>
+    <span class="n">new_target</span> <span class="o">=</span> <span class="n">locate</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
+
+    <span class="c1"># Add the target to the session</span>
+    <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">add_target</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">new_target</span><span class="p">())</span>
+
+    <span class="c1"># Load the target</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">load_target</span><span class="p">(</span><span class="n">target_name</span><span class="p">)</span>
+
+    <span class="c1"># Set it as the active target</span>
+    <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">set_active_target</span><span class="p">(</span><span class="n">target</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

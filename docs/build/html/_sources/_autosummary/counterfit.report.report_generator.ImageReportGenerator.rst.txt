@@ -1,0 +1,28 @@
+counterfit.report.report\_generator.ImageReportGenerator
+========================================================
+
+.. currentmodule:: counterfit.report.report_generator
+
+.. autoclass:: ImageReportGenerator
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ImageReportGenerator.get_run_summary
+      ~ImageReportGenerator.print_run_summary
+      ~ImageReportGenerator.printable
+      ~ImageReportGenerator.save
+   
+   
+
+   
+   
+   

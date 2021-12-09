@@ -1,0 +1,34 @@
+counterfit.core.config.Config
+=============================
+
+.. currentmodule:: counterfit.core.config
+
+.. autoclass:: Config
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Config.commands_path
+      ~Config.frameworks_path
+      ~Config.start_banner
+      ~Config.targets_path
+      ~Config.version
+   
+   

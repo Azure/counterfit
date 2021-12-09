@@ -1,0 +1,32 @@
+counterfit.targets.satellite.satellite
+======================================
+
+.. automodule:: counterfit.targets.satellite.satellite
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SatelliteImagesTarget
+   
+   
+
+   
+   
+   
+
+
+

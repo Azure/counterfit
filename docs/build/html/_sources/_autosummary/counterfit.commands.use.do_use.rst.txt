@@ -1,0 +1,6 @@
+counterfit.commands.use.do\_use
+===============================
+
+.. currentmodule:: counterfit.commands.use
+
+.. autofunction:: do_use

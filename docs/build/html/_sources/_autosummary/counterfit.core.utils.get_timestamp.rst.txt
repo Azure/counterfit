@@ -1,0 +1,6 @@
+counterfit.core.utils.get\_timestamp
+====================================
+
+.. currentmodule:: counterfit.core.utils
+
+.. autofunction:: get_timestamp

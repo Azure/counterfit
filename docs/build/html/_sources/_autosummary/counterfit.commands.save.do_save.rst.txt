@@ -1,0 +1,6 @@
+counterfit.commands.save.do\_save
+=================================
+
+.. currentmodule:: counterfit.commands.save
+
+.. autofunction:: do_save

@@ -1,0 +1,32 @@
+counterfit.targets.creditfraud.creditfraud
+==========================================
+
+.. automodule:: counterfit.targets.creditfraud.creditfraud
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      CreditFraud
+   
+   
+
+   
+   
+   
+
+
+

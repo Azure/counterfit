@@ -1,0 +1,30 @@
+counterfit.targets.movie\_reviews
+=================================
+
+.. automodule:: counterfit.targets.movie_reviews
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.targets.movie_reviews.movie_reviews
+

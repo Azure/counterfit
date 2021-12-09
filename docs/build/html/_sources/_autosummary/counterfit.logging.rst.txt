@@ -1,0 +1,30 @@
+﻿counterfit.logging
+==================
+
+.. automodule:: counterfit.logging
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.logging.logging
+

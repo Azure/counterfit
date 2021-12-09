@@ -1,0 +1,179 @@
+counterfit.core.terminal.Terminal
+=================================
+
+.. currentmodule:: counterfit.core.terminal
+
+.. autoclass:: Terminal
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Terminal.ALPHABETICAL_SORT_KEY
+      ~Terminal.NATURAL_SORT_KEY
+      ~Terminal.add_settable
+      ~Terminal.async_alert
+      ~Terminal.async_update_prompt
+      ~Terminal.basic_complete
+      ~Terminal.build_settables
+      ~Terminal.cmd_func
+      ~Terminal.cmdloop
+      ~Terminal.columnize
+      ~Terminal.complete
+      ~Terminal.complete_help_command
+      ~Terminal.complete_help_subcommands
+      ~Terminal.complete_set_value
+      ~Terminal.completedefault
+      ~Terminal.completenames
+      ~Terminal.default
+      ~Terminal.delimiter_complete
+      ~Terminal.disable_category
+      ~Terminal.disable_command
+      ~Terminal.do__relative_run_script
+      ~Terminal.do_alias
+      ~Terminal.do_edit
+      ~Terminal.do_eof
+      ~Terminal.do_help
+      ~Terminal.do_history
+      ~Terminal.do_ipy
+      ~Terminal.do_macro
+      ~Terminal.do_py
+      ~Terminal.do_quit
+      ~Terminal.do_run_pyscript
+      ~Terminal.do_run_script
+      ~Terminal.do_set
+      ~Terminal.do_shell
+      ~Terminal.do_shortcuts
+      ~Terminal.emptyline
+      ~Terminal.enable_category
+      ~Terminal.enable_command
+      ~Terminal.find_commandset_for_command
+      ~Terminal.find_commandsets
+      ~Terminal.flag_based_complete
+      ~Terminal.get_all_commands
+      ~Terminal.get_help_topics
+      ~Terminal.get_names
+      ~Terminal.get_visible_commands
+      ~Terminal.in_pyscript
+      ~Terminal.in_script
+      ~Terminal.index_based_complete
+      ~Terminal.load_commands
+      ~Terminal.onecmd
+      ~Terminal.onecmd_plus_hooks
+      ~Terminal.parseline
+      ~Terminal.path_complete
+      ~Terminal.perror
+      ~Terminal.pexcept
+      ~Terminal.pfeedback
+      ~Terminal.postcmd
+      ~Terminal.postloop
+      ~Terminal.poutput
+      ~Terminal.ppaged
+      ~Terminal.precmd
+      ~Terminal.preloop
+      ~Terminal.print_topics
+      ~Terminal.pwarning
+      ~Terminal.read_input
+      ~Terminal.register_cmdfinalization_hook
+      ~Terminal.register_command_set
+      ~Terminal.register_postcmd_hook
+      ~Terminal.register_postloop_hook
+      ~Terminal.register_postparsing_hook
+      ~Terminal.register_precmd_hook
+      ~Terminal.register_preloop_hook
+      ~Terminal.remove_settable
+      ~Terminal.run_editor
+      ~Terminal.runcmds_plus_hooks
+      ~Terminal.select
+      ~Terminal.set_window_title
+      ~Terminal.shell_cmd_complete
+      ~Terminal.sigint_handler
+      ~Terminal.tokens_for_completion
+      ~Terminal.unregister_command_set
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Terminal.CommandDataType
+      ~Terminal.DEFAULT_EDITOR
+      ~Terminal.INTERNAL_COMMAND_EPILOG
+      ~Terminal.alias_create_description
+      ~Terminal.alias_create_epilog
+      ~Terminal.alias_create_parser
+      ~Terminal.alias_delete_description
+      ~Terminal.alias_delete_help
+      ~Terminal.alias_delete_parser
+      ~Terminal.alias_description
+      ~Terminal.alias_epilog
+      ~Terminal.alias_list_description
+      ~Terminal.alias_list_help
+      ~Terminal.alias_list_parser
+      ~Terminal.alias_parser
+      ~Terminal.alias_subparsers
+      ~Terminal.aliases
+      ~Terminal.allow_style
+      ~Terminal.always_prefix_settables
+      ~Terminal.doc_header
+      ~Terminal.doc_leader
+      ~Terminal.edit_description
+      ~Terminal.edit_parser
+      ~Terminal.eof_parser
+      ~Terminal.help_parser
+      ~Terminal.history_action_group
+      ~Terminal.history_arg_help
+      ~Terminal.history_description
+      ~Terminal.history_format_group
+      ~Terminal.history_parser
+      ~Terminal.identchars
+      ~Terminal.intro
+      ~Terminal.ipython_parser
+      ~Terminal.lastcmd
+      ~Terminal.macro_create_description
+      ~Terminal.macro_create_epilog
+      ~Terminal.macro_create_help
+      ~Terminal.macro_create_parser
+      ~Terminal.macro_delete_description
+      ~Terminal.macro_delete_help
+      ~Terminal.macro_delete_parser
+      ~Terminal.macro_description
+      ~Terminal.macro_epilog
+      ~Terminal.macro_list_description
+      ~Terminal.macro_list_help
+      ~Terminal.macro_list_parser
+      ~Terminal.macro_parser
+      ~Terminal.macro_subparsers
+      ~Terminal.misc_header
+      ~Terminal.nohelp
+      ~Terminal.prompt
+      ~Terminal.py_parser
+      ~Terminal.quit_parser
+      ~Terminal.relative_run_script_description
+      ~Terminal.relative_run_script_epilog
+      ~Terminal.relative_run_script_parser
+      ~Terminal.ruler
+      ~Terminal.run_pyscript_parser
+      ~Terminal.run_script_description
+      ~Terminal.run_script_parser
+      ~Terminal.set_description
+      ~Terminal.set_parser
+      ~Terminal.set_parser_parent
+      ~Terminal.settables
+      ~Terminal.shell_parser
+      ~Terminal.shortcuts_parser
+      ~Terminal.undoc_header
+      ~Terminal.use_rawinput
+      ~Terminal.visible_prompt
+   
+   

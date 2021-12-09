@@ -1,0 +1,6 @@
+counterfit.core.utils.param\_floats\_to\_ints
+=============================================
+
+.. currentmodule:: counterfit.core.utils
+
+.. autofunction:: param_floats_to_ints

@@ -1,0 +1,31 @@
+counterfit.commands.load
+========================
+
+.. automodule:: counterfit.commands.load
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      do_load
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

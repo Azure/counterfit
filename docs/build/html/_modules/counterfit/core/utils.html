@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.core.utils &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.core.html">counterfit.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>counterfit.core.utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for counterfit.core.utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Utility functions should live here so can be used across codebase...</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+
+<div class="viewcode-block" id="param_floats_to_ints"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.utils.param_floats_to_ints.html#counterfit.core.utils.param_floats_to_ints">[docs]</a><span class="k">def</span> <span class="nf">param_floats_to_ints</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Convert floats to integers</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        parameters (dict): The dictionary of parameters</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        [type]: [description]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">new_parameters</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">new_parameters</span></div>
+
+
+<div class="viewcode-block" id="set_id"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.utils.set_id.html#counterfit.core.utils.set_id">[docs]</a><span class="k">def</span> <span class="nf">set_id</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Generate a random 8 char id</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A random 8 char id.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="import_subclass"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.utils.import_subclass.html#counterfit.core.utils.import_subclass">[docs]</a><span class="k">def</span> <span class="nf">import_subclass</span><span class="p">(</span><span class="n">import_path</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">subcls</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Import core modules based on path and subclass.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        import_path (str): path of where the modules a</span>
+<span class="sd">        subcls (object): The parent class to load.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Dictionaary of class paths. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">modules</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">import_path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">import_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">import_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="s2">&quot;__init__.py&quot;</span> <span class="ow">or</span> <span class="n">target</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">!=</span> <span class="s2">&quot;.py&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">target_module</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">import_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">target</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span>
+                <span class="n">targetcls</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">target_module</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">targetcls</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">subcls</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">subcls</span><span class="p">:</span>
+                            <span class="n">modules</span><span class="p">[</span><span class="n">target</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">obj</span>
+    <span class="k">return</span> <span class="n">modules</span></div>
+
+
+<div class="viewcode-block" id="get_subclasses"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.utils.get_subclasses.html#counterfit.core.utils.get_subclasses">[docs]</a><span class="k">def</span> <span class="nf">get_subclasses</span><span class="p">(</span><span class="n">class_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find all the subclasses of a class given its name&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">class_name</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_timestamp"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.utils.get_timestamp.html#counterfit.core.utils.get_timestamp">[docs]</a><span class="k">def</span> <span class="nf">get_timestamp</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%a</span><span class="s2">, </span><span class="si">%d</span><span class="s2"> %b %Y %H:%M:%S GMT&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="transform_numpy_to_bytes"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.utils.transform_numpy_to_bytes.html#counterfit.core.utils.transform_numpy_to_bytes">[docs]</a><span class="k">def</span> <span class="nf">transform_numpy_to_bytes</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_predict_folder"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.utils.get_predict_folder.html#counterfit.core.utils.get_predict_folder">[docs]</a><span class="k">def</span> <span class="nf">get_predict_folder</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+    <span class="n">module_path</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="vm">__module__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="s2">&quot;results&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">module_path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module_path</span><span class="si">}</span><span class="s2">/results&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;predict&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module_path</span><span class="si">}</span><span class="s2">/results&quot;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module_path</span><span class="si">}</span><span class="s2">/results/predict&quot;</span><span class="p">)</span>
+
+    <span class="n">results_folder</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module_path</span><span class="si">}</span><span class="s2">/results/predict&quot;</span>
+    <span class="k">return</span> <span class="n">results_folder</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

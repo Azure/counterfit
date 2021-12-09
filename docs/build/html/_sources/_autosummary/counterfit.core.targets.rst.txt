@@ -1,0 +1,32 @@
+counterfit.core.targets
+=======================
+
+.. automodule:: counterfit.core.targets
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Target
+   
+   
+
+   
+   
+   
+
+
+

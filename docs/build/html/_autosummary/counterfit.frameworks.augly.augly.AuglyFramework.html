@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.frameworks.augly.augly.AuglyFramework &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="counterfit.frameworks.textattack" href="counterfit.frameworks.textattack.html" />
+    <link rel="prev" title="counterfit.frameworks.augly.augly.AuglyAttack" href="counterfit.frameworks.augly.augly.AuglyAttack.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="counterfit.core.html">counterfit.core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="counterfit.frameworks.html">counterfit.frameworks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="counterfit.frameworks.art.html">counterfit.frameworks.art</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="counterfit.frameworks.augly.html">counterfit.frameworks.augly</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="counterfit.frameworks.augly.augly.html">counterfit.frameworks.augly.augly</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="counterfit.frameworks.augly.augly.cross_entropy.html">counterfit.frameworks.augly.augly.cross_entropy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="counterfit.frameworks.augly.augly.AuglyAttack.html">counterfit.frameworks.augly.augly.AuglyAttack</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">counterfit.frameworks.augly.augly.AuglyFramework</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.frameworks.textattack.html">counterfit.frameworks.textattack</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../api.html">&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="counterfit.frameworks.html">counterfit.frameworks</a> &raquo;</li>
+          <li><a href="counterfit.frameworks.augly.html">counterfit.frameworks.augly</a> &raquo;</li>
+          <li><a href="counterfit.frameworks.augly.augly.html">counterfit.frameworks.augly.augly</a> &raquo;</li>
+      <li>counterfit.frameworks.augly.augly.AuglyFramework</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="counterfit-frameworks-augly-augly-auglyframework">
+<h1>counterfit.frameworks.augly.augly.AuglyFramework<a class="headerlink" href="#counterfit-frameworks-augly-augly-auglyframework" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="counterfit.frameworks.augly.augly.AuglyFramework">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">AuglyFramework</span></span><a class="reference internal" href="../_modules/counterfit/frameworks/augly/augly.html#AuglyFramework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.frameworks.augly.augly.AuglyFramework" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="counterfit.core.frameworks.Framework.html#counterfit.core.frameworks.Framework" title="counterfit.core.frameworks.Framework"><code class="xref py py-class docutils literal notranslate"><span class="pre">counterfit.core.frameworks.Framework</span></code></a></p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.frameworks.augly.augly.AuglyFramework.add_attack" title="counterfit.frameworks.augly.augly.AuglyFramework.add_attack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_attack</span></code></a></p></td>
+<td><p>Adds an attacks the the framework, is called during load.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">build</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_success</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fix_grayscale</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.frameworks.augly.augly.AuglyFramework.get_attack" title="counterfit.frameworks.augly.augly.AuglyFramework.get_attack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attack</span></code></a></p></td>
+<td><p>Get an attack stored in <cite>framework.attacks</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.frameworks.augly.augly.AuglyFramework.load" title="counterfit.frameworks.augly.augly.AuglyFramework.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a></p></td>
+<td><p>Should load the attack classes for a framework.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.frameworks.augly.augly.AuglyFramework.load_from_config" title="counterfit.frameworks.augly.augly.AuglyFramework.load_from_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_from_config</span></code></a></p></td>
+<td><p>Loads a framework from a config file.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">post_attack_processing</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_attack_processing</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_parameters</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.frameworks.augly.augly.AuglyFramework.add_attack">
+<span class="sig-name descname"><span class="pre">add_attack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attack_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_category</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_data_tags</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_subcategories</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_class</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><span class="pre">object</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_default_params</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#counterfit.frameworks.augly.augly.AuglyFramework.add_attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an attacks the the framework, is called during load.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attack_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the attack.</p></li>
+<li><p><strong>attack_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The type of the attack (Extraction, Evasion, Inference, Inversion, Poisoning, Custom…)</p></li>
+<li><p><strong>attack_category</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Whitebox or blackbox attacks. Some attacks only work with local models (i.e access to gradients)</p></li>
+<li><p><strong>attack_data_tags</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – A list of the data modalities an attack works with (image, tabular, video, etc)</p></li>
+<li><p><strong>attack_subcategories</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – An optional list of additional tags. (PyTorch, Custom, Keras, etc)</p></li>
+<li><p><strong>attack_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><em>object</em></a>) – The attack that will get built and run.</p></li>
+<li><p><strong>attack_default_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Any settable parameters for the attack (max_iters, norm, query_budget, etc).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.frameworks.augly.augly.AuglyFramework.get_attack">
+<span class="sig-name descname"><span class="pre">get_attack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attack_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><span class="pre">object</span></a></span></span><a class="headerlink" href="#counterfit.frameworks.augly.augly.AuglyFramework.get_attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an attack stored in <cite>framework.attacks</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attack_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name (key value) of the attack.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The attack.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.frameworks.augly.augly.AuglyFramework.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/frameworks/augly/augly.html#AuglyFramework.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.frameworks.augly.augly.AuglyFramework.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should load the attack classes for a framework.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – path to a frameworks <cite>config.json</cite>. Defaults to None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.frameworks.augly.augly.AuglyFramework.load_from_config">
+<span class="sig-name descname"><span class="pre">load_from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#counterfit.frameworks.augly.augly.AuglyFramework.load_from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a framework from a config file. Uses <cite>pydoc.locate</cite> to find the attack class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The path to a config.json file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="counterfit.frameworks.augly.augly.AuglyAttack.html" class="btn btn-neutral float-left" title="counterfit.frameworks.augly.augly.AuglyAttack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="counterfit.frameworks.textattack.html" class="btn btn-neutral float-right" title="counterfit.frameworks.textattack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

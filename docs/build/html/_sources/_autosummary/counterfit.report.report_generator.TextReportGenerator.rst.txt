@@ -1,0 +1,27 @@
+counterfit.report.report\_generator.TextReportGenerator
+=======================================================
+
+.. currentmodule:: counterfit.report.report_generator
+
+.. autoclass:: TextReportGenerator
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~TextReportGenerator.get_run_summary
+      ~TextReportGenerator.print_run_summary
+      ~TextReportGenerator.printable
+   
+   
+
+   
+   
+   

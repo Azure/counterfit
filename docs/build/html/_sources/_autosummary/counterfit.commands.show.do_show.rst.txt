@@ -1,0 +1,6 @@
+counterfit.commands.show.do\_show
+=================================
+
+.. currentmodule:: counterfit.commands.show
+
+.. autofunction:: do_show

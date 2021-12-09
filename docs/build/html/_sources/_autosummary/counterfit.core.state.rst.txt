@@ -1,0 +1,32 @@
+counterfit.core.state
+=====================
+
+.. automodule:: counterfit.core.state
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      CFState
+   
+   
+
+   
+   
+   
+
+
+

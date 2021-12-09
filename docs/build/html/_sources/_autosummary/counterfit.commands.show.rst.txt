@@ -1,0 +1,33 @@
+counterfit.commands.show
+========================
+
+.. automodule:: counterfit.commands.show
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      do_show
+      show_attacks
+      show_options
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

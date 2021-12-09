@@ -1,0 +1,32 @@
+counterfit.commands.interact
+============================
+
+.. automodule:: counterfit.commands.interact
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      do_interact
+      get_targets
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

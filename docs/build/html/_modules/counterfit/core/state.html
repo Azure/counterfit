@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.core.state &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.core.html">counterfit.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>counterfit.core.state</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for counterfit.core.state</h1><div class="highlight"><pre>
+<span></span><span class="c1"># state.py</span>
+<span class="c1"># This file keeps track of all load targets.</span>
+
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">counterfit.core</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.output</span> <span class="kn">import</span> <span class="n">CFPrint</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.attacks</span> <span class="kn">import</span> <span class="n">CFAttack</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.frameworks</span> <span class="kn">import</span> <span class="n">Framework</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.targets</span> <span class="kn">import</span> <span class="n">Target</span>
+
+<div class="viewcode-block" id="CFState"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState">[docs]</a><span class="k">class</span> <span class="nc">CFState</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Singleton class responsible for managing targets and attacks. Instantiation of a class is restricted to one object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__instance__</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">CFState</span><span class="o">.</span><span class="n">__instance__</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">CFState</span><span class="o">.</span><span class="n">__instance__</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;You cannot create another CFState class&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scans</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active_target</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="CFState.state"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.state">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">state</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Static method to fetch the current instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">CFState</span><span class="o">.</span><span class="n">__instance__</span><span class="p">:</span>
+            <span class="n">CFState</span><span class="o">.</span><span class="n">__instance__</span> <span class="o">=</span> <span class="n">CFState</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">CFState</span><span class="o">.</span><span class="n">__instance__</span></div>
+
+    <span class="k">def</span> <span class="nf">_init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Initializes Counterfit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">import_frameworks</span><span class="p">(</span><span class="n">frameworks_path</span><span class="o">=</span><span class="s2">&quot;counterfit/frameworks&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">import_targets</span><span class="p">(</span><span class="n">targets_path</span><span class="o">=</span><span class="s2">&quot;counterfit/targets&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Frameworks</span>
+<div class="viewcode-block" id="CFState.import_frameworks"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.import_frameworks">[docs]</a>    <span class="k">def</span> <span class="nf">import_frameworks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frameworks_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Imports the available frameworks from the frameworks folder. Adds the loaded frameworks into self.frameworks. Frameworks contain the methods required for managing the attacks that are found within the framework.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            frameworks_path (str): A folder path where frameworks are kept. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">available_frameworks</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">import_subclass</span><span class="p">(</span>
+            <span class="n">frameworks_path</span><span class="p">,</span> <span class="n">Framework</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">available_frameworks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_framework</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="CFState.add_framework"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.add_framework">[docs]</a>    <span class="k">def</span> <span class="nf">add_framework</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">framework_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">framework</span><span class="p">:</span> <span class="n">Framework</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Adds a framework to Counterfit.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            framework_name (str): Name of the framework</span>
+<span class="sd">            framework (Framework, optional): The Framework object to add. Defaults to None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">framework</span><span class="p">:</span>
+            <span class="n">framework</span> <span class="o">=</span> <span class="n">Framework</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span><span class="p">[</span><span class="n">framework_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">framework</span></div>
+
+<div class="viewcode-block" id="CFState.load_framework"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.load_framework">[docs]</a>    <span class="k">def</span> <span class="nf">load_framework</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">framework</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">force_no_config</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Load a framework by name. By loading a framework, the attacks under the framework are loaded and ready for use. Attacks are not loaded during import_frameworks as loading could be slow, or a particular framework could cause errors and prevent all frameworks from loading.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            framework (str): The framework name</span>
+<span class="sd">            force_no_config (bool, optional): [description]. Defaults to False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">framework_to_load</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">framework</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">force_no_config</span><span class="p">:</span>
+                <span class="n">framework_to_load</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">config_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Config</span><span class="o">.</span><span class="n">frameworks_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">framework</span><span class="si">}</span><span class="s2">/config.json&quot;</span>
+                    <span class="n">framework_to_load</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="n">config_path</span><span class="p">)</span>
+                    <span class="n">CFPrint</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">framework</span><span class="si">}</span><span class="s2"> successfully loaded!&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="c1"># load without config</span>
+                    <span class="n">framework_to_load</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+                    <span class="n">CFPrint</span><span class="o">.</span><span class="n">success</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">framework</span><span class="si">}</span><span class="s2"> successfully loaded with defaults (no config file provided)&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">failed</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not load </span><span class="si">{</span><span class="n">framework</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CFState.get_frameworks"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.get_frameworks">[docs]</a>    <span class="k">def</span> <span class="nf">get_frameworks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get all available frameworks</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: all frameworks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span></div>
+
+<div class="viewcode-block" id="CFState.reload_framework"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.reload_framework">[docs]</a>    <span class="k">def</span> <span class="nf">reload_framework</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">framework_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reimports the framework.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            framework_name (str): framework to reload</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">framework_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_frameworks</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">failed</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">framework_name</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Get the framework to reload</span>
+            <span class="n">framework_to_reload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_frameworks</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">framework_name</span><span class="p">)</span>
+
+            <span class="c1"># Get the class we want to instantiate after module reload</span>
+            <span class="n">framework_class</span> <span class="o">=</span> <span class="n">framework_to_reload</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+            <span class="c1"># Reload the module</span>
+            <span class="n">reloaded_module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">framework_to_reload</span><span class="o">.</span><span class="vm">__module__</span><span class="p">])</span>
+
+            <span class="c1"># Reload the framework</span>
+            <span class="n">reloaded_framework</span> <span class="o">=</span> <span class="n">reloaded_module</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">framework_class</span><span class="p">)()</span>
+
+            <span class="c1"># Delete the old class</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span><span class="p">[</span><span class="n">framework_name</span><span class="p">]</span>
+
+            <span class="c1"># Replace the old module with the new one</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span><span class="p">[</span><span class="n">framework_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">reloaded_framework</span>
+
+            <span class="c1"># Load the attacks.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_framework</span><span class="p">(</span><span class="n">framework_name</span><span class="p">)</span></div>
+
+    <span class="c1"># Targets</span>
+<div class="viewcode-block" id="CFState.import_targets"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.import_targets">[docs]</a>    <span class="k">def</span> <span class="nf">import_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targets_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Imports available targets from the targets folder. Adds the loaded frameworks to CFState.targets.</span>
+<span class="sd">        Targets contain the data and methods to interact with a target machine learning system.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            targets_path (str): Folder path to where targets are kept</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">available_targets</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">import_subclass</span><span class="p">(</span>
+            <span class="n">targets_path</span><span class="p">,</span> <span class="n">Target</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">available_targets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_target</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="CFState.add_target"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.add_target">[docs]</a>    <span class="k">def</span> <span class="nf">add_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">Target</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a target to Counterfit</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            target_name (str): The name of the target</span>
+<span class="sd">            target (Target, optional): The Target object to add. Defaults to None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">Target</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">target_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span></div>
+
+<div class="viewcode-block" id="CFState.load_target"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.load_target">[docs]</a>    <span class="k">def</span> <span class="nf">load_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Target</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Load a target by name. Targets are not loaded during import to prevent loading unnecessary targets</span>
+<span class="sd">        during a session. This function calls `target.load()`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            The target name</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target_to_load</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">target_to_load</span><span class="o">.</span><span class="n">loaded_status</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">target_to_load</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+                <span class="n">CFPrint</span><span class="o">.</span><span class="n">success</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">target_to_load</span><span class="o">.</span><span class="n">target_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">target_to_load</span><span class="o">.</span><span class="n">target_id</span><span class="si">}</span><span class="s2">) successfully loaded!&quot;</span><span class="p">)</span>
+                <span class="n">target_to_load</span><span class="o">.</span><span class="n">set_loaded_status</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">CFPrint</span><span class="o">.</span><span class="n">failed</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Could not load </span><span class="si">{</span><span class="n">target_to_load</span><span class="o">.</span><span class="n">target_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> is already loaded, use &#39;reload&#39; to reload a target&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">target_to_load</span></div>
+
+<div class="viewcode-block" id="CFState.reload_target"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.reload_target">[docs]</a>    <span class="k">def</span> <span class="nf">reload_target</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reloads the active target.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_target</span><span class="p">:</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">failed</span><span class="p">(</span><span class="s2">&quot;No active target&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Get the framework to reload</span>
+            <span class="n">target_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_target</span><span class="o">.</span><span class="n">target_name</span>
+            <span class="n">target_to_reload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">target_name</span><span class="p">]</span>
+
+            <span class="c1"># Get the attacks</span>
+            <span class="n">attacks</span> <span class="o">=</span> <span class="n">target_to_reload</span><span class="o">.</span><span class="n">attacks</span>
+            <span class="n">active_attack</span> <span class="o">=</span> <span class="n">target_to_reload</span><span class="o">.</span><span class="n">active_attack</span>
+
+            <span class="c1"># Get the class we want to instantiate after module reload</span>
+            <span class="n">target_class</span> <span class="o">=</span> <span class="n">target_to_reload</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+            <span class="c1"># Reload the module</span>
+            <span class="n">reloaded_module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">target_to_reload</span><span class="o">.</span><span class="vm">__module__</span><span class="p">])</span>
+
+            <span class="c1"># Reload the target</span>
+            <span class="n">reloaded_target</span> <span class="o">=</span> <span class="n">reloaded_module</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">target_class</span><span class="p">)()</span>
+
+            <span class="c1"># Delete the old class</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">target_name</span><span class="p">]</span>
+
+            <span class="c1"># Replace the old module with the new one</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">target_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">reloaded_target</span>
+
+            <span class="c1"># Load the attacks.</span>
+            <span class="n">target_to_load</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_target</span><span class="p">(</span><span class="n">target_name</span><span class="p">)</span>
+
+            <span class="c1"># Set it as the active target</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_active_target</span><span class="p">(</span><span class="n">target_to_load</span><span class="p">)</span>
+
+            <span class="c1"># Replace the history</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">active_target</span><span class="o">.</span><span class="n">attacks</span> <span class="o">=</span> <span class="n">attacks</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">active_target</span><span class="o">.</span><span class="n">active_attack</span> <span class="o">=</span> <span class="n">active_attack</span></div>
+
+<div class="viewcode-block" id="CFState.list_targets"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.list_targets">[docs]</a>    <span class="k">def</span> <span class="nf">list_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get a list of targets</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of imported targets</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="CFState.get_attacks"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.get_attacks">[docs]</a>    <span class="k">def</span> <span class="nf">get_attacks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get all available attacks</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: all available attacks from all frameworks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_attacks</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">frameworks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_frameworks</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">framework_name</span><span class="p">,</span> <span class="n">framework</span> <span class="ow">in</span> <span class="n">frameworks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">framework</span><span class="o">.</span><span class="n">attacks</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="n">all_attacks</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+
+        <span class="k">return</span> <span class="n">all_attacks</span></div>
+
+<div class="viewcode-block" id="CFState.get_active_target"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.get_active_target">[docs]</a>    <span class="k">def</span> <span class="nf">get_active_target</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Target</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get the active target</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Target: The active target.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_target</span></div>
+
+<div class="viewcode-block" id="CFState.add_attack_to_target"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.add_attack_to_target">[docs]</a>    <span class="k">def</span> <span class="nf">add_attack_to_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cfattack</span><span class="p">:</span> <span class="n">CFAttack</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;After a CFAttack object has been built, add it to the target for tracking.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            target_name (str): The target name</span>
+<span class="sd">            cfattack (CFAttack): The CFAttack object to add.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">target_name</span><span class="p">)</span>
+        <span class="n">target</span><span class="o">.</span><span class="n">add_attack</span><span class="p">(</span><span class="n">cfattack</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CFState.build_new_attack"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.build_new_attack">[docs]</a>    <span class="k">def</span> <span class="nf">build_new_attack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attack_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">scan_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CFAttack</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Build a new CFAttack. Search through the loaded frameworks for the attack and create a new CFAttack object for use.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            target_name (str, required): The target name.</span>
+<span class="sd">            attack_name (str, required): The attack name.</span>
+<span class="sd">            scan_id (str, Optional): A unique value</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            CFAttack: A new CFAttack object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get the target to run the attack against.</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">target_name</span><span class="p">)</span>
+
+        <span class="c1"># Hunt through frameworks for the attack.</span>
+        <span class="k">for</span> <span class="n">framework_name</span><span class="p">,</span> <span class="n">framework</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">attack</span> <span class="ow">in</span> <span class="n">framework</span><span class="o">.</span><span class="n">attacks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">attack_name</span> <span class="o">!=</span> <span class="n">attack</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">attack</span> <span class="o">=</span> <span class="n">framework</span><span class="o">.</span><span class="n">attacks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attack</span><span class="p">)</span>
+
+                    <span class="c1"># Have the framework build the attack.</span>
+                    <span class="n">new_attack</span> <span class="o">=</span> <span class="n">framework</span><span class="o">.</span><span class="n">build</span><span class="p">(</span>
+                        <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+                        <span class="n">attack</span><span class="o">=</span><span class="n">attack</span><span class="o">.</span><span class="n">attack_class</span>
+                    <span class="p">)</span>
+
+                    <span class="n">cfattack</span> <span class="o">=</span> <span class="n">CFAttack</span><span class="p">(</span>
+                        <span class="n">attack_id</span><span class="o">=</span><span class="n">utils</span><span class="o">.</span><span class="n">set_id</span><span class="p">(),</span>
+                        <span class="n">attack_name</span><span class="o">=</span><span class="n">attack_name</span><span class="p">,</span>
+                        <span class="n">attack</span><span class="o">=</span><span class="n">new_attack</span><span class="p">,</span>
+                        <span class="n">default_params</span><span class="o">=</span><span class="n">attack</span><span class="o">.</span><span class="n">attack_default_params</span><span class="p">,</span>
+                        <span class="n">framework_name</span><span class="o">=</span><span class="n">framework_name</span><span class="p">,</span>
+                        <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+                        <span class="n">scan_id</span><span class="o">=</span><span class="n">scan_id</span>
+                    <span class="p">)</span>  <span class="c1"># This is a mutable runtime friendly structure.</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_attack_to_target</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">cfattack</span><span class="p">)</span>
+
+                    <span class="n">CFPrint</span><span class="o">.</span><span class="n">success</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;New </span><span class="si">{</span><span class="n">attack_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">cfattack</span><span class="o">.</span><span class="n">attack_id</span><span class="si">}</span><span class="s2">) created&quot;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">cfattack</span><span class="o">.</span><span class="n">attack_id</span></div>
+
+<div class="viewcode-block" id="CFState.run_attack"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.run_attack">[docs]</a>    <span class="k">def</span> <span class="nf">run_attack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attack_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Run a prepared attack. Get the appropriate framework and execute the attack.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            attack_id (str, required): The attack id to run.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Attack: A new Attack object with an updated cfattack_class. Additional properties set in this function include, attack_id (str)</span>
+<span class="sd">            and the parent framework (str). The framework string is added to prevent the duplication of code in run_attack.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get the cfattack object to run</span>
+        <span class="n">cfattack</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">target_name</span><span class="p">)</span><span class="o">.</span><span class="n">attacks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attack_id</span><span class="p">)</span>
+
+        <span class="c1"># Get the framework responsible for the attack</span>
+        <span class="n">framework</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frameworks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cfattack</span><span class="o">.</span><span class="n">framework_name</span><span class="p">)</span>
+
+        <span class="c1"># Make sure there is a cfattack object</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cfattack</span><span class="p">:</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">failed</span><span class="p">(</span><span class="s2">&quot;Attack id not found&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># Set the initial values for the attack. Samples, logger, etc.</span>
+        <span class="n">CFPrint</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preparing attack...&quot;</span><span class="p">)</span>
+        <span class="n">cfattack</span><span class="o">.</span><span class="n">prepare_attack</span><span class="p">()</span>
+
+        <span class="c1"># Run the attack</span>
+        <span class="n">CFPrint</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running attack...&quot;</span><span class="p">)</span>
+        <span class="n">cfattack</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="s2">&quot;running&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="c1"># Give the framework an opportunity to preprocess any thing in the attack.</span>
+            <span class="n">framework</span><span class="o">.</span><span class="n">pre_attack_processing</span><span class="p">(</span><span class="n">cfattack</span><span class="p">)</span>
+
+            <span class="c1"># Start timing the attack for the elapsed_time metric</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+            <span class="c1"># Get the results of the attack</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">framework</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cfattack</span><span class="p">)</span>
+
+            <span class="c1"># Stop the timer</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+            <span class="c1"># Set the elapsed time metric</span>
+            <span class="n">cfattack</span><span class="o">.</span><span class="n">set_elapsed_time</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+
+            <span class="c1"># Set the results that the attack returns</span>
+            <span class="n">cfattack</span><span class="o">.</span><span class="n">set_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+            <span class="c1"># Determine the success of the attack</span>
+            <span class="n">success</span> <span class="o">=</span> <span class="n">framework</span><span class="o">.</span><span class="n">check_success</span><span class="p">(</span><span class="n">cfattack</span><span class="p">)</span>
+
+            <span class="c1"># Set the success value</span>
+            <span class="n">cfattack</span><span class="o">.</span><span class="n">set_success</span><span class="p">(</span><span class="n">success</span><span class="p">)</span>
+
+            <span class="c1"># Give the framework an opportunity to process the results, generate reports, etc</span>
+            <span class="n">framework</span><span class="o">.</span><span class="n">post_attack_processing</span><span class="p">(</span><span class="n">cfattack</span><span class="p">)</span>
+
+            <span class="c1"># Mark the attack as complete</span>
+            <span class="n">cfattack</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="s2">&quot;complete&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Let the user know the attack has completed successfully.</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">success</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Attack completed </span><span class="si">{</span><span class="n">cfattack</span><span class="o">.</span><span class="n">attack_id</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">cfattack</span><span class="o">.</span><span class="n">attack_name</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Set the attack has complete</span>
+            <span class="n">cfattack</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="s2">&quot;complete&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Let the user know the attack failed</span>
+            <span class="n">CFPrint</span><span class="o">.</span><span class="n">failed</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Failed to run </span><span class="si">{</span><span class="n">cfattack</span><span class="o">.</span><span class="n">attack_id</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">cfattack</span><span class="o">.</span><span class="n">attack_name</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="CFState.set_active_target"><a class="viewcode-back" href="../../../_autosummary/counterfit.core.state.CFState.html#counterfit.core.state.CFState.set_active_target">[docs]</a>    <span class="k">def</span> <span class="nf">set_active_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">Target</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set the active target with the target name provided.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            target (Target): The target object to set as the active target</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active_target</span> <span class="o">=</span> <span class="n">target</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Targets &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Write a New Target" href="../tutorials/tutorials.html" />
+    <link rel="prev" title="Basic Use" href="../usage/usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Targets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-target">Creating a Target</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-target-information">Required Target Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-target-class">Sample Target Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-final-target-class">The Final Target Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#frameworks">Frameworks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#load"><code class="docutils literal notranslate"><span class="pre">load()</span></code>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build"><code class="docutils literal notranslate"><span class="pre">build()</span></code>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run"><code class="docutils literal notranslate"><span class="pre">run()</span></code>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-success"><code class="docutils literal notranslate"><span class="pre">check_success()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-attack-processing"><code class="docutils literal notranslate"><span class="pre">post_attack_processing()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#textattack">TextAttack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adversarial-robustness-toolkit">Adversarial Robustness Toolkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#adding-a-new-command">Adding a New Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic-options">Dynamic Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quality-of-life-commands">Quality of Life Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#informational-commands">Informational Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#primary-commands">Primary Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-options">Setting Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#loggers">Loggers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#write-a-logger">Write a Logger</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/counterfit.core.html">counterfit.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Targets</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section class="tex2jax_ignore mathjax_ignore" id="targets">
+<h1>Targets<a class="headerlink" href="#targets" title="Permalink to this headline">¶</a></h1>
+<p>A target is a user-created class that is the interface between a target model and the attacks included in a framework. Microsoft Counterfit implements the user interface this way to handle the wide variety of ways a user could interact with a target model. There is no universal interface to a machine learning endpoint: Counterfit can interact with a model on disk or hosted behind an API. To provide a clean interface, there are some strict requirements imposed on a target class. The requirements can seem restricting at first, but once you understand how Counterfit interacts with backend frameworks through this interface, attacking new targets will become a breeze.</p>
+<section id="creating-a-target">
+<h2>Creating a Target<a class="headerlink" href="#creating-a-target" title="Permalink to this headline">¶</a></h2>
+<p>There are two ways to create a new target, either by executing the new command and following the instructions, or simply hacking together a new target from an existing one. On start targets are loaded from a targets folder defined in counterfit/core/config.py, which by default is counterfit/targets. Each target module is contained in its own target folder. This folder is used to store any resources the target may need such as data, models, other python files, etc.</p>
+<p>A target class should inherit from the chosen frameworks baseclass. This baseclass acts as an interface to ensure all required information and methods to successfully build, manage, and run attacks for the framework are present. Inside the target class, a user needs to set a few meta-properties and compose two functions. These properties and functions are the same for all targets in Counterfit.</p>
+<section id="required-target-information">
+<h3>Required Target Information<a class="headerlink" href="#required-target-information" title="Permalink to this headline">¶</a></h3>
+<p>The required properties for a target consist of the following items,</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code></p></td>
+<td><p>Should be unique among all targets. This is used to uniquely identify a target model within Counterfit. For example, <code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">targets</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">model_data_type</span></code></p></td>
+<td><p>The type of data the target model uses. This is used to attach the relevant attacks to a given target. Models for which <code class="docutils literal notranslate"><span class="pre">model_data_type</span></code> is <code class="docutils literal notranslate"><span class="pre">text</span></code> will be compatible with attacks from the TextAttack framework. Adversarial Robustness Toolbox works with <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> data types.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_endpoint</span></code></p></td>
+<td><p>API route or model file location where Counterfit will collect outputs. This may be used in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function to load a model file (when referring to a filename), or the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> function during an attack to interact with an API (when referring to an API route).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">model_input_shape</span></code></p></td>
+<td><p>The shape of the input to a target model. Backend frameworks use this to understand the shape of the sample. The <code class="docutils literal notranslate"><span class="pre">__call__</span></code> function expects a batch of inputs of this shape, e.g., an input of size <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">)</span> <span class="pre">+</span> <span class="pre">model_input_shape</span></code>, where <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> is typically just 1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">model_output_classes</span></code></p></td>
+<td><p>A list of all output labels returned by the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> function. This is used by Counterfit’s <code class="docutils literal notranslate"><span class="pre">outputs_to_labels</span></code> function to convert numerical outputs to labels that you define.  It helps Counterift know whether an attack has been successflu or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>The sample data, which is of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">)</span> <span class="pre">+</span> <span class="pre">model_input_shape</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of samples you included in the target definition.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The required method for a target consists of the following items,</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__init__(self)</span></code></p></td>
+<td><p>This function should load models and load and process input data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">__call__(self,</span> <span class="pre">x)</span></code></p></td>
+<td><p>This function is the primary interface between a target model and an attack algorithm. An attack algorithm uses this function to submit inputs via <code class="docutils literal notranslate"><span class="pre">x</span></code> and collect the output via the return value.  This function must return a list of probabilities for each input sample.  That is, for each row in <code class="docutils literal notranslate"><span class="pre">x</span></code> there should be an output row of the form <code class="docutils literal notranslate"><span class="pre">[prob_class_0,</span> <span class="pre">prob_class_1,</span> <span class="pre">...,</span> <span class="pre">prob_class_2]</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="sample-target-class">
+<h2>Sample Target Class<a class="headerlink" href="#sample-target-class" title="Permalink to this headline">¶</a></h2>
+<p>At the top of the file are standard module imports and the selected Counterfit framework. Targets will be loaded only if they inherit from a correct baseclass. There are no limits to what you can import, however, they are loaded on start, so heavy ML libraries could slow down the start process.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.interfaces</span> <span class="kn">import</span> <span class="n">ArtTarget</span>
+</pre></div>
+</div>
+<p>Next, the target class is created, and the required properties are defined.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CatClassifier</span><span class="p">(</span><span class="n">ArtTarget</span><span class="p">):</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;catclassifier&#39;</span>
+    <span class="n">model_data_type</span> <span class="o">=</span> <span class="s1">&#39;image&#39;</span>
+    <span class="n">model_endpoint</span> <span class="o">=</span> <span class="s2">&quot;http://contoso.ai/predict&quot;</span>
+    <span class="n">model_input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">model_output_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;not_a_cat&quot;</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>model_name</p></td>
+<td><p>A unique name. Counterfit references each target by name. All logs and results will be stored in this class.</p></td>
+</tr>
+<tr class="row-odd"><td><p>model_data_type</p></td>
+<td><p>The cat classifier target, hosted at <code class="docutils literal notranslate"><span class="pre">http://contoso.ai/predict</span></code> requires pictures of cats. The model_data_type reflects the input data should be an image. Counterfit uses this field to process and reshape data correctly.</p></td>
+</tr>
+<tr class="row-even"><td><p>model_endpoint</p></td>
+<td><p>This is where Counterfit will collect outputs from the target. This is used in the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> function during an attack.</p></td>
+</tr>
+<tr class="row-odd"><td><p>model_input_shape</p></td>
+<td><p>This is the shape of our sample data. It is important to note that this is not necessarily the shape of the target model input, but rather the shape of the sample data.</p></td>
+</tr>
+<tr class="row-even"><td><p>model_output_classes</p></td>
+<td><p>Are the possible classes for the samples. The image is either a cat, or not a cat.</p></td>
+</tr>
+<tr class="row-odd"><td><p>X</p></td>
+<td><p>Are the sample data. This will be populated in the <strong>init</strong> function.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Next, the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function should load the required resources. This function is not called until you interact with a target. Sample data should be loaded into <code class="docutils literal notranslate"><span class="pre">self.X</span></code> as a list of lists, arrays, or vectors. Sample selection for both targeted and untargeted attacks are set by referencing an index of this list. As noted earlier, it is important that the shape of an input sample matches the <code class="docutils literal notranslate"><span class="pre">model_input_shape</span></code>. There are no limits to what you can do inside <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, load models, process samples, execute functions written elsewhere, etc.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x1</span><span class="p">],</span> <span class="p">[</span><span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">x3</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> function. This function is used by an attack algorithm to send a query to the <code class="docutils literal notranslate"><span class="pre">model_endpoint</span></code>. <code class="docutils literal notranslate"><span class="pre">x</span></code> is the sample the algorithm has provided and is of shape <code class="docutils literal notranslate"><span class="pre">(1,)</span> <span class="pre">+</span> <span class="pre">model_input_shape</span></code>, or <code class="docutils literal notranslate"><span class="pre">((1,</span> <span class="pre">3,</span> <span class="pre">256,</span> <span class="pre">256))</span></code>. Conventionally, ML frameworks use “batches” of inputs, and it is best practice for the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> function to include handle an entire batch, e.g., sending each sample in the batch to an API that may handle only a single query at a time.  However, since most attacks in Counterfit do not require a batch size greater than one, in this example, we’ll use <code class="docutils literal notranslate"><span class="pre">x[0]</span></code> to reference the first sample in the batch.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">sample</span><span class="p">})</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="n">cat_proba</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;confidence&quot;</span><span class="p">]</span>
+    <span class="n">not_a_cat_proba</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">cat_proba</span>
+        
+<span class="k">return</span> <span class="p">[</span><span class="n">cat_proba</span><span class="p">,</span> <span class="n">not_a_cat_proba</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__call__</span></code> function <strong>MUST</strong> return a list of probabilities that is the same length and in the same order as <code class="docutils literal notranslate"><span class="pre">model_output_classes</span></code>. Backend frameworks use both during attack runtime and if they are not the same length, an error will be thrown. If the ordering of the returned list of probabilities is incorrect, the attack will alter the input incorrectly. There are no limits to what you can do inside <code class="docutils literal notranslate"><span class="pre">__call__</span></code>, this includes reshaping arrays to images, executing webhooks, or additional logging. Learn more about the flexibility of Counterfit targets in [Advanced Use]</p>
+<p><em>Note: Pay attention to the channels of an image. By default, backend framework wrappers and Counterfit are configured to use channels first rather than last, (3, 256, 256) vs (256, 256, 3). This can be overridden by adding <code class="docutils literal notranslate"><span class="pre">self.channels_first=False</span></code> to the target class.</em></p>
+</section>
+<section id="the-final-target-class">
+<h2>The Final Target Class<a class="headerlink" href="#the-final-target-class" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">counterfit.core.interfaces</span> <span class="kn">import</span> <span class="n">ArtTarget</span>
+
+<span class="k">class</span> <span class="nc">CatClassifier</span><span class="p">(</span><span class="n">ArtTarget</span><span class="p">):</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;catclassifier&#39;</span>
+    <span class="n">model_data_type</span> <span class="o">=</span> <span class="s1">&#39;image&#39;</span>
+    <span class="n">model_endpoint</span> <span class="o">=</span> <span class="s2">&quot;http://contoso.ai/predict&quot;</span>
+    <span class="n">model_input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">model_output_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;not_a_cat&quot;</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x1</span><span class="p">],</span> <span class="p">[</span><span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">x3</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">sample</span><span class="p">})</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="n">cat_proba</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;confidence&quot;</span><span class="p">]</span>
+        <span class="n">not_a_cat_proba</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">cat_proba</span>
+        
+        <span class="k">return</span> <span class="p">[</span><span class="n">cat_proba</span><span class="p">,</span> <span class="n">not_a_cat_proba</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<p>–</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="frameworks">
+<h1>Frameworks<a class="headerlink" href="#frameworks" title="Permalink to this headline">¶</a></h1>
+<p>Counterfit uses existing adversarial ML frameworks for attack algorithms. Some of them are heavy to load and on start, makes for a slow experience. Instead, Counterfit loads a framework when requested with the load command. Each framework has its own baseclass that handles the information coming from a target class. You will notice not all attacks are in each framework – some are missing because they are Whitebox; others are missing due to incompatibility with Counterfit.</p>
+<section id="load">
+<h2><code class="docutils literal notranslate"><span class="pre">load()</span></code>:<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h2>
+<p>During load, a framework should load the attacks classes it is responsible for. There are many ways to do this, and some frameworks can be extremely complicated and heavy to load (<code class="docutils literal notranslate"><span class="pre">art</span></code>), or be really lightweight and custom (<code class="docutils literal notranslate"><span class="pre">augly</span></code>). Counterfit also provides the option to load a framework from a json config file.</p>
+<p>To load from an attack, use <code class="docutils literal notranslate"><span class="pre">add_attack</span></code> with the required parameters. This function creates a namedtuple that Counterfit references to populate the interface and build attacks. A namedtuple was chosen because of it immutable properties, this allows Counterfit to keep the interface nice and tidy without a user being able to overwrite or create various properties during run time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The attack class to add</span>
+<span class="n">new_attack</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">AttackClass</span>
+
+<span class="c1"># Add the attack to the framework</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">add_attack</span><span class="p">(</span>
+    <span class="n">attack_name</span><span class="o">=</span><span class="n">new_attack</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+    <span class="n">attack_type</span><span class="o">=</span><span class="n">attack_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+    <span class="n">attack_category</span><span class="o">=</span><span class="n">attack_category</span><span class="p">,</span>
+    <span class="n">attack_data_tags</span><span class="o">=</span><span class="n">attack_data_tags</span><span class="p">,</span>
+    <span class="n">attack_subcategories</span><span class="o">=</span><span class="n">attack_subcategories</span><span class="p">,</span>
+    <span class="n">attack_class</span><span class="o">=</span><span class="n">loaded_attack</span><span class="p">,</span>
+    <span class="n">attack_default_params</span><span class="o">=</span><span class="n">default_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="build">
+<h2><code class="docutils literal notranslate"><span class="pre">build()</span></code>:<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
+<p>Build is called by <code class="docutils literal notranslate"><span class="pre">state.build_new_attack()</span></code> and should return an instantiated attack ready to be configured and run. Build takes the namedtuple object created during load. It pulls the attack out of attack_class and should return an instantiated attack. For any given framework, this build step is usually found in the examples section. After building the attack, Counterfit creates a <code class="docutils literal notranslate"><span class="pre">CFAttack</span></code> object that is used for the remainder of the attack life-cycle. Unlike the namedtuple, <code class="docutils literal notranslate"><span class="pre">CFAttack</span></code> is a standard class and can be altered as needed or required by the framework.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">attack_entry</span><span class="o">.</span><span class="n">attack_class</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="run">
+<h2><code class="docutils literal notranslate"><span class="pre">run()</span></code>:<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h2>
+<p>Run is called by <code class="docutils literal notranslate"><span class="pre">state.run_attack()</span></code> and takes a <code class="docutils literal notranslate"><span class="pre">CFAttack</span></code> object as a parameter. This is where the framework can execute the attack and return the results. <code class="docutils literal notranslate"><span class="pre">CFAttack</span></code> is an aggregation and carries a large amount of information with it, for example <code class="docutils literal notranslate"><span class="pre">cfattack.target</span></code> provoide ccess to the target instance, <code class="docutils literal notranslate"><span class="pre">cfattack.options</span></code> provides access attack options, <code class="docutils literal notranslate"><span class="pre">cfattack.logger</span></code>provided access to the logger instance.</p>
+</section>
+<section id="check-success">
+<h2><code class="docutils literal notranslate"><span class="pre">check_success()</span></code><a class="headerlink" href="#check-success" title="Permalink to this headline">¶</a></h2>
+<p>check_success is called by <code class="docutils literal notranslate"><span class="pre">state.run_attack()</span></code> and should return a bool value denoting the success of the attack.</p>
+</section>
+<section id="post-attack-processing">
+<h2><code class="docutils literal notranslate"><span class="pre">post_attack_processing()</span></code><a class="headerlink" href="#post-attack-processing" title="Permalink to this headline">¶</a></h2>
+<p>Counterfit comes with some basic reporting functionality. If there are custom reports or attacks or datatypes Counterfit does not support. This can be overridden to create these reports.</p>
+</section>
+<section id="textattack">
+<h2>TextAttack<a class="headerlink" href="#textattack" title="Permalink to this headline">¶</a></h2>
+<p>Counterfit includes a number of blackbox attacks against text models from the TextAttack framework. These attacks have no parameters and the user need only set a <code class="docutils literal notranslate"><span class="pre">target_sample</span></code> when running an attack. TextAttack requires that <code class="docutils literal notranslate"><span class="pre">self.X</span></code> be a list of sentences to be used as input to a model.</p>
+<p>When implementing a target for Textattack, please note that TextAttack currently expects that <code class="docutils literal notranslate"><span class="pre">model_output_classes</span></code> to be a list of ordered integers beginning at 0 (e.g., [0, 1, 2]) rather than a list of labels (e.g., [‘cat’, ‘dog’, ‘horse’]). This is because it uses the class label as an index.</p>
+</section>
+<section id="adversarial-robustness-toolkit">
+<h2>Adversarial Robustness Toolkit<a class="headerlink" href="#adversarial-robustness-toolkit" title="Permalink to this headline">¶</a></h2>
+<p>Counterfit includes a number of blackbox evasion attacks suitable for targets of the ‘numpy’ or ‘image’ data type using the Adversarial Robustness Toolbox (ART) . ART expects <code class="docutils literal notranslate"><span class="pre">self.X</span></code> to be a list of lists, that is, each row in the list corresponds to an input sample, and each input sample is a list of numbers or images. Thus, it’s typical that <code class="docutils literal notranslate"><span class="pre">self.X</span></code> is an array of dimensions (N, dim) (for numpy), (N, channels, height, width) for image with channels_first=True) (default), or (N, height, width, channels) for image with channels_first=False.</p>
+<p>ART attacks have parameters that may be set to adjust how the algorithm interacts with a target model. Detailing the parameters for each algorithm is out of the scope of this document. Users may use <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">info</span></code> to learn more about an attack algorithm and its parameters.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">creditfraud</span><span class="o">&gt;</span><span class="n">hop_skip_jump</span><span class="o">&gt;</span> <span class="n">show</span> <span class="n">info</span> <span class="o">--</span><span class="n">attack</span> <span class="n">hop_skip_jump</span>
+
+<span class="n">Attack</span> <span class="n">Information</span>
+<span class="o">-----------------------------------------------------------------------------------------------------------</span>
+              <span class="n">attack</span> <span class="n">name</span>  <span class="n">hop_skip_jump</span>
+              <span class="n">attack</span> <span class="nb">type</span>  <span class="n">evasion</span>
+          <span class="n">attack</span> <span class="n">category</span>  <span class="n">blackbox</span>
+              <span class="n">attack</span> <span class="n">tags</span>  <span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">]</span>
+         <span class="n">attack</span> <span class="n">framework</span>  <span class="n">art</span>
+              <span class="n">attack</span> <span class="n">docs</span>   <span class="n">Implementation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">HopSkipJump</span> <span class="n">attack</span> <span class="kn">from</span> <span class="nn">Jianbo</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span> <span class="p">(</span><span class="mi">2019</span><span class="p">)</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span>
+                           <span class="n">powerful</span> <span class="n">black</span><span class="o">-</span><span class="n">box</span> <span class="n">attack</span> <span class="n">that</span>   <span class="n">only</span> <span class="n">requires</span> <span class="n">final</span> <span class="k">class</span> <span class="nc">prediction</span><span class="p">,</span> <span class="ow">and</span> <span class="ow">is</span> <span class="n">an</span>
+                           <span class="n">advanced</span> <span class="n">version</span> <span class="n">of</span> <span class="n">the</span> <span class="n">boundary</span> <span class="n">attack</span><span class="o">.</span> <span class="o">|</span> <span class="n">Paper</span> <span class="n">link</span><span class="p">:</span>
+                           <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">arxiv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">abs</span><span class="o">/</span><span class="mf">1904.02144</span>
+
+<span class="n">Attack</span> <span class="n">Parameter</span> <span class="p">(</span><span class="nb">type</span><span class="p">)</span>      <span class="n">Default</span>
+<span class="o">---------------------------------------</span>
+          <span class="n">targeted</span> <span class="p">(</span><span class="nb">bool</span><span class="p">)</span>  <span class="kc">False</span>
+               <span class="n">norm</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="mi">2</span>
+           <span class="n">max_iter</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="mi">50</span>
+           <span class="n">max_eval</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="mi">10000</span>
+          <span class="n">init_eval</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="mi">100</span>
+          <span class="n">init_size</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="mi">100</span>
+       <span class="n">sample_index</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="mi">0</span>
+       <span class="n">target_class</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="mi">0</span>
+</pre></div>
+</div>
+<p>In this case, the help shows that more information about <code class="docutils literal notranslate"><span class="pre">hop_skip_jump</span></code> can be gleaned by reading the <a class="reference external" href="https://arxiv.org/abs/1904.02144">academic paper</a> .</p>
+<p><em>Note that <code class="docutils literal notranslate"><span class="pre">sample_index</span></code> and<code class="docutils literal notranslate"> <span class="pre">target_class</span></code> are properties of all attacks. In particular <code class="docutils literal notranslate"><span class="pre">target_class</span></code> may only be used by some algorithms that support a targeted attack, and in cases where targeted is set to be <code class="docutils literal notranslate"><span class="pre">True</span></code>.</em></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="attacks">
+<h1>Attacks<a class="headerlink" href="#attacks" title="Permalink to this headline">¶</a></h1>
+<p>blah blah blah</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="commands">
+<h1>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h1>
+<p>Commands in Counterfit provide the functionality that allow objects to interact. The commands are structured to provides a similar workflow to other offensive security tools, where you typically interact with one target at a time and execute actions against that target. Counterfit keeps a state that keeps track of all interaction and available  objects in the session. Commands use <code class="docutils literal notranslate"><span class="pre">cmd2</span></code> for command categorization and <code class="docutils literal notranslate"><span class="pre">argparse</span></code> for argument handling. For example, the interact command,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">cmd2</span> <span class="kn">import</span> <span class="n">Cmd2ArgumentParser</span><span class="p">,</span> <span class="n">with_argparser</span><span class="p">,</span> <span class="n">with_category</span>
+
+<span class="kn">from</span> <span class="nn">counterfit.core.state</span> <span class="kn">import</span> <span class="n">CFState</span>
+
+<span class="k">def</span> <span class="nf">get_targets</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">list_targets</span><span class="p">()</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">Cmd2ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">get_targets</span><span class="p">())</span>
+
+<span class="nd">@with_argparser</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+<span class="nd">@with_category</span><span class="p">(</span><span class="s2">&quot;Counterfit Commands&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">do_interact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Sets the the active target. </span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        target </span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Load the target</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">load_target</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+
+    <span class="c1"># Set it as the active target</span>
+    <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">set_active_target</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="adding-a-new-command">
+<h2>Adding a New Command<a class="headerlink" href="#adding-a-new-command" title="Permalink to this headline">¶</a></h2>
+<p>Adding a new command is simple. Create a new file in the <code class="docutils literal notranslate"><span class="pre">counterfit/core/commands/</span></code> folder and set up the command structure,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import argparse
+import cmd2
+
+from core.state import CFState
+
+parser = Cmd2ArgumentParser()
+parser.add_argument(…)
+</pre></div>
+</div>
+<p>You could change the category or keep it the same. Changing the category will cause the command to display separately from Counterfit commands. Next, write the function to interact with the current state.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@cmd2</span><span class="o">.</span><span class="n">with_argparser</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+<span class="nd">@cmd2</span><span class="o">.</span><span class="n">with_category</span><span class="p">(</span><span class="s2">&quot;Custom Commands&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">do_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Do cool stuff&quot;&quot;&quot;</span>
+
+    <span class="n">active_target</span> <span class="o">=</span> <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">get_active_target</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">active_target</span><span class="o">.</span><span class="n">target_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After a new command has been added, use <code class="docutils literal notranslate"><span class="pre">reload</span> <span class="pre">--commands</span></code> to load the command into the session.</p>
+</section>
+<section id="dynamic-options">
+<h2>Dynamic Options<a class="headerlink" href="#dynamic-options" title="Permalink to this headline">¶</a></h2>
+<p>Counterfit doesn’t load frameworks or targets by default, and in order to react to environment changes (like updating what attacks have been loaded) Counterfit reloads commands via a <code class="docutils literal notranslate"><span class="pre">terminal.postcmd</span></code> function after every command execution. Let’s take a closer look at the <code class="docutils literal notranslate"><span class="pre">interact</span></code> command, every time the module is reloaded, the <code class="docutils literal notranslate"><span class="pre">parser</span></code> executes <code class="docutils literal notranslate"><span class="pre">get_targets()</span></code>. Executing a reload after every commands triggers <code class="docutils literal notranslate"><span class="pre">get_targets()</span></code> to be called and the choices for the command to reflect the current state.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_targets</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">CFState</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">list_targets</span><span class="p">()</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">Cmd2ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">get_targets</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="quality-of-life-commands">
+<h2>Quality of Life Commands<a class="headerlink" href="#quality-of-life-commands" title="Permalink to this headline">¶</a></h2>
+<p>While attacking targets is fun, an attack comes after the target has been written by the user. Because this is something of a development process, there are some convenience commands that will make life a little easier when writing new targets.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>new</p></td>
+<td><p>Create a new target in the targets folder and load it into the session.</p></td>
+</tr>
+<tr class="row-odd"><td><p>reload</p></td>
+<td><p>When editing a target, this command will reload the target to reflect the changes made.</p></td>
+</tr>
+<tr class="row-even"><td><p>predict</p></td>
+<td><p>Send a single query to the target model.</p></td>
+</tr>
+<tr class="row-odd"><td><p>exit</p></td>
+<td><p>Exit the active attack or active target.</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example, a target creation workflow is as follows,</p>
+<ol class="simple">
+<li><p>Execute <code class="docutils literal notranslate"><span class="pre">new</span></code> to create a fresh target</p></li>
+<li><p>Open the new target python file in your favorite code editor. (<code class="docutils literal notranslate"><span class="pre">cmd2</span></code> haa a built in <code class="docutils literal notranslate"><span class="pre">edit</span></code> command)</p></li>
+<li><p>Make changes to the target and execute <code class="docutils literal notranslate"><span class="pre">reload</span></code>.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">predict</span></code> command to ensure inputs and outputs are as expected.</p></li>
+</ol>
+</section>
+<section id="informational-commands">
+<h2>Informational Commands<a class="headerlink" href="#informational-commands" title="Permalink to this headline">¶</a></h2>
+<p>These commands gather and present relevant information about the current session, and relevant information about targets and attacks.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>list</p></td>
+<td><p>This command prints loaded objects in the session</p></td>
+</tr>
+<tr class="row-odd"><td><p>show</p></td>
+<td><p>When editing a target, this command will reload the target to reflect the changes made.</p></td>
+</tr>
+<tr class="row-even"><td><p>docs</p></td>
+<td><p>When editing a target, this command will reload the target to reflect the changes made.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="primary-commands">
+<h2>Primary Commands<a class="headerlink" href="#primary-commands" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>load</p></td>
+<td><p>This command prints loaded objects in the session</p></td>
+</tr>
+<tr class="row-odd"><td><p>interact</p></td>
+<td><p>This command prints loaded objects in the session</p></td>
+</tr>
+<tr class="row-even"><td><p>use</p></td>
+<td><p>This command prints loaded objects in the session</p></td>
+</tr>
+<tr class="row-odd"><td><p>set</p></td>
+<td><p>This command prints loaded objects in the session</p></td>
+</tr>
+<tr class="row-even"><td><p>run</p></td>
+<td><p>This command prints loaded objects in the session</p></td>
+</tr>
+<tr class="row-odd"><td><p>scan</p></td>
+<td><p>When editing a target, this command will reload the target to reflect the changes made.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Basic workflow,</p>
+<ol class="simple">
+<li><p>Load a framework <code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">art</span></code></p></li>
+<li><p>Interact with a target, <code class="docutils literal notranslate"><span class="pre">interact</span> <span class="pre">digits_keras</span></code></p></li>
+<li><p>Use an attack <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">HopSkipJump</span></code></p></li>
+<li><p>Set</p></li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="options">
+<h1>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h1>
+<p>Options are kept in <code class="docutils literal notranslate"><span class="pre">CFAttackOption</span></code> and are created during <code class="docutils literal notranslate"><span class="pre">state.build_new_attack()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Attack Options (type) ┃ Default    ┃ Current    ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ Algo Parameters       │            │            │
+│ --------------------  │ --         │ --         │
+│ targeted (bool)       │ False      │ False      │
+│ norm (int)            │ 2          │ 2          │
+│ max_iter (int)        │ 50         │ 50         │
+│ max_eval (int)        │ 10000      │ 10000      │
+│ init_eval (int)       │ 100        │ 100        │
+│ init_size (int)       │ 100        │ 100        │
+│ curr_iter (int)       │ 0          │ 0          │
+│ batch_size (int)      │ 64         │ 64         │
+│ verbose (bool)        │ False      │ False      │
+│ clip_values (tuple)   │ (0.0, 1.0) │ (0.0, 1.0) │
+│                       │            │            │
+│ CFAttack Options      │            │            │
+│ --------------------  │ --         │ --         │
+│ sample_index (int)    │ 0          │ 0          │
+│ logger (str)          │ default    │ default    │
+└───────────────────────┴────────────┴────────────┘
+</pre></div>
+</div>
+<p>Options provide the ability to alter attack behaviour at runtime. There are two types of options,</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Algo</span> <span class="pre">Parameters</span></code> come from the specific implementation of the attack algo,, and are loaded as <code class="docutils literal notranslate"><span class="pre">attack_default_params</span></code> when an attack is added to a framework during <code class="docutils literal notranslate"><span class="pre">framework.add_attack</span></code>. A framework author has full control over what parameters get attached to an attack.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CFAttack</span> <span class="pre">Options</span></code> are injected during <code class="docutils literal notranslate"><span class="pre">state.build_new_attack</span></code>. There are two default options - <code class="docutils literal notranslate"><span class="pre">sample_index</span></code> and <code class="docutils literal notranslate"><span class="pre">logger</span></code>.</p></li>
+</ol>
+<section id="setting-options">
+<h2>Setting Options<a class="headerlink" href="#setting-options" title="Permalink to this headline">¶</a></h2>
+<p>After interacting with a target.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="loggers">
+<h1>Loggers<a class="headerlink" href="#loggers" title="Permalink to this headline">¶</a></h1>
+<p>Counterfit allows users to write and use their own loggers. Counterfit comes with some basic attack loggers, <code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">default</span></code>. The <code class="docutils literal notranslate"><span class="pre">default</span></code> logger only counts the number of queries an attack has made to a target model. Loggers are kept in <code class="docutils literal notranslate"><span class="pre">counterfit/loggers/logger.py</span></code> and are set prior to an attack with <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--logger</span> <span class="pre">json</span></code>.</p>
+<section id="write-a-logger">
+<h2>Write a Logger<a class="headerlink" href="#write-a-logger" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../usage/usage.html" class="btn btn-neutral float-left" title="Basic Use" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorials/tutorials.html" class="btn btn-neutral float-right" title="Write a New Target" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

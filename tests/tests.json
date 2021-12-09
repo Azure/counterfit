@@ -1,0 +1,17 @@
+{
+    "art": {
+        "targets": [
+            "digits-keras"
+        ]
+    },
+    "textattack": {
+        "targets": [
+            "movie-reviews"
+        ]
+    },
+    "augly": {
+        "targets": [
+            "digits-keras"
+        ]
+    }
+}

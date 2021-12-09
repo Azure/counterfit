@@ -1,0 +1,6 @@
+counterfit.frameworks.augly.augly.cross\_entropy
+================================================
+
+.. currentmodule:: counterfit.frameworks.augly.augly
+
+.. autofunction:: cross_entropy

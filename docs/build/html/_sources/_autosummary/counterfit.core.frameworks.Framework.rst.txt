@@ -1,0 +1,33 @@
+counterfit.core.frameworks.Framework
+====================================
+
+.. currentmodule:: counterfit.core.frameworks
+
+.. autoclass:: Framework
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Framework.add_attack
+      ~Framework.build
+      ~Framework.get_attack
+      ~Framework.load
+      ~Framework.load_from_config
+      ~Framework.post_attack_processing
+      ~Framework.pre_attack_processing
+      ~Framework.run
+      ~Framework.set_parameters
+   
+   
+
+   
+   
+   

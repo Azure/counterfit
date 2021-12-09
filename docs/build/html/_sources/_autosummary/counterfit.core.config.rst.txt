@@ -1,0 +1,32 @@
+counterfit.core.config
+======================
+
+.. automodule:: counterfit.core.config
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Config
+   
+   
+
+   
+   
+   
+
+
+

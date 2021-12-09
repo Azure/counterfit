@@ -1,0 +1,32 @@
+counterfit.commands.new
+=======================
+
+.. automodule:: counterfit.commands.new
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      do_new
+      nix_path
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

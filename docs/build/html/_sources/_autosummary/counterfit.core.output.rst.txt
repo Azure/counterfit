@@ -1,0 +1,32 @@
+counterfit.core.output
+======================
+
+.. automodule:: counterfit.core.output
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      CFPrint
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,6 @@
+counterfit.core.utils.get\_predict\_folder
+==========================================
+
+.. currentmodule:: counterfit.core.utils
+
+.. autofunction:: get_predict_folder

@@ -1,0 +1,6 @@
+counterfit.core.utils.transform\_numpy\_to\_bytes
+=================================================
+
+.. currentmodule:: counterfit.core.utils
+
+.. autofunction:: transform_numpy_to_bytes

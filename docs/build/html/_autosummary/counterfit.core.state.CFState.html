@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.core.state.CFState &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="counterfit.core.targets" href="counterfit.core.targets.html" />
+    <link rel="prev" title="counterfit.core.state" href="counterfit.core.state.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="counterfit.core.html">counterfit.core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.attacks.html">counterfit.core.attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.config.html">counterfit.core.config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.frameworks.html">counterfit.core.frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.logging.html">counterfit.core.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.output.html">counterfit.core.output</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="counterfit.core.state.html">counterfit.core.state</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">counterfit.core.state.CFState</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.targets.html">counterfit.core.targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.terminal.html">counterfit.core.terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.utils.html">counterfit.core.utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../api.html">&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="counterfit.core.html">counterfit.core</a> &raquo;</li>
+          <li><a href="counterfit.core.state.html">counterfit.core.state</a> &raquo;</li>
+      <li>counterfit.core.state.CFState</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="counterfit-core-state-cfstate">
+<h1>counterfit.core.state.CFState<a class="headerlink" href="#counterfit-core-state-cfstate" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CFState</span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Singleton class responsible for managing targets and attacks. Instantiation of a class is restricted to one object.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.add_attack_to_target" title="counterfit.core.state.CFState.add_attack_to_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_attack_to_target</span></code></a></p></td>
+<td><p>After a CFAttack object has been built, add it to the target for tracking.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.add_framework" title="counterfit.core.state.CFState.add_framework"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_framework</span></code></a></p></td>
+<td><p>Adds a framework to Counterfit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.add_target" title="counterfit.core.state.CFState.add_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_target</span></code></a></p></td>
+<td><p>Add a target to Counterfit</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.build_new_attack" title="counterfit.core.state.CFState.build_new_attack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_new_attack</span></code></a></p></td>
+<td><p>Build a new CFAttack.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.get_active_target" title="counterfit.core.state.CFState.get_active_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_active_target</span></code></a></p></td>
+<td><p>Get the active target</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.get_attacks" title="counterfit.core.state.CFState.get_attacks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attacks</span></code></a></p></td>
+<td><p>Get all available attacks</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.get_frameworks" title="counterfit.core.state.CFState.get_frameworks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frameworks</span></code></a></p></td>
+<td><p>Get all available frameworks</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.import_frameworks" title="counterfit.core.state.CFState.import_frameworks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_frameworks</span></code></a></p></td>
+<td><p>Imports the available frameworks from the frameworks folder.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.import_targets" title="counterfit.core.state.CFState.import_targets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_targets</span></code></a></p></td>
+<td><p>Imports available targets from the targets folder.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.list_targets" title="counterfit.core.state.CFState.list_targets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_targets</span></code></a></p></td>
+<td><p>Get a list of targets</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.load_framework" title="counterfit.core.state.CFState.load_framework"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_framework</span></code></a></p></td>
+<td><p>Load a framework by name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.load_target" title="counterfit.core.state.CFState.load_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_target</span></code></a></p></td>
+<td><p>Load a target by name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.reload_framework" title="counterfit.core.state.CFState.reload_framework"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reload_framework</span></code></a></p></td>
+<td><p>Reimports the framework.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.reload_target" title="counterfit.core.state.CFState.reload_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reload_target</span></code></a></p></td>
+<td><p>Reloads the active target.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.run_attack" title="counterfit.core.state.CFState.run_attack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_attack</span></code></a></p></td>
+<td><p>Run a prepared attack.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.set_active_target" title="counterfit.core.state.CFState.set_active_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_active_target</span></code></a></p></td>
+<td><p>Set the active target with the target name provided.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.state.CFState.state" title="counterfit.core.state.CFState.state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code></a></p></td>
+<td><p>Static method to fetch the current instance.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.add_attack_to_target">
+<span class="sig-name descname"><span class="pre">add_attack_to_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfattack</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="counterfit.core.attacks.CFAttack.html#counterfit.core.attacks.CFAttack" title="counterfit.core.attacks.CFAttack"><span class="pre">counterfit.core.attacks.CFAttack</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.add_attack_to_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.add_attack_to_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>After a CFAttack object has been built, add it to the target for tracking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The target name</p></li>
+<li><p><strong>cfattack</strong> (<a class="reference internal" href="counterfit.core.attacks.CFAttack.html#counterfit.core.attacks.CFAttack" title="counterfit.core.attacks.CFAttack"><em>CFAttack</em></a>) – The CFAttack object to add.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.add_framework">
+<span class="sig-name descname"><span class="pre">add_framework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">framework_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">framework</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="counterfit.core.frameworks.Framework.html#counterfit.core.frameworks.Framework" title="counterfit.core.frameworks.Framework"><span class="pre">counterfit.core.frameworks.Framework</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.add_framework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.add_framework" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a framework to Counterfit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>framework_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of the framework</p></li>
+<li><p><strong>framework</strong> (<a class="reference internal" href="counterfit.core.frameworks.Framework.html#counterfit.core.frameworks.Framework" title="counterfit.core.frameworks.Framework"><em>Framework</em></a><em>, </em><em>optional</em>) – The Framework object to add. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.add_target">
+<span class="sig-name descname"><span class="pre">add_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="counterfit.core.targets.Target.html#counterfit.core.targets.Target" title="counterfit.core.targets.Target"><span class="pre">counterfit.core.targets.Target</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.add_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.add_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a target to Counterfit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the target</p></li>
+<li><p><strong>target</strong> (<a class="reference internal" href="counterfit.core.targets.Target.html#counterfit.core.targets.Target" title="counterfit.core.targets.Target"><em>Target</em></a><em>, </em><em>optional</em>) – The Target object to add. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.build_new_attack">
+<span class="sig-name descname"><span class="pre">build_new_attack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="counterfit.core.attacks.CFAttack.html#counterfit.core.attacks.CFAttack" title="counterfit.core.attacks.CFAttack"><span class="pre">counterfit.core.attacks.CFAttack</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.build_new_attack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.build_new_attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a new CFAttack. Search through the loaded frameworks for the attack and create a new CFAttack object for use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>required</em>) – The target name.</p></li>
+<li><p><strong>attack_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>required</em>) – The attack name.</p></li>
+<li><p><strong>scan_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>Optional</em>) – A unique value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new CFAttack object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="counterfit.core.attacks.CFAttack.html#counterfit.core.attacks.CFAttack" title="counterfit.core.attacks.CFAttack">CFAttack</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.get_active_target">
+<span class="sig-name descname"><span class="pre">get_active_target</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="counterfit.core.targets.Target.html#counterfit.core.targets.Target" title="counterfit.core.targets.Target"><span class="pre">counterfit.core.targets.Target</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.get_active_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.get_active_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the active target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The active target.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="counterfit.core.targets.Target.html#counterfit.core.targets.Target" title="counterfit.core.targets.Target">Target</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.get_attacks">
+<span class="sig-name descname"><span class="pre">get_attacks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.get_attacks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.get_attacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all available attacks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>all available attacks from all frameworks.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.get_frameworks">
+<span class="sig-name descname"><span class="pre">get_frameworks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.get_frameworks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.get_frameworks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all available frameworks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all frameworks.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.import_frameworks">
+<span class="sig-name descname"><span class="pre">import_frameworks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frameworks_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.import_frameworks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.import_frameworks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports the available frameworks from the frameworks folder. Adds the loaded frameworks into self.frameworks. Frameworks contain the methods required for managing the attacks that are found within the framework.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frameworks_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – A folder path where frameworks are kept.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.import_targets">
+<span class="sig-name descname"><span class="pre">import_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.import_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.import_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports available targets from the targets folder. Adds the loaded frameworks to CFState.targets.
+Targets contain the data and methods to interact with a target machine learning system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>targets_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Folder path to where targets are kept</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.list_targets">
+<span class="sig-name descname"><span class="pre">list_targets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.list_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.list_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of targets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of imported targets</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.load_framework">
+<span class="sig-name descname"><span class="pre">load_framework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">framework</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_no_config</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.load_framework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.load_framework" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a framework by name. By loading a framework, the attacks under the framework are loaded and ready for use. Attacks are not loaded during import_frameworks as loading could be slow, or a particular framework could cause errors and prevent all frameworks from loading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>framework</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The framework name</p></li>
+<li><p><strong>force_no_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – [description]. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.load_target">
+<span class="sig-name descname"><span class="pre">load_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="counterfit.core.targets.Target.html#counterfit.core.targets.Target" title="counterfit.core.targets.Target"><span class="pre">counterfit.core.targets.Target</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.load_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.load_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a target by name. Targets are not loaded during import to prevent loading unnecessary targets
+during a session. This function calls <cite>target.load()</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>The target</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.reload_framework">
+<span class="sig-name descname"><span class="pre">reload_framework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">framework_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.reload_framework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.reload_framework" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reimports the framework.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>framework_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – framework to reload</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.reload_target">
+<span class="sig-name descname"><span class="pre">reload_target</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.reload_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.reload_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reloads the active target.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.run_attack">
+<span class="sig-name descname"><span class="pre">run_attack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.run_attack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.run_attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a prepared attack. Get the appropriate framework and execute the attack.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attack_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>required</em>) – The attack id to run.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new Attack object with an updated cfattack_class. Additional properties set in this function include, attack_id (str)
+and the parent framework (str). The framework string is added to prevent the duplication of code in run_attack.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Attack</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.set_active_target">
+<span class="sig-name descname"><span class="pre">set_active_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="counterfit.core.targets.Target.html#counterfit.core.targets.Target" title="counterfit.core.targets.Target"><span class="pre">counterfit.core.targets.Target</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.set_active_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.set_active_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the active target with the target name provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target</strong> (<a class="reference internal" href="counterfit.core.targets.Target.html#counterfit.core.targets.Target" title="counterfit.core.targets.Target"><em>Target</em></a>) – The target object to set as the active target</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.state.CFState.state">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/state.html#CFState.state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.state.CFState.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static method to fetch the current instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="counterfit.core.state.html" class="btn btn-neutral float-left" title="counterfit.core.state" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="counterfit.core.targets.html" class="btn btn-neutral float-right" title="counterfit.core.targets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

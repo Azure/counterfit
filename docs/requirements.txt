@@ -1,0 +1,10 @@
+sphinx
+sphinx-rtd-theme
+pydata-sphinx-theme
+sphinx-autodoc-typehints
+nbsphinx
+ipython
+jupytext
+jupyter
+matplotlib
+numpy

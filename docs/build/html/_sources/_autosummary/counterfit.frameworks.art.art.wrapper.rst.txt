@@ -1,0 +1,6 @@
+counterfit.frameworks.art.art.wrapper
+=====================================
+
+.. currentmodule:: counterfit.frameworks.art.art
+
+.. autofunction:: wrapper

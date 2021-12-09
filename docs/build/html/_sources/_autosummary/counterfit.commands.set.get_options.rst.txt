@@ -1,0 +1,6 @@
+counterfit.commands.set.get\_options
+====================================
+
+.. currentmodule:: counterfit.commands.set
+
+.. autofunction:: get_options

@@ -1,0 +1,6 @@
+counterfit.report.report\_generator.get\_data\_type\_obj\_map
+=============================================================
+
+.. currentmodule:: counterfit.report.report_generator
+
+.. autofunction:: get_data_type_obj_map

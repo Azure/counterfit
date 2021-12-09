@@ -1,0 +1,6 @@
+counterfit.commands.set.set\_table
+==================================
+
+.. currentmodule:: counterfit.commands.set
+
+.. autofunction:: set_table

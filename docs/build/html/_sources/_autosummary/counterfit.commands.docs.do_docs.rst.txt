@@ -1,0 +1,6 @@
+counterfit.commands.docs.do\_docs
+=================================
+
+.. currentmodule:: counterfit.commands.docs
+
+.. autofunction:: do_docs

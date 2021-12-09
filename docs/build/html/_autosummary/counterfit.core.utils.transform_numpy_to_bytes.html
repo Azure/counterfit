@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.core.utils.transform_numpy_to_bytes &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="counterfit.frameworks" href="counterfit.frameworks.html" />
+    <link rel="prev" title="counterfit.core.utils.set_id" href="counterfit.core.utils.set_id.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="counterfit.core.html">counterfit.core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.attacks.html">counterfit.core.attacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.config.html">counterfit.core.config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.frameworks.html">counterfit.core.frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.logging.html">counterfit.core.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.output.html">counterfit.core.output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.state.html">counterfit.core.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.targets.html">counterfit.core.targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.terminal.html">counterfit.core.terminal</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="counterfit.core.utils.html">counterfit.core.utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="counterfit.core.utils.get_predict_folder.html">counterfit.core.utils.get_predict_folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="counterfit.core.utils.get_subclasses.html">counterfit.core.utils.get_subclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="counterfit.core.utils.get_timestamp.html">counterfit.core.utils.get_timestamp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="counterfit.core.utils.import_subclass.html">counterfit.core.utils.import_subclass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="counterfit.core.utils.param_floats_to_ints.html">counterfit.core.utils.param_floats_to_ints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="counterfit.core.utils.set_id.html">counterfit.core.utils.set_id</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">counterfit.core.utils.transform_numpy_to_bytes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../api.html">&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="counterfit.core.html">counterfit.core</a> &raquo;</li>
+          <li><a href="counterfit.core.utils.html">counterfit.core.utils</a> &raquo;</li>
+      <li>counterfit.core.utils.transform_numpy_to_bytes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="counterfit-core-utils-transform-numpy-to-bytes">
+<h1>counterfit.core.utils.transform_numpy_to_bytes<a class="headerlink" href="#counterfit-core-utils-transform-numpy-to-bytes" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="counterfit.core.utils.transform_numpy_to_bytes">
+<span class="sig-name descname"><span class="pre">transform_numpy_to_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/utils.html#transform_numpy_to_bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.utils.transform_numpy_to_bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="counterfit.core.utils.set_id.html" class="btn btn-neutral float-left" title="counterfit.core.utils.set_id" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="counterfit.frameworks.html" class="btn btn-neutral float-right" title="counterfit.frameworks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

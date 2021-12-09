@@ -1,0 +1,35 @@
+counterfit.core.attacks.CFAttack
+================================
+
+.. currentmodule:: counterfit.core.attacks
+
+.. autoclass:: CFAttack
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~CFAttack.get_default_params
+      ~CFAttack.get_results_folder
+      ~CFAttack.prepare_attack
+      ~CFAttack.save_run_summary
+      ~CFAttack.set_datatype
+      ~CFAttack.set_elapsed_time
+      ~CFAttack.set_logger
+      ~CFAttack.set_options
+      ~CFAttack.set_results
+      ~CFAttack.set_status
+      ~CFAttack.set_success
+   
+   
+
+   
+   
+   

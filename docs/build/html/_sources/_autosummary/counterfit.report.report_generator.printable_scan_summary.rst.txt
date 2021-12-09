@@ -1,0 +1,6 @@
+counterfit.report.report\_generator.printable\_scan\_summary
+============================================================
+
+.. currentmodule:: counterfit.report.report_generator
+
+.. autofunction:: printable_scan_summary

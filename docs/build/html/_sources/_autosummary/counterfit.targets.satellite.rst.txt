@@ -1,0 +1,30 @@
+counterfit.targets.satellite
+============================
+
+.. automodule:: counterfit.targets.satellite
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.targets.satellite.satellite
+

@@ -1,0 +1,34 @@
+counterfit.commands.list
+========================
+
+.. automodule:: counterfit.commands.list
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      do_list
+      list_attacks
+      list_frameworks
+      list_targets
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,32 @@
+counterfit.commands.predict
+===========================
+
+.. automodule:: counterfit.commands.predict
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      do_predict
+      predict_table
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

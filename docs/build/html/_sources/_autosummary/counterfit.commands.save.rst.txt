@@ -1,0 +1,31 @@
+counterfit.commands.save
+========================
+
+.. automodule:: counterfit.commands.save
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      do_save
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

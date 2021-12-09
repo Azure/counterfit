@@ -1,0 +1,30 @@
+﻿counterfit.report
+=================
+
+.. automodule:: counterfit.report
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.report.report_generator
+

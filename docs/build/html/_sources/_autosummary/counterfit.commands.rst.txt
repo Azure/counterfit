@@ -1,0 +1,43 @@
+﻿counterfit.commands
+===================
+
+.. automodule:: counterfit.commands
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.commands.docs
+   counterfit.commands.exit
+   counterfit.commands.interact
+   counterfit.commands.list
+   counterfit.commands.load
+   counterfit.commands.new
+   counterfit.commands.predict
+   counterfit.commands.reload
+   counterfit.commands.run
+   counterfit.commands.save
+   counterfit.commands.scan
+   counterfit.commands.set
+   counterfit.commands.show
+   counterfit.commands.use
+

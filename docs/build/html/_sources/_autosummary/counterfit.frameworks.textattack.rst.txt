@@ -1,0 +1,30 @@
+counterfit.frameworks.textattack
+================================
+
+.. automodule:: counterfit.frameworks.textattack
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.frameworks.textattack.textattack
+

@@ -1,0 +1,30 @@
+counterfit.targets.creditfraud
+==============================
+
+.. automodule:: counterfit.targets.creditfraud
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.targets.creditfraud.creditfraud
+

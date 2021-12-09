@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counterfit.core.attacks.CFAttackOptions &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="counterfit.core.config" href="counterfit.core.config.html" />
+    <link rel="prev" title="counterfit.core.attacks.CFAttack" href="counterfit.core.attacks.CFAttack.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="counterfit.core.html">counterfit.core</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="counterfit.core.attacks.html">counterfit.core.attacks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="counterfit.core.attacks.CFAttack.html">counterfit.core.attacks.CFAttack</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">counterfit.core.attacks.CFAttackOptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.config.html">counterfit.core.config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.frameworks.html">counterfit.core.frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.logging.html">counterfit.core.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.output.html">counterfit.core.output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.state.html">counterfit.core.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.targets.html">counterfit.core.targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.terminal.html">counterfit.core.terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="counterfit.core.utils.html">counterfit.core.utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../api.html">&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="counterfit.core.html">counterfit.core</a> &raquo;</li>
+          <li><a href="counterfit.core.attacks.html">counterfit.core.attacks</a> &raquo;</li>
+      <li>counterfit.core.attacks.CFAttackOptions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="counterfit-core-attacks-cfattackoptions">
+<h1>counterfit.core.attacks.CFAttackOptions<a class="headerlink" href="#counterfit-core-attacks-cfattackoptions" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="counterfit.core.attacks.CFAttackOptions">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CFAttackOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/attacks.html#CFAttackOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.attacks.CFAttackOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A container class for all settable options for a <cite>CFAttack.attack</cite>. Default parameters should
+be loaded during <cite>framework.load()</cite> and added to <cite>attack_default_params</cite>. Additionally, a
+number of global Counterfit options are injected.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.attacks.CFAttackOptions.get_all_options" title="counterfit.core.attacks.CFAttackOptions.get_all_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_options</span></code></a></p></td>
+<td><p>Get all options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.attacks.CFAttackOptions.get_current_options" title="counterfit.core.attacks.CFAttackOptions.get_current_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_options</span></code></a></p></td>
+<td><p>Get the current options.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.attacks.CFAttackOptions.get_default_options" title="counterfit.core.attacks.CFAttackOptions.get_default_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_default_options</span></code></a></p></td>
+<td><p>Get the default options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.attacks.CFAttackOptions.save_options" title="counterfit.core.attacks.CFAttackOptions.save_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_options</span></code></a></p></td>
+<td><p>Saves the current options to a json file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#counterfit.core.attacks.CFAttackOptions.save_previous_options" title="counterfit.core.attacks.CFAttackOptions.save_previous_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_previous_options</span></code></a></p></td>
+<td><p>Save the previous options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#counterfit.core.attacks.CFAttackOptions.set_options" title="counterfit.core.attacks.CFAttackOptions.set_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_options</span></code></a></p></td>
+<td><p>Sets an option.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.attacks.CFAttackOptions.get_all_options">
+<span class="sig-name descname"><span class="pre">get_all_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/attacks.html#CFAttackOptions.get_all_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.attacks.CFAttackOptions.get_all_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of all available options for <cite>CFAttack</cite></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.attacks.CFAttackOptions.get_current_options">
+<span class="sig-name descname"><span class="pre">get_current_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/attacks.html#CFAttackOptions.get_current_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.attacks.CFAttackOptions.get_current_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of current options for <cite>CFAttack</cite></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.attacks.CFAttackOptions.get_default_options">
+<span class="sig-name descname"><span class="pre">get_default_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/attacks.html#CFAttackOptions.get_default_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.attacks.CFAttackOptions.get_default_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the default options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of default options for <cite>CFAttack.attack</cite></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.attacks.CFAttackOptions.save_options">
+<span class="sig-name descname"><span class="pre">save_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/attacks.html#CFAttackOptions.save_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.attacks.CFAttackOptions.save_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the current options to a json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><em>optional</em>) – the output path. Defaults to None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.attacks.CFAttackOptions.save_previous_options">
+<span class="sig-name descname"><span class="pre">save_previous_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/counterfit/core/attacks.html#CFAttackOptions.save_previous_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.attacks.CFAttackOptions.save_previous_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the previous options.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="counterfit.core.attacks.CFAttackOptions.set_options">
+<span class="sig-name descname"><span class="pre">set_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options_to_update</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/counterfit/core/attacks.html#CFAttackOptions.set_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#counterfit.core.attacks.CFAttackOptions.set_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets an option. Take in a dictionary of options and applies attack specific checks before saving them as attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params_to_update</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – A dictionary of <cite>{option:value}</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="counterfit.core.attacks.CFAttack.html" class="btn btn-neutral float-left" title="counterfit.core.attacks.CFAttack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="counterfit.core.config.html" class="btn btn-neutral float-right" title="counterfit.core.config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

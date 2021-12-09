@@ -1,0 +1,38 @@
+counterfit.frameworks.art.art.ArtFramework
+==========================================
+
+.. currentmodule:: counterfit.frameworks.art.art
+
+.. autoclass:: ArtFramework
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ArtFramework.add_attack
+      ~ArtFramework.build
+      ~ArtFramework.check_success
+      ~ArtFramework.evasion_success
+      ~ArtFramework.extraction_success
+      ~ArtFramework.get_attack
+      ~ArtFramework.get_classifier
+      ~ArtFramework.load
+      ~ArtFramework.load_classifiers
+      ~ArtFramework.load_from_config
+      ~ArtFramework.post_attack_processing
+      ~ArtFramework.pre_attack_processing
+      ~ArtFramework.run
+      ~ArtFramework.set_parameters
+   
+   
+
+   
+   
+   

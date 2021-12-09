@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; Counterfit 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Counterfit" href="get_started/get_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> Counterfit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/get_started.html#what-s-new">What’s New?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/usage.html#advanced-use">Advanced Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html">Targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#frameworks">Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#loggers">Loggers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html">Write a New Target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guidence/guidence.html">Assessment Guidance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guidence/guidence.html#defensive-guidance">Defensive Guidance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/counterfit.core.html">counterfit.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/counterfit.frameworks.html">counterfit.frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/counterfit.logging.html">counterfit.logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/counterfit.report.html">counterfit.report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/counterfit.targets.html">counterfit.targets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/counterfit.commands.html">counterfit.commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FAQ</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Counterfit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started/get_started.html">Counterfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/get_started.html#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#docker-jupyterlab">Docker – JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#docker-terminal-only">Docker – Terminal Only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#anaconda-python-environment">Anaconda Python Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#python-virtual-environment">Python Virtual Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/get_started.html#what-s-new">What’s New?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#frameworks-are-a-first-class-concept">Frameworks are a first-class concept</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="get_started/get_started.html#load"><code class="docutils literal notranslate"><span class="pre">load()</span></code>:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="get_started/get_started.html#build"><code class="docutils literal notranslate"><span class="pre">build()</span></code>:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="get_started/get_started.html#run"><code class="docutils literal notranslate"><span class="pre">run()</span></code>:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="get_started/get_started.html#check-success"><code class="docutils literal notranslate"><span class="pre">check_success()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="get_started/get_started.html#post-attack-processing"><code class="docutils literal notranslate"><span class="pre">post_attack_processing()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#python-rich-integration">Python Rich integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#options-structure">Options structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#logging-structure">Logging structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#new-attacks-from-art-textattack">New attacks from art, textattack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#new-attacks-via-augly">New attacks via Augly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#various-command-functionality">Various command functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#new-reporting-structure">New reporting structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#running-counterfit-via-run-pyscript">Running Counterfit via run_pyscript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#trademarks">Trademarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/get_started.html#contact-us">Contact Us</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage/usage.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/usage.html#advanced-use">Advanced Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage/usage.html#hiding-malicious-queries">Hiding Malicious Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/usage.html#using-a-proxy">Using a Proxy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage/usage.html#python-requests">Python Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage/usage.html#sending-inputs-and-collecting-outputs-from-a-different-location">Sending Inputs and Collecting Outputs from a Different Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/usage.html#adding-startup-commands">Adding Startup Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/usage.html#overriding-functions-in-the-parent-target-class">Overriding Functions in the Parent Target Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/usage.html#training-a-local-model-to-attack">Training A Local Model to Attack</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html">Targets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#creating-a-target">Creating a Target</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="internals/internals.html#required-target-information">Required Target Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#sample-target-class">Sample Target Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#the-final-target-class">The Final Target Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#frameworks">Frameworks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#load"><code class="docutils literal notranslate"><span class="pre">load()</span></code>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#build"><code class="docutils literal notranslate"><span class="pre">build()</span></code>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#run"><code class="docutils literal notranslate"><span class="pre">run()</span></code>:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#check-success"><code class="docutils literal notranslate"><span class="pre">check_success()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#post-attack-processing"><code class="docutils literal notranslate"><span class="pre">post_attack_processing()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#textattack">TextAttack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#adversarial-robustness-toolkit">Adversarial Robustness Toolkit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#attacks">Attacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#commands">Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#adding-a-new-command">Adding a New Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#dynamic-options">Dynamic Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#quality-of-life-commands">Quality of Life Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#informational-commands">Informational Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#primary-commands">Primary Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#options">Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#setting-options">Setting Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="internals/internals.html#loggers">Loggers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="internals/internals.html#write-a-logger">Write a Logger</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html">Write a New Target</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials.html#create-the-target">Create the Target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials.html#create-a-local-target">Create a Local Target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials.html#create-an-online-target">Create an Online Target</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html#write-a-new-framework">Write a new Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html#add-a-command">Add a Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html#write-a-new-logger">Write a New Logger</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Operational Guidance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guidence/guidence.html">Assessment Guidance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guidence/guidence.html#defining-the-attack-surface">Defining the Attack Surface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#functional-extraction">Functional Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#model-evasion">Model Evasion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#model-inversion">Model Inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#membership-inference">Membership Inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#model-poisoning">Model Poisoning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#system-compromise">System Compromise</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guidence/guidence.html#assessments">Assessments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#severity">Severity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guidence/guidence.html#methodology">Methodology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#attack-surface-enumeration">Attack Surface Enumeration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#algorithmic-attacks">Algorithmic Attacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#technical-vulnerabilities">Technical Vulnerabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guidence/guidence.html#harm-and-abuse">Harm and Abuse</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guidence/guidence.html#defensive-guidance">Defensive Guidance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guidence/guidence.html#inventory-ml-components-and-systems">Inventory ML components and systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guidence/guidence.html#ensure-that-ml-systems-adhere-to-current-secure-configuration-policies">Ensure that ML systems adhere to current secure configuration policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guidence/guidence.html#ensure-that-ml-systems-adhere-to-compliance-requirements">Ensure that ML systems adhere to compliance requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guidence/guidence.html#perform-technical-assessments">Perform Technical Assessments</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="get_started/get_started.html" class="btn btn-neutral float-right" title="Counterfit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

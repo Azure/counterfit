@@ -1,0 +1,32 @@
+counterfit.core.terminal
+========================
+
+.. automodule:: counterfit.core.terminal
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Terminal
+   
+   
+
+   
+   
+   
+
+
+

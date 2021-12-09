@@ -1,0 +1,6 @@
+counterfit.commands.load.do\_load
+=================================
+
+.. currentmodule:: counterfit.commands.load
+
+.. autofunction:: do_load

@@ -1,0 +1,30 @@
+counterfit.frameworks.augly
+===========================
+
+.. automodule:: counterfit.frameworks.augly
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   counterfit.frameworks.augly.augly
+

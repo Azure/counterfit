@@ -1,0 +1,87 @@
+{
+    "Blur": {
+        "attack_enabled": true,
+        "attack_class": "augly.image.transforms",
+        "attack_type": "blackbox",
+        "attack_category": "common corruption",
+        "attack_data_tags": [
+            "image"
+        ],
+        "attack_parameters": {
+            "radius": 2.0,
+            "probability": 1.0,
+            "max_iter": 1
+        }
+    },
+    "ColorJitter": {
+        "attack_enabled": true,
+        "attack_class": "augly.image.transforms",
+        "attack_type": "blackbox",
+        "attack_category": "common corruption",
+        "attack_data_tags": [
+            "image"
+        ],
+        "attack_parameters": {
+            "brightness_factor": 1.0,
+            "contrast_factor": 1.0,
+            "saturation_factor": 1.0,
+            "probability": 1.0,
+            "max_iter": 1
+        }
+    },
+    "Brightness": {
+        "attack_enabled": true,
+        "attack_class": "augly.image.transforms",
+        "attack_type": "blackbox",
+        "attack_category": "common corruption",
+        "attack_data_tags": [
+            "image"
+        ],
+        "attack_parameters": {
+            "brightness_factor": 1.0,
+            "probability": 1.0,
+            "max_iter": 1
+        }
+    },
+    "ChangeAspectRatio": {
+        "attack_enabled": true,
+        "attack_class": "augly.image.transforms",
+        "attack_type": "blackbox",
+        "attack_category": "common corruption",
+        "attack_data_tags": [
+            "image"
+        ],
+        "attack_parameters": {
+            "ratio": 1.0,
+            "probability": 1.0,
+            "max_iter": 1
+        }
+    },
+    "ClipImageSize": {
+        "attack_enabled": true,
+        "attack_class": "augly.image.transforms",
+        "attack_type": "blackbox",
+        "attack_category": "common corruption",
+        "attack_data_tags": [
+            "image"
+        ],
+        "attack_parameters": {
+            "min_resolution": null,
+            "max_resolution": null,
+            "max_iter": 1
+        }
+    },
+    "Contrast": {
+        "attack_enabled": true,
+        "attack_class": "augly.image.transforms",
+        "attack_type": "blackbox",
+        "attack_category": "common corruption",
+        "attack_data_tags": [
+            "image"
+        ],
+        "attack_parameters": {
+            "factor": 1.0,
+            "max_iter": 1
+        }
+    }
+}

@@ -1,0 +1,35 @@
+counterfit.frameworks.augly.augly.AuglyFramework
+================================================
+
+.. currentmodule:: counterfit.frameworks.augly.augly
+
+.. autoclass:: AuglyFramework
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~AuglyFramework.add_attack
+      ~AuglyFramework.build
+      ~AuglyFramework.check_success
+      ~AuglyFramework.fix_grayscale
+      ~AuglyFramework.get_attack
+      ~AuglyFramework.load
+      ~AuglyFramework.load_from_config
+      ~AuglyFramework.post_attack_processing
+      ~AuglyFramework.pre_attack_processing
+      ~AuglyFramework.run
+      ~AuglyFramework.set_parameters
+   
+   
+
+   
+   
+   

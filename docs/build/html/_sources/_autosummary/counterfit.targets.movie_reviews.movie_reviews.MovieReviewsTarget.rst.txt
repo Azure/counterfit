@@ -1,0 +1,52 @@
+counterfit.targets.movie\_reviews.movie\_reviews.MovieReviewsTarget
+===================================================================
+
+.. currentmodule:: counterfit.targets.movie_reviews.movie_reviews
+
+.. autoclass:: MovieReviewsTarget
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~MovieReviewsTarget.add_attack
+      ~MovieReviewsTarget.fullpath
+      ~MovieReviewsTarget.get_active_attack
+      ~MovieReviewsTarget.get_attacks
+      ~MovieReviewsTarget.get_sample_labels
+      ~MovieReviewsTarget.get_samples
+      ~MovieReviewsTarget.load
+      ~MovieReviewsTarget.outputs_to_labels
+      ~MovieReviewsTarget.padding_
+      ~MovieReviewsTarget.predict
+      ~MovieReviewsTarget.predict_wrapper
+      ~MovieReviewsTarget.preprocess_string
+      ~MovieReviewsTarget.set_active_attack
+      ~MovieReviewsTarget.set_loaded_status
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MovieReviewsTarget.X
+      ~MovieReviewsTarget.sample_input_path
+      ~MovieReviewsTarget.target_classifier
+      ~MovieReviewsTarget.target_data_type
+      ~MovieReviewsTarget.target_endpoint
+      ~MovieReviewsTarget.target_input_shape
+      ~MovieReviewsTarget.target_name
+      ~MovieReviewsTarget.target_output_classes
+      ~MovieReviewsTarget.vocab_file
+   
+   

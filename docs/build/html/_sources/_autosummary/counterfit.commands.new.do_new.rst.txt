@@ -1,0 +1,6 @@
+counterfit.commands.new.do\_new
+===============================
+
+.. currentmodule:: counterfit.commands.new
+
+.. autofunction:: do_new

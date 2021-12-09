@@ -1,0 +1,40 @@
+counterfit.frameworks.art.art
+=============================
+
+.. automodule:: counterfit.frameworks.art.art
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      wrapper
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      ArtFramework
+   
+   
+
+   
+   
+   
+
+
+
