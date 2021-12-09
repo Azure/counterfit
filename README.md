@@ -115,6 +115,7 @@ Let's checkout the new digs. We will cover the changes at a high-level and get i
 - Running via run_pyscript
 - New reporting structure
 - Python Rich integration
+- docs and tests
 
 # Frameworks are a first-class concept
 Frameworks are the drivers behind Counterfit and they provide the functionality for Counterfit. Counterfit now takes a back seat and offloads the majority of work to the framework responsible for an attack. Frameworks are not loaded on start, rather by using the `load` command Like other objects in Counterfit, frameworks are built around their folder structure within the project. Each framework has its own folder under `counterfit/frameworks`.In order to be loaded by Counterfit, a framework should inherit from `counterfit.core.frameworks.Framework`. A framework should also define a number of core functions. These include `load()`, `build()`, `run()`, `check_success()`, `pre_attack_proccessing()`, `post_attack_processing()`. Everything begins and ends with a framework and so in order to add a new framework it is important to be familiar with some Counterfit internals.
@@ -146,4 +147,7 @@ Most commands remain the same in functionality, however some arguments may have 
 Counterfit comes with some basic reporting functionality, but if there are attacks or datatypes Counterfit does not support for reporting, a user can override them in the framework via `post_attack_processing()`.
 
 ## Running Counterfit via run_pyscript
-The core code and the terminal commands have been decoupled. It is possible to use th
+The core code and the terminal commands have been decoupled. It is possible to use the cmd2 `run_pyscript` to automate scans. 
+
+## Docs and Tests
+Tests are implement via Pyest and make docs with `counterfit\docs\make html`. Use the `docs` command to start a local server for browsing.
