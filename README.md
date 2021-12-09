@@ -1,5 +1,5 @@
 # Counterfit
-[About](#About) | [Getting Started](#Getting-Started) | [Learn More](#Learn-More) |  [Acknowledgments](#Acknowledgments) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
+[About](#About) | [Getting Started](#Getting-Started) |  [Acknowledgments](#Acknowledgments) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
 
 ```
                           __            _____ __
@@ -61,16 +61,6 @@ pip install -r requirements.txt
 ```
 python counterfit.py
 ```
-
-## Learn More
-
-Visit our [wiki](https://github.com/Azure/counterfit/wiki) for more detailed instructions on
-* [Basic Use](https://github.com/Azure/counterfit/wiki/Basic-Use)
-* [Tutorials](https://github.com/Azure/counterfit/wiki/Tutorials)
-* [Counterfit Internals](https://github.com/Azure/counterfit/wiki/Internals)
-* [Advanced Use](https://github.com/Azure/counterfit/wiki/Advanced-Use)
-* [Assessment Guidance](https://github.com/Azure/counterfit/wiki/Assessment-Guidance)
-* [Defensive Guidance](https://github.com/Azure/counterfit/wiki/Defensive-Guidance)
 
 ## Acknowledgments
 
