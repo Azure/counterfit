@@ -64,7 +64,7 @@ python counterfit.py
 
 ## Acknowledgments
 
-Counterfit leverages excellent open source projects, including, [Adversarial Robustness Toolbox](https://github.com/Trusted-AI/adversarial-robustness-toolbox) and [TextAttack](https://github.com/QData/TextAttack).
+Counterfit leverages excellent open source projects, including, [Adversarial Robustness Toolbox](https://github.com/Trusted-AI/adversarial-robustness-toolbox), [TextAttack](https://github.com/QData/TextAttack), and [Augly](https://github.com/facebookresearch/AugLy)
 
 ## Contributing
 
