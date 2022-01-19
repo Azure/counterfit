@@ -63,7 +63,7 @@ class SatelliteImagesTarget(Target):
     def predict(self, x_batch):
         # This function takes `x_batch` as a numpy array of shape (batch, channels, H, W); apply transformations suitable for the model, and returns probability score
         # since this is an image, let's convert to uint8
-
+        x_batch = x_batch.astype('uint8')
         x_transformed_batch = self._apply_transformation_on_input_batch(
             x_batch)
         logps = self.model(x_transformed_batch)
