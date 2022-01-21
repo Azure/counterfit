@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import hashlib
 import json
+from turtle import width
 
 import numpy as np
 from PIL import Image
@@ -163,12 +164,12 @@ class TextReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index", no_wrap=True)
-        table.add_column("Input Label (conf)", no_wrap=True)
-        table.add_column("Adversarial Label (conf)", no_wrap=True)
-        table.add_column(f"{metric}", no_wrap=True)
-        table.add_column("Adversarial Input", width=100)
-        table.add_column("success", no_wrap=True)
+        table.add_column("Sample Index", no_wrap=True, width=60)
+        table.add_column("Input Label (conf)", no_wrap=True, width=60)
+        table.add_column("Adversarial Label (conf)", no_wrap=True, width=60)
+        table.add_column(f"{metric}", no_wrap=True, width=60)
+        table.add_column("Adversarial Input", width=160)
+        table.add_column("success", no_wrap=True, width=60)
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -315,12 +316,12 @@ class ImageReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index", no_wrap=True)
-        table.add_column("Input Label (conf)", no_wrap=True)
-        table.add_column("Adversarial Label (conf)", no_wrap=True)
-        table.add_column(f"{metric}", no_wrap=True)
-        table.add_column("Adversarial Input", width=100)
-        table.add_column("success", no_wrap=True)
+        table.add_column("Sample Index", no_wrap=True, width=60)
+        table.add_column("Input Label (conf)", no_wrap=True, width=60)
+        table.add_column("Adversarial Label (conf)", no_wrap=True, width=60)
+        table.add_column(f"{metric}", no_wrap=True, width=60)
+        table.add_column("Adversarial Input", width=160)
+        table.add_column("success", no_wrap=True, width=60)
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -419,12 +420,12 @@ class TabularReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index", no_wrap=True)
-        table.add_column("Input Label (conf)", no_wrap=True)
-        table.add_column("Adversarial Label (conf)", no_wrap=True)
-        table.add_column(f"{metric}", no_wrap=True)
-        table.add_column("Adversarial Input", width=100)
-        table.add_column("success", no_wrap=True)
+        table.add_column("Sample Index", no_wrap=True, width=60)
+        table.add_column("Input Label (conf)", no_wrap=True, width=60)
+        table.add_column("Adversarial Label (conf)", no_wrap=True, width=60)
+        table.add_column(f"{metric}", no_wrap=True, width=60)
+        table.add_column("Adversarial Input", width=160)
+        table.add_column("success", no_wrap=True, width=60)
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -516,11 +517,11 @@ def printable_scan_summary(summaries_by_attack, summaries_by_label=None):
     CFPrint.output(
         "\n =============== \n <SCAN SUMMARY> \n ===============\n\n")
     table = Table(header_style="bold magenta")
-    table.add_column("Attack Name", no_wrap=True)
-    table.add_column("Total Runs", no_wrap=True)
-    table.add_column("Successes (%)", no_wrap=True)
-    table.add_column("Best Score (attack_id)", no_wrap=True)
-    table.add_column("Best Parameters", no_wrap=True)
+    table.add_column("Attack Name", no_wrap=True, width=70)
+    table.add_column("Total Runs", no_wrap=True, width=70)
+    table.add_column("Successes (%)", no_wrap=True, width=70)
+    table.add_column("Best Score (attack_id)", no_wrap=True, width=90)
+    table.add_column("Best Parameters", no_wrap=True, width=260)
 
     for name, summary in summaries_by_attack.items():
         frac = summary["total_successes"] / summary["total_runs"]
