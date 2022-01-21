@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import hashlib
 import json
-from turtle import width
+
 
 import numpy as np
 from PIL import Image
