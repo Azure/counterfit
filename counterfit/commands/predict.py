@@ -21,9 +21,9 @@ parser.add_argument("-a", "--attack_result", action="store_true",
 
 def predict_table(heading1, sample_index, samples, results):
     table = Table(header_style="bold magenta")
-    table.add_column(heading1)
-    table.add_column("Sample")
-    table.add_column("Output Scores")
+    table.add_column(heading1, no_wrap=True)
+    table.add_column("Sample", no_wrap=True)
+    table.add_column("Output Scores", no_wrap=True)
 
     for idx, sample, result in zip(sample_index, samples, results):
         table.add_row(str(idx), str(sample), result)

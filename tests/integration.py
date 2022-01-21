@@ -50,9 +50,9 @@ def run_test(framework, targets, attacks=None):
 def print_results(results):
     table = Table(header_style="bold magenta",
                   title="Test Results (pass/fail)")
-    table.add_column("Target")
-    table.add_column("Build")
-    table.add_column("Run")
+    table.add_column("Target", no_wrap=True)
+    table.add_column("Build", no_wrap=True)
+    table.add_column("Run", no_wrap=True)
     i = {}
     for target, tests in results.items():
         i[target] = []

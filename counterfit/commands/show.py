@@ -49,9 +49,9 @@ def show_options(self, args):
     ).active_target.active_attack.options.cfattack_options_list
 
     table = Table(header_style="bold magenta")
-    table.add_column("Attack Options (type)")
-    table.add_column("Default")
-    table.add_column("Current")
+    table.add_column("Attack Options (type)", no_wrap=True)
+    table.add_column("Default", no_wrap=True)
+    table.add_column("Current", no_wrap=True)
 
     # print attack params first
     table.add_row("Algo Parameters")
@@ -76,8 +76,8 @@ def show_options(self, args):
 
 def show_info(self, args):
     table = Table(header_style="bold magenta")
-    table.add_column("Attack Info")
-    table.add_column("-----------")
+    table.add_column("Attack Info", no_wrap=True)
+    table.add_column("-----------", no_wrap=True)
 
     if CFState.state().active_target and hasattr(CFState.state().active_target, 'active_attack'):
         cfattack = CFState.state().active_target.active_attack
@@ -98,10 +98,10 @@ def show_info(self, args):
 def show_attacks(self, args):
     # Active attacks
     table = Table(header_style="bold magenta")
-    table.add_column("Attack id")
-    table.add_column("Name")
-    table.add_column("Status")
-    table.add_column("Success")
+    table.add_column("Attack id", no_wrap=True)
+    table.add_column("Name", no_wrap=True)
+    table.add_column("Status", no_wrap=True)
+    table.add_column("Success", no_wrap=True)
 
     if CFState.state().active_target:
         for k, v in CFState.state().active_target.attacks.items():

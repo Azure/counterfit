@@ -388,10 +388,10 @@ class ArtFramework(Framework):
             # Override default reporting for the attack type
             extract_table = Table(header_style="bold magenta")
             # Add columns to extraction table
-            extract_table.add_column("Success")
-            extract_table.add_column("Copy Cat Accuracy")
-            extract_table.add_column("Elapsed time")
-            extract_table.add_column("Total Queries")
+            extract_table.add_column("Success", no_wrap=True)
+            extract_table.add_column("Copy Cat Accuracy", no_wrap=True)
+            extract_table.add_column("Elapsed time", no_wrap=True)
+            extract_table.add_column("Total Queries", no_wrap=True)
 
             # Add data to extraction table
             success = cfattack.success[0]  # Starting value

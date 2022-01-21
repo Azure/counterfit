@@ -14,10 +14,10 @@ def set_table(default_options, current_options, new_options):
     ).active_target.active_attack.options.cfattack_options_list
 
     table = Table(header_style="bold magenta")
-    table.add_column("Algo Parameter (type)")
-    table.add_column("Default")
-    table.add_column("Current")
-    table.add_column("New")
+    table.add_column("Algo Parameter (type)", no_wrap=True)
+    table.add_column("Default", no_wrap=True)
+    table.add_column("Current", no_wrap=True)
+    table.add_column("New", no_wrap=True)
 
     # print attack params first
     table.add_row("Algo Parameters")

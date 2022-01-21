@@ -145,9 +145,9 @@ class TextReportGenerator(TargetReportGenerator):
     @staticmethod
     def print_run_summary(summary):
         stats_table = Table(header_style="bold magenta")
-        stats_table.add_column("Success")
-        stats_table.add_column("Elapsed time")
-        stats_table.add_column("Total Queries")
+        stats_table.add_column("Success", no_wrap=True)
+        stats_table.add_column("Elapsed time", no_wrap=True)
+        stats_table.add_column("Total Queries", no_wrap=True)
 
         if summary['elapsed_time'] > summary['queries']:
             query_rate = summary['elapsed_time'] / summary['queries']
@@ -163,12 +163,12 @@ class TextReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index")
-        table.add_column("Input Label (conf)")
-        table.add_column("Adversarial Label (conf)")
-        table.add_column(f"{metric}")
+        table.add_column("Sample Index", no_wrap=True)
+        table.add_column("Input Label (conf)", no_wrap=True)
+        table.add_column("Adversarial Label (conf)", no_wrap=True)
+        table.add_column(f"{metric}", no_wrap=True)
         table.add_column("Adversarial Input", width=100)
-        table.add_column("success")
+        table.add_column("success", no_wrap=True)
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -297,9 +297,9 @@ class ImageReportGenerator(TargetReportGenerator):
     @staticmethod
     def print_run_summary(summary):
         stats_table = Table(header_style="bold magenta")
-        stats_table.add_column("Success")
-        stats_table.add_column("Elapsed time")
-        stats_table.add_column("Total Queries")
+        stats_table.add_column("Success", no_wrap=True)
+        stats_table.add_column("Elapsed time", no_wrap=True)
+        stats_table.add_column("Total Queries", no_wrap=True)
 
         if summary['elapsed_time'] > summary['queries']:
             query_rate = summary['elapsed_time'] / summary['queries']
@@ -315,12 +315,12 @@ class ImageReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index")
-        table.add_column("Input Label (conf)")
-        table.add_column("Adversarial Label (conf)")
-        table.add_column(f"{metric}")
+        table.add_column("Sample Index", no_wrap=True)
+        table.add_column("Input Label (conf)", no_wrap=True)
+        table.add_column("Adversarial Label (conf)", no_wrap=True)
+        table.add_column(f"{metric}", no_wrap=True)
         table.add_column("Adversarial Input", width=100)
-        table.add_column("success")
+        table.add_column("success", no_wrap=True)
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -401,9 +401,9 @@ class TabularReportGenerator(TargetReportGenerator):
     @staticmethod
     def print_run_summary(summary):
         stats_table = Table(header_style="bold magenta")
-        stats_table.add_column("Success")
-        stats_table.add_column("Elapsed time")
-        stats_table.add_column("Total Queries")
+        stats_table.add_column("Success", no_wrap=True)
+        stats_table.add_column("Elapsed time", no_wrap=True)
+        stats_table.add_column("Total Queries", no_wrap=True)
 
         if summary['elapsed_time'] > summary['queries']:
             query_rate = summary['elapsed_time'] / summary['queries']
@@ -419,12 +419,12 @@ class TabularReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index")
-        table.add_column("Input Label (conf)")
-        table.add_column("Adversarial Label (conf)")
-        table.add_column(f"{metric}")
+        table.add_column("Sample Index", no_wrap=True)
+        table.add_column("Input Label (conf)", no_wrap=True)
+        table.add_column("Adversarial Label (conf)", no_wrap=True)
+        table.add_column(f"{metric}", no_wrap=True)
         table.add_column("Adversarial Input", width=100)
-        table.add_column("success")
+        table.add_column("success", no_wrap=True)
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -516,11 +516,11 @@ def printable_scan_summary(summaries_by_attack, summaries_by_label=None):
     CFPrint.output(
         "\n =============== \n <SCAN SUMMARY> \n ===============\n\n")
     table = Table(header_style="bold magenta")
-    table.add_column("Attack Name")
-    table.add_column("Total Runs")
-    table.add_column("Successes (%)")
-    table.add_column("Best Score (attack_id)")
-    table.add_column("Best Parameters")
+    table.add_column("Attack Name", no_wrap=True)
+    table.add_column("Total Runs", no_wrap=True)
+    table.add_column("Successes (%)", no_wrap=True)
+    table.add_column("Best Score (attack_id)", no_wrap=True)
+    table.add_column("Best Parameters", no_wrap=True)
 
     for name, summary in summaries_by_attack.items():
         frac = summary["total_successes"] / summary["total_runs"]
@@ -537,10 +537,10 @@ def printable_scan_summary(summaries_by_attack, summaries_by_label=None):
     CFPrint.output(table)
 
     if summaries_by_label is not None:
-        st.add_column("Class Label")
-        st.add_column("Total Runs")
-        st.add_column("Successes (%)")
-        st.add_column("Best Score (Attack)")
+        st.add_column("Class Label", no_wrap=True)
+        st.add_column("Total Runs", no_wrap=True)
+        st.add_column("Successes (%)", no_wrap=True)
+        st.add_column("Best Score (Attack)", no_wrap=True)
         for name, summary in sorted(summaries_by_label.items()):
             frac = summary["total_successes"] / summary["total_runs"]
             successes = f"{summary['total_successes']} ({frac:>.1%})"
