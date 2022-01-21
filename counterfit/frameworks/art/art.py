@@ -71,6 +71,50 @@ attack_tags = {
 }
 
 
+attack_types = {
+    "AdversarialPatch": "whitebox",
+    "AdversarialPatchNumpy": "whitebox",
+    "BasicIterativeMethod": "whitebox",
+    "BrendelBethgeAttack": "whitebox",
+    "BoundaryAttack": "API",
+    "CarliniL0Method": "whitebox",
+    "CarliniLInfMethod": "whitebox",
+    "CarliniWagnerASR": "whitebox",
+    "CopycatCNN": "API",
+    "DPatch": "whitebox",
+    "DecisionTreeAttack": "whitebox",
+    "DeepFool": "whitebox",
+    "ElasticNet": "whitebox",
+    "FeatureAdversariesNumpy": "whitebox",
+    "FeatureAdversariesPyTorch": "whitebox",
+    "FeatureAdversariesTensorFlowV2": "whitebox",
+    "FunctionallyEquivalentExtraction": "API",
+    "GeoDA": "whitebox",
+    "HopSkipJump": "API",
+    "KnockoffNets": "API",
+    "LabelOnlyDecisionBoundary": "whitebox",
+    "LowProFool": "whitebox",
+    "MIFace": "whitebox",
+    "MalwareGDTensorFlow": "whitebox",
+    "NewtonFool": "whitebox",
+    "OverTheAirFlickeringPyTorch": "whitebox",
+    "ProjectedGradientDescentCommon": "whitebox",
+    "RobustDPatch": "whitebox",
+    "SaliencyMapMethod": "whitebox",
+    "ShadowAttack": "whitebox",
+    "ShapeShifter": "whitebox",
+    "ProjectedGradientDescentCommon": "whitebox",
+    "SimBA": "whitebox",
+    "SpatialTransformation": "whitebox",
+    "SquareAttack": "API",
+    "TargetedUniversalPerturbation": "whitebox",
+    "ThresholdAttack": "API",
+    "Wasserstein": "whitebox",
+    "VirtualAdversarialMethod": "whitebox",
+    "ZooAttack": "API",
+}
+
+
 def wrapper(*args, **kwargs):
     """
     This function returns a wrapped estimator for art. It takes anything art asks for a instantiates a class.
@@ -168,7 +212,7 @@ class ArtFramework(Framework):
                         else:
                             attack_data_tags = ["unknown"]
 
-                        attack_category = ""
+                        attack_category = attack_types.get(new_attack.__name__, "unknown")
 
                         if "ImperceptibleASR" == new_attack.__name__:
                             loaded_attack = new_attack(wrapper(new_attack._estimator_requirements), masker=locate(
@@ -388,10 +432,10 @@ class ArtFramework(Framework):
             # Override default reporting for the attack type
             extract_table = Table(header_style="bold magenta")
             # Add columns to extraction table
-            extract_table.add_column("Success", no_wrap=True)
-            extract_table.add_column("Copy Cat Accuracy", no_wrap=True)
-            extract_table.add_column("Elapsed time", no_wrap=True)
-            extract_table.add_column("Total Queries", no_wrap=True)
+            extract_table.add_column("Success")
+            extract_table.add_column("Copy Cat Accuracy")
+            extract_table.add_column("Elapsed time")
+            extract_table.add_column("Total Queries")
 
             # Add data to extraction table
             success = cfattack.success[0]  # Starting value

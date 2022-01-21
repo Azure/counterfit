@@ -15,9 +15,9 @@ def list_frameworks() -> Table:
         Table: table of frameworks.
     """
     table = Table(header_style="bold magenta")
-    table.add_column("Framework", no_wrap=True)
-    table.add_column("# Attacks", no_wrap=True)
-    #table.add_column("Loaded Attacks", justify="center", no_wrap=True)
+    table.add_column("Framework")
+    table.add_column("# Attacks")
+    #table.add_column("Loaded Attacks", justify="center")
 
     for framework, framework_cls in sorted(CFState.state().frameworks.items()):
         table.add_row(framework, str(len(framework_cls.attacks)))
@@ -33,11 +33,11 @@ def list_targets() -> Table:
         Table: table of targets.
     """
     table = Table(header_style="bold magenta")
-    table.add_column("Name", no_wrap=True)
-    table.add_column("Type", no_wrap=True)
-    table.add_column("Input Shape", no_wrap=True)
-    table.add_column("Endpoint", no_wrap=True)
-    table.add_column("Loaded", no_wrap=True)
+    table.add_column("Name")
+    table.add_column("Type")
+    table.add_column("Input Shape")
+    table.add_column("Endpoint")
+    table.add_column("Loaded")
 
     for target_name, target_obj in sorted(CFState.state().targets.items()):
         if target_obj == CFState.state().active_target:
@@ -66,21 +66,21 @@ def list_attacks() -> Table:
         Table: table of attacks
     """
     table = Table(header_style="bold magenta")
-    table.add_column("Name", no_wrap=True)
-    table.add_column("Type", no_wrap=True)
-    table.add_column("Category", no_wrap=True)
-    table.add_column("Tags", no_wrap=True)
-    table.add_column("Framework", no_wrap=True)
+    table.add_column("Name")
+    table.add_column("Category")
+    table.add_column("Type")
+    table.add_column("Tags")
+    table.add_column("Framework")
 
     frameworks = CFState.state().get_frameworks()
     for framework_name, framework in frameworks.items():
         for k, v in sorted(framework.attacks.items()):
             table.add_row(
-                k,
-                v.attack_category,
-                v.attack_type,
-                ", ".join(v.attack_data_tags),
-                framework_name
+                k,                             # Name
+                v.attack_category,             # Category
+                v.attack_type,                 # Type
+                ", ".join(v.attack_data_tags), # Tags
+                framework_name                 # Framework
             )
     return table
 

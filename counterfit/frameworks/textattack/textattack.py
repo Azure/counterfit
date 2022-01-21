@@ -29,8 +29,8 @@ class TextAttackFramework(Framework):
         for attack_class in attacks:
             attack_name = re.findall(
                 r"\w+", str(attack_class).split(".")[-1].strip())[0]
-            attack_type = ""
-            attack_category = ""
+            attack_type = "API"
+            attack_category = "IntegrityAttack" if "Seq" in attack_name else "EvasionAttack"
             attack_data_tags = ["text"]
             attack_params = {"No": "params"}
 

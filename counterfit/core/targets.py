@@ -72,6 +72,8 @@ class Target(ABC):
     def get_active_attack(self) -> None:
         """Get the active attack
         """
+        if self.active_attack is None:
+            return None
         return self.active_attack.attack_id
 
     def get_attacks(self, scan_id: str = None) -> dict:

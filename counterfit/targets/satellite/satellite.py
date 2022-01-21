@@ -27,7 +27,7 @@ class SatelliteImagesTarget(Target):
     def load(self):
         self.data = np.load(self.fullpath(
             self.sample_input_path), allow_pickle=True)
-        self.X = self.data["X"].astype('float32')
+        self.X = self.data["X"].astype(np.float32) / 255.  # map this to [0,1]
         # Loading the pretrained resnet50 model and ready for evaluations/inference
         self.model = self._load_model()
 
@@ -63,9 +63,14 @@ class SatelliteImagesTarget(Target):
     def predict(self, x_batch):
         # This function takes `x_batch` as a numpy array of shape (batch, channels, H, W); apply transformations suitable for the model, and returns probability score
         # since this is an image, let's convert to uint8
-        x_batch = x_batch.astype('uint8')
+        x_batch = (np.array(x_batch)*255).astype(np.uint8)  # quantize (as if saved to disk), and map to 255
         x_transformed_batch = self._apply_transformation_on_input_batch(
             x_batch)
         logps = self.model(x_transformed_batch)
-        pred_probs = F.softmax(logps, dim=1)
-        return pred_probs.tolist()  # return a list of class probabilities
+        pred_probs = F.softmax(logps, dim=1).detach().numpy()
+        # soften with a temperature that promotes uncertainty
+        softening_temperature = 0.75
+        aug_probs = pred_probs + softening_temperature
+        aug_probs /= aug_probs.sum(axis=1, keepdims=True)  # renormalize rowsum to == 1
+        return aug_probs.tolist()  # return a list of class probabilities
+        

@@ -14,10 +14,10 @@ def set_table(default_options, current_options, new_options):
     ).active_target.active_attack.options.cfattack_options_list
 
     table = Table(header_style="bold magenta")
-    table.add_column("Algo Parameter (type)", no_wrap=True)
-    table.add_column("Default", no_wrap=True)
-    table.add_column("Current", no_wrap=True)
-    table.add_column("New", no_wrap=True)
+    table.add_column("Algo Parameter (type)")
+    table.add_column("Default")
+    table.add_column("Current")
+    table.add_column("New")
 
     # print attack params first
     table.add_row("Algo Parameters")
@@ -84,6 +84,9 @@ def do_set(self, args: argparse.Namespace) -> None:
 
     """
     
+    from IPython.core.debugger import set_trace
+    set_trace()
+    
     if not args.__dict__.get('clip_values'):
         pass
     else:
@@ -97,11 +100,11 @@ def do_set(self, args: argparse.Namespace) -> None:
 
     target = CFState.state().get_active_target()
     if not target:
-        CFPrint.warn("No active target. Try 'interact' <target>")
+        CFPrint.warn("No active target. Try 'interact <target>'")
         return
 
     if not target.get_active_attack():
-        CFPrint.warn("No active attack. Try 'use' <attack>")
+        CFPrint.warn("No active attack. Try 'use <attack>'")
         return
 
     default_options = target.active_attack.options.previous_options[0]

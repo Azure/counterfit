@@ -17,12 +17,12 @@ def do_run(self, args: argparse.Namespace) -> None:
 
     target_to_scan = CFState.state().get_active_target()
     if not target_to_scan:
-        CFPrint.warn("Active target not set. Try 'interact <target>")
+        CFPrint.warn("Active target not set. Try 'interact <target>''")
         return
 
     active_attack = CFState.state().active_target.active_attack
     if not active_attack:
-        CFPrint.warn("No attack specified. Try 'use <attack>")
+        CFPrint.warn("No attack specified. Try 'use <attack>''")
         return
 
     attack_id = CFState.state().active_target.get_active_attack()

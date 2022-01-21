@@ -124,6 +124,6 @@ class DigitKeras(Target):
         print("[+] Done!")
 
     def predict(self, x):
-        x = (x.reshape(-1, 28, 28, 1) * 255).astype(np.uint8).astype('float32')/255.  # accept as an image
+        x = (x.reshape(-1, 28, 28, 1) * 255).astype(int).astype(float)/255.  # accept as quantized image
         pred_probs = self.model.predict(x)
         return(pred_probs)

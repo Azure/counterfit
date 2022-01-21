@@ -11,23 +11,29 @@ from counterfit.report.report_generator import get_target_data_type_obj
 from counterfit.report import report_generator
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "--index", type=int, default=None,
-                    help="Send the selected sample to the target model")
+parser.add_argument("-i", "--index", type=str, default=None,
+                    help="Send the selected samples to the target model. Python list and range accepted.  Examples: 0, [0,1,2,3], range(5)")
 parser.add_argument("-r", "--random", action="store_true",
                     help="Send a randomly selected sample to the target model")
 parser.add_argument("-a", "--attack_result", action="store_true",
                     help="Send the result of the active_attack to the target model")
 
 
-def predict_table(heading1, sample_index, samples, results):
+def predict_table(heading1, sample_index, samples, results, labels=None):
     table = Table(header_style="bold magenta")
-    table.add_column(heading1, no_wrap=True)
-    table.add_column("Sample", no_wrap=True)
-    table.add_column("Output Scores", no_wrap=True)
+    table.add_column(heading1)
+    table.add_column("Sample")
+    if labels is not None:
+        table.add_column("Label")
+    table.add_column("Output Scores")
 
-    for idx, sample, result in zip(sample_index, samples, results):
-        table.add_row(str(idx), str(sample), result)
-
+    if labels is None:
+        for idx, sample, result in zip(sample_index, samples, results):
+            table.add_row(str(idx), str(sample), result)
+    else:
+        for idx, sample, label, result in zip(sample_index, samples, labels, results):
+            table.add_row(str(idx), str(sample), label, result)
+        
     CFPrint.output(table)
 
 
@@ -45,7 +51,7 @@ def do_predict(self, args: argparse.Namespace) -> None:
         return
     heading1 = "Sample Index"
     if args.index is not None:  # default behavior
-        sample_index = args.index
+        sample_index = eval(args.index)
         samples = target.get_samples(sample_index)
         prefix = 'initial'
     elif args.attack_result:
@@ -74,6 +80,7 @@ def do_predict(self, args: argparse.Namespace) -> None:
         return
 
     result = target.predict(samples)  # results is list of probability scores
+    labels = target.outputs_to_labels(result)
     target_datatype = target.target_data_type
     target_data_type_obj = get_target_data_type_obj(target_datatype)
     samples = target_data_type_obj.printable(target, samples, prefix)
@@ -84,5 +91,6 @@ def do_predict(self, args: argparse.Namespace) -> None:
     predict_table(heading1,
                   sample_index=sample_index,
                   samples=samples,
-                  results=results
+                  results=results,
+                  labels=labels
                   )
