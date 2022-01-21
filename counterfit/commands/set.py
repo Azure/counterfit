@@ -84,9 +84,6 @@ def do_set(self, args: argparse.Namespace) -> None:
 
     """
     
-    from IPython.core.debugger import set_trace
-    set_trace()
-    
     if not args.__dict__.get('clip_values'):
         pass
     else:
