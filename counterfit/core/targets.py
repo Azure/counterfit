@@ -2,6 +2,7 @@ import datetime
 import inspect
 import os
 import pathlib
+from typing import Union
 
 from abc import ABC, abstractmethod
 from collections import defaultdict
@@ -94,20 +95,18 @@ class Target(ABC):
         else:
             return self.attacks
 
-    # The old get samples
 
-    def get_samples(self, sample_index: int = 0) -> np.ndarray:
+    def get_samples(self, sample_index: Union[int, list, range] = 0) -> np.ndarray:
         """This function helps to directly set sample_index and samples for a target not depending on attack.
 
         Args:
-            target ([type]): [description]
-            sample_index (int, optional): [description]. Defaults to 0.
+            sample_index (int, list or range, optional): [single or multiple indices]. Defaults to 0.
 
         Returns:
             np.ndarray: [description]
         """
-
         if hasattr(sample_index, "__iter__"):
+            sample_index = list(sample_index)  # in case "range" was used
             # multiple index
             if type(self.X[sample_index[0]]) is str:
                 # multiple index (str)

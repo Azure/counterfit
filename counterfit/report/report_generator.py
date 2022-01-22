@@ -112,13 +112,17 @@ class TextReportGenerator(TargetReportGenerator):
 
         # initial scores/labels
         i_0 = cfattack.samples
-        o_0 = cfattack.initial_output
+        o_0 = cfattack.initial_outputs
         l_0 = cfattack.initial_labels
 
         # final scores/labels
-        i_f = cfattack.results
-        o_f = cfattack.final_outputs
-        l_f = cfattack.final_labels
+        if cfattack.results is None:
+            # failed attack? adopt originals
+            i_f, o_f, l_f = i_0, o_0, l_0
+        else:
+            i_f = cfattack.results
+            o_f = cfattack.final_outputs
+            l_f = cfattack.final_labels
 
         metric = "% edit dist."
         distances = [Levenshtein.distance(iif, ii0)
@@ -262,20 +266,24 @@ class ImageReportGenerator(TargetReportGenerator):
 
         # initial scores/labels
         i_0 = np.atleast_2d(cfattack.samples)
-        o_0 = np.atleast_2d(cfattack.initial_output)
+        o_0 = np.atleast_2d(cfattack.initial_outputs)
         l_0 = np.array(cfattack.initial_labels)
 
         # final scores/labels
-        i_f = np.array(cfattack.results)
-        o_f = np.atleast_2d(cfattack.final_outputs)
-        l_f = np.array(cfattack.final_labels)
+        if cfattack.results is None:
+            # failed attack? adopt originals
+            i_f, o_f, l_f = i_0, o_0, l_0
+        else:
+            i_f = np.array(cfattack.results)
+            o_f = np.atleast_2d(cfattack.final_outputs)
+            l_f = np.array(cfattack.final_labels)
 
         # l2 norm
         i_0 = i_0.reshape(batch_size, -1).astype(float)
         i_f = i_f.reshape(batch_size, -1).astype(float)
         metric = "Max Abs Chg."
 
-        max_abs_change = np.atleast_1d(abs(i_f - i_0).max())
+        max_abs_change = np.atleast_1d(abs(i_f - i_0).max(axis=-1))
 
         filenames = []
         results_path = cfattack.get_results_folder()
@@ -364,19 +372,23 @@ class TabularReportGenerator(TargetReportGenerator):
     @staticmethod
     def get_run_summary(cfattack):
         # count successes
-        success_indicator = cfattack.success  # numpy bool array
+        success_indicator = np.array(cfattack.success)  # numpy bool array
         batch_size = len(success_indicator)
         successes = sum(success_indicator)
 
         # initial scores/labels
         i_0 = cfattack.samples
-        o_0 = cfattack.initial_output
+        o_0 = cfattack.initial_outputs
         l_0 = cfattack.initial_labels
 
         # final scores/labels
-        i_f = cfattack.results
-        o_f = cfattack.final_outputs
-        l_f = cfattack.final_labels
+        if cfattack.results is None:
+            # failed attack? adopt originals
+            i_f, o_f, l_f = i_0, o_0, l_0
+        else:
+            i_f = cfattack.results
+            o_f = cfattack.final_outputs
+            l_f = cfattack.final_labels
 
         # l2 norm
         i_0 = i_0.reshape(batch_size, -1).astype(float)
