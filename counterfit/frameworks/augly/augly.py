@@ -96,7 +96,7 @@ class AuglyFramework(Framework):
     def fix_grayscale(x):
         return np.squeeze(x, axis=2)
 
-    def check_success(self, cfattack: CFAttack):
+    def check_success(self, cfattack: CFAttack) -> bool:
         final_outputs, final_labels = cfattack.target.get_sample_labels(
             cfattack.results)
         cfattack.final_labels = final_labels

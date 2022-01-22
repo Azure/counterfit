@@ -447,7 +447,7 @@ class ArtFramework(Framework):
 
             CFPrint.output(extract_table)
 
-    def check_success(self, cfattack: CFAttack):
+    def check_success(self, cfattack: CFAttack) -> bool:
         attack_attributes = set(cfattack.attack.__dir__())
 
         if "generate" in attack_attributes:

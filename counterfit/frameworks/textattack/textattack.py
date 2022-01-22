@@ -4,7 +4,6 @@ import importlib
 from textattack import Attacker
 import numpy as np
 from textattack.datasets import Dataset
-from textattack.datasets import Dataset
 
 from counterfit.core.attacks import CFAttack
 from counterfit.core.frameworks import Framework
@@ -33,7 +32,7 @@ class TextAttackFramework(Framework):
             attack_type = "API"
             attack_category = "IntegrityAttack" if "Seq" in attack_name else "EvasionAttack"
             attack_data_tags = ["text"]
-            attack_params = {"No": "params"}
+            attack_params = {}
 
             # Create the Attack Object
             if attack_name not in self.attacks.keys():
@@ -79,7 +78,7 @@ class TextAttackFramework(Framework):
         summary = current_dt_report_gen.get_run_summary(cfattack)
         current_dt_report_gen.print_run_summary(summary)
 
-    def check_success(self, cfattack: CFAttack):
+    def check_success(self, cfattack: CFAttack) -> bool:
         final_outputs, final_labels = cfattack.target.get_sample_labels(
             cfattack.results)
         new_labels = np.atleast_1d(final_labels)
