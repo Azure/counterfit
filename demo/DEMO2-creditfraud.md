@@ -29,7 +29,7 @@ Determine roughly how many queries are required to successfully evade `creditfra
 4. Let's try `BoundaryAttack`
    ```
    use BoundaryAttack
-   set --max_iter 500 --epsilon 0.001 --detla 0.001 --step_adapt 0.1
+   set --max_iter 500 --epsilon 0.001 --delta 0.001 --step_adapt 0.1
    run
    ```
 
