@@ -9,13 +9,15 @@ from counterfit.core.utils import set_id
 from counterfit.core.state import CFState
 from counterfit.report.report_generator import get_target_data_type_obj, get_scan_summary, printable_scan_summary
 from counterfit.commands.use import list_attacks
+from counterfit.commands.set import get_sample_index
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-a", "--attacks", nargs='+', required=True, choices=list_attacks())
 parser.add_argument("-o", "--options",
                     choices=["default", "random", "optimize"], default="default")
-parser.add_argument("-i", "--num_iters", type=int, default=1)
+parser.add_argument("-n", "--num_iters", type=int, default=1)
+parser.add_argument("-i", "--sample_index", type=str, default="0")
 parser.add_argument("-v", "--verbose", action="store_true")
 parser.add_argument("-s", "--summary", action="store_true", help="also summarize scans by class label")
 
@@ -40,6 +42,10 @@ def do_scan(self, args):
         CFPrint.success(
             f"Scanning Target: {target_to_scan.target_name} ({target_to_scan.target_id})")
 
+        sample_index = get_sample_index(args.sample_index)
+        if sample_index is None:
+            return
+
         scan_id = set_id()
         # loop over loaded attacks
         scans_by_attack = defaultdict(list)
@@ -51,14 +57,19 @@ def do_scan(self, args):
                     attack_name=attack,
                     scan_id=scan_id
                 )
-
                 if attack_id is None:
                     CFPrint.warn(f"Attack not found: {attack}. Load <Framework>")
                     return
                 else:
+                    # create an attack
                     CFState.state().active_target.set_active_attack(attack_id)
+                    # set options for this attack
+                    active_attack = CFState.state().active_target.active_attack                    
+                    active_attack.options.set_options({'sample_index': sample_index})
+                    # run the attack
                     CFState.state().run_attack(target_to_scan.target_name, attack_id)
-                    active_attack = CFState.state().active_target.active_attack
+
+                    # display intermediate results
                     if args.verbose:
                         current_datatype = target_to_scan.target_data_type
 
