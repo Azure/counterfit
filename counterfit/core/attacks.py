@@ -63,7 +63,7 @@ class CFAttackOptions:
         """Save the previous options.
         """
         current_options = self.get_all_options()
-        self.previous_options.append(current_options)
+        self.previous_options.append(current_options)        
 
     def set_options(self, options_to_update: dict) -> None:
         """Sets an option. Take in a dictionary of options and applies attack specific checks before saving them as attributes.
@@ -77,10 +77,6 @@ class CFAttackOptions:
 
         for k, v in options_to_update.items():
             setattr(self, k, v)
-
-        # convert "inf" to math.inf, can also do this as `float("inf")`
-        # elif v.strip().lower == "inf":
-        #     setattr(self, k, math.inf)
 
     def save_options(self, filename: str = None):
         """Saves the current options to a json file.
@@ -145,9 +141,9 @@ class CFAttack(object):
             "logger": "default",
         }
 
-        self.options = self.set_options()
+        self.options = self.init_options()
 
-    def set_options(self):
+    def init_options(self):
         all_options = {**self.default_params, **self.cfattack_options}
         return CFAttackOptions(
             **all_options,
@@ -167,7 +163,7 @@ class CFAttack(object):
         self.samples = self.target.get_samples(self.options.sample_index)
 
         # Send a request to the target for the selected sample
-        self.initial_output, self.initial_labels = self.target.get_sample_labels(
+        self.initial_outputs, self.initial_labels = self.target.get_sample_labels(
             self.samples)
 
         # Set the logger
