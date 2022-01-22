@@ -84,6 +84,7 @@ class CFState:
                     framework_to_load.load(config_path=config_path)
                     CFPrint.success(f"{framework} successfully loaded!")
                 except Exception:
+                    CFPrint.info(f"unable to load from {config_path}. Initialize framework from default config.")
                     # load without config
                     framework_to_load.load()
                     CFPrint.success(

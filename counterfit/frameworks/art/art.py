@@ -27,6 +27,31 @@ from counterfit.core.targets import Target
 # These should be hot-patched during self.build or self.run
 tf.compat.v1.disable_eager_execution()
 
+attacks_still_wip = set([
+    'AdversarialPatch',   # error
+    'AdversarialPatchNumpy',  # error
+    'BasicIterativeMethod',   # error
+    'BrendelBethgeAttack',  # error
+    'CarliniWagnerASR', # no ASR models
+    'DPatch', # error
+    'DecisionTreeAttack', # error
+    'FeatureAdversariesNumpy', # error
+    'FeatureAdversariesPyTorch', # error
+    'FeatureAdversariesTensorFlowV2', # error
+    'GeoDA', # error
+    'HighConfidenceLowUncertainty', # error: requires GPR models
+    'LowProFool', # error
+    'MIFace', # THIS ACTUALLY WORKS, but counerfit can't deal with it currently
+    'MalwareGDTensorFlow', # error
+    'OverTheAirFlickeringPyTorch', # error
+    'RobustDPatch', # error
+    'ShadowAttack', # error
+    'SquareAttack', # error
+    'TargetedUniversalPerturbation', # error
+    'ThresholdAttack', # error
+    'ZooAttack', # error
+])
+
 attack_tags = {
     "AdversarialPatch": ["image"],
     "AdversarialPatchNumpy": ["image"],
@@ -36,7 +61,7 @@ attack_tags = {
     "CarliniL0Method": ["image", "tabular"],
     "CarliniLInfMethod": ["image", "tabular"],
     "CarliniWagnerASR": ["image", "tabular"],
-    "CopycatCNN": ["image", "tabular"],
+    "CopycatCNN": ["image"],
     "DPatch": ["image"],
     "DecisionTreeAttack": ["image", "tabular"],
     "DeepFool": ["image", "tabular"],
@@ -65,6 +90,7 @@ attack_tags = {
     "SquareAttack": ["image"],
     "TargetedUniversalPerturbation": ["image", "tabular"],
     "ThresholdAttack": ["image"],
+    "UniversalPerturbation": ["image"],
     "Wasserstein": ["image"],
     "VirtualAdversarialMethod": ["image"],
     "ZooAttack": ["image"],
@@ -109,6 +135,7 @@ attack_types = {
     "SquareAttack": "API",
     "TargetedUniversalPerturbation": "whitebox",
     "ThresholdAttack": "API",
+    "UniversalPerturbation": "whitebox",
     "Wasserstein": "whitebox",
     "VirtualAdversarialMethod": "whitebox",
     "ZooAttack": "API",
@@ -181,7 +208,6 @@ class ArtFramework(Framework):
         meminf_attack = MembershipInferenceBlackBox(temp_classifier, attack_model_type="nn")
         backdoor = PoisoningAttackBackdoor(add_pattern_bd)
 
-
         def some_func():
             return True
 
@@ -202,6 +228,10 @@ class ArtFramework(Framework):
                 else:
                     attacks[attack_type.__name__].append(attack_class)
                     new_attack = attack_class
+
+                # filter out attacks that are still being worked on
+                if new_attack.__name__ in attacks_still_wip:
+                    continue
 
                 try:
                     if new_attack.__name__ not in self.attacks.keys():
