@@ -28,7 +28,7 @@ class DigitKeras(Target):
         (train_x, train_y), (test_x, test_y) = K.datasets.mnist.load_data()
 
         self.X = test_x.astype(np.float32) / 255.  # float type [0,1]
-        # self.X = self.X.reshape(10_000, 28, 28, 1)
+        self.X = self.X.reshape(-1, 28, 28, 1)
 
     def create_model(self):
         # 0. get started
@@ -126,4 +126,4 @@ class DigitKeras(Target):
     def predict(self, x):
         x = (x.reshape(-1, 28, 28, 1) * 255).astype(int).astype(float)/255.  # accept as quantized image
         pred_probs = self.model.predict(x)
-        return(pred_probs)
+        return pred_probs

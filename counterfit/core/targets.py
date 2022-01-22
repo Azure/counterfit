@@ -108,14 +108,22 @@ class Target(ABC):
         """
 
         if hasattr(sample_index, "__iter__"):
-            # (unused) multiple index
-            out = np.array([self.X[i] for i in sample_index])
-            batch_shape = (-1,) + self.target_input_shape
+            # multiple index
+            if type(self.X[sample_index[0]]) is str:
+                # multiple index (str)
+                out = np.array([self.X[i] for i in sample_index])
+                batch_shape = (-1,)
+            else:
+                # multiple index (numpy)
+                out = np.array([self.X[i] for i in sample_index])
+                batch_shape = (-1,) + self.target_input_shape
         elif type(self.X[sample_index]) is str:
+            # single index (string)
             # array of strings (textattack)
             out = np.array(self.X[sample_index])
             batch_shape = (-1,)
         else:
+            # single index (array)
             # array of arrays (art)
             out = np.atleast_2d(self.X[sample_index])
             batch_shape = (-1,) + self.target_input_shape

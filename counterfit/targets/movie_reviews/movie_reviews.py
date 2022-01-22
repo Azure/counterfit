@@ -9,77 +9,6 @@ import torch
 
 from counterfit.core.targets import Target
 
-
-class MovieReviewsSentimentLSTM(nn.Module):
-    """pre-trained LSTM model on 25 epochs for building sentiment analysis model on IMDB movies review dataset. 
-    """
-
-    def __init__(self, no_layers, vocab_size, hidden_dim, embedding_dim, output_dim, drop_prob=0.5):
-        # embedding_dim: number of expected features in the input `x`
-        # hidden_dim: number of features in the hidden state `h`
-
-        super(MovieReviewsSentimentLSTM, self).__init__()
-
-        self.no_layers = no_layers  # number of recurrent layers
-        self.vocab_size = vocab_size
-        self.hidden_dim = hidden_dim  # The number of features in the hidden state h
-        # embedding and LSTM layers
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
-        self.proj_size = 0
-        self.output_dim = output_dim  # The size of the output you desire from your RNN
-        # dropout layer
-        # a Dropout layer on the outputs of each LSTM layer except the last layer, with dropout probability equal to dropout
-        self.dropout = nn.Dropout(drop_prob)
-
-        # lstm
-        self.lstm = nn.LSTM(input_size=embedding_dim, hidden_size=self.hidden_dim,
-                            num_layers=no_layers, batch_first=True, proj_size=self.proj_size)
-
-        # final fully connected linear and sigmoid layer
-        self.fc = nn.Linear(self.hidden_dim, self.output_dim)
-        self.sig = nn.Sigmoid()
-
-    def forward(self, x, hidden):
-        """Forward process of LSTM model
-
-        Args:
-            x ([tensor]): training data/batch_first
-
-
-        Returns:
-            Last sigmoid output and hidden state
-        """
-        batch_size = x.size(0)
-        # embeddings and lstm_out
-        # shape: Batch x Sequence x Feature   since batch_first = True
-        embeds = self.embedding(x)
-        lstm_out, hidden = self.lstm(embeds, hidden)
-
-        lstm_out = lstm_out.contiguous().view(-1, self.hidden_dim)
-
-        # dropout and fully connected layer
-        out = self.dropout(lstm_out)
-        out = self.fc(out)
-
-        # sigmoid function
-        sig_out = self.sig(out)
-
-        # reshape to be batch_size first
-        sig_out = sig_out.view(batch_size, -1)
-
-        sig_out = sig_out[:, -1]  # get last batch of labels
-
-        return sig_out, hidden
-
-    def init_hidden(self, batch_size, device='cpu'):
-        # initialize hidden weights (h,c) to 0
-        weights = next(self.parameters()).data
-        h = (weights.new(self.no_layers, batch_size, self.hidden_dim).zero_().to(device),
-             weights.new(self.no_layers, batch_size, self.hidden_dim).zero_().to(device))
-
-        return h
-
-
 class MovieReviewsTarget(Target):
     """Defining movie reviews target which is responsible for predicting the scores for a given input and convert scores to labels.
     """
@@ -87,7 +16,7 @@ class MovieReviewsTarget(Target):
     target_name = "movie_reviews"
     target_endpoint = f"movie_reviews_sentiment_analysis.pt"
     target_input_shape = (1,)
-    target_output_classes = [0, 1]
+    target_output_classes = [0, 1]  # textattack requires these to be integers
     target_classifier = "blackbox"
 
     sample_input_path = f"movie-reviews-scores-full.csv"
@@ -189,3 +118,74 @@ class MovieReviewsTarget(Target):
             probability = output.item()
             final_prob_scores.append([probability, 1.0-probability])
         return final_prob_scores  # this must produce a list of class probabilities
+
+class MovieReviewsSentimentLSTM(nn.Module):
+    """pre-trained LSTM model on 25 epochs for building sentiment analysis model on IMDB movies review dataset. 
+    """
+
+    def __init__(self, no_layers, vocab_size, hidden_dim, embedding_dim, output_dim, drop_prob=0.5):
+        # embedding_dim: number of expected features in the input `x`
+        # hidden_dim: number of features in the hidden state `h`
+
+        super(MovieReviewsSentimentLSTM, self).__init__()
+
+        self.no_layers = no_layers  # number of recurrent layers
+        self.vocab_size = vocab_size
+        self.hidden_dim = hidden_dim  # The number of features in the hidden state h
+        # embedding and LSTM layers
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.proj_size = 0
+        self.output_dim = output_dim  # The size of the output you desire from your RNN
+        # dropout layer
+        # a Dropout layer on the outputs of each LSTM layer except the last layer, with dropout probability equal to dropout
+        self.dropout = nn.Dropout(drop_prob)
+
+        # lstm
+        self.lstm = nn.LSTM(input_size=embedding_dim, hidden_size=self.hidden_dim,
+                            num_layers=no_layers, batch_first=True, proj_size=self.proj_size)
+
+        # final fully connected linear and sigmoid layer
+        self.fc = nn.Linear(self.hidden_dim, self.output_dim)
+        self.sig = nn.Sigmoid()
+
+    def forward(self, x, hidden):
+        """Forward process of LSTM model
+
+        Args:
+            x ([tensor]): training data/batch_first
+
+
+        Returns:
+            Last sigmoid output and hidden state
+        """
+        batch_size = x.size(0)
+        # embeddings and lstm_out
+        # shape: Batch x Sequence x Feature   since batch_first = True
+        embeds = self.embedding(x)
+        lstm_out, hidden = self.lstm(embeds, hidden)
+
+        lstm_out = lstm_out.contiguous().view(-1, self.hidden_dim)
+
+        # dropout and fully connected layer
+        out = self.dropout(lstm_out)
+        out = self.fc(out)
+
+        # sigmoid function
+        sig_out = self.sig(out)
+
+        # reshape to be batch_size first
+        sig_out = sig_out.view(batch_size, -1)
+
+        sig_out = sig_out[:, -1]  # get last batch of labels
+
+        return sig_out, hidden
+
+    def init_hidden(self, batch_size, device='cpu'):
+        # initialize hidden weights (h,c) to 0
+        weights = next(self.parameters()).data
+        h = (weights.new(self.no_layers, batch_size, self.hidden_dim).zero_().to(device),
+             weights.new(self.no_layers, batch_size, self.hidden_dim).zero_().to(device))
+
+        return h
+
+

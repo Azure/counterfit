@@ -67,7 +67,7 @@ attack_tags = {
     "ThresholdAttack": ["image"],
     "Wasserstein": ["image"],
     "VirtualAdversarialMethod": ["image"],
-    "ZooAttack": ["image", "tabular"],
+    "ZooAttack": ["image"],
 }
 
 
@@ -176,7 +176,7 @@ class ArtFramework(Framework):
 
     def load(self):
         temp_model = tf.keras.models.load_model("counterfit/targets/digits_keras/mnist_model.h5")
-        temp_classifier = KerasClassifier(model=temp_model, clip_values=(0.0, 255.0))
+        temp_classifier = KerasClassifier(model=temp_model, channels_first=False)
         adv_crafter = FastGradientMethod(temp_classifier, eps=0.1)
         meminf_attack = MembershipInferenceBlackBox(temp_classifier, attack_model_type="nn")
         backdoor = PoisoningAttackBackdoor(add_pattern_bd)
@@ -240,9 +240,6 @@ class ArtFramework(Framework):
                                 new_attack._estimator_requirements), embedding_weights=np.array([1, 2]), param_dic={})
                         elif "ShapeShifter" == new_attack.__name__:
                             loaded_attack = new_attack(wrapper(
-                                new_attack._estimator_requirements), random_transform=some_func)
-                        elif "ShapeShifter" == new_attack.__name__:
-                            loaded_attack = new_attack(wrapper(
                                 new_attack._estimator_requirements, random_transform=some_func))
                         elif "AttributeInferenceBaseline" == new_attack.__name__:
                             loaded_attack = new_attack(
@@ -268,11 +265,18 @@ class ArtFramework(Framework):
                                 _nb_classes=10,
                                 input_shape=(28, 28, 1)),
                                 num_neurons=10)
+                        elif "ZooAttack" == new_attack.__name__:
+                            loaded_attack = new_attack(wrapper(
+                                    new_attack._estimator_requirements,
+                                    clip_values=(0.0, 255.0),
+                                    input_shape=(1, 28, 28),
+                                    nb_classes=10,
+                                    channels_first=True))
                         else:
                             loaded_attack = new_attack(
                                 wrapper(
                                     new_attack._estimator_requirements,
-                                    input_shape=(28, 28, 1),
+                                    input_shape=(1, 28, 28),
                                     channels_first=True, _channels_first=True,
                                     clip_values=(0.0, 255.0), _clip_values=(0.0, 255.0),
                                     nb_classes=10, _nb_classes=10
@@ -375,23 +379,18 @@ class ArtFramework(Framework):
         elif "generate" in attack_attributes:
             if "CarliniWagnerASR" == cfattack.attack_name:
                 y = cfattack.target.target_output_classes
-            else:
-                y = None
-
-            if "FeatureAdversariesNumpy" in attack_attributes:
+            elif "FeatureAdversariesNumpy" in attack_attributes:
+                y = cfattack.samples
+            elif "FeatureAdversariesPyTorch" in attack_attributes:
+                y = cfattack.samples
+            elif "FeatureAdversariesTensorFlowV2" in attack_attributes:
                 y = cfattack.samples
             else:
                 y = None
 
-            if "FeatureAdversariesPyTorch" in attack_attributes:
-                y = cfattack.samples
-            else:
-                y = None
-
-            if "FeatureAdversariesTensorFlowV2" in attack_attributes:
-                y = cfattack.samples
-            else:
-                y = None
+            if "ZooAttack" == cfattack.attack_name:
+                # patch ZooAttack
+                cfattack.attack.estimator.channels_first = True
 
             results = cfattack.attack.generate(
                 np.array(cfattack.samples, dtype=np.float32), y=y)
@@ -409,10 +408,10 @@ class ArtFramework(Framework):
             training_shape = (
                 len(cfattack.target.X), *cfattack.target.target_input_shape)
 
-            training_data = cfattack.target.X.reshape(
+            samples_to_query = cfattack.target.X.reshape(
                 training_shape).astype(np.float32)
             results = cfattack.attack.extract(
-                x=training_data, thieved_classifier=cfattack.attack.estimator)
+                x=samples_to_query, thieved_classifier=cfattack.attack.estimator)
 
             cfattack.thieved_classifier = results
         else:

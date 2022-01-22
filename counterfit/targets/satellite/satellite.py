@@ -19,7 +19,6 @@ class SatelliteImagesTarget(Target):
     target_input_shape = (3, 256, 256)  # [Channels, Height, Width]
     target_output_classes = ["airplane", "stadium"]
     sample_input_path = f"satellite_images_airplane_stadium_196608.npz"
-    # channels_first = True
     target_classifier = "blackbox"
 
     X = []  # we'll populate this in the constructor

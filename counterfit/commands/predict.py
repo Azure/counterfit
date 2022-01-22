@@ -32,7 +32,7 @@ def predict_table(heading1, sample_index, samples, results, labels=None):
             table.add_row(str(idx), str(sample), result)
     else:
         for idx, sample, label, result in zip(sample_index, samples, labels, results):
-            table.add_row(str(idx), str(sample), label, result)
+            table.add_row(str(idx), str(sample), str(label), result)
         
     CFPrint.output(table)
 
@@ -41,7 +41,6 @@ def predict_table(heading1, sample_index, samples, results, labels=None):
 @with_argparser(parser)
 def do_predict(self, args: argparse.Namespace) -> None:
     """Predict a single sample for the active target.
-
     """
 
     target = CFState.state().get_active_target()
@@ -78,7 +77,7 @@ def do_predict(self, args: argparse.Namespace) -> None:
     else:
         CFPrint.warn("No index sample.")
         return
-
+    
     result = target.predict(samples)  # results is list of probability scores
     labels = target.outputs_to_labels(result)
     target_datatype = target.target_data_type
