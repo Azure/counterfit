@@ -15,12 +15,12 @@ Compare white-box and API attacks to digits model
 
 2. Interact with `interact digits_keras`
   ```
-  interact digits_blackbox
+  interact digits_keras
   ```
 
 3. Look at a few digits
   ```
-  predict -i range(5)
+  predict -i range(20)
   ```
 
 
@@ -33,12 +33,12 @@ Compare white-box and API attacks to digits model
 
 5. Let's first try a whitebox attack `CarliniLInfMethod`
    ```
-   use CarliniL0Method
+   use CarliniInfMethod
    ```
 
 6. Set some parameters
    ```
-   set --eps 0.15 --learning_rate 0.1 --sample_index 3
+   set --eps 0.15 --learning_rate 0.1 --max_iter 10 --sample_index 18
    ```
 
 7. Run the attack
@@ -49,7 +49,7 @@ Compare white-box and API attacks to digits model
 8. Compare this with an API-only attack.  We'll use `HopSkipJump` with default parameters.
    ```
    use HopSkipJump
-   set --sample_index 3 --max_eval
+   set --sample_index 18 --max_eval 1250 --max_iter 5 --norm inf
    run
    ```
 
