@@ -75,6 +75,7 @@ class AuglyFramework(Framework):
     def load(self):
         config_path = f"{Config.frameworks_path}/augly/config.json"
         self.load_from_config(config_path)
+        self.loaded_status = True
 
     def build(self, target: Target, attack: object):
         new_attack = AuglyAttack(

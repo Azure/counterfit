@@ -17,10 +17,10 @@ def list_frameworks() -> Table:
     table = Table(header_style="bold magenta")
     table.add_column("Framework")
     table.add_column("# Attacks")
-    #table.add_column("Loaded Attacks", justify="center")
 
     for framework, framework_cls in sorted(CFState.state().frameworks.items()):
-        table.add_row(framework, str(len(framework_cls.attacks)))
+        table.add_row(framework, 
+            f"{len(framework_cls.attacks)}" if framework_cls.loaded_status else "(not loaded)")
 
     return table
 
@@ -36,6 +36,7 @@ def list_targets() -> Table:
     table.add_column("Name")
     table.add_column("Type")
     table.add_column("Input Shape")
+    table.add_column("# Samples")
     table.add_column("Endpoint")
     table.add_column("Loaded")
 
@@ -51,6 +52,7 @@ def list_targets() -> Table:
             target_name,
             target_obj.target_data_type,
             target_input_shape,
+            f"{len(target_obj.X)}" if target_obj.loaded_status else "(not loaded)",
             target_obj.target_endpoint,
             str(target_obj.loaded_status),
             style=row_style
@@ -65,6 +67,11 @@ def list_attacks() -> Table:
     Returns:
         Table: table of attacks
     """
+    frameworks = CFState.state().get_frameworks()
+    loaded_frameworks = sum([f.loaded_status for f in frameworks.values()])
+    if loaded_frameworks == 0:
+        CFPrint.warn("No frameworks loaded.  Try 'load <framework>'.\n")        
+        return ""
     table = Table(header_style="bold magenta")
     table.add_column("Name")
     table.add_column("Category")
@@ -72,7 +79,6 @@ def list_attacks() -> Table:
     table.add_column("Tags")
     table.add_column("Framework")
 
-    frameworks = CFState.state().get_frameworks()
     for framework_name, framework in frameworks.items():
         for k, v in sorted(framework.attacks.items()):
             table.add_row(

@@ -309,6 +309,7 @@ class ArtFramework(Framework):
                 except Exception as e:
                     # print(new_attack.__name__, e)
                     continue
+        self.loaded_status = True
 
     def load_classifiers(self):
         """

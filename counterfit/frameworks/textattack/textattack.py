@@ -20,6 +20,7 @@ class TextAttackFramework(Framework):
             self.load_from_config(config_path)
         else:
             self.load_attacks()
+        self.loaded_status = True
 
     def load_attacks(self):
         base_import = importlib.import_module(

@@ -24,6 +24,7 @@ class Framework:
             self.load_from_config(config_path)
         else:
             self.load()
+        self.loaded_status = True
 
     @abstractmethod
     def build(self, target, attack):
@@ -83,6 +84,7 @@ class Framework:
                     attack_data_tags=attack_data_tags,
                     attack_default_params=attack_params,
                 )
+        self.loaded_status = True
 
     def add_attack(self, attack_name: str, attack_type: str, attack_category: str,
                    attack_data_tags: list, attack_class: object, attack_default_params: dict) -> None:
