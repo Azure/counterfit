@@ -347,28 +347,39 @@ class CFState:
         # Run the attack
         CFPrint.info("Running attack...")
         cfattack.set_status("running")
+
+        # Give the framework an opportunity to preprocess any thing in the attack.
+        framework.pre_attack_processing(cfattack)
+
+        # Start timing the attack for the elapsed_time metric
+        start_time = time.time()
+
         try:
-
-            # Give the framework an opportunity to preprocess any thing in the attack.
-            framework.pre_attack_processing(cfattack)
-
-            # Start timing the attack for the elapsed_time metric
-            start_time = time.time()
-
             # Get the results of the attack
             results = framework.run(cfattack)
+        except Exception as e:
+            # postprocessing steps for failed attacks
+            success = [False] * len(cfattack.initial_labels)
+
+            # Let the user know the attack failed
+            CFPrint.failed(
+                f"Failed to run {cfattack.attack_id} ({cfattack.attack_name}): {e}")
+        else:
+            # postprocessing steps for successful attacks
+            # Set the results that the attack returns
+            cfattack.set_results(results)
+
+            # Determine the success of the attack
+            success = framework.check_success(cfattack)
+
+        finally:            
+            # postprocessing steps for both successful and failed attacks
 
             # Stop the timer
             end_time = time.time()
 
             # Set the elapsed time metric
             cfattack.set_elapsed_time(start_time, end_time)
-
-            # Set the results that the attack returns
-            cfattack.set_results(results)
-
-            # Determine the success of the attack
-            success = framework.check_success(cfattack)
 
             # Set the success value
             cfattack.set_success(success)
@@ -379,19 +390,11 @@ class CFState:
             # Mark the attack as complete
             cfattack.set_status("complete")
 
-            # Let the user know the attack has completed successfully.
-            CFPrint.success(
-                f"Attack completed {cfattack.attack_id} ({cfattack.attack_name})")
-            return True
+        # Let the user know the attack has completed successfully.
+        CFPrint.success(
+            f"Attack completed {cfattack.attack_id} ({cfattack.attack_name})")
+        return True
 
-        except Exception as e:
-            # Set the attack has complete
-            cfattack.set_status("complete")
-
-            # Let the user know the attack failed
-            CFPrint.failed(
-                f"Failed to run {cfattack.attack_id} ({cfattack.attack_name}): {e}")
-            return False
 
     def set_active_target(self, target: Target) -> None:
         """Set the active target with the target name provided.
