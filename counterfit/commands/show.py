@@ -16,17 +16,34 @@ parser_info.add_argument("--attack", default=None, help="attack to show info (de
 parser_options = base_subparsers.add_parser("options", help="show configuration options for the active attack")
 parser_options.add_argument("--attack", default=None, help="attack to show info (defaults to active attack)")
 
-# show sample
-parser_sample = base_subparsers.add_parser("sample", help="show specified sample")
-parser_sample.add_argument("-i", "--index", default=None, type=int, help="show user set index sample")
-parser_sample.add_argument("-s", "--surprise", action="store_true", help="show a random sample")
-parser_sample.add_argument("-r", "--result", action="store_true", help="show the result of the active attack")
-
 # show results
 parser_results = base_subparsers.add_parser("results", help="show results from the active attack")
 
 # show attacks
 parser_attacks = base_subparsers.add_parser("attacks", help="show the list of attacks run against this target")
+
+
+def show_results(self, args):
+    # default to the active attack
+    if not CFState.state().active_target:
+        CFPrint.warn("No active target.")
+        return
+
+    if not CFState.state().active_target.active_attack:
+        CFPrint.warn("No active acttack.")
+        return
+
+    cfattack = CFState.state().active_target.active_attack
+    if cfattack.attack_status != 'complete':
+        CFPrint.warn("No completed attacks.  Try 'run'.")
+        return
+
+    # Get the framework responsible for the attack
+    framework = CFState.state().frameworks.get(cfattack.framework_name)
+
+    # Give the framework an opportunity to process the results, generate reports, etc
+    framework.post_attack_processing(cfattack)
+
 
 def show_options(self, args):
     # default to the active attack
@@ -116,11 +133,19 @@ def show_attacks(self, args):
                 row_style = None
                 id = k
 
+            if v.success is None:
+                success = "N/A"
+            else:
+                sample_index = v.options.sample_index
+                if type(sample_index) is int:
+                    sample_index = [sample_index]
+                success = str(dict(zip(list(sample_index), v.success)))
+
             table.add_row(
                 id,
                 v.attack_name,
                 str(v.attack_status),
-                str(v.success),
+                success,
                 style=row_style
 
             )
@@ -131,6 +156,7 @@ def show_attacks(self, args):
 parser_options.set_defaults(func=show_options)
 parser_attacks.set_defaults(func=show_attacks)
 parser_info.set_defaults(func=show_info)
+parser_results.set_defaults(func=show_results)
 
 
 @cmd2.with_argparser(base_parser)
