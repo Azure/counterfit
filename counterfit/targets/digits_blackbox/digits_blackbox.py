@@ -20,11 +20,10 @@ class Digits(Target):
         sample_data = np.load(self.fullpath(
             "mnist_784.npz"), allow_pickle=True)
 
-        self.X = sample_data["X"]
-        # .astype(np.uint8)
+        self.X = sample_data["X"]  # float in [0,255]
 
     def predict(self, x):
-        x = np.array(x)
+        x = np.array(x).astype(np.uint8).astype(np.float)  # quantize to valid range
         scores = self.model.predict_proba(x.reshape(x.shape[0], -1))
         # return a list of class probabilities; each row must be the same length as target_output_classes
         return scores.tolist()
