@@ -45,6 +45,7 @@ Determine roughly how many queries are required to successfully evade `creditfra
    show attacks
    use <Attack id for Boundary Attack>
    set --max_iter 10 --epsilon 0.1 --delta 0.1
+   run
    ```
 
-7. Exercise for reader: switch back and forth between your `HopSkipJump` and `BoundaryAttack`.  Try adjusting parameters such that you have a "1/1 Success", but in few "Total Queries".  For BoundaryAttack, you might play with `epsilon` and `max_iter`.  For HopSkipJump, you might play with `max_iter`,  `max_eval` and `init_size`.
+7. Exercise for reader: switch back and forth between your `HopSkipJump` and `BoundaryAttack`.  Try adjusting parameters such that you have a "1/1 Success", but in few "Total Queries".  For `BoundaryAttack`, you might play with `epsilon` and `max_iter`.  For `HopSkipJump`, you might play with `max_iter`,  `max_eval` and `init_size`.

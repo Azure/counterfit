@@ -58,7 +58,7 @@ Change the label of a satellite image (true label: `stadium`) into `airplane`.
 
 9. Set parameters for the attack.  (Hint: to see what options are available to set, type `show options` or `set`.)  We'll use sample index 5 that corresponds to an image of a stadium.
   ```
-  set --sample_index 5 --norm inf --max_iter 3 --max_eval 1250 --init_eval 50 --verbose
+  set --sample_index 5 --norm inf --max_iter 3 --max_eval 1250 --init_eval 50 --verbose true
   ```
 
 

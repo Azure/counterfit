@@ -36,7 +36,7 @@ Change the spelling of a few words to change the sentiment of an ML model that u
    use DeepWordBugGao2018
    ```
 
-5. Set `sample_index` to 3.  Notice there are no algorithmic parameters to set.
+5. Set `sample_index` to 3.  Notice there are no other algorithmic parameters to set.
    ```
    set --sample_index 3
    ```
