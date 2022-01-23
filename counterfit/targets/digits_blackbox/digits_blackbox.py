@@ -7,7 +7,7 @@ from counterfit.core.targets import Target
 class Digits(Target):
     target_data_type = "image"
     target_name = "digits_blackbox"
-    target_classifier = "blackbox"
+    target_classifier = "BlackBox"
     target_endpoint = "mnist_sklearn_pipeline.pkl"
     target_input_shape = (1, 28, 28)
     target_output_classes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]

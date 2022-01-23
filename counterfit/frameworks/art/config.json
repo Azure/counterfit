@@ -2,8 +2,8 @@
   "FastGradientMethod": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.fast_gradient",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "norm": 1e500,
@@ -19,8 +19,8 @@
   "ProjectedGradientDescent": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.projected_gradient_descent.projected_gradient_descent",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "norm": 1e500,
@@ -39,8 +39,8 @@
   "AdversarialPatchNumpy": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.adversarial_patch.adversarial_patch_numpy",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "rotation_max": 22.5,
@@ -55,8 +55,8 @@
   "AdversarialPatchTensorFlowV2": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.adversarial_patch.adversarial_patch_tensorflow",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "rotation_max": 22.5,
@@ -78,8 +78,8 @@
   "AdversarialPatchPyTorch": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.adversarial_patch.adversarial_patch_pytorch",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "rotation_max": 22.5,
@@ -102,8 +102,8 @@
   "AdversarialPatch": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.adversarial_patch.adversarial_patch",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": "image",
     "attack_parameters": {
       "rotation_max": 22.5,
@@ -118,8 +118,8 @@
   "ImperceptibleASR": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.imperceptible_asr.imperceptible_asr",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["audio"],
     "attack_parameters": {
       "masker": "art.attacks.evasion.imperceptible_asr.imperceptible_asr",
@@ -142,8 +142,8 @@
   "AutoProjectedGradientDescent": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.auto_projected_gradient_descent",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "norm": 1e500,
@@ -160,8 +160,8 @@
   "DeepFool": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.deepfool",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "max_iter": 100,
@@ -174,8 +174,8 @@
   "SquareAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.square_attack",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "norm": 1e500,
@@ -192,8 +192,8 @@
   "BrendelBethgeAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.brendel_bethge",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "norm": 1e500,
@@ -212,8 +212,8 @@
   "BoundaryAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.boundary",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "targeted": false,
@@ -231,8 +231,8 @@
   "CarliniL2Method": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.carlini",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "confidence": 0.0,
@@ -250,8 +250,8 @@
   "CarliniLInfMethod": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.carlini",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "confidence": 0.0,
@@ -268,8 +268,8 @@
   "DecisionTreeAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.decision_tree_attack",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "classifier": null,
@@ -280,8 +280,8 @@
   "DPatch": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.dpatch",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "patch_shape": [
@@ -298,8 +298,8 @@
   "RobustDPatch": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.dpatch_robust",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "patch_shape": [
@@ -336,8 +336,8 @@
   "ElasticNet": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.elastic_net",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "confidence": 0.0,
@@ -355,8 +355,8 @@
   "FrameSaliencyAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.frame_saliency",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attacker": "art.attacks.evasion.fast_gradient",
@@ -369,8 +369,8 @@
   "FeatureAdversariesNumpy": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.feature_adversaries.feature_adversaries_numpy",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "delta": 0.1,
@@ -381,8 +381,8 @@
   "FeatureAdversariesPyTorch": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.feature_adversaries.feature_adversaries_pytorch",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "delta": 0.1,
@@ -402,8 +402,8 @@
   "FeatureAdversariesTensorFlowV2": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.feature_adversaries.feature_adversaries_tensorflow",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "delta": 0.1,
@@ -423,8 +423,8 @@
   "GeoDA": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.geometric_decision_based_attack",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "batch_size": 64,
@@ -440,8 +440,8 @@
   "HighConfidenceLowUncertainty": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.hclu",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "conf": 0.95,
@@ -454,8 +454,8 @@
   "HopSkipJump": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.hop_skip_jump",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "targeted": false,
@@ -472,8 +472,8 @@
   "ImperceptibleASRPyTorch": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.imperceptible_asr.imperceptible_asr_pytorch",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["zudio"],
     "attack_parameters": {
       "eps": 0.05,
@@ -503,8 +503,8 @@
   "LowProFool": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.lowprofool",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "n_steps": 100,
@@ -521,8 +521,8 @@
   "NewtonFool": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.newtonfool",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "max_iter": 100,
@@ -534,8 +534,8 @@
   "MalwareGDTensorFlow": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.pe_malware_attack",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["pe"],
     "attack_parameters": {
       "embedding_weights": [
@@ -553,8 +553,8 @@
   "PixelThreshold": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.pixel_threshold",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "th": null,
@@ -568,8 +568,8 @@
   "OverTheAirFlickeringPyTorch": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.over_the_air_flickering.over_the_air_flickering_pytorch",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["video"],
     "attack_parameters": {
       "eps_step": 0.01,
@@ -589,8 +589,8 @@
   "SaliencyMapMethod": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.saliency_map",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "theta": 0.1,
@@ -602,8 +602,8 @@
   "ShadowAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.shadow_attack",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "sigma": 0.5,
@@ -620,8 +620,8 @@
   "ShapeShifter": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.shapeshifter",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "random_transform": "Replace with a function",
@@ -657,8 +657,8 @@
   "SimBA": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.simba",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "attack": "dct",
@@ -674,8 +674,8 @@
   "SpatialTransformation": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.spatial_transformation",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "max_translation": 0.0,
@@ -688,8 +688,8 @@
   "UniversalPerturbation": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.universal_perturbation",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attacker": "deepfool",
@@ -705,8 +705,8 @@
   "TargetedUniversalPerturbation": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.targeted_universal_perturbation",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attacker": "fgsm",
@@ -720,8 +720,8 @@
   "VirtualAdversarialMethod": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.virtual_adversarial",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "eps": 0.1,
@@ -734,8 +734,8 @@
   "Wasserstein": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.wasserstein",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "targeted": false,
@@ -758,8 +758,8 @@
   "ZooAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.zoo",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "confidence": 0.0,
@@ -780,16 +780,16 @@
   "FunctionallyEquivalentExtraction": {
     "attack_enabled": false,
     "attack_class": "art.attacks.extraction.functionally_equivalent_extraction",
-    "attack_type": "blackbox",
-    "attack_category": "extraction",
+    "attack_category": "BlackBox",
+    "attack_type": "extraction",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {}
   },
   "CopycatCNN": {
     "attack_enabled": false,
     "attack_class": "art.attacks.extraction.copycat_cnn",
-    "attack_type": "blackbox",
-    "attack_category": "extraction",
+    "attack_category": "BlackBox",
+    "attack_type": "extraction",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "batch_size_fit": 1,
@@ -803,8 +803,8 @@
   "KnockoffNets": {
     "attack_enabled": false,
     "attack_class": "art.attacks.extraction.knockoff_nets",
-    "attack_type": "blackbox",
-    "attack_category": "extraction",
+    "attack_category": "BlackBox",
+    "attack_type": "extraction",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "batch_size_fit": 1,
@@ -820,8 +820,8 @@
   "MIFace": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.model_inversion.mi_face",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "max_iter": 10000,
@@ -835,8 +835,8 @@
   "ProjectedGradientDescentCommon": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.projected_gradient_descent.projected_gradient_descent_numpy",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "norm": 1e500,
@@ -855,8 +855,8 @@
   "BasicIterativeMethod": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.iterative_method",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "norm": 1e500,
@@ -875,8 +875,8 @@
   "CarliniWagnerASR": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.adversarial_asr",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["audio"],
     "attack_parameters": {
       "eps": 2000.0,
@@ -890,8 +890,8 @@
   "CarliniL0Method": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.carlini",
-    "attack_type": "whitebox",
-    "attack_category": "evasion",
+    "attack_category": "WhiteBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "confidence": 0.0,
@@ -911,8 +911,8 @@
   "PixelAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.pixel_threshold",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["images"],
     "attack_parameters": {
       "th": null,
@@ -926,8 +926,8 @@
   "ThresholdAttack": {
     "attack_enabled": false,
     "attack_class": "art.attacks.evasion.pixel_threshold",
-    "attack_type": "blackbox",
-    "attack_category": "evasion",
+    "attack_category": "BlackBox",
+    "attack_type": "evasion",
     "attack_data_tags": ["image"],
     "attack_parameters": {
       "th": null,
@@ -941,8 +941,8 @@
   "AttributeInferenceBlackBox": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.attribute_inference.black_box",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attack_feature": 0
@@ -951,8 +951,8 @@
   "AttributeInferenceBaseline": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.attribute_inference.baseline",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attack_feature": 0
@@ -961,8 +961,8 @@
   "AttributeInferenceWhiteBoxDecisionTree": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.attribute_inference.white_box_decision_tree",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attack_feature": 0
@@ -971,8 +971,8 @@
   "AttributeInferenceWhiteBoxLifestyleDecisionTree": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.attribute_inference.white_box_lifestyle_decision_tree",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attack_feature": 0
@@ -981,8 +981,8 @@
   "AttributeInferenceMembership": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.attribute_inference.meminf_based",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "attack_feature": 0
@@ -991,8 +991,8 @@
   "MembershipInferenceBlackBox": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.membership_inference.black_box",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "input_type": "prediction",
@@ -1003,16 +1003,16 @@
   "MembershipInferenceBlackBoxRuleBased": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.membership_inference.black_box_rule_based",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {}
   },
   "LabelOnlyDecisionBoundary": {
     "attack_enabled": false,
     "attack_class": "art.attacks.inference.membership_inference.label_only_boundary_distance",
-    "attack_type": "blackbox",
-    "attack_category": "inference",
+    "attack_category": "BlackBox",
+    "attack_type": "inference",
     "attack_data_tags": ["image", "tabular"],
     "attack_parameters": {
       "distance_threshold_tau": null

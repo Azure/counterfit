@@ -14,7 +14,7 @@ class CreditFraud(Target):
     target_endpoint = "creditfraud_sklearn_pipeline.pkl"
     target_input_shape = (30,)
     target_output_classes = ["benign", "fraud"]
-    target_classifier = "blackbox"
+    target_classifier = "BlackBox"
     sample_input_path = "creditcard.npz"
     X = []
 

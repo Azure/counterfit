@@ -17,7 +17,7 @@ class MovieReviewsTarget(Target):
     target_endpoint = f"movie_reviews_sentiment_analysis.pt"
     target_input_shape = (1,)
     target_output_classes = [0, 1]  # textattack requires these to be integers
-    target_classifier = "blackbox"
+    target_classifier = "BlackBox"
 
     sample_input_path = f"movie-reviews-scores-full.csv"
     vocab_file = f"movie-reviews-vocab.pkl"

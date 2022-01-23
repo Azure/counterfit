@@ -41,7 +41,7 @@ attacks_still_wip = set([
     'GeoDA', # error
     'HighConfidenceLowUncertainty', # error: requires GPR models
     'LowProFool', # error
-    'MIFace', # THIS ACTUALLY WORKS, but counerfit can't deal with it currently
+    # 'MIFace', # THIS ACTUALLY WORKS, but counerfit can't deal with it currently
     'MalwareGDTensorFlow', # error
     'OverTheAirFlickeringPyTorch', # error
     'RobustDPatch', # error
@@ -98,47 +98,47 @@ attack_tags = {
 
 
 attack_types = {
-    "AdversarialPatch": "whitebox",
-    "AdversarialPatchNumpy": "whitebox",
-    "BasicIterativeMethod": "whitebox",
-    "BrendelBethgeAttack": "whitebox",
-    "BoundaryAttack": "API",
-    "CarliniL0Method": "whitebox",
-    "CarliniLInfMethod": "whitebox",
-    "CarliniWagnerASR": "whitebox",
-    "CopycatCNN": "API",
-    "DPatch": "whitebox",
-    "DecisionTreeAttack": "whitebox",
-    "DeepFool": "whitebox",
-    "ElasticNet": "whitebox",
-    "FeatureAdversariesNumpy": "whitebox",
-    "FeatureAdversariesPyTorch": "whitebox",
-    "FeatureAdversariesTensorFlowV2": "whitebox",
-    "FunctionallyEquivalentExtraction": "API",
-    "GeoDA": "whitebox",
-    "HopSkipJump": "API",
-    "KnockoffNets": "API",
-    "LabelOnlyDecisionBoundary": "whitebox",
-    "LowProFool": "whitebox",
-    "MIFace": "whitebox",
-    "MalwareGDTensorFlow": "whitebox",
-    "NewtonFool": "whitebox",
-    "OverTheAirFlickeringPyTorch": "whitebox",
-    "ProjectedGradientDescentCommon": "whitebox",
-    "RobustDPatch": "whitebox",
-    "SaliencyMapMethod": "whitebox",
-    "ShadowAttack": "whitebox",
-    "ShapeShifter": "whitebox",
-    "ProjectedGradientDescentCommon": "whitebox",
-    "SimBA": "whitebox",
-    "SpatialTransformation": "whitebox",
-    "SquareAttack": "API",
-    "TargetedUniversalPerturbation": "whitebox",
-    "ThresholdAttack": "API",
-    "UniversalPerturbation": "whitebox",
-    "Wasserstein": "whitebox",
-    "VirtualAdversarialMethod": "whitebox",
-    "ZooAttack": "API",
+    "AdversarialPatch": "WhiteBox",
+    "AdversarialPatchNumpy": "WhiteBox",
+    "BasicIterativeMethod": "WhiteBox",
+    "BrendelBethgeAttack": "WhiteBox",
+    "BoundaryAttack": "BlackBox",
+    "CarliniL0Method": "WhiteBox",
+    "CarliniLInfMethod": "WhiteBox",
+    "CarliniWagnerASR": "WhiteBox",
+    "CopycatCNN": "BlackBox",
+    "DPatch": "WhiteBox",
+    "DecisionTreeAttack": "WhiteBox",
+    "DeepFool": "WhiteBox",
+    "ElasticNet": "WhiteBox",
+    "FeatureAdversariesNumpy": "WhiteBox",
+    "FeatureAdversariesPyTorch": "WhiteBox",
+    "FeatureAdversariesTensorFlowV2": "WhiteBox",
+    "FunctionallyEquivalentExtraction": "BlackBox",
+    "GeoDA": "WhiteBox",
+    "HopSkipJump": "BlackBox",
+    "KnockoffNets": "BlackBox",
+    "LabelOnlyDecisionBoundary": "WhiteBox",
+    "LowProFool": "WhiteBox",
+    "MIFace": "WhiteBox",
+    "MalwareGDTensorFlow": "WhiteBox",
+    "NewtonFool": "WhiteBox",
+    "OverTheAirFlickeringPyTorch": "WhiteBox",
+    "ProjectedGradientDescentCommon": "WhiteBox",
+    "RobustDPatch": "WhiteBox",
+    "SaliencyMapMethod": "WhiteBox",
+    "ShadowAttack": "WhiteBox",
+    "ShapeShifter": "WhiteBox",
+    "ProjectedGradientDescentCommon": "WhiteBox",
+    "SimBA": "WhiteBox",
+    "SpatialTransformation": "WhiteBox",
+    "SquareAttack": "BlackBox",
+    "TargetedUniversalPerturbation": "WhiteBox",
+    "ThresholdAttack": "BlackBox",
+    "UniversalPerturbation": "WhiteBox",
+    "Wasserstein": "WhiteBox",
+    "VirtualAdversarialMethod": "WhiteBox",
+    "ZooAttack": "BlackBox",
 }
 
 
@@ -487,6 +487,7 @@ class ArtFramework(Framework):
             return self.extraction_success(cfattack)
 
     def get_classifier(self, target: Target):
+        # this code attempts to match the .target_classifier attribute of a target with an ART
         if not getattr(target, "target_classifier"):
             return self.classifiers.get("BlackBoxClassifierNeuralNetwork")
         elif target.target_classifier == None:

@@ -2,8 +2,8 @@
     "Blur": {
         "attack_enabled": true,
         "attack_class": "augly.image.transforms",
-        "attack_type": "blackbox",
-        "attack_category": "common corruption",
+        "attack_category": "BlackBox",
+        "attack_type": "CommonCorruption",
         "attack_data_tags": [
             "image"
         ],
@@ -16,8 +16,8 @@
     "ColorJitter": {
         "attack_enabled": true,
         "attack_class": "augly.image.transforms",
-        "attack_type": "blackbox",
-        "attack_category": "common corruption",
+        "attack_category": "BlackBox",
+        "attack_type": "CommonCorruption",
         "attack_data_tags": [
             "image"
         ],
@@ -32,8 +32,8 @@
     "Brightness": {
         "attack_enabled": true,
         "attack_class": "augly.image.transforms",
-        "attack_type": "blackbox",
-        "attack_category": "common corruption",
+        "attack_category": "BlackBox",
+        "attack_type": "CommonCorruption",
         "attack_data_tags": [
             "image"
         ],
@@ -46,8 +46,8 @@
     "ChangeAspectRatio": {
         "attack_enabled": true,
         "attack_class": "augly.image.transforms",
-        "attack_type": "blackbox",
-        "attack_category": "common corruption",
+        "attack_category": "BlackBox",
+        "attack_type": "CommonCorruption",
         "attack_data_tags": [
             "image"
         ],
@@ -60,8 +60,8 @@
     "ClipImageSize": {
         "attack_enabled": true,
         "attack_class": "augly.image.transforms",
-        "attack_type": "blackbox",
-        "attack_category": "common corruption",
+        "attack_category": "BlackBox",
+        "attack_type": "CommonCorruption",
         "attack_data_tags": [
             "image"
         ],
@@ -74,8 +74,8 @@
     "Contrast": {
         "attack_enabled": true,
         "attack_class": "augly.image.transforms",
-        "attack_type": "blackbox",
-        "attack_category": "common corruption",
+        "attack_category": "BlackBox",
+        "attack_type": "CommonCorruption",
         "attack_data_tags": [
             "image"
         ],

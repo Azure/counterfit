@@ -34,7 +34,8 @@ def list_targets() -> Table:
     """
     table = Table(header_style="bold magenta")
     table.add_column("Name")
-    table.add_column("Type")
+    table.add_column("Model Type")
+    table.add_column("Data Type")
     table.add_column("Input Shape")
     table.add_column("# Samples")
     table.add_column("Endpoint")
@@ -50,6 +51,7 @@ def list_targets() -> Table:
         target_input_shape = str(target_obj.target_input_shape)
         table.add_row(
             target_name,
+            target_obj.target_classifier,
             target_obj.target_data_type,
             target_input_shape,
             f"{len(target_obj.X)}" if target_obj.loaded_status else "(not loaded)",
