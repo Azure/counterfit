@@ -123,7 +123,7 @@ Counterfit injects its own options into the options structure. Options related t
 Because frameworks are first class concept, Counterfit no longer wraps attacks, rather it depends on the framework code to handle the majority of the attack life-cycle. This means that Counterfit can support the full menu of attacks that the orginial frameworks provided. For example, where Counterfit v0.1 only supported blackbox evasion attacks from the Adversarial Robustness Toolbox, Counterfit v1.0 supports MIFace (blackbox-inversion), KnockOffNets(blackbox-extraction), CariliniWagner(whitebox-evasion), and several others out of the box.
 
 ## New attacks via Augly
-Augly is a powerful data augmentation framework built by Facebook. While not explicilty "adversarial", Counterfit uses Augly to include a new bug class for testing - common corruption. In terms of implementation, Augly is a good example of how to both use a "config" only load and wrap a class to create a custom attack.
+Augly is a powerful data augmentation framework built by Facebook. While not explicilty "adversarial", Counterfit uses Augly to include a new bug class for testing - common corruptions. In terms of implementation, Augly is a good example of how to both use a "config" only load and wrap a class to create a custom attack.
 
 ## Various command functionality
 Most commands remain the same in functionality, however some arguments may have changed. 

@@ -29,7 +29,7 @@
    :maxdepth: 6
    :caption: Operational Guidance
 
-   Assessments <guidence/guidence.md>
+   Assessments <guidance/guidance.md>
 
 .. toctree::
    :hidden:

@@ -4,20 +4,13 @@ After starting Counterfit you will be greeted with a simple interface,
 ```
 [sarah@contoso.com] -> python .\counterfit.py
 
----------------------------------------------------
-                          __            _____ __
-  _________  __  ______  / /____  _____/ __(_) /_
- / ___/ __ \/ / / / __ \/ __/ _ \/ ___/ /_/ / __/
-/ /__/ /_/ / /_/ / / / / /_/  __/ /  / __/ / /
-\___/\____/\__,_/_/ /_/\__/\___/_/  /_/ /_/\__/
+                              __            _____ __
+      _________  __  ______  / /____  _____/ __(_) /_
+     / ___/ __ \/ / / / __ \/ __/ _ \/ ___/ /_/ / __/
+    / /__/ /_/ / /_/ / / / / /_/  __/ /  / __/ / /
+    \___/\____/\__,_/_/ /_/\__/\___/_/  /_/ /_/\__/
 
-                                        #ATML
----------------------------------------------------
-
-
-        [+] 18 attacks
-        [+] 4 targets
-
+                    Version: 1.0.0
 ```
 
 To view the available targets execute the `list targets` command. Targets are user created classes that represent a prediction endpoint, they can be local or remote. See Targets for more information.
@@ -25,16 +18,15 @@ To view the available targets execute the `list targets` command. Targets are us
 
 counterfit> list targets
 
-┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┓
-┃ Name            ┃ Type    ┃ Input Shape   ┃ Endpoint                                   ┃ Loaded ┃
-┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━┩
-│ creditfraud     │ tabular │ (30,)         │ creditfraud_sklearn_pipeline.pkl           │ False  │
-│ digits_blackbox │ image   │ (1, 28, 28)   │ mnist_sklearn_pipeline.pkl                 │ False  │
-│ digits_keras    │ image   │ (28, 28, 1)   │ mnist_model.h5                             │ False  │
-│ movie_reviews   │ text    │ (1,)          │ movie_reviews_sentiment_analysis.pt        │ False  │
-│ satellite       │ image   │ (3, 256, 256) │ satellite-image-params-airplane-stadium.h5 │ False  │
-└─────────────────┴─────────┴───────────────┴────────────────────────────────────────────┴────────┘
-
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┓
+┃ Name            ┃ Model Type ┃ Data Type ┃ Input Shape   ┃ # Samples    ┃ Endpoint                                   ┃ Loaded ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━┩
+│ creditfraud     │ BlackBox   │ tabular   │ (30,)         │ (not loaded) │ creditfraud_sklearn_pipeline.pkl           │ False  │
+│ digits_blackbox │ BlackBox   │ image     │ (1, 28, 28)   │ (not loaded) │ mnist_sklearn_pipeline.pkl                 │ False  │
+│ digits_keras    │ keras      │ image     │ (28, 28, 1)   │ (not loaded) │ mnist_model.h5                             │ False  │
+│ movie_reviews   │ BlackBox   │ text      │ (1,)          │ (not loaded) │ movie_reviews_sentiment_analysis.pt        │ False  │
+│ satellite       │ BlackBox   │ image     │ (3, 256, 256) │ (not loaded) │ satellite-image-params-airplane-stadium.h5 │ False  │
+└─────────────────┴────────────┴───────────┴───────────────┴──────────────┴────────────────────────────────────────────┴────────┘
 counterfit>
 
 ```
@@ -53,13 +45,13 @@ Next, load a framework. To view the available frameworks execute `list framework
 ```
 counterfit> list frameworks
 
-┏━━━━━━━━━━━━┳━━━━━━━━━━━┓
-┃ Framework  ┃ # Attacks ┃
-┡━━━━━━━━━━━━╇━━━━━━━━━━━┩
-│ art        │ 41        │
-│ augly      │ 0         │
-│ textattack │ 0         │
-└────────────┴───────────┘
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Framework  ┃ # Attacks    ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ art        │ (not loaded) │
+│ augly      │ (not loaded) │
+│ textattack │ (not loaded) │
+└────────────┴──────────────┘
 
 counterfit>
 ```
@@ -79,50 +71,29 @@ After a framework is loaded successfully, the attacks under that framework becom
 ```
 counterfit> list attacks
 
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┓
-┃ Name                             ┃ Type ┃ Category         ┃ Subcategory                      ┃ Tags           ┃ Framework ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━┩
-│ AdversarialPatch                 │      │ EvasionAttack    │ AdversarialPatch                 │ image          │ art       │
-│ AdversarialPatchNumpy            │      │ EvasionAttack    │ AdversarialPatchNumpy            │ image          │ art       │
-│ BasicIterativeMethod             │      │ EvasionAttack    │ ProjectedGradientDescent         │ image, tabular │ art       │
-│ BoundaryAttack                   │      │ EvasionAttack    │ BoundaryAttack                   │ image, tabular │ art       │
-│ BrendelBethgeAttack              │      │ EvasionAttack    │ BrendelBethgeAttack              │ image, tabular │ art       │
-│ CarliniL0Method                  │      │ EvasionAttack    │ CarliniL2Method                  │ image, tabular │ art       │
-│ CarliniLInfMethod                │      │ EvasionAttack    │ CarliniLInfMethod                │ image, tabular │ art       │
-│ CarliniWagnerASR                 │      │ EvasionAttack    │ ImperceptibleASR                 │ image, tabular │ art       │
-│ CopycatCNN                       │      │ ExtractionAttack │ CopycatCNN                       │ image, tabular │ art       │
-│ DPatch                           │      │ EvasionAttack    │ DPatch                           │ image          │ art       │
-│ DecisionTreeAttack               │      │ EvasionAttack    │ DecisionTreeAttack               │ image, tabular │ art       │
-│ DeepFool                         │      │ EvasionAttack    │ DeepFool                         │ image, tabular │ art       │
-│ ElasticNet                       │      │ EvasionAttack    │ ElasticNet                       │ image, tabular │ art       │
-│ FeatureAdversariesNumpy          │      │ EvasionAttack    │ FeatureAdversariesNumpy          │ image, tabular │ art       │
-│ FeatureAdversariesPyTorch        │      │ EvasionAttack    │ FeatureAdversariesPyTorch        │ image, tabular │ art       │
-│ FeatureAdversariesTensorFlowV2   │      │ EvasionAttack    │ FeatureAdversariesTensorFlowV2   │ image, tabular │ art       │
-│ FunctionallyEquivalentExtraction │      │ ExtractionAttack │ FunctionallyEquivalentExtraction │ image, tabular │ art       │
-│ GeoDA                            │      │ EvasionAttack    │ GeoDA                            │ image, tabular │ art       │
-│ HighConfidenceLowUncertainty     │      │ EvasionAttack    │ HighConfidenceLowUncertainty     │ unknown        │ art       │
-│ HopSkipJump                      │      │ EvasionAttack    │ HopSkipJump                      │ image, tabular │ art       │
-│ KnockoffNets                     │      │ ExtractionAttack │ KnockoffNets                     │ image, tabular │ art       │
-│ LowProFool                       │      │ EvasionAttack    │ LowProFool                       │ image, tabular │ art       │
-│ MIFace                           │      │ InferenceAttack  │ MIFace                           │ image, tabular │ art       │
-│ MalwareGDTensorFlow              │      │ EvasionAttack    │ MalwareGDTensorFlow              │ image, tabular │ art       │
-│ NewtonFool                       │      │ EvasionAttack    │ NewtonFool                       │ image, tabular │ art       │
-│ OverTheAirFlickeringPyTorch      │      │ EvasionAttack    │ OverTheAirFlickeringPyTorch      │ image, tabular │ art       │
-│ ProjectedGradientDescentCommon   │      │ EvasionAttack    │ FastGradientMethod               │ image, tabular │ art       │
-│ RobustDPatch                     │      │ EvasionAttack    │ RobustDPatch                     │ image, tabular │ art       │
-│ SaliencyMapMethod                │      │ EvasionAttack    │ SaliencyMapMethod                │ image, tabular │ art       │
-│ ShadowAttack                     │      │ EvasionAttack    │ ShadowAttack                     │ image, tabular │ art       │
-│ ShapeShifter                     │      │ EvasionAttack    │ ShapeShifter                     │ image, tabular │ art       │
-│ SimBA                            │      │ EvasionAttack    │ SimBA                            │ image          │ art       │
-│ SpatialTransformation            │      │ EvasionAttack    │ SpatialTransformation            │ image, tabular │ art       │
-│ SquareAttack                     │      │ EvasionAttack    │ SquareAttack                     │ image          │ art       │
-│ TargetedUniversalPerturbation    │      │ EvasionAttack    │ TargetedUniversalPerturbation    │ image, tabular │ art       │
-│ ThresholdAttack                  │      │ EvasionAttack    │ PixelThreshold                   │ image          │ art       │
-│ UniversalPerturbation            │      │ EvasionAttack    │ UniversalPerturbation            │ unknown        │ art       │
-│ VirtualAdversarialMethod         │      │ EvasionAttack    │ VirtualAdversarialMethod         │ image          │ art       │
-│ Wasserstein                      │      │ EvasionAttack    │ Wasserstein                      │ image          │ art       │
-│ ZooAttack                        │      │ EvasionAttack    │ ZooAttack                        │ image, tabular │ art       │
-└──────────────────────────────────┴──────┴──────────────────┴──────────────────────────────────┴────────────────┴───────────┘
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┓
+┃ Name                             ┃ Category ┃ Type             ┃ Tags           ┃ Framework ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━┩
+│ BoundaryAttack                   │ BlackBox │ EvasionAttack    │ image, tabular │ art       │
+│ CarliniL0Method                  │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ CarliniLInfMethod                │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ CopycatCNN                       │ BlackBox │ ExtractionAttack │ image          │ art       │
+│ DeepFool                         │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ ElasticNet                       │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ FunctionallyEquivalentExtraction │ BlackBox │ ExtractionAttack │ image, tabular │ art       │
+│ HopSkipJump                      │ BlackBox │ EvasionAttack    │ image, tabular │ art       │
+│ KnockoffNets                     │ BlackBox │ ExtractionAttack │ image, tabular │ art       │
+│ LabelOnlyDecisionBoundary        │ WhiteBox │ InferenceAttack  │ image, tabular │ art       │
+│ MIFace                           │ WhiteBox │ InferenceAttack  │ image, tabular │ art       │
+│ NewtonFool                       │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ ProjectedGradientDescentCommon   │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ SaliencyMapMethod                │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ SimBA                            │ WhiteBox │ EvasionAttack    │ image          │ art       │
+│ SpatialTransformation            │ WhiteBox │ EvasionAttack    │ image, tabular │ art       │
+│ UniversalPerturbation            │ WhiteBox │ EvasionAttack    │ image          │ art       │
+│ VirtualAdversarialMethod         │ WhiteBox │ EvasionAttack    │ image          │ art       │
+│ Wasserstein                      │ WhiteBox │ EvasionAttack    │ image          │ art       │
+└──────────────────────────────────┴──────────┴──────────────────┴────────────────┴───────────┘
 ```
 
 From an active target there are two ways to run an attack, and there are some key differences to be aware of.

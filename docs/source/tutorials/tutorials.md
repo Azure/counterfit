@@ -59,7 +59,7 @@ class Newtarget(Target):
     target_endpoint = "mnist_sklearn_pipeline.pkl"
     target_input_shape = (1, 28, 28)
     target_output_classes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    target_classifier = "blackbox"
+    target_classifier = "BlackBox"
     X = []
 ```
 
@@ -130,7 +130,7 @@ class Newtarget(Target):
     target_endpoint = "http://127.0.0.1:8080/score"
     target_input_shape = (1, )
     target_output_classes = ["0", "1"] # [!=5, 5]
-    target_classifier = "blackbox"
+    target_classifier = "BlackBox"
     X = []
 
     def load(self):
@@ -275,8 +275,8 @@ In this case loading the attack is simple as it lives in the same file as the fr
         self.add_attack(
             attack_name="custom",
             attack_class=CustomAttack,
-            attack_type="blackbox",
-            attack_category="evasion",
+            attack_category="BlackBox",
+            attack_type="evasion",
             attack_data_tags=["tabular"],
             attack_default_params={"query_budget": 10}
         )

@@ -11,19 +11,19 @@ The required properties for a target consist of the following items,
 
 | Property | Description |
 |--- | --- |
-| `model_name` | Should be unique among all targets. This is used to uniquely identify a target model within Counterfit. For example, `list targets`. |
-| `model_data_type` | The type of data the target model uses. This is used to attach the relevant attacks to a given target. Models for which `model_data_type` is `text` will be compatible with attacks from the TextAttack framework. Adversarial Robustness Toolbox works with `numpy` and `image` data types. |
-| `model_endpoint` | API route or model file location where Counterfit will collect outputs. This may be used in the `__init__` function to load a model file (when referring to a filename), or the `__call__` function during an attack to interact with an API (when referring to an API route). | 
-| `model_input_shape` | The shape of the input to a target model. Backend frameworks use this to understand the shape of the sample. The `__call__` function expects a batch of inputs of this shape, e.g., an input of size `(batch_size, ) + model_input_shape`, where `batch_size` is typically just 1. |
-| `model_output_classes` | A list of all output labels returned by the `__call__` function. This is used by Counterfit's `outputs_to_labels` function to convert numerical outputs to labels that you define.  It helps Counterift know whether an attack has been successflu or not.
-| `X` | The sample data, which is of shape `(N, ) + model_input_shape`, where `N` is the number of samples you included in the target definition.|
+| `target_name` | Should be unique among all targets. This is used to uniquely identify a target model within Counterfit. For example, `list targets`. |
+| `target_data_type` | The type of data the target model uses. This is used to attach the relevant attacks to a given target. Models for which `target_data_type` is `text` will be compatible with attacks from the TextAttack framework. Adversarial Robustness Toolbox works with `numpy` and `image` data types. |
+| `target_endpoint` | API route or model file location where Counterfit will collect outputs. This may be used in the `load` function to load a model file (when referring to a filename), or the `predict` function during an attack to interact with an API (when referring to an API route). | 
+| `target_input_shape` | The shape of the input to a target model. Backend frameworks use this to understand the shape of the sample. The `predict` function expects a batch of inputs of this shape, e.g., an input of size `(batch_size, ) + target_input_shape`, where `batch_size` is typically just 1. |
+| `target_output_classes` | A list of all output labels returned by the `predict` function. This is used by Counterfit's `outputs_to_labels` function to convert numerical outputs to labels that you define.  It helps Counterift know whether an attack has been successflu or not.
+| `X` | The sample data, which is of shape `(N, ) + target_input_shape`, where `N` is the number of samples you included in the target definition.|
 
 The required method for a target consists of the following items,
 
 | Method | Description |
 | --- | --- |
-| `__init__(self)`| This function should load models and load and process input data.|
-|`__call__(self, x)` | This function is the primary interface between a target model and an attack algorithm. An attack algorithm uses this function to submit inputs via `x` and collect the output via the return value.  This function must return a list of probabilities for each input sample.  That is, for each row in `x` there should be an output row of the form `[prob_class_0, prob_class_1, ..., prob_class_2]`.|
+| `load(self)`| This function should load models and load and process input data.|
+|`predict(self, x)` | This function is the primary interface between a target model and an attack algorithm. An attack algorithm uses this function to submit inputs via `x` and collect the output via the return value.  This function must return a list of probabilities for each input sample.  That is, for each row in `x` there should be an output row of the form `[prob_class_0, prob_class_1, ..., prob_class_2]`.|
 
 ## Sample Target Class
 At the top of the file are standard module imports and the selected Counterfit framework. Targets will be loaded only if they inherit from a correct baseclass. There are no limits to what you can import, however, they are loaded on start, so heavy ML libraries could slow down the start process. 
@@ -38,34 +38,34 @@ Next, the target class is created, and the required properties are defined.
 
 ```python
 class CatClassifier(ArtTarget):
-    model_name = 'catclassifier'
-    model_data_type = 'image'
-    model_endpoint = "http://contoso.ai/predict"
-    model_input_shape = (3, 256, 256)
-    model_output_classes = ["cat", "not_a_cat"]
+    target_name = 'catclassifier'
+    target_data_type = 'image'
+    target_endpoint = "http://contoso.ai/predict"
+    target_input_shape = (3, 256, 256)
+    target_output_classes = ["cat", "not_a_cat"]
     X = []
 ```
 
 | Property | Description | 
 | -- | -- |
-| model_name | A unique name. Counterfit references each target by name. All logs and results will be stored in this class. |
-| model_data_type | The cat classifier target, hosted at `http://contoso.ai/predict` requires pictures of cats. The model_data_type reflects the input data should be an image. Counterfit uses this field to process and reshape data correctly. |
-| model_endpoint | This is where Counterfit will collect outputs from the target. This is used in the `__call__` function during an attack. |
-| model_input_shape | This is the shape of our sample data. It is important to note that this is not necessarily the shape of the target model input, but rather the shape of the sample data. |
-| model_output_classes | Are the possible classes for the samples. The image is either a cat, or not a cat.|
-| X | Are the sample data. This will be populated in the __init__ function.|
+| target_name | A unique name. Counterfit references each target by name. All logs and results will be stored in this class. |
+| target_data_type | The cat classifier target, hosted at `http://contoso.ai/predict` requires pictures of cats. The target_data_type reflects the input data should be an image. Counterfit uses this field to process and reshape data correctly. |
+| target_endpoint | This is where Counterfit will collect outputs from the target. This is used in the `predict` function during an attack. |
+| target_input_shape | This is the shape of our sample data. It is important to note that this is not necessarily the shape of the target model input, but rather the shape of the sample data. |
+| target_output_classes | Are the possible classes for the samples. The image is either a cat, or not a cat.|
+| X | Are the sample data. This will be populated in the load function.|
 
-Next, the `__init__` function should load the required resources. This function is not called until you interact with a target. Sample data should be loaded into `self.X` as a list of lists, arrays, or vectors. Sample selection for both targeted and untargeted attacks are set by referencing an index of this list. As noted earlier, it is important that the shape of an input sample matches the `model_input_shape`. There are no limits to what you can do inside `__init__`, load models, process samples, execute functions written elsewhere, etc.
+Next, the `load` function should load the required resources. This function is not called until you interact with a target. Sample data should be loaded into `self.X` as a list of lists, arrays, or vectors. Sample selection for both targeted and untargeted attacks are set by referencing an index of this list. As noted earlier, it is important that the shape of an input sample matches the `target_input_shape`. There are no limits to what you can do inside `load`, load models, process samples, execute functions written elsewhere, etc.
 
 ```python
-def __init__(self):
+def load(self):
     self.X = [[x1], [x2], [x3], ...]
 ```
 
-Finally, the `__call__` function. This function is used by an attack algorithm to send a query to the `model_endpoint`. `x` is the sample the algorithm has provided and is of shape `(1,) + model_input_shape`, or `((1, 3, 256, 256))`. Conventionally, ML frameworks use "batches" of inputs, and it is best practice for the `__call__` function to include handle an entire batch, e.g., sending each sample in the batch to an API that may handle only a single query at a time.  However, since most attacks in Counterfit do not require a batch size greater than one, in this example, we'll use `x[0]` to reference the first sample in the batch.
+Finally, the `predict` function. This function is used by an attack algorithm to send a query to the `target_endpoint`. `x` is the sample the algorithm has provided and is of shape `(1,) + target_input_shape`, or `((1, 3, 256, 256))`. Conventionally, ML frameworks use "batches" of inputs, and it is best practice for the `predict` function to include handle an entire batch, e.g., sending each sample in the batch to an API that may handle only a single query at a time.  However, since most attacks in Counterfit do not require a batch size greater than one, in this example, we'll use `x[0]` to reference the first sample in the batch.
 
 ```python
-def __call__(self, x):
+def predict(self, x):
     sample = x[0].tolist()
     response = requests.post(self.endpoint, data={"input": sample})
     results = response.json()
@@ -76,7 +76,7 @@ def __call__(self, x):
 return [cat_proba, not_a_cat_proba]
 ```
 
-`__call__` function **MUST** return a list of probabilities that is the same length and in the same order as `model_output_classes`. Backend frameworks use both during attack runtime and if they are not the same length, an error will be thrown. If the ordering of the returned list of probabilities is incorrect, the attack will alter the input incorrectly. There are no limits to what you can do inside `__call__`, this includes reshaping arrays to images, executing webhooks, or additional logging. Learn more about the flexibility of Counterfit targets in [Advanced Use]
+`predict` function **MUST** return a list of probabilities that is the same length and in the same order as `target_output_classes`. Backend frameworks use both during attack runtime and if they are not the same length, an error will be thrown. If the ordering of the returned list of probabilities is incorrect, the attack will alter the input incorrectly. There are no limits to what you can do inside `predict`, this includes reshaping arrays to images, executing webhooks, or additional logging. Learn more about the flexibility of Counterfit targets in [Advanced Use]
 
 _Note: Pay attention to the channels of an image. By default, backend framework wrappers and Counterfit are configured to use channels first rather than last, (3, 256, 256) vs (256, 256, 3). This can be overridden by adding `self.channels_first=False` to the target class._
 
@@ -88,25 +88,28 @@ import numpy as np
 from counterfit.core.interfaces import ArtTarget
 
 class CatClassifier(ArtTarget):
-    model_name = 'catclassifier'
-    model_data_type = 'image'
-    model_endpoint = "http://contoso.ai/predict"
-    model_input_shape = (3, 256, 256)
-    model_output_classes = ["cat", "not_a_cat"]
+    target_name = 'catclassifier'
+    target_data_type = 'image'
+    target_endpoint = "http://contoso.ai/predict"
+    target_input_shape = (3, 256, 256)
+    target_output_classes = ["cat", "not_a_cat"]
     X = []
 
-    def __init__(self):
+    def load(self):
         self.X = [[x1], [x2], [x3], ...]
 
-    def __call__(self, x):
-        sample = x[0].tolist()
-        response = requests.post(self.endpoint, data={"input": sample})
-        results = response.json()
+    def predict(self, x):
+        # process an entire batch of requests
+        results = []
+        for sample in x:
+            response = requests.post(self.endpoint, data={"input": sample})
+            results = response.json()
 
-        cat_proba = results["confidence"]
-        not_a_cat_proba = 1-cat_proba
+            cat_proba = results["confidence"]
+            not_a_cat_proba = 1-cat_proba
+            results.append([cat_proba, not_a_cat_proba])
         
-        return [cat_proba, not_a_cat_proba]
+        return results
 
 ```
 
@@ -154,7 +157,7 @@ Counterfit comes with some basic reporting functionality. If there are custom re
 ## TextAttack
 Counterfit includes a number of blackbox attacks against text models from the TextAttack framework. These attacks have no parameters and the user need only set a `target_sample` when running an attack. TextAttack requires that `self.X` be a list of sentences to be used as input to a model.
 
-When implementing a target for Textattack, please note that TextAttack currently expects that `model_output_classes` to be a list of ordered integers beginning at 0 (e.g., [0, 1, 2]) rather than a list of labels (e.g., ['cat', 'dog', 'horse']). This is because it uses the class label as an index.
+When implementing a target for Textattack, please note that TextAttack currently expects that `target_output_classes` to be a list of ordered integers beginning at 0 (e.g., [0, 1, 2]) rather than a list of labels (e.g., ['cat', 'dog', 'horse']). This is because it uses the class label as an index.
 
 ## Adversarial Robustness Toolkit 
 Counterfit includes a number of blackbox evasion attacks suitable for targets of the 'numpy' or 'image' data type using the Adversarial Robustness Toolbox (ART) . ART expects `self.X` to be a list of lists, that is, each row in the list corresponds to an input sample, and each input sample is a list of numbers or images. Thus, it's typical that `self.X` is an array of dimensions (N, dim) (for numpy), (N, channels, height, width) for image with channels_first=True) (default), or (N, height, width, channels) for image with channels_first=False.
