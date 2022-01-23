@@ -75,19 +75,19 @@ def get_sample_index(sample_index: str) -> Union[list, int, range, None]:
     try:
         sample_index = eval(sample_index)
     except Exception as e:
-        CFPrint.failed(f"Error parsing sample index '{sample_index}': {e}")
+        CFPrint.failed(f"Error parsing '--sample_index {sample_index}: {e}")
         return None
 
     if type(sample_index) is tuple:
         sample_index = list(sample_index)
 
     if type(sample_index) not in (range, int, list):
-        CFPrint.failed(f"Error parsing sample index '{sample_index}': expression must result in a 'list', 'range' or 'int'")
+        CFPrint.failed(f"Error parsing '--sample_index {sample_index}: expression must result in a 'list', 'range' or 'int'")
         return None
 
     if type(sample_index) is list:
         if any([type(el) is not int for el in sample_index]):
-            CFPrint.failed(f"Error parsing sample index '{sample_index}': list must only contain integers")
+            CFPrint.failed(f"Error parsing '--sample_index {sample_index}': list must only contain integers")
             return None
     
     return sample_index
@@ -97,14 +97,14 @@ def get_clip_values(clip_values: str) -> Union[tuple,NoneType]:
     try:
         clip_values = eval(clip_values)
     except Exception as e:
-        CFPrint.failed(f"Error parsing sample index '{clip_values}': {e}")
+        CFPrint.failed(f"Error parsing '--clip_values {clip_values}': {e}")
         return None
 
     if clip_values is None:
         return "None"
 
     if type(clip_values) not in (tuple,):
-        CFPrint.failed(f"Error parsing sample index '{clip_values}': expression must result in a 'tuple' or 'None'")
+        CFPrint.failed(f"Error parsing '--clip_values {clip_values}: expression must result in a 'tuple' or 'None'")
         return None
 
     return clip_values
@@ -117,14 +117,24 @@ def parse_numeric(argname: str, val_str: str) -> Union[int, float, None]:
     try:
         val = eval(val_str)
     except Exception as e:
-        CFPrint.failed(f"Error parsing {argname} '{val_str}': {e}")
+        CFPrint.failed(f"Error parsing --'{argname} {val_str}': {e}")
         return None
 
     if type(val) not in (int, float):
-        CFPrint.failed(f"Error parsing {argname} '{val_str}': expression must result in a 'int' or 'float'")
+        CFPrint.failed(f"Error parsing '--{argname} {val_str}': expression must result in a 'int' or 'float'")
         return None
 
     return val
+
+
+def parse_boolean(argname: str, val_str: str) -> Union[bool, None]:
+    if val_str.lower() in ("true", "t", "yes", "y", "1"):
+        return True
+    elif val_str.lower() in ("false", "f", "no", "n", "0"):
+        return False
+    else:
+        CFPrint.failed(f"Error parsing '--{argname} {val_str}': must be 'true' or 'false'")
+        return None
 
 
 # dynamic option add
@@ -135,8 +145,7 @@ for option, value in get_options().items():
     elif type(value) in (float, int):
         parser.add_argument(f"--{option}", type=str, default=str(value))
     elif type(value) == bool:
-        # toggle booleans (default: no toggle)
-        parser.add_argument(f"--{option}", default=False, action="store_true")
+        parser.add_argument(f"--{option}", type=str, default=str(value))
     else:
         parser.add_argument(
             f"--{option}", type=type(value), default=value)
@@ -163,9 +172,6 @@ def update_options(target, partial_options):
 def do_set(self, args: argparse.Namespace) -> None:
     """Set parameters of the active attack on the active target using 
     --param1 val1  --param2 val2.
-
-    Boolean parameters can be toggled from the current state using
-    --param_bool  (if True, will set to False).
 
     For infinity, use 'inf' or 'float("inf")'.
 
@@ -198,6 +204,12 @@ def do_set(self, args: argparse.Namespace) -> None:
         elif type(default_options.get(argname)) in (float, int) and type(argval) is str:
             # parse numeric type
             argval = parse_numeric(argname, argval)
+            if argval is None:
+                return
+            args.__dict__[argname] = argval
+        elif type(default_options.get(argname)) is bool:
+            # parse boolean type
+            argval = parse_boolean(argname, argval)
             if argval is None:
                 return
             args.__dict__[argname] = argval
