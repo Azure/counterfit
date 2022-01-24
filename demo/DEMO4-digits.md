@@ -1,5 +1,5 @@
 # DEMO 4: White-box attack of an on-disk
-
+[[Demo Home]](README.md)
 ## Objective
 Compare white-box and API attacks to digits model
 
@@ -53,4 +53,9 @@ Compare white-box and API attacks to digits model
    run
    ```
 
-9. Exercise for the reader: compare the visual quality of these two attacks?  Which is better?  Which attack shows lower "Max Absolute Change"?
+## (Optional) Self Assessment
+1. What are the model access requirements for `CarliniLInfMethod` vs. `HopSkipJump`?
+2. Compare the visual quality of these two attacks?  Which is better?  Which attack shows lower "Max Absolute Change"?
+3. Find a set of _best_ parameters for both `CarliniLInfMethod` and `HopSkipJump` that provides excellent visual quality with few "Total Queries".  Can you find a set of parameters for `CarliniLInfMethod` for which you can't replicate the quality or efficiency with `HopSkipJump`?  
+
+[[Demo Home]](README.md)

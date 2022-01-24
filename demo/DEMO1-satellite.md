@@ -1,5 +1,5 @@
 # DEMO 1: Satellite Images Red Team Operation
-
+[[Demo Home]](README.md)
 ## Objective
 Change the label of a satellite image (true label: `stadium`) into `airplane`.
 
@@ -58,7 +58,7 @@ Change the label of a satellite image (true label: `stadium`) into `airplane`.
 
 9. Set parameters for the attack.  (Hint: to see what options are available to set, type `show options` or `set`.)  We'll use sample index 5 that corresponds to an image of a stadium.
   ```
-  set --sample_index 5 --norm inf --max_iter 3 --max_eval 1250 --init_eval 50 --verbose true
+  set --sample_index 5 --norm 2 --max_iter 10 --max_eval 5000 --verbose true
   ```
 
 
@@ -75,3 +75,10 @@ Change the label of a satellite image (true label: `stadium`) into `airplane`.
   ```
   help
   ```
+
+## (Optional) Self Assessment
+1. What minimum level of model access was required for this model?
+2. How many queries were required to (a) change the decision of the ML model and (b) still remain convincing to a human?
+3. For HopSkipJump, change `norm`, `max_iter` and `max_eval` parameters to tune the results of the algorithm.  Are there tradeoffs between the resulting quality of the adversarial example and number of queries required to create it?
+
+[[Demo Home]](README.md)
