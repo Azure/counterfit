@@ -168,12 +168,12 @@ class TextReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index", no_wrap=True, width=60)
-        table.add_column("Input Label (conf)", no_wrap=True, width=60)
-        table.add_column("Adversarial Label (conf)", no_wrap=True, width=60)
-        table.add_column(f"{metric}", no_wrap=True, width=60)
-        table.add_column("Adversarial Input", width=160)
-        table.add_column("success", no_wrap=True, width=60)
+        table.add_column("Sample Index")
+        table.add_column("Input Label (conf)")
+        table.add_column("Adversarial Label (conf)")
+        table.add_column(f"{metric}")
+        table.add_column("Adversarial Input", width=110)
+        table.add_column("success")
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -324,12 +324,12 @@ class ImageReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index", no_wrap=True, width=60)
-        table.add_column("Input Label (conf)", no_wrap=True, width=60)
-        table.add_column("Adversarial Label (conf)", no_wrap=True, width=60)
-        table.add_column(f"{metric}", no_wrap=True, width=60)
-        table.add_column("Adversarial Input", width=160)
-        table.add_column("success", no_wrap=True, width=60)
+        table.add_column("Sample Index")
+        table.add_column("Input Label (conf)")
+        table.add_column("Adversarial Label (conf)")
+        table.add_column(f"{metric}")
+        table.add_column("Adversarial Input", width=110)
+        table.add_column("success")
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -432,12 +432,12 @@ class TabularReportGenerator(TargetReportGenerator):
 
         table = Table(header_style="bold magenta")
         metric = summary["input_change_metric"]
-        table.add_column("Sample Index", no_wrap=True, width=60)
-        table.add_column("Input Label (conf)", no_wrap=True, width=60)
-        table.add_column("Adversarial Label (conf)", no_wrap=True, width=60)
-        table.add_column(f"{metric}", no_wrap=True, width=60)
-        table.add_column("Adversarial Input", width=160)
-        table.add_column("success", no_wrap=True, width=60)
+        table.add_column("Sample Index")
+        table.add_column("Input Label (conf)")
+        table.add_column("Adversarial Label (conf)")
+        table.add_column(f"{metric}")
+        table.add_column("Adversarial Input", width=110)
+        table.add_column("success")
         for i, (si, li, conf_0, lf, conf_f, change, res, d) in enumerate(zip(
                 summary["sample_index"],
                 summary["initial_label"],
@@ -529,11 +529,11 @@ def printable_scan_summary(summaries_by_attack, summaries_by_label=None):
     CFPrint.output(
         "\n =============== \n <SCAN SUMMARY> \n ===============\n\n")
     table = Table(header_style="bold magenta")
-    table.add_column("Attack Name", no_wrap=True, width=70)
-    table.add_column("Total Runs", no_wrap=True, width=70)
-    table.add_column("Successes (%)", no_wrap=True, width=70)
-    table.add_column("Best Score (attack_id)", no_wrap=True, width=90)
-    table.add_column("Best Parameters", no_wrap=True, width=260)
+    table.add_column("Attack Name")
+    table.add_column("Total Runs")
+    table.add_column("Successes (%)")
+    table.add_column("Best Score (attack_id)")
+    table.add_column("Best Parameters", width=110)
 
     for name, summary in summaries_by_attack.items():
         frac = summary["total_successes"] / summary["total_runs"]
@@ -550,10 +550,10 @@ def printable_scan_summary(summaries_by_attack, summaries_by_label=None):
     CFPrint.output(table)
 
     if summaries_by_label is not None:
-        st.add_column("Class Label", no_wrap=True)
-        st.add_column("Total Runs", no_wrap=True)
-        st.add_column("Successes (%)", no_wrap=True)
-        st.add_column("Best Score (Attack)", no_wrap=True)
+        st.add_column("Class Label")
+        st.add_column("Total Runs")
+        st.add_column("Successes (%)")
+        st.add_column("Best Score (Attack)")
         for name, summary in sorted(summaries_by_label.items()):
             frac = summary["total_successes"] / summary["total_runs"]
             successes = f"{summary['total_successes']} ({frac:>.1%})"
