@@ -365,16 +365,14 @@ class CFState:
             # Let the user know the attack failed
             CFPrint.failed(
                 f"Failed to run {cfattack.attack_id} ({cfattack.attack_name}): {e}")
-        else:
+
+        finally:            
             # postprocessing steps for successful attacks
             # Set the results that the attack returns
             cfattack.set_results(results)
 
             # Determine the success of the attack
             success = framework.check_success(cfattack)
-
-        finally:            
-            # postprocessing steps for both successful and failed attacks
 
             # Stop the timer
             end_time = time.time()
