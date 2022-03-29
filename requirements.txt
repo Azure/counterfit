@@ -26,6 +26,7 @@ h5py==3.1.0
 lightgbm==3.3.1
 augly==0.1.10
 hyperopt==0.2.3
+scipy==1.4.1
 
 # testing framework
 pytest==6.2.5
