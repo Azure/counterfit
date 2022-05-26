@@ -15,7 +15,7 @@ sphinx-rtd-theme>=1.0.0
 adversarial-robustness-toolbox==1.8
 textattack==0.3.4
 torchvision==0.11.1
-tensorflow==2.6.2
+tensorflow==2.7.2
 tensorflow-hub==0.12.0 # to run textbugger, bae_garg and textfooler attacks
 torchfile==0.1.0 # to run fga_jia_2019 attack
 tensorflow-text==2.6.0 # dependency on textattack 
