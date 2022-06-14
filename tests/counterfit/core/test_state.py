@@ -5,6 +5,19 @@ from unittest.mock import Mock
 from counterfit.core.config import Config
 from counterfit.core.state import CFState
 from counterfit.core.frameworks import Framework
+from counterfit.core.targets import Target
+
+
+class TestTarget(Target):
+    """ Target must be separate class for importlib.reload to find it. """
+    target_name = "test_target"
+
+    def __init__(self):
+        super().__init__()
+    def load(self):
+        pass
+    def predict(self, x):
+        pass
 
 
 class TestCFState:
@@ -13,6 +26,11 @@ class TestCFState:
     def cfstate_state(self):
         cfstate = CFState.state()
         return cfstate
+
+    @pytest.fixture(scope="function")
+    def test_target(self):
+        test_target = TestTarget()
+        yield test_target
 
     def test_singleton_obj(self, cfstate_state):
         a = cfstate_state
@@ -51,8 +69,16 @@ class TestCFState:
     def test_load_target(self, cfstate_state):
         cfstate_state.load_target("test_target")
 
-    def test_reload_target(self, cfstate_state):
-        pass
+    def test_reload_target(self, cfstate_state, test_target):
+        cfstate_state.add_target("test_target", target=test_target)
+        cfstate_state.load_target("test_target")
+        cfstate_state.set_active_target(test_target)
+        old_active_target = cfstate_state.active_target
+        cfstate_state.reload_target()
+        new_active_target = cfstate_state.active_target
+        assert id(old_active_target) != id(new_active_target)
+        assert old_active_target.attacks == new_active_target.attacks
+        assert old_active_target.active_attack == new_active_target.active_attack
 
     def test_list_targets(self):
         pass

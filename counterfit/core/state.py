@@ -210,12 +210,10 @@ class CFState:
             target_class = target_to_reload.__class__.__name__
 
             # Reload the module
-            reloaded_module = importlib.reload(
-                sys.modules[target_to_reload.__module__])
+            reloaded_module = importlib.reload(sys.modules[target_to_reload.__module__])
 
             # Reload the target
-            reloaded_target = reloaded_module.__dict__.get(
-                target_class)()
+            reloaded_target = reloaded_module.__dict__.get(target_class)()
 
             # Delete the old class
             del self.targets[target_name]
@@ -229,9 +227,13 @@ class CFState:
             # Set it as the active target
             self.set_active_target(target_to_load)
 
+            # Set attacks and active_attack
+            reloaded_target.attacks = attacks
+            reloaded_target.active_attack = active_attack
+
             # Replace the history
-            self.active_target.attacks = attacks
-            self.active_target.active_attack = active_attack
+            self.active_target.attacks = reloaded_target.attacks
+            self.active_target.active_attack = reloaded_target.active_attack
 
     def list_targets(self) -> list:
         """Get a list of targets
