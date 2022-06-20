@@ -30,7 +30,7 @@ class TestCFState:
     @pytest.fixture(scope="function")
     def test_target(self):
         test_target = TestTarget()
-        yield test_target
+        return test_target
 
     def test_singleton_obj(self, cfstate_state):
         a = cfstate_state
