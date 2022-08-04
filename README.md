@@ -56,6 +56,7 @@ cd counterfit
 conda create --yes -n counterfit python=3.8.8
 conda activate counterfit
 pip install -r requirements.txt
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 ```
 4. Launch Counterfit.
 ```
