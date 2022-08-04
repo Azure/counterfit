@@ -1,4 +1,4 @@
-# from https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+# adapted from https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 
 import torch
 import torch.nn as nn
