@@ -25,5 +25,5 @@
 4. `run`
 5. `save -r` to save results
 6. `save -p` to save parameters
-7. To generate gifs and pngs of your attack, run `python -m counterfit.targets.cart_pole.generate_videos --init_attack_id <> --attack_id <>`. Use the ID of the attack you just ran, with the flag `init_attack_id` if you used `cart_pole_initstate`. Otherwise, use `attack_id` if you use `cart_pole`.
+7. To generate gifs and pngs of your attack, run `python -m counterfit.targets.cart_pole.generate_videos --init_attack_id <> --attack_id <>`. Use the ID of the attack you just ran, with the flag `init_attack_id` if you used `cart_pole_initstate`. Otherwise, use `attack_id` if you use `cart_pole`. To run this headless, run as sudo: `xvfb-run -a python -m counterfit.targets.cart_pole.generate_videos --init_attack_id <> attack_id <>`
 <br><br>
