@@ -48,7 +48,7 @@ python counterfit.py
 1. Install [Anaconda Python](https://www.anaconda.com/products/individual) and [git](https://git-scm.com/downloads).
 2. Clone this repository.
 ```
-git clone https://github.com/Azure/counterfit.git
+git clone -b attackingRL https://github.com/Azure/counterfit.git
 ```
 3. Open an Anaconda shell and create a virtual environment and dependencies.
 ```
