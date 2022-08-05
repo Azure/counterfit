@@ -21,9 +21,10 @@
 ### To run the attacks:
 1. Load the ART attack framework `load art`
 2. Pick your target. To run the initial state perturbation attack, use the cart_pole_initstate target: `interact cart_pole_initstate`. To run the Corrupted Replay Attack (CRA), use the cart_pole target `interact cart_pole`.
-3. For a test run, you can adjust some settings to make it run more quickly: `set --max_eval 100 --init_eval 10 --init_size 10` 
-4. `run`
-5. `save -r` to save results
-6. `save -p` to save parameters
-7. To generate gifs and pngs of your attack, run `python -m counterfit.targets.cart_pole.generate_videos --init_attack_id <> --attack_id <>`. Use the ID of the attack you just ran, with the flag `init_attack_id` if you used `cart_pole_initstate`. Otherwise, use `attack_id` if you use `cart_pole`. To run this headless, run as sudo: `xvfb-run -a python -m counterfit.targets.cart_pole.generate_videos --init_attack_id <> attack_id <>`
+3. Select the attack: `use HopSkipJump`
+4. For a test run, you can adjust some settings to make it run more quickly: `set --max_eval 100 --init_eval 10 --init_size 10` 
+5. `run`
+6. `save -r` to save results
+7. `save -p` to save parameters
+8. To generate gifs and pngs of your attack, run `python -m counterfit.targets.cart_pole.generate_videos --init_attack_id <> --attack_id <>`. Use the ID of the attack you just ran, with the flag `init_attack_id` if you used `cart_pole_initstate`. Otherwise, use `attack_id` if you use `cart_pole`. To run this headless, run as sudo: `xvfb-run -a python -m counterfit.targets.cart_pole.generate_videos --init_attack_id <> attack_id <>`
 <br><br>
