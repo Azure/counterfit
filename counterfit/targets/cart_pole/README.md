@@ -1,6 +1,6 @@
 # Hands-on Hacking of Reinforcement Learning Systems
 
-## The instructions below should enable you to start attacking reinforcement learning systems using Counterfit. You will first need to install Counterfit using the [installation instructions](https://github.com/Azure/counterfit/blob/main/README.md). 
+## The instructions below should enable you to start attacking reinforcement learning systems using Counterfit. You will first need to install Counterfit using the [installation instructions](https://github.com/Azure/counterfit/blob/attackingRL/README.md). 
 
 ### OpenAI gym, which we are using for our reinforcement learning target, normally has some kind of visual pop-up window. This is fine for running locally, but if you are running this code on a server, you will want to run it headless.<br><br>
 
