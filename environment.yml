@@ -190,4 +190,5 @@ dependencies:
       - xxhash==3.0.0
       - yarl==1.8.1
       - zipp==3.8.1
+  - python=3.8.8
 prefix: /usr/share/miniconda/envs/counterfit
