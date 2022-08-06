@@ -5,6 +5,10 @@ on:
   push:
     branches: [attackingRL]
 
+  # Run once a week (see https://crontab.guru)
+  schedule:
+    - cron: "0 0 * * 0"
+
 env:
   PYTHON_VERSION: 3.8.8
   PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: python
@@ -37,10 +41,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Setup tmate session
-        if: ${{ failure() }}
-        uses: mxschmitt/action-tmate@v3
-
       - name: Test install
         shell: bash -l {0}
         run: |
@@ -49,15 +49,11 @@ jobs:
               echo "Install of counterfit failed!"
           fi
 
-      - name: Setup tmate session
-        if: ${{ failure() }}
-        uses: mxschmitt/action-tmate@v3
-
       - name: Report failure
         uses: nashmaniac/create-issue-action@v1.1
         # Only report failures of pushes (PRs have are visible through the Checks section)
         # to the default branch
-        if: failure() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: failure() && github.event_name == 'attackingRL' && github.ref == 'refs/heads/attackingRL'
         with:
           title: 🐛 Coverage report failed for ${{ github.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
