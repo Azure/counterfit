@@ -3,7 +3,7 @@ name: Tests
 on:
   pull_request:
   push:
-    branches: [test-action]
+    branches: [attackingRL]
 
 env:
   PYTHON_VERSION: 3.8.8
