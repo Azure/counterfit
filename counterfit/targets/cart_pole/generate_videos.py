@@ -29,7 +29,8 @@ def main(args):
         data = pickle.load(infile)
     frames = np.array(data).reshape(-1, 3, 40, 90)
     # simulation environment
-    
+    init_state_path = os.path.join(path, "cartpole_samples_10000_100_init_state.gz")
+    init_state = pickle.load(gzip.open(init_state_path, 'rb'))
     if args["attack_id"] is not None:    
         attack_id = args['attack_id']
         writeVideo(os.path.join(path, 'results', attack_id, 'original_%s.gif' % attack_id), frames)
@@ -57,18 +58,18 @@ def main(args):
         
         init_attack_id = args['init_attack_id']
         writeVideo(os.path.join(path, 'results', init_attack_id, 'original_%s.gif' % init_attack_id), frames)
-        init_state_path = os.path.join(path, "cartpole_samples_10000_100_init_state.gz")
-        init_state = pickle.load(gzip.open(init_state_path, 'rb'))
+        
         init_attack_path = os.path.join(path, "results", init_attack_id)
         results['cart_pole_init_state'] = os.path.join(init_attack_path, "run_summary.json")
         with open(results['cart_pole_init_state'], 'r') as infile:
             tweaked_init_state = np.array(json.load(infile)['results'][0], dtype=np.float32)
-
         dcpw = DeepCPWrapper()
         #Create gif of original and perturbed initial states
         init_states = []
         frames_init_state_original, _, _ = dcpw.play(max_steps=1, init_state=init_state, play_to_end=True)
         frames_init_state_tweaked, _, _ = dcpw.play(max_steps=1, init_state=tweaked_init_state, play_to_end=True)
+        print(init_state)
+        print(tweaked_init_state)
         init_states.append(frames_init_state_original[0])
         init_states.append(frames_init_state_tweaked[0])
         init_states = np.array(init_states, dtype=np.float32).squeeze()
