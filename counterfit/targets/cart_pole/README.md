@@ -1,8 +1,16 @@
 # Hands-on Hacking of Reinforcement Learning Systems
 
-## The instructions below should enable you to start attacking reinforcement learning systems using Counterfit. You will first need to install Counterfit using the [installation instructions](https://github.com/Azure/counterfit/blob/attackingRL/README.md). 
+## The instructions below should enable you to start attacking reinforcement learning systems using Counterfit. These instructions work on Linux.
 
 ### OpenAI gym, which we are using for our reinforcement learning target, normally has some kind of visual pop-up window. This is fine for running locally, but if you are running this code on a server, you will want to run it headless.<br><br>
+
+### To install counterfit:
+1. Install Anaconda.
+2. Clone this repository: `git clone -b attackingRL --single-branch https://github.com/Azure/counterfit.git`
+3. cd counterfit
+4. conda create --yes -n counterfit python=3.8.8
+5. conda activate counterfit
+6. pip install -r requirements.txt
 
 ### To start counterfit normally:
 1. `cd counterfit`
