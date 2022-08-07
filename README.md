@@ -1,6 +1,6 @@
 # Counterfit
 
-[![Tests](https://github.com/microsoft/counterfit/actions/workflows/tests.yaml/badge.svg)](https://github.com/microsoft/counterfit/actions/workflows/tests.yaml)
+[![Tests](https://github.com/Azure/counterfit/actions/workflows/tests.yaml/badge.svg?branch=attackingRL)](https://github.com/Azure/counterfit/actions/workflows/tests.yaml)
 
 [About](#About) | [Getting Started](#Getting-Started) | [Acknowledgments](#Acknowledgments) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
 
