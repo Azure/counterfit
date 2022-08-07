@@ -20,6 +20,7 @@ torchfile==0.1.0 # to run fga_jia_2019 attack
 tensorflow-text==2.6.0 # dependency on textattack
 bs4==0.0.1
 traitlets==5.0.5  # required for Windows
+pyglet==1.5.26
 pytorch_lightning==1.5.9
 h5py==3.1.0
 lightgbm==3.3.1

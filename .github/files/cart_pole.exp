@@ -1,0 +1,26 @@
+- name: Setup tmate session
+      if: ${{ failure() }}
+      uses: mxschmitt/action-tmate@v3#!/usr/bin/expect -f
+#
+# Test to run the cart_pole attack.
+#
+# Usage:
+# conda activate counterfit
+# ./cart_pole.exp "$(which python)" 120
+
+# Get python path from cli input
+set python [lindex $argv 0]
+
+# Get seconds from cli input
+set timeout [lindex $argv 1]
+
+spawn $python counterfit.py
+
+expect "counterfit>"
+send "load art\r"
+send "interact cart_pole_initstate\r"
+send "use HopSkipJump\r"
+send "set --max_eval 100 --init_eval 10 --init_size 10\r"
+send "run\r"
+
+expect eof;
