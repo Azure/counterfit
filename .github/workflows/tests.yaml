@@ -16,7 +16,10 @@ env:
 jobs:
   tests:
     name: Run tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
       - name: Set up git repository
         uses: actions/checkout@v2
@@ -25,8 +28,29 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install -y python3-opengl xvfb
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            sudo apt update
+            sudo apt install -y python3-opengl xvfb
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            brew install --cask anaconda
+            export PATH="/usr/local/anaconda3/bin:$PATH"
+            echo 'export PATH="/usr/local/anaconda3/bin:$PATH"' >> "${HOME}/.zshrc"
+            source "${HOME}/.zshrc"
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
+
+      - name: Populate environment.yml
+        run: |
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            cp .github/files/environment-Linux.yml ./environment.yml
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            cp .github/files/environment-Darwin.yml ./environment.yml
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
 
       - name: Setup Anaconda
         uses: conda-incubator/setup-miniconda@v2
@@ -41,13 +65,21 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+
       - name: Test install
         shell: bash -l {0}
         run: |
-          echo 'exit counterfit' | xvfb-run -a python counterfit.py
+          echo 'exit counterfit' | python counterfit.py
           if [[ $? != 0 ]]; then
               echo "Install of counterfit failed!"
           fi
+
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
 
       - name: Report failure
         uses: nashmaniac/create-issue-action@v1.1
