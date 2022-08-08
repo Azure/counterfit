@@ -1,6 +1,7 @@
 # Counterfit
 
 [![Tests](https://github.com/Azure/counterfit/actions/workflows/tests.yaml/badge.svg?branch=attackingRL)](https://github.com/Azure/counterfit/actions/workflows/tests.yaml)
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/Azure/counterfit/blob/main/LICENSE)
 
 [About](#About) | [Getting Started](#Getting-Started) | [Acknowledgments](#Acknowledgments) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
 
