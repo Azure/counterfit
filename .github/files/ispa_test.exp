@@ -1,20 +1,22 @@
-- name: Setup tmate session
-      if: ${{ failure() }}
-      uses: mxschmitt/action-tmate@v3#!/usr/bin/expect -f
 #
-# Test to run the cart_pole attack.
+# Test to run the Initial State Perturbation Attack.
 #
 # Usage:
+#
 # conda activate counterfit
-# ./cart_pole.exp "$(which python)" 120
+# ./ispa_test.exp "$(uname)" 120
 
-# Get python path from cli input
-set python [lindex $argv 0]
+# Get os from cli input
+set os [lindex $argv 0]
 
 # Get seconds from cli input
 set timeout [lindex $argv 1]
 
-spawn $python counterfit.py
+if { $os == "Linux" } {
+    spawn xvfb-run -a python counterfit.py
+  } else {
+    spawn python counterfit.py
+  }
 
 expect "counterfit>"
 send "load art\r"

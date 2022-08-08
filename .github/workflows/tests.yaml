@@ -32,17 +32,15 @@ jobs:
           if [ "${RUNNER_OS}" == "Linux" ]; then
             sudo apt update
             sudo apt install -y expect \
-            python3-opengl \
-            xvfb
+              python3-opengl \
+              xvfb
             echo 'export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python' >> "${HOME}/.bashrc"
-            source "${HOME}/.bashrc"
           elif [ "${RUNNER_OS}" == "macOS" ]; then
             brew install expect
             brew install --cask anaconda
             export PATH="/usr/local/anaconda3/bin:$PATH"
             echo 'export PATH="/usr/local/anaconda3/bin:$PATH"' >> "${HOME}/.zshrc"
             echo 'export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python' >> "${HOME}/.zshrc"
-            source "${HOME}/.zshrc"
           else
             echo "${RUNNER_OS} not supported"
             exit 1
@@ -58,7 +56,7 @@ jobs:
             echo "${RUNNER_OS} not supported"
             exit 1
           fi
-          cp .github/files/cart_pole.exp ./cart_pole.exp
+          cp .github/files/*.exp .
 
       - name: Setup Anaconda
         uses: conda-incubator/setup-miniconda@v2
@@ -68,27 +66,67 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           environment-file: environment.yml
 
+      - name: Setup conda
+        run: |
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            echo 'conda activate "counterfit"' >> "${HOME}/.profile"
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            echo 'conda activate "counterfit"' >> "${HOME}/.zshrc"
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
+
       - name: Setup test environment
         shell: bash -l {0}
         run: |
           pip install -r requirements.txt
           echo "PYTHON_PATH=$(which python)" >> $GITHUB_ENV
 
-      - name: Test install
+      - name: Test counterfit install
         shell: bash -l {0}
         run: |
-          echo 'exit counterfit' | python counterfit.py
-          if [[ $? != 0 ]]; then
-              echo "Install of counterfit failed!"
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            source "${HOME}/.profile"
+            conda activate counterfit
+            expect -d ./install_test.exp Linux ${{ env.SECONDS }}
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            conda activate counterfit
+            expect -d ./install_test.exp Darwin ${{ env.SECONDS }}
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
           fi
 
-      - name: Test cart_pole attack for n minutes
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: expect -d ./cart_pole.exp ${{ env.PYTHON_PATH }} ${{ env.SECONDS }}
+      - name: Run Initial State Perturbation Attack test for n minutes
+        shell: bash -l {0}
+        run: |
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            source "${HOME}/.profile"
+            conda activate counterfit
+            expect -d ./ispa_test.exp Linux ${{ env.SECONDS }}
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            conda activate counterfit
+            expect -d ./ispa_test.exp Darwin ${{ env.SECONDS }}
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      - name: Run Corrupted Replay Attack (CRA) test for n minutes
+        shell: bash -l {0}
+        run: |
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            source "${HOME}/.profile"
+            conda activate counterfit
+            expect -d ./cra_test.exp Linux ${{ env.SECONDS }}
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            conda activate counterfit
+            expect -d ./cra_test.exp Darwin ${{ env.SECONDS }}
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
 
       - name: Report failure
         uses: nashmaniac/create-issue-action@v1.1
