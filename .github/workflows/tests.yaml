@@ -3,7 +3,7 @@ name: Tests
 on:
   pull_request:
   push:
-    branches: [attackingRL]
+    branches: [main]
 
   # Run once a week (see https://crontab.guru)
   schedule:
@@ -25,7 +25,7 @@ jobs:
       - name: Set up git repository
         uses: actions/checkout@v2
         with:
-          ref: attackingRL
+          ref: main
 
       - name: Install dependencies
         run: |
@@ -132,7 +132,7 @@ jobs:
         uses: nashmaniac/create-issue-action@v1.1
         # Only report failures of pushes (PRs have are visible through the Checks section)
         # to the default branch
-        if: failure() && github.event_name == 'attackingRL' && github.ref == 'refs/heads/attackingRL'
+        if: failure() && github.event_name == 'main' && github.ref == 'refs/heads/main'
         with:
           title: 🐛 Coverage report failed for ${{ github.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}

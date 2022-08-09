@@ -6,7 +6,7 @@
 
 ### To install counterfit:
 1. Install Anaconda.
-2. Clone this repository: `git clone -b attackingRL --single-branch https://github.com/Azure/counterfit.git`
+2. Clone this repository: `git clone https://github.com/Azure/counterfit.git`
 3. `cd counterfit`
 4. `conda create --yes -n counterfit python=3.8.8`
 5. `conda activate counterfit`

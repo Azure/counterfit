@@ -1,6 +1,6 @@
 # Counterfit
 
-[![Tests](https://github.com/Azure/counterfit/actions/workflows/tests.yaml/badge.svg?branch=attackingRL)](https://github.com/Azure/counterfit/actions/workflows/tests.yaml)
+[![Tests](https://github.com/Azure/counterfit/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/Azure/counterfit/actions/workflows/tests.yaml)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/Azure/counterfit/blob/main/LICENSE)
 
 [About](#About) | [Getting Started](#Getting-Started) | [Acknowledgments](#Acknowledgments) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
@@ -62,7 +62,7 @@ python counterfit.py
 2. Clone this repository.
 
 ```
-git clone -b attackingRL --single-branch https://github.com/Azure/counterfit.git
+git clone https://github.com/Azure/counterfit.git
 ```
 
 3. Open an Anaconda shell and create a virtual environment and dependencies.
@@ -113,7 +113,7 @@ For comments or questions about how to leverage Counterfit, please contact <coun
 
 # Version 1.0
 
-First and foremose, the ATML team would like the thank everyone for their support over the last few months. Counterfit recieved a very warm welcome from the community. What started as some simple red team tooling has become a place for collaboration, experiementatation, and of course security assessments. While verson 0.1 was useful, unless a user was familiar with the code, it was admitedly difficult to use beyond it's basic functionality. Users of Counterfit should know that their frustrations with the tool were also our frustrations. While our internal version may have different targets, custom algos, reporting, the public version of Counterfit is ultimately the base of our internal version. For those unfamiliar with infosec, this is a common practice that creates a shared experience. These shared experiences will allow us to communicate and come to a common understanding of risk in the ML space.
+First and foremost, the ATML team would like the thank everyone for their support over the last few months. Counterfit recieved a very warm welcome from the community. What started as some simple red team tooling has become a place for collaboration, experiementatation, and of course security assessments. While verson 0.1 was useful, unless a user was familiar with the code, it was admitedly difficult to use beyond it's basic functionality. Users of Counterfit should know that their frustrations with the tool were also our frustrations. While our internal version may have different targets, custom algos, reporting, the public version of Counterfit is ultimately the base of our internal version. For those unfamiliar with infosec, this is a common practice that creates a shared experience. These shared experiences will allow us to communicate and come to a common understanding of risk in the ML space.
 
 Let's checkout the new digs. We will cover the changes at a high-level and get into details later,
 
