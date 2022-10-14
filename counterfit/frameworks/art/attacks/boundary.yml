@@ -1,0 +1,88 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.boundary.BoundaryAttack
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of the boundary attack from Brendel et al. (2018).\
+  \ This is a powerful black-box attack that\n    only requires final class prediction.\n\
+  \n    | Paper link: https://arxiv.org/abs/1712.04248\n    "
+attack_name: boundary
+attack_parameters:
+  batch_size:
+    default: 64
+    docs: The size of the batch used by the estimator during inference.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  delta:
+    default: 0.01
+    docs: Initial step size for the orthogonal step.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  epsilon:
+    default: 0.01
+    docs: Initial step size for the step towards the target.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  init_size:
+    default: 100
+    docs: Maximum number of trials for initial generation of adversarial examples.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  max_iter:
+    default: 5000
+    docs: Maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  num_trial:
+    default: 25
+    docs: Maximum number of trials per iteration.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  sample_size:
+    default: 20
+    docs: Number of samples per trial.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  step_adapt:
+    default: 0.667
+    docs: Factor by which the step sizes are multiplied or divided, must be in the
+      range (0, 1).
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  targeted:
+    default: null
+    docs: Should the attack target one specific class.
+    optimize: {}
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: closed-box

@@ -1,0 +1,11 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.seq2sick_cheng_2018_blackbox.Seq2SickCheng2018BlackBox
+attack_data_tags:
+- text
+attack_docs: "Cheng, Minhao, et al.\n\n    Seq2Sick: Evaluating the Robustness of\
+  \ Sequence-to-Sequence Models with\n    Adversarial Examples\n\n    https://arxiv.org/abs/1803.01128\n\
+  \n    This is a greedy re-implementation of the seq2sick attack method. It does\n\
+  \    not use gradient descent.\n    "
+attack_name: seq2sick_cheng_2018_blackbox
+attack_parameters: {}
+attack_type: blackbox

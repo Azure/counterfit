@@ -1,0 +1,100 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.projected_gradient_descent.projected_gradient_descent_numpy.ProjectedGradientDescentCommon
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Common class for different variations of implementation of the\
+  \ Projected Gradient Descent attack. The attack is an\n    iterative method in which,\
+  \ after each iteration, the perturbation is projected on an lp-ball of specified\
+  \ radius (in\n    addition to clipping the values of the adversarial sample so that\
+  \ it lies in the permitted data range). This is the\n    attack proposed by Madry\
+  \ et al. for adversarial training.\n\n    | Paper link: https://arxiv.org/abs/1706.06083\n\
+  \    "
+attack_name: projected_gradient_descent_numpy
+attack_parameters:
+  batch_size:
+    default: 32
+    docs: Size of the batch on which adversarial samples are generated.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  eps:
+    default: 0.3
+    docs: Maximum perturbation that the attacker can introduce.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  eps_step:
+    default: 0.1
+    docs: Attack step size (input variation) at each iteration.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_iter:
+    default: 100
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  minimal:
+    default: false
+    docs: Refer to attack file.
+    optimize:
+      bool:
+      - true
+      - false
+  norm:
+    default: .inf
+    docs: The norm of the adversarial perturbation supporting "inf", np.inf, 1 or
+      2.
+    optimize:
+      choice:
+      - inf
+  num_random_init:
+    default: 0
+    docs: Number of random initialisations within the epsilon ball. For num_random_init=0
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  random_eps:
+    default: false
+    docs: When True, epsilon is drawn randomly from truncated normal distribution.
+      The literature
+    optimize:
+      bool:
+      - true
+      - false
+  targeted:
+    default: null
+    docs: Indicates whether the attack is targeted (True) or untargeted (False).
+    optimize: {}
+  tensor_board:
+    default: false
+    docs: 'Activate summary writer for TensorBoard: Default is `False` and deactivated
+      summary writer.'
+    optimize:
+      bool:
+      - true
+      - false
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

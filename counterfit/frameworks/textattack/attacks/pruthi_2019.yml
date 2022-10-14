@@ -1,0 +1,15 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.pruthi_2019.Pruthi2019
+attack_data_tags:
+- text
+attack_docs: "An implementation of the attack used in \"Combating Adversarial\n  \
+  \  Misspellings with Robust Word Recognition\", Pruthi et al., 2019.\n\n    This\
+  \ attack focuses on a small number of character-level changes that simulate common\
+  \ typos. It combines:\n        - Swapping neighboring characters\n        - Deleting\
+  \ characters\n        - Inserting characters\n        - Swapping characters for\
+  \ adjacent keys on a QWERTY keyboard.\n\n    https://arxiv.org/abs/1905.11268\n\n\
+  \    :param model: Model to attack.\n    :param max_num_word_swaps: Maximum number\
+  \ of modifications to allow.\n    "
+attack_name: pruthi_2019
+attack_parameters: {}
+attack_type: blackbox

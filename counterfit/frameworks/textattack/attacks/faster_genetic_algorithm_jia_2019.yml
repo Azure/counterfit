@@ -1,0 +1,10 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.faster_genetic_algorithm_jia_2019.FasterGeneticAlgorithmJia2019
+attack_data_tags:
+- text
+attack_docs: "Certified Robustness to Adversarial Word Substitutions.\n\n    Robin\
+  \ Jia, Aditi Raghunathan, Kerem G\xF6ksel, Percy Liang (2019).\n\n    https://arxiv.org/pdf/1909.00986.pdf\n\
+  \    "
+attack_name: faster_genetic_algorithm_jia_2019
+attack_parameters: {}
+attack_type: blackbox

@@ -1,0 +1,19 @@
+attack_category: inference
+attack_class: art.attacks.inference.membership_inference.black_box_rule_based.MembershipInferenceBlackBoxRuleBased
+attack_data_tags: []
+attack_docs: "\n    Implementation of a simple, rule-based black-box membership inference\
+  \ attack.\n\n    This implementation uses the simple rule: if the model's prediction\
+  \ for a sample is correct, then it is a\n    member. Otherwise, it is not a member.\n\
+  \    "
+attack_name: black_box_rule_based
+attack_parameters:
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+attack_type: closed-box

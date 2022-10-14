@@ -1,0 +1,64 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.pixel_threshold.PixelAttack
+attack_data_tags:
+- image
+attack_docs: "\n    This attack was originally implemented by Vargas et al. (2019).\
+  \ It is generalisation of One Pixel Attack originally\n    implemented by Su et\
+  \ al. (2019).\n\n    | One Pixel Attack Paper link: https://arxiv.org/abs/1710.08864\n\
+  \    | Pixel Attack Paper link: https://arxiv.org/abs/1906.06026\n    "
+attack_name: pixel_threshold
+attack_parameters:
+  channels_first:
+    default: false
+    docs: Refer to attack file.
+    optimize:
+      bool:
+      - true
+      - false
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  es:
+    default: 1
+    docs: Indicates whether the attack uses CMAES (0) or DE (1) as Evolutionary Strategy.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  max_iter:
+    default: 100
+    docs: Sets the Maximum iterations to run the Evolutionary Strategies for optimisation.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  targeted:
+    default: false
+    docs: Indicates whether the attack is targeted (True) or untargeted (False).
+    optimize: {}
+  th:
+    default: null
+    docs: threshold value of the Pixel/ Threshold attack. th=None indicates finding
+      a minimum threshold.
+    optimize: {}
+  verbose:
+    default: false
+    docs: Indicates whether to print verbose messages of ES used.
+    optimize:
+      bool:
+      - true
+      - false
+  verbose_es:
+    default: false
+    docs: Refer to attack file.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: unknown

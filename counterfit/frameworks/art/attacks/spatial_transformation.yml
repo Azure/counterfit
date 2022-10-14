@@ -1,0 +1,66 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.spatial_transformation.SpatialTransformation
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of the spatial transformation attack using translation\
+  \ and rotation of inputs. The attack conducts\n    black-box queries to the target\
+  \ model in a grid search over possible translations and rotations to find optimal\n\
+  \    attack parameters.\n\n    | Paper link: https://arxiv.org/abs/1712.02779\n\
+  \    "
+attack_name: spatial_transformation
+attack_parameters:
+  channels_first:
+    default: false
+    docs: Refer to attack file.
+    optimize:
+      bool:
+      - true
+      - false
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  max_rotation:
+    default: 0.0
+    docs: The maximum rotation in either direction in degrees. The value is expected
+      to be in the
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_translation:
+    default: 0.0
+    docs: The maximum translation in any direction as percentage of image size. The
+      value is
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  num_rotations:
+    default: 1
+    docs: The number of rotations to search on grid spacing.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  num_translations:
+    default: 1
+    docs: The number of translations to search on grid spacing per direction.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

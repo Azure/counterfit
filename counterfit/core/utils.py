@@ -4,11 +4,8 @@ import datetime
 import os
 import importlib
 import inspect
-
 import numpy as np
-
-from collections import defaultdict
-
+import pathlib
 
 def param_floats_to_ints(parameters: dict) -> dict:
     """Convert floats to integers
@@ -90,3 +87,6 @@ def get_predict_folder(target):
 
     results_folder = f"{module_path}/results/predict"
     return results_folder
+
+def install_path(path):
+    return pathlib.Path(os.path.join("counterfit", path)).resolve()

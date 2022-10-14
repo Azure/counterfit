@@ -1,0 +1,10 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.textbugger_li_2018.TextBuggerLi2018
+attack_data_tags:
+- text
+attack_docs: "Li, J., Ji, S., Du, T., Li, B., and Wang, T. (2018).\n\n    TextBugger:\
+  \ Generating Adversarial Text Against Real-world Applications.\n\n    ArXiv, abs/1812.05271.\n\
+  \    "
+attack_name: textbugger_li_2018
+attack_parameters: {}
+attack_type: blackbox

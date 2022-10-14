@@ -1,0 +1,55 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.deepfool.DeepFool
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of the attack from Moosavi-Dezfooli et al. (2015).\n\
+  \n    | Paper link: https://arxiv.org/abs/1511.04599\n    "
+attack_name: deepfool
+attack_parameters:
+  batch_size:
+    default: 1
+    docs: Batch size
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  epsilon:
+    default: 1.0e-06
+    docs: Overshoot parameter.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_iter:
+    default: 100
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  nb_grads:
+    default: 10
+    docs: The number of class gradients (top nb_grads w.r.t. prediction) to compute.
+      This way only the
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

@@ -1,0 +1,30 @@
+attack_category: inference
+attack_class: art.attacks.inference.attribute_inference.white_box_decision_tree.AttributeInferenceWhiteBoxDecisionTree
+attack_data_tags: []
+attack_docs: "\n    A variation of the method proposed by of Fredrikson et al. in:\n\
+  \    https://dl.acm.org/doi/10.1145/2810103.2813677\n\n    Assumes the availability\
+  \ of the attacked model's predictions for the samples under attack, in addition\
+  \ to access to\n    the model itself and the rest of the feature values. If this\
+  \ is not available, the true class label of the samples\n    may be used as a proxy.\
+  \ Also assumes that the attacked feature is discrete or categorical, with limited\
+  \ number of\n    possible values. For example: a boolean feature.\n\n    | Paper\
+  \ link: https://dl.acm.org/doi/10.1145/2810103.2813677\n    "
+attack_name: white_box_decision_tree
+attack_parameters:
+  attack_feature:
+    default: 0
+    docs: The index of the feature to be attacked.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+attack_type: unknown

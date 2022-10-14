@@ -1,0 +1,54 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.virtual_adversarial.VirtualAdversarialMethod
+attack_data_tags:
+- image
+attack_docs: "\n    This attack was originally proposed by Miyato et al. (2016) and\
+  \ was used for virtual adversarial training.\n\n    | Paper link: https://arxiv.org/abs/1507.00677\n\
+  \    "
+attack_name: virtual_adversarial
+attack_parameters:
+  batch_size:
+    default: 1
+    docs: Size of the batch on which adversarial samples are generated.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  eps:
+    default: 0.1
+    docs: Attack step (max input variation).
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  finite_diff:
+    default: 1.0e-06
+    docs: The finite difference parameter.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_iter:
+    default: 10
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

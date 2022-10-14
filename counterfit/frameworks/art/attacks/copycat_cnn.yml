@@ -1,0 +1,53 @@
+attack_category: inversion
+attack_class: art.attacks.extraction.copycat_cnn.CopycatCNN
+attack_data_tags:
+- image
+attack_docs: "\n    Implementation of the Copycat CNN attack from Rodrigues Correia-Silva\
+  \ et al. (2018).\n\n    | Paper link: https://arxiv.org/abs/1806.05476\n    "
+attack_name: copycat_cnn
+attack_parameters:
+  batch_size_fit:
+    default: 1
+    docs: Size of batches for fitting the thieved classifier.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  batch_size_query:
+    default: 1
+    docs: Size of batches for querying the victim classifier.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  nb_epochs:
+    default: 10
+    docs: Number of epochs to use for training.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  nb_stolen:
+    default: 1
+    docs: Number of queries submitted to the victim classifier to steal it.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  use_probability:
+    default: false
+    docs: Refer to attack file.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: closed-box

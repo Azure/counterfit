@@ -1,0 +1,71 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.hop_skip_jump.HopSkipJump
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of the HopSkipJump attack from Jianbo et al. (2019).\
+  \ This is a powerful black-box attack that\n    only requires final class prediction,\
+  \ and is an advanced version of the boundary attack.\n\n    | Paper link: https://arxiv.org/abs/1904.02144\n\
+  \    "
+attack_name: hop_skip_jump
+attack_parameters:
+  batch_size:
+    default: 64
+    docs: The size of the batch used by the estimator during inference.
+    optimize:
+      uniform:
+        max: 1000
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+  curr_iter:
+    default: 0
+    docs: Refer to attack file.
+  init_eval:
+    default: 100
+    docs: Initial number of evaluations for estimating gradient.
+    optimize:
+      uniform:
+        max: 1000
+        min: 1
+  init_size:
+    default: 100
+    docs: Maximum number of trials for initial generation of adversarial examples.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  max_eval:
+    default: 1000
+    docs: Maximum number of evaluations for estimating gradient.
+    optimize:
+      uniform:
+        max: 10000
+        min: 1
+  max_iter:
+    default: 50
+    docs: Maximum number of iterations.
+    optimize:
+      uniform:
+        max: 1000
+        min: 1
+  norm:
+    default: 2
+    docs: 'Order of the norm. Possible values: "inf", np.inf or 2.'
+    optimize:
+      choice:
+        inf: "inf"
+  targeted:
+    default: false
+    docs: Should the attack target one specific class.
+    optimize: 
+      bool:
+        "true": true
+        "false": false
+  verbose:
+    default: true
+    docs: Show progress bars.
+attack_type: closed-box

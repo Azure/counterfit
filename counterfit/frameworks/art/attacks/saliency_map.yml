@@ -1,0 +1,48 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.saliency_map.SaliencyMapMethod
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of the Jacobian-based Saliency Map Attack (Papernot\
+  \ et al. 2016).\n\n    | Paper link: https://arxiv.org/abs/1511.07528\n    "
+attack_name: saliency_map
+attack_parameters:
+  batch_size:
+    default: 1
+    docs: Size of the batch on which adversarial samples are generated.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  gamma:
+    default: 1.0
+    docs: Maximum fraction of features being perturbed (between 0 and 1).
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  theta:
+    default: 0.1
+    docs: Amount of Perturbation introduced to each modified feature per step (can
+      be positive or negative).
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

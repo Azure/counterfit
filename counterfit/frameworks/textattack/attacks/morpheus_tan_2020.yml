@@ -1,0 +1,10 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.morpheus_tan_2020.MorpheusTan2020
+attack_data_tags:
+- text
+attack_docs: "Samson Tan, Shafiq Joty, Min-Yen Kan, Richard Socher.\n\n    It\u2019\
+  s Morphin\u2019 Time! Combating Linguistic Discrimination with Inflectional Perturbations\n\
+  \n    https://www.aclweb.org/anthology/2020.acl-main.263/\n    "
+attack_name: morpheus_tan_2020
+attack_parameters: {}
+attack_type: blackbox

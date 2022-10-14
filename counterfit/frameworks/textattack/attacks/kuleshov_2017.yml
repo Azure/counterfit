@@ -1,0 +1,9 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.kuleshov_2017.Kuleshov2017
+attack_data_tags:
+- text
+attack_docs: "Kuleshov, V. et al.\n\n    Generating Natural Language Adversarial Examples.\n\
+  \n    https://openreview.net/pdf?id=r1QZ3zbAZ.\n    "
+attack_name: kuleshov_2017
+attack_parameters: {}
+attack_type: blackbox

@@ -10,7 +10,7 @@ class CFPrint:
         Args:
             message (str): The message to print
         """
-        console.print(f"[cyan][-][/cyan] {message}")
+        console.print(f"[cyan][-] info: [/cyan] {message}")
 
     @staticmethod
     def success(message: str):
@@ -19,7 +19,7 @@ class CFPrint:
         Args:
             message (str): The message to print
         """
-        console.print(f"[green][+][/green] {message}")
+        console.print(f"[green][+] success: [/green] {message}")
 
     @staticmethod
     def warn(message):
@@ -28,7 +28,7 @@ class CFPrint:
         Args:
             message (str): The message to print
         """
-        console.print(f"[yellow][*][/yellow] {message}")
+        console.print(f"[yellow][*] warning: [/yellow] {message}")
 
     @staticmethod
     def failed(message):
@@ -37,7 +37,7 @@ class CFPrint:
         Args:
             message (str): The message to print
         """
-        console.print(f"[red][!][/red] {message}")
+        console.print(f"[red][!] failed: [/red] {message}")
 
     @staticmethod
     def output(message):

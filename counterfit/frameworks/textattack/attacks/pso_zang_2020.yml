@@ -1,0 +1,18 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.pso_zang_2020.PSOZang2020
+attack_data_tags:
+- text
+attack_docs: "Zang, Y., Yang, C., Qi, F., Liu, Z., Zhang, M., Liu, Q., & Sun, M.\n\
+  \    (2019).\n\n    Word-level Textual Adversarial Attacking as Combinatorial Optimization.\n\
+  \n    https://www.aclweb.org/anthology/2020.acl-main.540.pdf\n\n    Methodology\
+  \ description quoted from the paper:\n\n    \"We propose a novel word substitution-based\
+  \ textual attack model, which reforms\n    both the aforementioned two steps. In\
+  \ the first step, we adopt a sememe-based word\n    substitution strategy, which\
+  \ can generate more candidate adversarial examples with\n    better semantic preservation.\
+  \ In the second step, we utilize particle swarm optimization\n    (Eberhart and\
+  \ Kennedy, 1995) as the adversarial example searching algorithm.\"\n\n    And \"\
+  Following the settings in Alzantot et al. (2018), we set the max iteration time\
+  \ G to 20.\"\n    "
+attack_name: pso_zang_2020
+attack_parameters: {}
+attack_type: blackbox

@@ -1,3 +1,7 @@
+# Counterfit
+results
+prof
+
 # Byte-compiled / optimized / DLL files
 *__pycache__/
 *.py[cod]
@@ -110,8 +114,15 @@ venv.bak/
 # custom
 .vscode
 counterfit/targets/*/results
+/demo
 
 # docs
 counterfit/docs/source/_autosummary
 counterfit/docs/build/doctrees/_autosummary
 docs/build/doctrees
+
+# build folder
+build
+
+# dev env
+cf-venv
