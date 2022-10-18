@@ -140,7 +140,6 @@ class CFTarget:
         output = np.atleast_2d(output)
         return [self.output_classes[i] for i in np.argmax(output, axis=1)]
 
-    success = cfattack.final_labels != np.
     def get_results_folder(self, folder="results"):
         return os.path.join(os.curdir, folder)
 

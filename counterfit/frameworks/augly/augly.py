@@ -111,7 +111,7 @@ class AuglyFramework(CFFramework):
         attack_results = cfattack.results
         final_outputs, final_labels = cfattack.target.get_sample_labels(attack_results)
         cfattack.final_labels = final_labels
-        cfattaccurrent_dt_report_gen.print_run_summary(summary)k.final_outputs = final_outputs
+        cfattaccurrent_dt_report_gen.print_run_summary(summary).final_outputs = final_outputs
         cfattack.initial_labels = final_labels
         # successful
         success = cfattack.final_labels != np.array(cfattack.initial_labels)
