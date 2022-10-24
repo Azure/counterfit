@@ -45,16 +45,15 @@ class ImageReportGenerator(CFReportGenerator):
         elif np.max(array) <= 1.0:
             array = ImageDataType.convert_to_uint8(array, 255.)
         else:
-            raise ValueError(
-                "Cannot determine image type from clip_values.  Expecting: (0,1) or (0,255)")
+            raise ValueError("Cannot determine image type from clip_values.  Expecting: (0,1) or (0,255)")
         if len(target.input_shape) == 3:  # color channel?
             if not ImageDataType.is_channels_last(target.input_shape):
                 # If channels are last. Convert to channels first
-                array = array.transpose(1, 2, 0)
+                # Squeezing the numpy array ensures that the dimensions for the array are correct.
+                # E.g., an array of shape (1, 1, 28, 28) turns to shape (1, 28, 28)
+                array = array.squeeze(1).transpose(1, 2, 0)
             # save mode is "L" or "RGB"
-            save_mode = ImageDataType.get_channels(
-                target.input_shape)
-
+            save_mode = ImageDataType.get_channels(target.input_shape)
             im = Image.fromarray(array.squeeze(), mode=f"{save_mode}")
 
         elif len(target.input_shape) == 2:  # grayscale

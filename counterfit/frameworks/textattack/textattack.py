@@ -39,8 +39,8 @@ class TextAttackFramework(CFFramework):
             def __call__(self, x):
                 return self.model(x)
 
-        new_attack = attack.build(
-            TextAttackWrapperObject(target.predict_wrapper))
+        text_attack_obj = TextAttackWrapperObject(target.predict_wrapper)
+        new_attack = attack.build(text_attack_obj)
         return new_attack
 
     def run(self, cfattack):

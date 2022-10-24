@@ -65,7 +65,7 @@ def predict_cmd(args: argparse.Namespace) -> None:
         samples = target.get_samples(sample_index)
         prefix = 'initial'
     elif args.attack_result:
-        active_attack = target.active_attack
+        active_attack = CFState.state().get_active_attack()
         if not active_attack:
             CFPrint.warn("No active attack. Try 'use' <attack>")
             return
@@ -73,7 +73,7 @@ def predict_cmd(args: argparse.Namespace) -> None:
         elif active_attack.attack_status == "complete":
             heading1 = "Attack ID"
             samples = active_attack.results
-            sample_index = [target.active_attack.attack_id] * len(samples)
+            sample_index = [active_attack.attack_id] * len(samples)
             prefix = 'adversarial'
         else:
             CFPrint.warn(
@@ -116,9 +116,12 @@ def predict_cmd(args: argparse.Namespace) -> None:
 
 
 predict_args = cmd2.Cmd2ArgumentParser()
-predict_args.add_argument("-i", "--index", type=str, default=None,
-                    help="Send the selected samples to the target model. Python list and range accepted.  Examples: 0, [0,1,2,3], range(5)")
-predict_args.add_argument("-r", "--random", action="store_true",
-                    help="Send a randomly selected sample to the target model")
-predict_args.add_argument("-a", "--attack_result", action="store_true",
-                    help="Send the result of the active_attack to the target model")
+predict_args.add_argument(
+    "-i", "--index", type=str, default=None,
+    help="Send the selected samples to the target model. Python list and range accepted.  Examples: 0, [0,1,2,3], range(5)")
+predict_args.add_argument(
+    "-r", "--random", action="store_true",
+    help="Send a randomly selected sample to the target model")
+predict_args.add_argument(
+    "-a", "--attack_result", action="store_true",
+    help="Send the result of the active_attack to the target model")

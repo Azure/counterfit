@@ -10,7 +10,7 @@ flask==2.0.0
 optuna
 numpy>=1.18.5
 requests==2.24.0
-scipy==1.4.1
+scipy==1.9.2
 h5py==3.1.0
 lightgbm==3.3.1
 pillow
@@ -25,7 +25,6 @@ pytorch_lightning==1.6.0
 h5py==3.1.0
 lightgbm==3.3.1
 hyperopt==0.2.3
-scipy==1.4.1
 
 
 # testing framework

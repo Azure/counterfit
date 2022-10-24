@@ -160,14 +160,13 @@ class ArtFramework(CFFramework):
         # Run the attack. Each attack type has it's own execution function signature.
         if "infer" in attack_attributes:
             results = cfattack.attack.infer(cfattack.samples, np.array(cfattack.target.output_classes).astype(np.int64))
-
         elif "reconstruct" in attack_attributes:
             results = cfattack.attack.reconstruct(
                 np.array(cfattack.samples, dtype=np.float32))
 
         elif "generate" in attack_attributes:
-            results = cfattack.attack.generate(
-                x=np.array(cfattack.samples, dtype=np.float32))
+            original_inputs = np.array(cfattack.samples, dtype=np.float32)
+            results = cfattack.attack.generate(x=original_inputs)
 
         elif "poison" in attack_attributes:
             results = cfattack.attack.poison(
@@ -263,22 +262,15 @@ class ArtFramework(CFFramework):
 
     def evasion_success(self, cfattack: CFAttack):
         if cfattack.options.__dict__.get("targeted") == True:
-            labels = cfattack.options.target_labels
+            labels = cfattack.options.attack_parameters['target_labels']
             targeted = True
         else:
             labels = cfattack.initial_labels
             targeted = False
 
-        success = compute_success_array(
-            cfattack.attack._estimator,
-            cfattack.samples,
-            labels,
-            cfattack.results,
-            targeted
-        )
+        success = compute_success_array(cfattack.attack._estimator, cfattack.samples, labels, cfattack.results, targeted)
 
-        final_outputs, final_labels = cfattack.target.get_sample_labels(
-            cfattack.results)
+        final_outputs, final_labels = cfattack.target.get_sample_labels(cfattack.results)
         cfattack.final_labels = final_labels
         cfattack.final_outputs = final_outputs
         return success

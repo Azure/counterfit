@@ -12,11 +12,26 @@ Counterfit is a generic automation layer for assessing the security of machine l
 - On Windows the [Visual C++ 2019 redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads) is required
 
 ## Quick Start
-1. Create and activate a virtual environment, `python -m venv cf-venv`
-2. Install Counterfit: `git clone --depth 1 -b develop/1.1 https://github.com/Azure/counterfit.git`
-3. `cd counterfit`
-4. `pip install .[dev]` (for all frameworks)
-5. Go checkout the examples folder. 
+
+### Installation with Python virtual environment
+```bash
+sudo apt install python3.8 python3.8-venv
+python3 -m venv counterfit
+git clone --depth 1 -b develop/1.1 https://github.com/Azure/counterfit.git
+cd counterfit
+pip install .[dev]
+```
+
+### Installation with Conda
+
+```bash
+conda create --yes -n counterfir python=3.8.0
+conda activate counterfir
+git clone --depth 1 -b develop/1.1 https://github.com/Azure/counterfit.git
+cd counterfit
+conda install --file requirements.txt
+```
+
 
 Notes: 
 - Windows requires C++ build tools

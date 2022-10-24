@@ -20,21 +20,6 @@ def show_results():
     if cfattack.attack_status != 'complete':
         CFPrint.warn("No completed attacks.  Try 'run'.")
         return
-    results_table = Table(header_style="bold magenta")
-    results_table.add_column("Success")
-    # results_table.add_column("Accuracy")
-    results_table.add_column("Elapsed time")
-    results_table.add_column("Total Queries")
-    success = str(cfattack.success[0])
-    # accuracy = str(cfattack.results)
-    elapse_time = str(cfattack.elapsed_time)
-    num_queries = str(cfattack.logger.num_queries)
-    results_table.add_row(
-        success,
-        # accuracy,
-        elapse_time,
-        num_queries)
-    CFPrint.output(results_table)
 
     active_target = CFState.state().active_target
     active_target_type = active_target.get_data_type_obj()

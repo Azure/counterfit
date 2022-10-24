@@ -26,7 +26,7 @@ class Digits(CFTarget):
 
     def predict(self, x):
         # from IPython import embed; embed()
-        # x = np.array(x).astype(np.uint8).astype(np.float)  # quantize to valid range
+        x = np.array(x).astype(np.uint8).astype(np.float)  # quantize to valid range
         scores = self.model.predict_proba(x.reshape(x.shape[0], -1))
         # return a list of class probabilities; each row must be the same length as output_classes
-        return scores
+        return scores.tolist()

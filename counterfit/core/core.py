@@ -173,34 +173,29 @@ class Counterfit:
 
             msg = f"Failed to run {attack.attack_id} ({attack.name}): {error}"
             CFPrint.failed(msg)
-
-            results = None
-            return
+            return False
 
         # postprocessing steps for successful attacks
-        finally:
 
-            # Stop the timer
-            end_time = time.time()
+        # Set the elapsed time metric
+        attack.set_elapsed_time(start_time, time.time())
 
-            # Set the elapsed time metric
-            attack.set_elapsed_time(start_time, end_time)
+        # Set the results the attack returns
+        # Results are attack and framework specific.
+        attack.set_results(results)
 
-            # Set the results the attack returns
-            # Results are attack and framework specific. 
-            attack.set_results(results)
+        # Determine the success of the attack
+        success = attack.framework.check_success(attack)
 
-            # Determine the success of the attack
-            success = attack.framework.check_success(attack)
+        # Set the success value
+        attack.set_success(success)
 
-            # Set the success value
-            attack.set_success(success)
+        # Give the framework an opportunity to process the results, generate reports, etc
+        attack.framework.post_attack_processing(attack)
 
-            # Give the framework an opportunity to process the results, generate reports, etc
-            attack.framework.post_attack_processing(attack)
+        # Mark the attack as complete
+        attack.set_status("complete")
 
-            # Mark the attack as complete
-            attack.set_status("complete")
-
-            # Let the user know the attack has completed successfully.
-            CFPrint.success(f"Attack completed {attack.attack_id}")
+        # Let the user know the attack has completed successfully.
+        CFPrint.success(f"Attack completed {attack.attack_id}")
+        return True

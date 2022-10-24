@@ -1,4 +1,3 @@
-# state.py
 # This file keeps track of all load targets.
 from typing import List
 import importlib
