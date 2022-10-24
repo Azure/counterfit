@@ -28,7 +28,7 @@ class DigitKeras(CFTarget):
         (train_x, train_y), (test_x, test_y) = K.datasets.mnist.load_data()
 
         self.X = test_x.astype(np.float32) / 255.  # float type [0,1]
-        self.X = self.X.reshape(-1, 28, 28, 1)
+        self.X = self.X.reshape(1000, 10, 1, 784)
 
     def create_model(self):
         # 0. get started

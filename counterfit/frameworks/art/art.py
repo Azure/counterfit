@@ -159,9 +159,7 @@ class ArtFramework(CFFramework):
 
         # Run the attack. Each attack type has it's own execution function signature.
         if "infer" in attack_attributes:
-            x_init_average  = np.zeros((10, 1, 784)) + np.mean(cfattack.target.X, axis=0)
-            results = cfattack.attack.infer(x_init_average, np.array(cfattack.target.output_classes).astype(np.int64))
-            #results = cfattack.attack.infer(cfattack.samples, np.array(cfattack.target.output_classes).astype(np.int64))
+            results = cfattack.attack.infer(cfattack.samples, np.array(cfattack.target.output_classes).astype(np.int64))
 
         elif "reconstruct" in attack_attributes:
             results = cfattack.attack.reconstruct(
