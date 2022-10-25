@@ -114,7 +114,6 @@ venv.bak/
 # custom
 .vscode
 counterfit/targets/*/results
-/demo
 
 # docs
 counterfit/docs/source/_autosummary
