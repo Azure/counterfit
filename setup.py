@@ -23,7 +23,7 @@ extras["docs"] = [
 
 extras["augly"] = ["augly==0.1.10"]
 extras["textattack"] = ["textattack[tensorflow]"]
-extras["art"] = ["adversarial-robustness-toolbox==1.8"]
+extras["art"] = ["adversarial-robustness-toolbox==1.12.1"]
 extras["dev"] = (
     extras["docs"] + extras["augly"] + extras["textattack"] + extras["art"]
 )
