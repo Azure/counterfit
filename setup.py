@@ -60,6 +60,8 @@ setuptools.setup(
     python_requires=">=3.7",
     extras_require=extras,
     entry_points={
-        "console_scripts": ["counterfit=counterfit.terminal:main"],
+        "console_scripts": [
+            "counterfit=examples.terminal.terminal:main"
+        ],
     },
 )
