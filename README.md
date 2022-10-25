@@ -7,7 +7,7 @@ Counterfit is a generic automation layer for assessing the security of machine l
 
 ### Requirements
 - Ubuntu 18.04+
-- Python 3.7 or 3.8
+- Python 3.8
 - Windows is supported by Counterfit, but not necessarily officially supported by each individual framework. 
 - On Windows the [Visual C++ 2019 redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads) is required
 

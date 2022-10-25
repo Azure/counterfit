@@ -2,8 +2,8 @@ import setuptools
 import os
 import sys
 
-if sys.version_info[:2] < (3, 7):
-    raise RuntimeError("Python version must be >=3.7.")
+if sys.version_info[:2] < (3, 8):
+    raise RuntimeError("Python version must be >=3.8.")
 
 with open("./requirements.txt") as fd:
     required = fd.read().splitlines()
@@ -57,7 +57,7 @@ setuptools.setup(
         ]
     ),
     install_requires=required,
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     extras_require=extras,
     entry_points={
         "console_scripts": [

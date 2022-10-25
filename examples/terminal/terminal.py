@@ -12,8 +12,8 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
-if sys.version_info < (3, 7):
-    sys.exit("[!] Python 3.7+ is required")
+if sys.version_info < (3, 8):
+    sys.exit("[!] Python 3.8+ is required")
 
 
 def main():
