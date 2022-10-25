@@ -1,0 +1,28 @@
+#
+# Test the counterfit installation.
+#
+# Usage:
+#
+# conda activate counterfit
+# ./install_test.exp "$(uname)" 120
+
+# Get os from cli input
+set os [lindex $argv 0]
+
+# Get seconds from cli input
+set timeout [lindex $argv 1]
+
+# Get terminal.py path from cli input
+set termpy [lindex $argv 2]
+
+if { $os == "Linux" } {
+    spawn xvfb-run -a python $termpy
+  } else {
+    spawn python $termpy
+  }
+
+expect "counterfit>"
+send "exit counterfit\r"
+send "y\r"
+
+expect eof;
