@@ -40,7 +40,7 @@ setuptools.setup(
     classifiers=[
         "Development Status :: development",
         "Intended Audience :: security/ML/research",
-        "Programming Language :: Python :: 3.7+",
+        "Programming Language :: Python :: 3.8+",
         "Operating System :: OS Independent",
     ],
     package_data={
