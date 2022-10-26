@@ -7,5 +7,5 @@ from .core.options import CFOptions
 from .core.output import CFPrint
 from .core.targets import CFTarget
 
-__version__ = "1.2.0"
+__version__ = "1.1.0"
 name = "counterfit"
