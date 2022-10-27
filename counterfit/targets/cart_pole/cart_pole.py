@@ -25,7 +25,7 @@ class CartPole(CFTarget):
     num_episodes = 10_000
     num_frames = 100
     input_shape = (num_frames * 3 * 40 * 90, )
-    target_endpoint = f"cartpole_dqn_{num_episodes}.pt.gz"
+    endpoint = f"cartpole_dqn_{num_episodes}.pt.gz"
     data_path = f"cartpole_samples_{num_episodes}_{num_frames}.pkl.gz"
     # since the model is using difference of frames, 1 index is lost in the difference
     episode_len_to_success = num_frames - 1
@@ -39,7 +39,7 @@ class CartPole(CFTarget):
 
         If a model file is not available, the method will train one automatically.
         """
-        cart_pole_endpoint_file = self.fullpath(self.target_endpoint)
+        cart_pole_endpoint_file = self.fullpath(self.endpoint)
         caty_pole_data_file = self.fullpath(self.data_path)
         if not os.path.isfile(cart_pole_endpoint_file):
             # Train a new model when the model not found.
@@ -48,7 +48,7 @@ class CartPole(CFTarget):
             self.deep_cp_wrapper.train(self.num_episodes)
             CFPrint.success("Model trained")
             self.model = self.deep_cp_wrapper.policy_net
-            torch.save(self.model, gzip.open(self.fullpath(self.target_endpoint), 'w'))
+            torch.save(self.model, gzip.open(self.fullpath(self.endpoint), 'w'))
             CFPrint.success("Model saved")
             # sets self.X
             self._generate_new_memory()

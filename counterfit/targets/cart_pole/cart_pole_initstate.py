@@ -25,7 +25,7 @@ class CartPoleInitState(CFTarget):
     classifier = "blackbox"
     # how many episodes will the RL's policy model be trained on?
     num_episodes = 10_000
-    target_endpoint = f"cartpole_dqn_{num_episodes}.pt.gz"
+    endpoint = f"cartpole_dqn_{num_episodes}.pt.gz"
     data_path = f"cartpole_states_{num_episodes}.pkl.gz"
     input_shape = (4, )
     num_examples = 10
@@ -35,7 +35,7 @@ class CartPoleInitState(CFTarget):
     deep_cp_wrapper = None
     
     def load(self):
-        cart_pole_model_file = self.fullpath(self.target_endpoint)
+        cart_pole_model_file = self.fullpath(self.endpoint)
         cart_pole_data_file = self.fullpath(self.data_path)
         if not os.path.isfile(cart_pole_model_file):
             CFPrint.warn("[!] Model not found. Training new model...")
