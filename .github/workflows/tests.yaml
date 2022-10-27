@@ -51,7 +51,7 @@ jobs:
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/ispa_test.exp" ./ispa_test.exp
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/satellite_hsj_test.exp" ./satellite_hsj_test.exp
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/creditfraud_hsj_test.exp" ./creditfraud_hsj_test.exp
-          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/digits_hsj_text.exp" ./digits_hsj_text.exp
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/digits_hsj_test.exp" ./digits_hsj_test.exp
 
       - name: Setup Anaconda
         uses: conda-incubator/setup-miniconda@v2
@@ -172,7 +172,7 @@ jobs:
         run: |
           source "${HOME}/.profile"
           conda activate counterfit
-          expect -d ./digits_hsj_text.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
+          expect -d ./digits_hsj_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
 
       - name: Report failure
         uses: nashmaniac/create-issue-action@v1.1
