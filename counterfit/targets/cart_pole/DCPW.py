@@ -81,7 +81,8 @@ class DQN(nn.Module):
         x = F.relu(self.bn2(self.conv2(x)))
         x = F.relu(self.bn3(self.conv3(x)))
         return self.head(x.view(x.size(0), -1))
-            
+
+
 class DeepCPWrapper:
     def __init__(self, memory=None, policy_net=None):
         self.env = gym.make('CartPole-v0').unwrapped
@@ -263,7 +264,6 @@ class DeepCPWrapper:
         else:
             return final_done, t+1, init_state, self.env.state
 
-    
     def play(self, max_steps=100, init_state=None, play_to_end=False):
         memory = ReplayMemory(max_steps+1)
         # Initialize the environment and state
@@ -361,9 +361,11 @@ class DeepCPWrapper:
                    os.path.join(basedir, 
                                 f"cartpole_dqn_{num_episodes}.pt"))
 
+
 def main():
     dcpw = DeepCPWrapper()
     dcpw.train()
+
 
 if __name__ == "__main__":
     main()
