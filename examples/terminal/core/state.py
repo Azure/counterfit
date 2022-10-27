@@ -5,15 +5,17 @@ import sys
 
 from counterfit import CFAttack, CFPrint, CFTarget, Counterfit
 # from counterfit.core.frameworks import CFFramework
-from counterfit.targets import (CreditFraud, DigitKeras, Digits,
-                                MovieReviewsTarget, SatelliteImages)
+from counterfit.targets import (CreditFraud, DigitKeras, Digits, MovieReviewsTarget, SatelliteImages,
+                                CartPoleInitState, CartPole)
 
 targets = [
     CreditFraud,
     DigitKeras,
     Digits,
     MovieReviewsTarget,
-    SatelliteImages
+    SatelliteImages,
+    CartPole,
+    CartPoleInitState
 ]
 
 class CFState:
