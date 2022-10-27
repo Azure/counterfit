@@ -6,6 +6,7 @@ prof
 *__pycache__/
 *.py[cod]
 *$py.class
+*.amltmp
 
 # C extensions
 *.so

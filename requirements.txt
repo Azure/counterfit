@@ -3,6 +3,7 @@ onnxruntime==1.10.0
 
 # counterfit
 cmd2==2.2.0
+questionary==1.9.0
 python-Levenshtein==0.12.2
 rich>=10.10.0
 orjson==3.6.4
@@ -24,6 +25,7 @@ traitlets==5.3.0  # required for Windows
 pytorch_lightning==1.6.0
 h5py==3.1.0
 lightgbm==3.3.1
+augly==0.1.10
 hyperopt==0.2.3
 
 
