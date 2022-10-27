@@ -1,10 +1,10 @@
 #
-# Test to run the Corrupted Replay Attack (CRA).
+# Test to run the Initial State Perturbation Attack.
 #
 # Usage:
 #
 # conda activate counterfit
-# ./cra_test.exp "$(uname)" 120
+# ./ispa_test.exp "$(uname)" 120
 
 # Get os from cli input
 set os [lindex $argv 0]
@@ -22,9 +22,14 @@ if { $os == "Linux" } {
   }
 
 expect "counterfit>"
-send "set_target cart_pole\r"
+send "set_target digits_keras\r"
+expect "digits_keras>"
 send "set_attack hop_skip_jump\r"
-send "set_params --max_eval 100 --init_eval 10 --init_size 10\r"
+expect "success:"
 send "run\r"
-
+expect "success:"
+send "show results\r"
+expect "1/1"
+send "exit counterfit\r"
+send "y\r"
 expect eof;

@@ -22,9 +22,8 @@ if { $os == "Linux" } {
   }
 
 expect "counterfit>"
-send "load art\r"
-send "interact cart_pole_initstate\r"
-send "use HopSkipJump\r"
+send "set_target cart_pole_initstate\r"
+send "set_attack hop_skip_jump\r"
 send "set --max_eval 100 --init_eval 10 --init_size 10\r"
 send "run\r"
 

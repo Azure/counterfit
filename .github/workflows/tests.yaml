@@ -25,7 +25,7 @@ jobs:
       - name: Set up git repository
         uses: actions/checkout@v3.1.0
 
-      - name: Install dependencies
+      - name: Install OS dependencies
         run: |
           if [ "${RUNNER_OS}" == "Linux" ]; then
             sudo apt update
@@ -44,13 +44,14 @@ jobs:
             exit 1
           fi
 
-      - name: Populate expectance tests
+      - name: Populate acceptance tests
         run: |
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/install_test.exp" ./install_test.exp
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/cra_test.exp" ./cra_test.exp
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/ispa_test.exp" ./ispa_test.exp
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/satellite_hsj_test.exp" ./satellite_hsj_test.exp
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/creditfraud_hsj_test.exp" ./creditfraud_hsj_test.exp
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/digits_hsj_text.exp" ./digits_hsj_text.exp
 
       - name: Setup Anaconda
         uses: conda-incubator/setup-miniconda@v2
@@ -59,7 +60,7 @@ jobs:
           auto-update-conda: true
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Setup conda
+      - name: Setup Conda
         run: |
           if [ "${RUNNER_OS}" == "Linux" ]; then
             echo 'conda activate "counterfit"' >> "${HOME}/.profile"
@@ -91,7 +92,6 @@ jobs:
             echo "${RUNNER_OS} not supported"
             exit 1
           fi
-
       - name: Test counterfit install
         shell: bash -l {0}
         run: |
@@ -167,10 +167,16 @@ jobs:
             exit 1
           fi
 
+      - name: Test Hop Skip Jump Attack (HSJ) attack on Digits Keras
+        shell: bash -l {0}
+        run: |
+          source "${HOME}/.profile"
+          conda activate counterfit
+          expect -d ./digits_hsj_text.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
+
       - name: Report failure
         uses: nashmaniac/create-issue-action@v1.1
-        # Only report failures of pushes (PRs have are visible through the Checks section)
-        # to the default branch
+        # Only report failures of pushes (PRs have are visible through the Checks section) to the default branch
         if: failure() && github.event_name == 'main' && github.ref == 'refs/heads/main'
         with:
           title: 🐛 Coverage report failed for ${{ github.sha }}
