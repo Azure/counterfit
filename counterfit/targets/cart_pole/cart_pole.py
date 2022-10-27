@@ -24,7 +24,7 @@ class CartPole(CFTarget):
     # how many episodes will the RL's policy model be trained on?
     num_episodes = 10_000
     num_frames = 100
-    target_input_shape = (num_frames * 3 * 40 * 90, )
+    input_shape = (num_frames * 3 * 40 * 90, )
     target_endpoint = f"cartpole_dqn_{num_episodes}.pt.gz"
     data_path = f"cartpole_samples_{num_episodes}_{num_frames}.pkl.gz"
     # since the model is using difference of frames, 1 index is lost in the difference

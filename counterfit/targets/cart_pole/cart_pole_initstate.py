@@ -27,7 +27,7 @@ class CartPoleInitState(CFTarget):
     num_episodes = 10_000
     target_endpoint = f"cartpole_dqn_{num_episodes}.pt.gz"
     data_path = f"cartpole_states_{num_episodes}.pkl.gz"
-    target_input_shape = (4, )
+    input_shape = (4, )
     num_examples = 10
     episode_len_to_success = 100
     max_episode_len = 101
