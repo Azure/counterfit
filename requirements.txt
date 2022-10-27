@@ -1,5 +1,6 @@
 # targets
 onnxruntime==1.10.0
+gym==0.7.4                              # Required for cartpole target
 
 # counterfit
 cmd2==2.2.0
@@ -16,6 +17,7 @@ h5py==3.1.0
 lightgbm==3.3.1
 pillow
 pyyaml
+matplotlib==3.6.1
 
 # frameworks
 torchvision==0.11.1
