@@ -93,13 +93,26 @@ def get_predict_folder(target):
 
 
 def is_img_save_in_azure_storage():
-    return True if "CounterfitStorageAccountName" and "CounterfitStorageContainerName" in os.environ else False 
+    """Checks if Azure environment variables are set.
+
+    Returns:
+        bool: Returns True if Azure environment variables are set, otherwise False
+    """
+    return True if "AzureStorageAccountName" and "AzureStorageContainerName" in os.environ else False 
 
 def get_azure_storage_sas_uri(filename):
+    """Generate Azure Storage SAS URI based on Azure Storage Account, Azure Storage SAS token, and file path
+
+    Args:
+        filename (str): relative path of the file
+
+    Returns:
+        str uri: Azure Storage SAS URI
+    """
     if filename == "":
         raise ValueError("filename should not be empty.")
-    azure_storage_account_name = os.environ["CounterfitStorageAccountName"]
-    azure_storage_sas_token = os.environ["CounterfitStorageContainerAccessToken"]
+    azure_storage_account_name = os.environ["AzureStorageAccountName"]
+    azure_storage_sas_token = os.environ["AzureStorageContainerAccessToken"]
     azure_storage_sas_uri = f"https://{azure_storage_account_name}.blob.core.windows.net/{filename}?{azure_storage_sas_token}"
     return azure_storage_sas_uri
 

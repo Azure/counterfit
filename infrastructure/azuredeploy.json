@@ -19,7 +19,7 @@
       "defaultValue": {
         "signedServices": "b", // blob level access
         "signedPermission": "rw",
-        "signedExpiry": "[dateTimeAdd(utcNow('u'), 'P7D')]", //Expiry 7 days from utc now
+        "signedExpiry": "[dateTimeAdd(utcNow('u'), 'P1Y')]", //Expiry 1 year from utc now
         "signedResourceTypes": "co"
       }
     },
@@ -120,15 +120,15 @@
               },
               "environmentVariables": [
                 {
-                  "name": "CounterfitStorageAccountName",
+                  "name": "AzureStorageAccountName",
                   "value": "[parameters('baseName')]"
                 },
                 {
-                  "name": "CounterfitStorageContainerName",
+                  "name": "AzureStorageContainerName",
                   "value": "[parameters('storageContainerName')]"
                 },
                 {
-                  "name": "CounterfitStorageContainerAccessToken",
+                  "name": "AzureStorageContainerAccessToken",
                   "value": "[listAccountSas(parameters('baseName'), '2018-07-01', parameters('accountSasProperties')).accountSasToken]"
                 }
               ]
