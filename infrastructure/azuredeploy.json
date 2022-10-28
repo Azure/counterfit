@@ -2,6 +2,27 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "baseName": {
+      "type": "string",
+      "defaultValue": "[concat('counterfit', uniquestring(resourceGroup().id))]"
+    },
+    "storageContainerName": {
+      "type": "string",
+      "defaultValue": "counterfit"
+    },
+    "storageAccountSku": {
+      "type": "string",
+      "defaultValue": "Standard_GRS"
+    },
+    "accountSasProperties": {
+      "type": "object",
+      "defaultValue": {
+        "signedServices": "b", // blob level access
+        "signedPermission": "rw",
+        "signedExpiry": "[dateTimeAdd(utcNow('u'), 'P7D')]", //Expiry 7 days from utc now
+        "signedResourceTypes": "co"
+      }
+    },
     "containerGroupName": {
       "type": "string",
       "defaultValue": "counterfit",
@@ -29,7 +50,7 @@
       "metadata": {
         "description": "Port to open on the container and the public IP address."
       }
-    },      
+    },
     "cpuCores": {
       "type": "string",
       "defaultValue": "4.0",
@@ -65,39 +86,110 @@
     }
   },
   "resources": [
-      {
-          "type": "Microsoft.ContainerInstance/containerGroups",
-          "apiVersion": "2019-12-01",
-          "name": "[parameters('containerGroupName')]",
-          "location": "[parameters('location')]",
-          "properties": {
-              "containers": [
-                  {
-                      "name": "[parameters('containerName')]",
-                      "properties": {
-                          "image": "[parameters('image')]",
-                          "ports": [
-                              {
-                                "port": "[parameters('port')]"
-                              }
-                            ],
-                          "command": [
-                              "tail",
-                              "-f",
-                              "/dev/null"
-                          ],
-                          "resources": {
-                              "requests": {
-                                  "cpu": "[parameters('cpuCores')]",
-                                  "memoryInGb": "[parameters('memoryInGb')]"
-                              }
-                          }
-                      }
-                  }
+    {
+      "type": "Microsoft.ContainerInstance/containerGroups",
+      "apiVersion": "2019-12-01",
+      "name": "[parameters('containerGroupName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('baseName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('baseName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices/containers', parameters('baseName'), 'default', parameters('storageContainerName'))]"
+      ],
+      "properties": {
+        "containers": [
+          {
+            "name": "[parameters('containerName')]",
+            "properties": {
+              "image": "[parameters('image')]",
+              "ports": [
+                {
+                  "port": "[parameters('port')]"
+                }
               ],
-              "osType": "Linux",
-              "restartPolicy": "[parameters('restartPolicy')]"
+              "command": [
+                "tail",
+                "-f",
+                "/dev/null"
+              ],
+              "resources": {
+                "requests": {
+                  "cpu": "[parameters('cpuCores')]",
+                  "memoryInGb": "[parameters('memoryInGb')]"
+                }
+              },
+              "environmentVariables": [
+                {
+                  "name": "CounterfitStorageAccountName",
+                  "value": "[parameters('baseName')]"
+                },
+                {
+                  "name": "CounterfitStorageContainerName",
+                  "value": "[parameters('storageContainerName')]"
+                },
+                {
+                  "name": "CounterfitStorageContainerAccessToken",
+                  "value": "[listAccountSas(parameters('baseName'), '2018-07-01', parameters('accountSasProperties')).accountSasToken]"
+                }
+              ]
+            }
           }
+        ],
+        "osType": "Linux",
+        "restartPolicy": "[parameters('restartPolicy')]"
       }
+    },
+    // Storage Account with various published artifacts
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('baseName')]",
+      "apiVersion": "2019-06-01",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('storageAccountSku')]",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "supportsHttpsTrafficOnly": true,
+        "allowBlobPublicAccess": true, // Required by Azure Portal blade package and customer scripts
+        "minimumTlsVersion": "TLS1_2"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('baseName'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('baseName'))]"
+      ],
+      "sku": {
+        "name": "Standard_RAGRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "cors": {
+          "corsRules": [
+          ]
+        },
+        "deleteRetentionPolicy": {
+          "enabled": true,
+          "days": 30
+        }
+      }
+    },
+    // Storage Container for Azure Portal blade package
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-06-01",
+      "name": "[concat(parameters('baseName'), '/default/', parameters('storageContainerName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('baseName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('baseName'), 'default')]"
+      ],
+      "properties": {
+        "publicAccess": "Blob"
+      }
+    }
   ]
 }

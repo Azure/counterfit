@@ -1,13 +1,13 @@
 # Utility functions should live here so can be used across codebase...
-import uuid
 import datetime
-import os
 import importlib
 import inspect
+import io
+import mimetypes
+import os
+import uuid
 
 import numpy as np
-
-from collections import defaultdict
 
 
 def param_floats_to_ints(parameters: dict) -> dict:
@@ -90,3 +90,29 @@ def get_predict_folder(target):
 
     results_folder = f"{module_path}/results/predict"
     return results_folder
+
+
+def is_img_save_in_azure_storage():
+    return True if "CounterfitStorageAccountName" and "CounterfitStorageContainerName" in os.environ else False 
+
+def get_azure_storage_sas_uri(filename):
+    if filename == "":
+        raise ValueError("filename should not be empty.")
+    azure_storage_account_name = os.environ["CounterfitStorageAccountName"]
+    azure_storage_sas_token = os.environ["CounterfitStorageContainerAccessToken"]
+    azure_storage_sas_uri = f"https://{azure_storage_account_name}.blob.core.windows.net/{filename}?{azure_storage_sas_token}"
+    return azure_storage_sas_uri
+
+def get_image_in_bytes(image, format='png'):
+    buf = io.BytesIO()
+    image.save(buf, format=format)  # In the above code, we save the image Image object into BytesIO object buffer
+    im = buf.getvalue()
+    return im
+
+def get_mime_type(url):
+    # Get MIME type based on a given url name (ex., "input_example.json" -> application/json, image/jpeg, image/png)
+    content_type = mimetypes.guess_type(url)
+    if not content_type[0]:
+        raise ValueError(f'Invalid MIME type detected for the URL {url}. \
+            Please provide a valid URL with valid extension.')
+    return content_type[0]
