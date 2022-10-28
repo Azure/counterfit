@@ -28,6 +28,7 @@ augly==0.1.10
 hyperopt==0.2.3
 gym==0.19.0
 scipy==1.4.1
+protobuf==4.21.4  # For running RL attacks
 
 # Azure packages
 azure-storage-blob==12.1.0
