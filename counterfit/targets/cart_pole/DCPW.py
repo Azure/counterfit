@@ -101,8 +101,11 @@ class DeepCPWrapper:
         # Get screen size so that we can initialize layers correctly based on shape
         # returned from AI gym. Typical dimensions at this point are close to 3x40x90
         # which is the result of a clamped and down-scaled render buffer in get_screen()
-        init_screen = self.get_screen()
-        _, _, screen_height, screen_width = init_screen.shape
+        try:
+            init_screen = self.get_screen()
+            _, _, screen_height, screen_width = init_screen.shape
+        except Exception as e:
+            raise RuntimeError(f'Unable to connect to screen. {e}')
         if policy_net:
             self.policy_net = policy_net
         else:

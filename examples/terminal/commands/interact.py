@@ -24,8 +24,11 @@ def interact_cmd(args: argparse.Namespace) -> None:
     # except Exception as e:
     #     CFPrint.failed(f"Could not load {target.target_name}: {e}\n")
     # # Set it as the active target
-    target.load()
-    CFState.state().set_active_target(target)
+    try:
+        target.load()
+        CFState.state().set_active_target(target)
+    except RuntimeError as e:
+        CFPrint.failed(str(e))
 
 
 interact_args = cmd2.Cmd2ArgumentParser()
