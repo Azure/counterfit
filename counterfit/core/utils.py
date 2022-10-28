@@ -1,13 +1,13 @@
 # Utility functions should live here so can be used across codebase...
-import uuid
 import datetime
-import os
 import importlib
 import inspect
+import io
+import mimetypes
+import os
+import uuid
 
 import numpy as np
-
-from collections import defaultdict
 
 
 def param_floats_to_ints(parameters: dict) -> dict:
@@ -90,3 +90,42 @@ def get_predict_folder(target):
 
     results_folder = f"{module_path}/results/predict"
     return results_folder
+
+
+def is_img_save_in_azure_storage():
+    """Checks if Azure environment variables are set.
+
+    Returns:
+        bool: Returns True if Azure environment variables are set, otherwise False
+    """
+    return True if "AzureStorageAccountName" and "AzureStorageContainerName" in os.environ else False 
+
+def get_azure_storage_sas_uri(filename):
+    """Generate Azure Storage SAS URI based on Azure Storage Account, Azure Storage SAS token, and file path
+
+    Args:
+        filename (str): relative path of the file
+
+    Returns:
+        str uri: Azure Storage SAS URI
+    """
+    if filename == "":
+        raise ValueError("filename should not be empty.")
+    azure_storage_account_name = os.environ["AzureStorageAccountName"]
+    azure_storage_sas_token = os.environ["AzureStorageContainerAccessToken"]
+    azure_storage_sas_uri = f"https://{azure_storage_account_name}.blob.core.windows.net/{filename}?{azure_storage_sas_token}"
+    return azure_storage_sas_uri
+
+def get_image_in_bytes(image, format='png'):
+    buf = io.BytesIO()
+    image.save(buf, format=format)  # In the above code, we save the image Image object into BytesIO object buffer
+    im = buf.getvalue()
+    return im
+
+def get_mime_type(url):
+    # Get MIME type based on a given url name (ex., "input_example.json" -> application/json, image/jpeg, image/png)
+    content_type = mimetypes.guess_type(url)
+    if not content_type[0]:
+        raise ValueError(f'Invalid MIME type detected for the URL {url}. \
+            Please provide a valid URL with valid extension.')
+    return content_type[0]

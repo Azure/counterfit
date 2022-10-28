@@ -1,15 +1,18 @@
-from abc import ABC, abstractmethod
 import hashlib
 import json
+from abc import ABC, abstractmethod
 
-
+import Levenshtein
 import numpy as np
+from azure.storage.blob import BlobClient, ContentSettings
+from counterfit.core.output import CFPrint
+from counterfit.core.utils import (get_azure_storage_sas_uri,
+                                   get_image_in_bytes, get_mime_type,
+                                   get_predict_folder,
+                                   is_img_save_in_azure_storage,
+                                   transform_numpy_to_bytes)
 from PIL import Image
 from rich.table import Table
-import Levenshtein
-
-from counterfit.core.utils import transform_numpy_to_bytes, get_predict_folder
-from counterfit.core.output import CFPrint
 
 
 def printable_numpy(batch):
@@ -200,7 +203,9 @@ class TextReportGenerator(TargetReportGenerator):
 
 class ImageReportGenerator(TargetReportGenerator):
 
-    def __init__(self) -> None:
+    is_img_save_in_azure_storage = is_img_save_in_azure_storage()
+    
+    def __init__(self):
         super().__init__()
 
     @staticmethod
@@ -254,7 +259,19 @@ class ImageReportGenerator(TargetReportGenerator):
                 "Expecting at least 2-dimensional image in target_input_shape")
         if results_path:
             filename = results_path + f'/{filename}'
-        im.save(filename)
+        if ImageReportGenerator.is_img_save_in_azure_storage:
+            try:
+                content_type = get_mime_type(filename)
+                content_settings = ContentSettings(content_type=f"{content_type}")
+                filename = get_azure_storage_sas_uri(filename)
+                blob_client = BlobClient.from_blob_url(filename)
+                img_bytes = get_image_in_bytes(im)
+                blob_client.upload_blob(img_bytes, overwrite=True, content_settings=content_settings)
+            except Exception as ex:
+                raise ValueError(f"Upload blob failed with exception. {ex}")
+        else:
+            im.save(filename)
+        CFPrint.info(f'Image has been saved in the location {filename}')
         return filename
 
     @staticmethod
