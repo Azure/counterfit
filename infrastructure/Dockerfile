@@ -22,4 +22,6 @@ COPY . .
 RUN chown -R counterfituser:counterfituser /home/counterfituser
 USER counterfituser
 
+ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION python
+
 CMD ["/bin/bash"]

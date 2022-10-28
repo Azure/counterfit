@@ -1,6 +1,6 @@
 
 class Config:
-    version = "1.0.0"
+    version = "1.0.1"
     start_banner = f"""
                               __            _____ __
       _________  __  ______  / /____  _____/ __(_) /_

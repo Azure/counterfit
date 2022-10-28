@@ -2,13 +2,13 @@
 cmd2==2.2.0
 questionary==1.9.0
 python-Levenshtein==0.12.2
-rich>=10.10.0
+rich==12.0.1
 orjson==3.6.4
 flask==2.0.0
 
 # docs
-sphinx>=4.2.0
-sphinx-rtd-theme>=1.0.0
+sphinx==5.1.1
+sphinx-rtd-theme==1.0.0
 
 # frameworks
 adversarial-robustness-toolbox==1.8
@@ -28,9 +28,10 @@ augly==0.1.10
 hyperopt==0.2.3
 gym==0.19.0
 scipy==1.4.1
+protobuf==4.21.4  # For running RL attacks
 
 # Azure packages
-azure-storage-blob==12.14.1
+azure-storage-blob==12.1.0
 
 # testing framework
 pytest==6.2.5
