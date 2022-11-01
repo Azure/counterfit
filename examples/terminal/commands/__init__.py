@@ -64,11 +64,11 @@ class CounterfitCommands(cmd2.CommandSet):
         for any given target.
         """
         predict_.predict_cmd(args)
-
-    @cmd2.with_argparser(reload_.reload_args)
-    def do_reload(self, args: argparse.Namespace) -> None:
-        """ Reload the Counterfit object. """
-        reload_.reload_cmd(args)
+    #
+    # @cmd2.with_argparser(reload_.reload_args)
+    # def do_reload(self, args: argparse.Namespace) -> None:
+    #     """ Reload the Counterfit object. """
+    #     reload_.reload_cmd(args)
 
     @cmd2.with_argparser(run_.run_args)
     def do_run(self, args: argparse.Namespace) -> None:
