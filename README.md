@@ -32,7 +32,7 @@ Counterfit is a generic automation layer for assessing the security of machine l
 ```bash
 sudo apt install python3.8 python3.8-venv
 python3 -m venv counterfit
-git clone --depth 1 -b main https://github.com/Azure/counterfit.git
+git clone -b main https://github.com/Azure/counterfit.git
 cd counterfit
 pip install .[dev]
 ```
@@ -42,7 +42,7 @@ pip install .[dev]
 ```bash
 conda create --yes -n counterfit python=3.8.0
 conda activate counterfir
-git clone --depth 1 -b main https://github.com/Azure/counterfit.git
+git clone -b main https://github.com/Azure/counterfit.git
 cd counterfit
 pip install .[dev]
 ```
