@@ -40,7 +40,7 @@ pip install .[dev]
 ### Installation with Conda
 
 ```bash
-conda create --yes -n counterfir python=3.8.0
+conda create --yes -n counterfit python=3.8.0
 conda activate counterfir
 git clone --depth 1 -b main https://github.com/Azure/counterfit.git
 cd counterfit
