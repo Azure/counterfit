@@ -44,7 +44,7 @@ conda create --yes -n counterfir python=3.8.0
 conda activate counterfir
 git clone --depth 1 -b develop/1.1 https://github.com/Azure/counterfit.git
 cd counterfit
-conda install --file requirements.txt
+pip install .[dev]
 ```
 
 
