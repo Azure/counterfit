@@ -28,7 +28,33 @@ Counterfit is a generic automation layer for assessing the security of machine l
 
 ## Quick Start
 
-### Installation with Python virtual environment
+Choose one of these methods to get started quickly:
+
+- [Option 1: Deploy via Azure Shell](#Option-1-Deploy-now-on-Azure-via-Azure-Shell)
+- [Option 2: Setup an Anaconda Python environment and install locally](#Option-2-Setup-an-Anaconda-Python-environment-and-install-locally)
+
+For more information including alternative installation instructions, please visit our [wiki](https://github.com/Azure/counterfit/wiki).
+
+### Option 1: Deploy via Azure Shell
+
+To run Counterfit from your browser
+
+1. Click the button below to initiate small resource deployment to your Azure account.
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fcounterfit%2Fmaster%2Finfrastructure%2Fazuredeploy.json)
+
+2. In the configuration blade, specify your subscription and resource group.
+3. In your [Azure Shell](https://shell.azure.com), type the following, replacing `RESOURCE_GROUP` with the name of the resource group selected in the previous step.
+
+```
+az container exec --resource-group RESOURCE_GROUP --name counterfit --exec-command '/bin/bash'
+```
+
+4. Within the container, launch Counterfit.
+
+### Option 2: Set up an Anaconda Python environment and install locally
+
+#### Installation with Python virtual environment
 ```bash
 sudo apt install python3.8 python3.8-venv
 python3 -m venv counterfit
@@ -37,7 +63,7 @@ cd counterfit
 pip install .[dev]
 ```
 
-### Installation with Conda
+#### Installation with Conda
 
 ```bash
 conda create --yes -n counterfit python=3.8.0
@@ -47,6 +73,36 @@ cd counterfit
 pip install .[dev]
 ```
 
+To start the Counterfit terminal, run `counterfit` from your Windows or Linux shell.
+```bash
+$ counterfit
+
+                              __            _____ __
+      _________  __  ______  / /____  _____/ __(_) /_
+     / ___/ __ \/ / / / __ \/ __/ _ \/ ___/ /_/ / __/
+    / /__/ /_/ / /_/ / / / / /_/  __/ /  / __/ / /
+    \___/\____/\__,_/_/ /_/\__/\___/_/  /_/ /_/\__/
+
+                    Version: 1.1.0
+
+
+counterfit>
+```
+
+Alternatively, you can also import the counterfit module from within you Python code. 
+```python
+import counterfit
+import counterfit.targets as targets
+
+
+target = targets.CreditFraud()
+target.load()
+attack_name = 'hop_skip_jump'
+new_attack = counterfit.Counterfit.build_attack(target, attack_name)
+results = counterfit.Counterfit.run_attack(new_attack)
+```
+
+See the [Counterfit examples README.md](examples/README.md) for more information.
 
 Notes: 
 - Windows requires C++ build tools
