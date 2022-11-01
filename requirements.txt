@@ -1,14 +1,13 @@
-# targets
 onnxruntime==1.10.0
-gym==0.7.4                              # Required for cartpole target
-
-# counterfit
-cmd2==2.2.0
+gym==0.19.0                                 # Required for cartpole target
+cmd2==2.2.0                                 # Counterfit terminal
 questionary==1.9.0
 python-Levenshtein==0.12.2
-rich>=10.10.0
+rich==12.0.1
 orjson==3.6.4
 flask==2.0.0
+sphinx==5.1.1                               # Docs
+sphinx-rtd-theme==1.0.0                     # Docs
 optuna
 numpy>=1.18.5
 requests==2.24.0
@@ -18,19 +17,20 @@ lightgbm==3.3.1
 pillow
 pyyaml
 matplotlib==3.6.1
-
-# frameworks
+adversarial-robustness-toolbox==1.8         # Attack framework
+textattack==0.3.4                           # Attack framework
 torchvision==0.11.1
-torchfile==0.1.0 # to run fga_jia_2019 attack
+tensorflow==2.6.2
+tensorflow-hub==0.12.0                      # To run textbugger, bae_garg and textfooler attacks
+torchfile==0.1.0                            # To run fga_jia_2019 attack
+tensorflow-text==2.6.0                      # Dependency on textattack
 bs4==0.0.1
-traitlets==5.3.0  # required for Windows
+traitlets==5.3.0                            # Required for Windows
 pytorch_lightning==1.6.0
 h5py==3.1.0
 lightgbm==3.3.1
 augly==0.1.10
 hyperopt==0.2.3
-
-
-# testing framework
-pytest==6.2.5
-
+protobuf==4.21.4                            # For running RL attacks
+azure-storage-blob==12.1.0                  # Azure packages
+pytest==6.2.5                               # Test framework

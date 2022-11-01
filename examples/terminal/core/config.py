@@ -1,4 +1,3 @@
-import os
 
 class Config:
     version = "1.1.0"
@@ -15,10 +14,4 @@ class Config:
 
     counterfit_dir = "counterfit"
     targets_dir = "../targets"
-    supported_data_types = [
-        "image",
-        "tabular"
-    ]
-
-
-
+    supported_data_types = ["image", "tabular"]
