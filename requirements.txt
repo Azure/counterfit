@@ -17,7 +17,6 @@ lightgbm==3.3.1
 pillow
 pyyaml
 matplotlib==3.6.1
-adversarial-robustness-toolbox==1.8         # Attack framework
 textattack==0.3.4                           # Attack framework
 torchvision==0.11.1
 tensorflow==2.6.2
