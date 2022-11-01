@@ -41,7 +41,7 @@ pip install .[dev]
 
 ```bash
 conda create --yes -n counterfit python=3.8.0
-conda activate counterfir
+conda activate counterfit
 git clone -b main https://github.com/Azure/counterfit.git
 cd counterfit
 pip install .[dev]
