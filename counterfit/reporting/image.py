@@ -1,17 +1,23 @@
 import numpy as np
 import hashlib
 
-from counterfit.core.output import CFPrint
 from counterfit.core.reporting import CFReportGenerator
-from counterfit.core.utils import transform_numpy_to_bytes, get_predict_folder
 from counterfit.data.image import ImageDataType
 from PIL import Image
-
 from rich.table import Table
+from azure.storage.blob import BlobClient, ContentSettings
+from counterfit.core.output import CFPrint
+from counterfit.core.utils import (get_azure_storage_sas_uri,
+                                   get_image_in_bytes, get_mime_type,
+                                   get_predict_folder,
+                                   is_img_save_in_azure_storage,
+                                   transform_numpy_to_bytes)
+
 
 class ImageReportGenerator(CFReportGenerator):
+    is_img_save_in_azure_storage: bool = is_img_save_in_azure_storage()
 
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
 
     @classmethod
@@ -54,24 +60,30 @@ class ImageReportGenerator(CFReportGenerator):
                 array = array.squeeze(1).transpose(1, 2, 0)
             # save mode is "L" or "RGB"
             save_mode = ImageDataType.get_channels(target.input_shape)
-            im = Image.fromarray(array.squeeze(), mode=f"{save_mode}")
+            new_image = Image.fromarray(array.squeeze(), mode=f"{save_mode}")
 
         elif len(target.input_shape) == 2:  # grayscale
-            im = Image.fromarray(array, 'L')
+            new_image = Image.fromarray(array, 'L')
 
         else:
-            raise ValueError(
-                "Expecting at least 2-dimensional image in input_shape")
+            raise ValueError("Expecting at least 2-dimensional image in input_shape")
         if results_path:
             filename = results_path + f'/{filename}'
-        
-        if save_output:
-            im.save(filename)
-        # elif target.target_task == "object_detection":
-        #     indices, confidences, class_ids, boxes = target.get_indices_conf_u_nms(array, filter_enabled_class=True)
-        #     ImageReportGenerator.save_image_w_bbs(array, indices, confidences, class_ids, boxes, target.final_output_classes, filename)
-        # else:
-        #     raise ValueError(f"{target.target_task} {target.target_data_type} save not supported at this time...")
+
+        if ImageReportGenerator.is_img_save_in_azure_storage:
+            try:
+                content_type = get_mime_type(filename)
+                content_settings = ContentSettings(content_type=f"{content_type}")
+                filename = get_azure_storage_sas_uri(filename)
+                blob_client = BlobClient.from_blob_url(filename)
+                new_image_bytes = get_image_in_bytes(new_image)
+                blob_client.upload_blob(new_image_bytes, overwrite=True, content_settings=content_settings)
+            except Exception as ex:
+                raise ValueError(f"Upload blob failed with exception. {ex}")
+        elif save_output:
+            new_image.save(filename)
+        CFPrint.info(f'Image has been saved in the location {filename}')
+
         return filename
     
     @classmethod
