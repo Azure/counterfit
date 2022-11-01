@@ -39,7 +39,7 @@ class CounterfitCommands(cmd2.CommandSet):
         super().__init__()
 
     @cmd2.with_argparser(interact_.interact_args)
-    def do_set_target(self, args: argparse.Namespace) -> None:
+    def do_interact(self, args: argparse.Namespace) -> None:
         """ Sets the the active target. """
         interact_.interact_cmd(args)
 
@@ -106,7 +106,7 @@ class CounterfitCommands(cmd2.CommandSet):
         show_.show_cmd(args)
 
     @cmd2.with_argparser(use_.set_attack_args)
-    def do_set_attack(self, args: argparse.Namespace) -> None:
+    def do_use(self, args: argparse.Namespace) -> None:
         """Select an attack to use on the active target.
         Use 'interact' to select a target first.
         """
