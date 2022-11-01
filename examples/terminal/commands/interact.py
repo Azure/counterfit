@@ -14,21 +14,15 @@ def get_targets():
 
 
 def interact_cmd(args: argparse.Namespace) -> None:
-    # Load the target
-    target: CFTarget = CFState.state().get_targets().get(args.target, None)
-    if not target:
-        CFPrint.failed(f"Could not load target {args.target}")
-    # try:
-    #     new_target = CFState.state().build_new_target(target)
-    #     CFPrint.success(f"{target.target_name} successfully loaded!")
-    # except Exception as e:
-    #     CFPrint.failed(f"Could not load {target.target_name}: {e}\n")
-    # # Set it as the active target
+    target_name = args.target
     try:
+        target: CFTarget = CFState.state().get_targets().get(target_name, None)
+        if not target:
+            CFPrint.failed(f"Could not load target {target_name}")
         target.load()
         CFState.state().set_active_target(target)
     except RuntimeError as e:
-        CFPrint.failed(str(e))
+        CFPrint.failed(f"Could not load {target_name}: {e}\n")
 
 
 interact_args = cmd2.Cmd2ArgumentParser()
