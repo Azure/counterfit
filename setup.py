@@ -15,6 +15,7 @@ extras = {}
 extras["docs"] = [
     "recommonmark",
     "nbsphinx",
+    "sphinx",
     "sphinx-autobuild",
     "sphinx-rtd-theme",
     "sphinx-markdown-tables",
