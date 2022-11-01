@@ -51,6 +51,14 @@ class TextAttackFramework(CFFramework):
         results = new_attack.attack_dataset()
         return [r.perturbed_text() for r in results]
 
+    def set_parameters(self, cfattack: CFAttack):
+        # Does nothing. Allow for future extensibility.
+        pass
+
+    def pre_attack_processing(self, cfattact: CFAttack):
+        # Does nothing. Allow for future extensibility.
+        pass
+
     def post_attack_processing(self, cfattack: CFAttack):
         pass
         # current_datatype = cfattack.target.target_data_type

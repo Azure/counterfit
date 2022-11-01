@@ -190,7 +190,7 @@ class ArtFramework(CFFramework):
         else:
             print("Not found!")
         return results
-    
+
     @classmethod
     def pre_attack_processing(cls, cfattack: CFAttack):
         cls.set_parameters(cfattack)
@@ -198,9 +198,6 @@ class ArtFramework(CFFramework):
     @staticmethod
     def post_attack_processing(cfattack: CFAttack):
         attack_attributes = cfattack.attack.__dir__()
-
-        pass
-
         # if "generate" in attack_attributes:
         #     current_datatype = cfattack.target.data_type
         #     current_dt_report_gen = get_target_data_type_obj(current_datatype)

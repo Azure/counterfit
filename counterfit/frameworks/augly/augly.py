@@ -96,7 +96,15 @@ class AuglyFramework(CFFramework):
     def run(self, cfattack: CFAttack):
         results, avscores = cfattack.attack.generate(cfattack.samples)
         return results
-    
+
+    def set_parameters(self, cfattack: CFAttack):
+        # Does nothing. Allow for future extensibility.
+        pass
+
+    def pre_attack_processing(self, cfattack):
+        # Does nothing. Allow for future extensibility
+        pass
+
     def post_attack_processing(self, cfattack: CFAttack):
         pass
         # current_datatype = cfattack.target.data_type
