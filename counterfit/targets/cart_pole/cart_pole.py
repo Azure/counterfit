@@ -5,7 +5,6 @@ import torch
 import tensorflow as tf
 import gzip
 
-
 from counterfit.targets.cart_pole.DCPW import DeepCPWrapper
 from counterfit.core.targets import CFTarget
 
@@ -24,7 +23,7 @@ class CartPole(CFTarget):
     # how many episodes will the RL's policy model be trained on?
     num_episodes = 10_000
     num_frames = 100
-    input_shape = (num_frames * 3 * 40 * 90, )
+    input_shape = (num_frames * 3 * 40 * 90,)
     endpoint = f"cartpole_dqn_{num_episodes}.pt.gz"
     data_path = f"cartpole_samples_{num_episodes}_{num_frames}.pkl.gz"
     # since the model is using difference of frames, 1 index is lost in the difference
@@ -33,7 +32,7 @@ class CartPole(CFTarget):
     # each row is a flattened sequence of screenshots (internally, the DCPW wrapper uses differences)
     X = []
     deep_cp_wrapper = None
-    
+
     def load(self):
         """ Load the Counterfit Target model.
 
@@ -78,8 +77,8 @@ class CartPole(CFTarget):
             if len(memory.memory) >= self.episode_len_to_success:
                 # didn't fail in the first N steps..a good memory!
                 break
-        self.X = np.array(screens[:self.num_frames]).reshape((1,) + self.target_input_shape)
-    
+        self.X = np.array(screens[:self.num_frames]).reshape((1,) + self.input_shape)
+
     def predict(self, x):
         # replay, but with noise
         x = x.reshape(len(x), self.num_frames, 3, 40, 90)
@@ -87,5 +86,5 @@ class CartPole(CFTarget):
         for x_i in x:
             done, n_steps, _, final_state = self.deep_cp_wrapper.replay(x_i, max_steps=self.episode_len_to_success, init_state=self.init_state)
             success = int(not done and n_steps >= self.episode_len_to_success)
-            results.append([1-success, success])
+            results.append([1 - success, success])
         return np.array(results, dtype=np.float32)

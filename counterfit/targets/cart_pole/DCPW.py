@@ -5,19 +5,15 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import torchvision.transforms as T
-import tensorflow as tf
-
 import gym
-
 import math
 import random
 import numpy as np
-import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.image import AxesImage
 from collections import namedtuple, deque
 from itertools import count
 from PIL import Image
-import pickle
 import inspect
 import os
 import pathlib
@@ -84,9 +80,10 @@ class DQN(nn.Module):
 
 
 class DeepCPWrapper:
+    _plt_img: AxesImage
+
     def __init__(self, memory=None, policy_net=None):
-        self.env = gym.make('CartPole-v0').unwrapped
-        self.episode_durations = []
+        self.env = gym.make('CartPole-v0', render_mode='rgb_array').unwrapped
         # Get number of actions from gym action space
         self.n_actions = self.env.action_space.n 
         if memory:
@@ -95,7 +92,8 @@ class DeepCPWrapper:
             self.memory = ReplayMemory(10000)
         self.steps_done = 0
         self.initialize_models(policy_net)
-    
+        self._plt_img = None
+
     def initialize_models(self, policy_net):
         self.env.reset()
         # Get screen size so that we can initialize layers correctly based on shape
@@ -123,7 +121,16 @@ class DeepCPWrapper:
     def get_screen(self):
         # Returned screen requested by gym is 400x600x3, but is sometimes larger
         # such as 800x1200x3. Transpose it into torch order (CHW).
-        screen = self.env.render(mode='rgb_array').transpose((2, 0, 1))
+        # Adapted from https://stackoverflow.com/a/33050617/4956355
+        rendered_screen = self.env.render()
+        if self._plt_img is None:
+            plt.ion()
+            plt.show()
+            self._plt_img = plt.imshow(rendered_screen)
+        self._plt_img.set_data(rendered_screen)
+        plt.draw()
+        plt.pause(0.001)
+        screen = rendered_screen.transpose((2, 0, 1))
         # Cart is in the lower half, so strip off the top and bottom of the screen
         _, screen_height, screen_width = screen.shape
         screen = screen[:, int(screen_height*0.4):int(screen_height * 0.8)]
@@ -231,7 +238,7 @@ class DeepCPWrapper:
 
         if return_actual_frames:
             last_screen = self.get_screen()
-            current_screen = self.get_screen()           
+            current_screen = self.get_screen()
             actual_frames = [last_screen.detach().numpy(), current_screen.detach().numpy()]
 
         # from IPython.core.debugger import set_trace; set_trace()
@@ -246,7 +253,7 @@ class DeepCPWrapper:
 
             # Select and perform an action
             action = self.select_action_inference(frame_diff)
-            _, reward, done, _ = self.env.step(action.item())
+            _, reward, done, _, _ = self.env.step(action.item())
             reward = torch.tensor([reward], device=device)
 
             if return_actual_frames:
@@ -287,7 +294,7 @@ class DeepCPWrapper:
 
             # Select and perform an action
             action = self.select_action_inference(frame_diff)
-            _, reward, done, _ = self.env.step(action.item())
+            _, reward, done, _, _ = self.env.step(action.item())
             reward = torch.tensor([reward], device=device)
 
             if not done or play_to_end:
@@ -309,8 +316,9 @@ class DeepCPWrapper:
 
         self.env.render()
         self.env.close()
-        plt.ioff()
-        plt.show()
+        # TODO. Confirm if the desired behavior is for the attacks to be halted or continue automatically.
+        # plt.ioff()
+        # plt.show()
 
         return frames, memory, init_state
 
@@ -346,8 +354,8 @@ class DeepCPWrapper:
                 # Perform one step of the optimization (on the policy network)
                 self.optimize_model()
                 if done:
-                    self.episode_durations.append(t + 1)
-                    #plot_durations()
+                    episode_durations.append(t + 1)
+                    # plot_durations()
                     break
             # Update the target network, copying all weights and biases in DQN
             if i_episode % TARGET_UPDATE == 0:
@@ -360,8 +368,8 @@ class DeepCPWrapper:
         # detach tensors and convert to CPU
         basedir = pathlib.Path(os.path.abspath(
             inspect.getfile(self.__class__))).parent.resolve()
-        torch.save(self.policy_net, 
-                   os.path.join(basedir, 
+        torch.save(self.policy_net,
+                   os.path.join(basedir,
                                 f"cartpole_dqn_{num_episodes}.pt"))
 
 
