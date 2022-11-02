@@ -98,7 +98,7 @@ class CFTarget:
                     self.logger.log(log_entry)
                 except Exception as e:
                     print(e)
-                    raise Exception(e) from e
+                    raise
 
         return output
 
