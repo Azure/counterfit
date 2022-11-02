@@ -83,6 +83,7 @@ class DeepCPWrapper:
     _plt_img: AxesImage
 
     def __init__(self, memory=None, policy_net=None):
+        self._plt_img = None
         self.env = gym.make('CartPole-v0', render_mode='rgb_array').unwrapped
         # Get number of actions from gym action space
         self.n_actions = self.env.action_space.n
@@ -92,7 +93,6 @@ class DeepCPWrapper:
             self.memory = ReplayMemory(10000)
         self.steps_done = 0
         self.initialize_models(policy_net)
-        self._plt_img = None
 
     def initialize_models(self, policy_net):
         self.env.reset()
