@@ -8,6 +8,9 @@ from examples.terminal.core.state import CFState
 from counterfit import CFPrint, Counterfit
 from counterfit.core.optimize import optimize
 
+# TODO. Migrate some of the original options for the scan command. See
+# https://github.com/Azure/counterfit/blob/289c0e91b64a72c8389b4f82a651d380c0b19f3f/counterfit/commands/scan.py
+
 
 # return a list of attack names
 def get_attacks():
@@ -17,7 +20,6 @@ def get_attacks():
         for temp_attack in list(framework["attacks"].keys()):
             attacks.append(temp_attack)
     return attacks
-
 
 
 def scan_cmd(args: argparse.Namespace) -> None:
@@ -37,7 +39,6 @@ def scan_cmd(args: argparse.Namespace) -> None:
                 cfattack = Counterfit.build_attack(target, attack)
                 Counterfit.run_attack(cfattack)
                 results[cfattack.attack_id] = cfattack.final_outputs
-
 
 
 description = " Run multiple attack for the current target."
