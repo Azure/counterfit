@@ -24,20 +24,19 @@ EPS_START = 0.9
 EPS_END = 0.05
 EPS_DECAY = 200
 TARGET_UPDATE = 10
-device = torch.device('cpu') # torch.device("cuda" if torch.cuda.is_available() else "cpu")
-global Transition 
-Transition = namedtuple('Transition', 
-                             ('state', 'action', 'next_state', 'reward'))
-resize = T.Compose([T.ToPILImage(),
-            T.Resize(40, interpolation=Image.CUBIC),
-            T.ToTensor()])
+device = torch.device('cpu')  # torch.device("cuda" if torch.cuda.is_available() else "cpu")
+global Transition
+
+Transition = namedtuple('Transition', ('state', 'action', 'next_state', 'reward'))
+resize = T.Compose([T.ToPILImage(), T.Resize(40, interpolation=Image.CUBIC), T.ToTensor()])
+episode_durations = []
 
 
 class ReplayMemory(object):
-    
+
     def __init__(self, capacity):
-        self.memory = deque([],maxlen=capacity)
-        
+        self.memory = deque([], maxlen=capacity)
+
     def push(self, *args):
         """Save a transition"""
         self.memory.append(Transition(*args))
@@ -50,7 +49,7 @@ class ReplayMemory(object):
 
 
 class DQN(nn.Module):
-        
+
     def __init__(self, h, w, outputs):
         super().__init__()
         self.conv1 = nn.Conv2d(3, 16, kernel_size=5, stride=2)
@@ -62,8 +61,9 @@ class DQN(nn.Module):
 
         # Number of Linear input connections depends on output of conv2d layers
         # and therefore the input image size, so compute it.
-        def conv2d_size_out(size, kernel_size = 5, stride = 2):
-            return (size - (kernel_size - 1) - 1) // stride  + 1
+        def conv2d_size_out(size, kernel_size=5, stride=2):
+            return (size - (kernel_size - 1) - 1) // stride + 1
+
         convw = conv2d_size_out(conv2d_size_out(conv2d_size_out(w)))
         convh = conv2d_size_out(conv2d_size_out(conv2d_size_out(h)))
         linear_input_size = convw * convh * 32
@@ -85,7 +85,7 @@ class DeepCPWrapper:
     def __init__(self, memory=None, policy_net=None):
         self.env = gym.make('CartPole-v0', render_mode='rgb_array').unwrapped
         # Get number of actions from gym action space
-        self.n_actions = self.env.action_space.n 
+        self.n_actions = self.env.action_space.n
         if memory:
             self.memory = memory
         else:
@@ -133,7 +133,7 @@ class DeepCPWrapper:
         screen = rendered_screen.transpose((2, 0, 1))
         # Cart is in the lower half, so strip off the top and bottom of the screen
         _, screen_height, screen_width = screen.shape
-        screen = screen[:, int(screen_height*0.4):int(screen_height * 0.8)]
+        screen = screen[:, int(screen_height * 0.4):int(screen_height * 0.8)]
         view_width = int(screen_width * 0.6)
         cart_location = self.get_cart_location(screen_width)
         if cart_location < view_width // 2:
@@ -172,7 +172,7 @@ class DeepCPWrapper:
     def plot_durations(self):
         plt.figure(2)
         plt.clf()
-        durations_t = torch.tensor(self.episode_durations, dtype=torch.float)
+        durations_t = torch.tensor(episode_durations, dtype=torch.float)
         plt.title('Training...')
         plt.xlabel('Episode')
         plt.ylabel('Duration')
@@ -194,10 +194,8 @@ class DeepCPWrapper:
 
         # Compute a mask of non-final states and concatenate the batch elements
         # (a final state would've been the one after which simulation ended)
-        non_final_mask = torch.tensor(tuple(map(lambda s: s is not None,
-                                            batch.next_state)), device=device, dtype=torch.bool)
-        non_final_next_states = torch.cat([s for s in batch.next_state
-                                                    if s is not None])
+        non_final_mask = torch.tensor(tuple(map(lambda s: s is not None, batch.next_state)), device=device, dtype=torch.bool)
+        non_final_next_states = torch.cat([s for s in batch.next_state if s is not None])
         state_batch = torch.cat(batch.state)
         action_batch = torch.cat(batch.action)
         reward_batch = torch.cat(batch.reward)
@@ -235,7 +233,7 @@ class DeepCPWrapper:
         else:
             self.env.state = np.array(init_state, dtype=np.float32)
             self.env.steps_beyond_done = None
-
+        actual_frames = []
         if return_actual_frames:
             last_screen = self.get_screen()
             current_screen = self.get_screen()
@@ -246,9 +244,9 @@ class DeepCPWrapper:
 
         final_done = False
 
-        for t in range(len(frames)-1):
+        for t in range(len(frames) - 1):
             # convert from numpy array to tensor
-            frame_diff = (frames[t+1]-frames[t]).reshape((1, 3, 40, 90))
+            frame_diff = (frames[t + 1] - frames[t]).reshape((1, 3, 40, 90))
             frame_diff = torch.tensor(frame_diff, dtype=torch.float32)
 
             # Select and perform an action
@@ -259,23 +257,22 @@ class DeepCPWrapper:
             if return_actual_frames:
                 current_screen = self.get_screen()
                 actual_frames.append(current_screen.detach().numpy())
-
-            if done or t> max_steps:
+            if done or t > max_steps:
                 final_done = True
-                final_steps = t+1
+                final_steps = t + 1
                 # if "done" before memory reaches max_steps, it's a failure
                 # if we every reach max_steps, it's a success
-                print(f"final state after {t+1} steps is {self.env.state}") 
+                print(f"replay(): final state after {t + 1} steps is {self.env.state}")
                 if not return_actual_frames:
                     break
 
         if return_actual_frames:
-            return final_done, t+1, init_state, self.env.state, actual_frames
+            return final_done, t + 1, init_state, self.env.state, actual_frames
         else:
-            return final_done, t+1, init_state, self.env.state
+            return final_done, t + 1, init_state, self.env.state
 
     def play(self, max_steps=100, init_state=None, play_to_end=False):
-        memory = ReplayMemory(max_steps+1)
+        memory = ReplayMemory(max_steps + 1)
         # Initialize the environment and state
         if init_state is None:
             init_state = self.env.reset()
@@ -285,12 +282,12 @@ class DeepCPWrapper:
         last_screen = self.get_screen()
         current_screen = self.get_screen()
         frame_diff = current_screen - last_screen
-        
+
         frames = [last_screen.detach().numpy(), current_screen.detach().numpy()]
 
         for t in count():
             # get frame difference
-            frame_diff = torch.tensor((frames[t+1]-frames[t]).reshape((1, 3, 40, 90)), dtype=torch.float32)
+            frame_diff = torch.tensor((frames[t + 1] - frames[t]).reshape((1, 3, 40, 90)), dtype=torch.float32)
 
             # Select and perform an action
             action = self.select_action_inference(frame_diff)
@@ -303,15 +300,14 @@ class DeepCPWrapper:
 
                 # Store memory
                 frames.append(current_screen.detach().numpy())
-                next_frame_diff = torch.tensor((frames[t+2]-frames[t+1]).reshape((1, 3, 40, 90)))
+                next_frame_diff = torch.tensor((frames[t + 2] - frames[t + 1]).reshape((1, 3, 40, 90)))
                 # Store the transition in memory
                 memory.push(frame_diff.detach().numpy(), action, next_frame_diff.detach().numpy(), reward)
-                
 
             if (play_to_end and len(memory) >= max_steps) or (not play_to_end and done):
                 # if "done" before memory reaches max_steps, it's a failure
                 # if we every reach max_steps, it's a success
-                print(f"final state after {t+1} steps is {self.env.state}") 
+                print(f"play(): final state after {t + 1} steps is {self.env.state}")
                 break
 
         self.env.render()
