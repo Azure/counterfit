@@ -1,5 +1,6 @@
 onnxruntime==1.10.0
-gym==0.19.0                                 # Required for cartpole target
+gym>=0.26.0                                 # Required for cartpole target
+pygame                                      # Required for cartpole target
 pyglet                                      # Required for cartpole target
 cmd2==2.2.0                                 # Counterfit terminal
 questionary==1.9.0
