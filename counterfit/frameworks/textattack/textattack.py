@@ -2,6 +2,7 @@ import yaml
 import glob
 import pathlib
 import numpy as np
+import pydoc
 
 from textattack import Attacker
 from textattack.datasets import Dataset
@@ -22,7 +23,6 @@ class TextAttackFramework(CFFramework):
         for attack in files:
             with open(attack, 'r') as f:
                 data = yaml.safe_load(f)
-        
             attacks[data['attack_name']] = data
 
         return attacks
@@ -31,7 +31,13 @@ class TextAttackFramework(CFFramework):
         # return Dataset([("This is a test", 1)])
         return Dataset(list(zip(cfattack.samples, cfattack.initial_labels)))
 
-    def build(self, target, attack):
+    def build(self, target, attack: str):
+        """ Build a new attack
+
+        Note
+            The attack comes in the format of "textattack.attack_recipes.deepwordbug_gao_2018.DeepWordBugGao2018"
+
+        """
         class TextAttackWrapperObject(object):
             def __init__(self, predict_wrapper):
                 self.model = predict_wrapper
@@ -40,6 +46,7 @@ class TextAttackFramework(CFFramework):
                 return self.model(x)
 
         text_attack_obj = TextAttackWrapperObject(target.predict_wrapper)
+        attack = pydoc.locate(attack)
         new_attack = attack.build(text_attack_obj)
         return new_attack
 
