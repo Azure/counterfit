@@ -24,15 +24,17 @@ Compare open-box and API attacks to digits model
 2. List available targets
     ```
     counterfit> list targets 
-    ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    ┃ Name            ┃ Model Type ┃ Data Type ┃ Input Shape   ┃ # Samples ┃ Endpoint                                             ┃
-    ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-    │ creditfraud     │ blackbox   │ tabular   │ (30,)         │ 0         │ creditfraud/creditfraud_sklearn_pipeline.pkl         │
-    │ digits_blackbox │ blackbox   │ image     │ (1, 28, 28)   │ 0         │ digits_blackbox/mnist_sklearn_pipeline.pkl           │
-    │ digits_keras    │ blackbox   │ image     │ (28, 28, 1)   │ 0         │ digits_keras/mnist_model.h5                          │
-    │ movie_reviews   │ blackbox   │ text      │ (1,)          │ 0         │ movie_reviews/movie_reviews_sentiment_analysis.pt    │
-    │ satellite       │ blackbox   │ image     │ (3, 256, 256) │ 0         │ satellite/satellite-image-params-airplane-stadium.h5 │
-    └─────────────────┴────────────┴───────────┴───────────────┴───────────┴──────────────────────────────────────────────────────┘
+   ┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   ┃ Name                ┃ Model Type ┃ Data Type ┃ Input Shape   ┃ # Samples ┃ Endpoint                                             ┃
+   ┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+   │ cart_pole           │ closed-box │ tabular   │ (1080000,)    │ 0         │ cartpole_dqn_10000.pt.gz                             │
+   │ cart_pole_initstate │ closed-box │ tabular   │ (4,)          │ 0         │ cartpole_dqn_10000.pt.gz                             │
+   │ creditfraud         │ closed-box │ tabular   │ (30,)         │ 0         │ creditfraud/creditfraud_sklearn_pipeline.pkl         │
+   │ digits_keras        │ closed-box │ image     │ (28, 28, 1)   │ 0         │ digits_keras/mnist_model.h5                          │
+   │ digits_mlp          │ closed-box │ image     │ (1, 28, 28)   │ 0         │ digits_mlp/mnist_sklearn_pipeline.pkl                │
+   │ movie_reviews       │ closed-box │ text      │ (1,)          │ 0         │ movie_reviews/movie_reviews_sentiment_analysis.pt    │
+   │ satellite           │ closed-box │ image     │ (3, 256, 256) │ 0         │ satellite/satellite-image-params-airplane-stadium.h5 │
+   └─────────────────────┴────────────┴───────────┴───────────────┴───────────┴──────────────────────────────────────────────────────┘
     ```
 
 
@@ -76,6 +78,7 @@ Compare open-box and API attacks to digits model
 5. List possible attacks
    ```
     attacks
+
    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
    ┃ Name                               ┃ Category          ┃ Type       ┃ Tags           ┃ Framework  ┃
    ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
@@ -100,56 +103,56 @@ Compare open-box and API attacks to digits model
    │ virtual_adversarial                │ evasion           │ open-box   │ image          │ art        │
    │ wasserstein                        │ evasion           │ open-box   │ image          │ art        │
    │ white_box_decision_tree            │ inference         │ unknown    │                │ art        │
-   │ ApplyLambda                        │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Blur                               │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Brightness                         │ common-corruption │ blackbox   │ image          │ augly      │
-   │ ChangeAspectRatio                  │ common-corruption │ blackbox   │ image          │ augly      │
-   │ ClipImageSize                      │ common-corruption │ blackbox   │ image          │ augly      │
-   │ ColorJitter                        │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Contrast                           │ common-corruption │ blackbox   │ image          │ augly      │
-   │ ConvertColor                       │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Crop                               │ common-corruption │ blackbox   │ image          │ augly      │
-   │ EncodingQuality                    │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Grayscale                          │ common-corruption │ blackbox   │ image          │ augly      │
-   │ HFlip                              │ common-corruption │ blackbox   │ image          │ augly      │
-   │ MemeFormat                         │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Opacity                            │ common-corruption │ blackbox   │ image          │ augly      │
-   │ OverlayEmoji                       │ common-corruption │ blackbox   │ image          │ augly      │
-   │ OverlayOntoScreenshot              │ common-corruption │ blackbox   │ image          │ augly      │
-   │ OverlayStripes                     │ common-corruption │ blackbox   │ image          │ augly      │
-   │ OverlayText                        │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Pad                                │ common-corruption │ blackbox   │ image          │ augly      │
-   │ PadSquare                          │ common-corruption │ blackbox   │ image          │ augly      │
-   │ PerspectiveTransform               │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Pixelization                       │ common-corruption │ blackbox   │ image          │ augly      │
-   │ RandomEmojiOverlay                 │ common-corruption │ blackbox   │ image          │ augly      │
-   │ RandomNoise                        │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Resize                             │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Rotate                             │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Saturation                         │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Scale                              │ common-corruption │ blackbox   │ image          │ augly      │
-   │ Sharpen                            │ common-corruption │ blackbox   │ image          │ augly      │
-   │ ShufflePixels                      │ common-corruption │ blackbox   │ image          │ augly      │
-   │ VFlip                              │ common-corruption │ blackbox   │ image          │ augly      │
-   │ a2t_yoo_2021                       │ evasion           │ blackbox   │ text           │ textattack │
-   │ bae_garg_2019                      │ evasion           │ blackbox   │ text           │ textattack │
-   │ bert_attack_li_2020                │ evasion           │ blackbox   │ text           │ textattack │
-   │ checklist_ribeiro_2020             │ evasion           │ blackbox   │ text           │ textattack │
-   │ clare_li_2020                      │ evasion           │ blackbox   │ text           │ textattack │
-   │ deepwordbug_gao_2018               │ evasion           │ blackbox   │ text           │ textattack │
-   │ faster_genetic_algorithm_jia_2019  │ evasion           │ blackbox   │ text           │ textattack │
-   │ genetic_algorithm_alzantot_2018    │ evasion           │ blackbox   │ text           │ textattack │
-   │ hotflip_ebrahimi_2017              │ evasion           │ blackbox   │ text           │ textattack │
-   │ iga_wang_2019                      │ evasion           │ blackbox   │ text           │ textattack │
-   │ input_reduction_feng_2018          │ evasion           │ blackbox   │ text           │ textattack │
-   │ kuleshov_2017                      │ evasion           │ blackbox   │ text           │ textattack │
-   │ morpheus_tan_2020                  │ evasion           │ blackbox   │ text           │ textattack │
-   │ pruthi_2019                        │ evasion           │ blackbox   │ text           │ textattack │
-   │ pso_zang_2020                      │ evasion           │ blackbox   │ text           │ textattack │
-   │ pwws_ren_2019                      │ evasion           │ blackbox   │ text           │ textattack │
-   │ seq2sick_cheng_2018_blackbox       │ evasion           │ blackbox   │ text           │ textattack │
-   │ textbugger_li_2018                 │ evasion           │ blackbox   │ text           │ textattack │
-   │ textfooler_jin_2019                │ evasion           │ blackbox   │ text           │ textattack │
+   │ ApplyLambda                        │ common-corruption │ closed-box │ image          │ augly      │
+   │ Blur                               │ common-corruption │ closed-box │ image          │ augly      │
+   │ Brightness                         │ common-corruption │ closed-box │ image          │ augly      │
+   │ ChangeAspectRatio                  │ common-corruption │ closed-box │ image          │ augly      │
+   │ ClipImageSize                      │ common-corruption │ closed-box │ image          │ augly      │
+   │ ColorJitter                        │ common-corruption │ closed-box │ image          │ augly      │
+   │ Contrast                           │ common-corruption │ closed-box │ image          │ augly      │
+   │ ConvertColor                       │ common-corruption │ closed-box │ image          │ augly      │
+   │ Crop                               │ common-corruption │ closed-box │ image          │ augly      │
+   │ EncodingQuality                    │ common-corruption │ closed-box │ image          │ augly      │
+   │ Grayscale                          │ common-corruption │ closed-box │ image          │ augly      │
+   │ HFlip                              │ common-corruption │ closed-box │ image          │ augly      │
+   │ MemeFormat                         │ common-corruption │ closed-box │ image          │ augly      │
+   │ Opacity                            │ common-corruption │ closed-box │ image          │ augly      │
+   │ OverlayEmoji                       │ common-corruption │ closed-box │ image          │ augly      │
+   │ OverlayOntoScreenshot              │ common-corruption │ closed-box │ image          │ augly      │
+   │ OverlayStripes                     │ common-corruption │ closed-box │ image          │ augly      │
+   │ OverlayText                        │ common-corruption │ closed-box │ image          │ augly      │
+   │ Pad                                │ common-corruption │ closed-box │ image          │ augly      │
+   │ PadSquare                          │ common-corruption │ closed-box │ image          │ augly      │
+   │ PerspectiveTransform               │ common-corruption │ closed-box │ image          │ augly      │
+   │ Pixelization                       │ common-corruption │ closed-box │ image          │ augly      │
+   │ RandomEmojiOverlay                 │ common-corruption │ closed-box │ image          │ augly      │
+   │ RandomNoise                        │ common-corruption │ closed-box │ image          │ augly      │
+   │ Resize                             │ common-corruption │ closed-box │ image          │ augly      │
+   │ Rotate                             │ common-corruption │ closed-box │ image          │ augly      │
+   │ Saturation                         │ common-corruption │ closed-box │ image          │ augly      │
+   │ Scale                              │ common-corruption │ closed-box │ image          │ augly      │
+   │ Sharpen                            │ common-corruption │ closed-box │ image          │ augly      │
+   │ ShufflePixels                      │ common-corruption │ closed-box │ image          │ augly      │
+   │ VFlip                              │ common-corruption │ closed-box │ image          │ augly      │
+   │ a2t_yoo_2021                       │ evasion           │ closed-box │ text           │ textattack │
+   │ bae_garg_2019                      │ evasion           │ closed-box │ text           │ textattack │
+   │ bert_attack_li_2020                │ evasion           │ closed-box │ text           │ textattack │
+   │ checklist_ribeiro_2020             │ evasion           │ closed-box │ text           │ textattack │
+   │ clare_li_2020                      │ evasion           │ closed-box │ text           │ textattack │
+   │ deepwordbug_gao_2018               │ evasion           │ closed-box │ text           │ textattack │
+   │ faster_genetic_algorithm_jia_2019  │ evasion           │ closed-box │ text           │ textattack │
+   │ genetic_algorithm_alzantot_2018    │ evasion           │ closed-box │ text           │ textattack │
+   │ hotflip_ebrahimi_2017              │ evasion           │ closed-box │ text           │ textattack │
+   │ iga_wang_2019                      │ evasion           │ closed-box │ text           │ textattack │
+   │ input_reduction_feng_2018          │ evasion           │ closed-box │ text           │ textattack │
+   │ kuleshov_2017                      │ evasion           │ closed-box │ text           │ textattack │
+   │ morpheus_tan_2020                  │ evasion           │ closed-box │ text           │ textattack │
+   │ pruthi_2019                        │ evasion           │ closed-box │ text           │ textattack │
+   │ pso_zang_2020                      │ evasion           │ closed-box │ text           │ textattack │
+   │ pwws_ren_2019                      │ evasion           │ closed-box │ text           │ textattack │
+   │ seq2sick_cheng_2018_blackbox       │ evasion           │ closed-box │ text           │ textattack │
+   │ textbugger_li_2018                 │ evasion           │ closed-box │ text           │ textattack │
+   │ textfooler_jin_2019                │ evasion           │ closed-box │ text           │ textattack │
    └────────────────────────────────────┴───────────────────┴────────────┴────────────────┴────────────┘
    ```
 
