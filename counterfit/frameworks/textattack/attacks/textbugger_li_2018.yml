@@ -7,4 +7,4 @@ attack_docs: "Li, J., Ji, S., Du, T., Li, B., and Wang, T. (2018).\n\n    TextBu
   \    "
 attack_name: textbugger_li_2018
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

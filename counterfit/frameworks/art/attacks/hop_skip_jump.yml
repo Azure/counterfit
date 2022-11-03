@@ -4,7 +4,7 @@ attack_data_tags:
 - image
 - tabular
 attack_docs: "\n    Implementation of the HopSkipJump attack from Jianbo et al. (2019).\
-  \ This is a powerful black-box attack that\n    only requires final class prediction,\
+  \ This is a powerful closed-box attack that\n    only requires final class prediction,\
   \ and is an advanced version of the boundary attack.\n\n    | Paper link: https://arxiv.org/abs/1904.02144\n\
   \    "
 attack_name: hop_skip_jump

@@ -9,4 +9,4 @@ attack_docs: "An implementation of the attack used in \"Beyond Accuracy: Behavio
   \    "
 attack_name: checklist_ribeiro_2020
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

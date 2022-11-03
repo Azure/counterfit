@@ -27,4 +27,4 @@ attack_parameters:
     default: null
     docs: Refer to attack file
     optimize: {}
-attack_type: blackbox
+attack_type: closed-box

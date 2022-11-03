@@ -15,7 +15,7 @@ def generate_configs():
         attack_name = re.findall(
             r"\w+", str(attack_class).split(".")[-1].strip())[0]
         attack_category = "common-corruption"
-        attack_type = "blackbox"
+        attack_type = "closed-box"
         attack_data_tags = ["image"]
 
         params = {}   

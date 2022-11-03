@@ -61,7 +61,7 @@ Change the label of a satellite image (true label: `stadium`) into `airplane`.
     │ Category     │ evasion                                                                                                                                                   │
     │ Tags         │ image, tabular                                                                                                                                            │
     │ Framework    │ art                                                                                                                                                       │
-    │ Docs         │ Implementation of the HopSkipJump attack from Jianbo et al. (2019). This is a powerful black-box attack that only requires final class prediction, and is │
+    │ Docs         │ Implementation of the HopSkipJump attack from Jianbo et al. (2019). This is a powerful closed-box attack that only requires final class prediction, and is │
     │              │ an advanced version of the boundary attack. | Paper link: https://arxiv.org/abs/1904.02144                                                                │
     └──────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
     ```

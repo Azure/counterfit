@@ -9,4 +9,4 @@ attack_docs: "Li, Zhang, Peng, Chen, Brockett, Sun, Dolan.\n\n    \"Contextualiz
   \    "
 attack_name: clare_li_2020
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

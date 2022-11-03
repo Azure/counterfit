@@ -4,7 +4,7 @@ attack_data_tags:
 - image
 - tabular
 attack_docs: "\n    Implementation of the boundary attack from Brendel et al. (2018).\
-  \ This is a powerful black-box attack that\n    only requires final class prediction.\n\
+  \ This is a powerful closed-box attack that\n    only requires final class prediction.\n\
   \n    | Paper link: https://arxiv.org/abs/1712.04248\n    "
 attack_name: boundary
 attack_parameters:

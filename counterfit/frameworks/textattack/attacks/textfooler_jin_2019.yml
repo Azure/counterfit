@@ -7,4 +7,4 @@ attack_docs: "Jin, D., Jin, Z., Zhou, J.T., & Szolovits, P. (2019).\n\n    Is BE
   \n    https://arxiv.org/abs/1907.11932\n    "
 attack_name: textfooler_jin_2019
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

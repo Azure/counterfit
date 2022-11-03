@@ -7,4 +7,4 @@ attack_docs: "Feng, Wallace, Grissom, Iyyer, Rodriguez, Boyd-Graber. (2018).\n\n
   \    "
 attack_name: input_reduction_feng_2018
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

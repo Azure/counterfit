@@ -12,4 +12,4 @@ attack_docs: "An implementation of the attack used in \"Combating Adversarial\n 
   \ of modifications to allow.\n    "
 attack_name: pruthi_2019
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

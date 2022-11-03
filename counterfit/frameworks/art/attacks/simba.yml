@@ -2,7 +2,7 @@ attack_category: evasion
 attack_class: art.attacks.evasion.simba.SimBA
 attack_data_tags:
 - image
-attack_docs: "\n    This class implements the black-box attack `SimBA`.\n\n    | Paper\
+attack_docs: "\n    This class implements the closed-box attack `SimBA`.\n\n    | Paper\
   \ link: https://arxiv.org/abs/1905.07121\n    "
 attack_name: simba
 attack_parameters:

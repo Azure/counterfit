@@ -1,7 +1,7 @@
-# DEMO 4: White-box attack of an on-disk
+# DEMO 4: Open-box attack of an on-disk
 [[Demo Home]](../demo/README.md)
 ## Objective
-Compare white-box and API attacks to digits model
+Compare open-box and API attacks to digits model
 
 ## Threat Model
 - Attacker knowledge: full access to model

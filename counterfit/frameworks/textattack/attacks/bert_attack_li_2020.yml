@@ -7,4 +7,4 @@ attack_docs: "Li, L.., Ma, R., Guo, Q., Xiangyang, X., Xipeng, Q. (2020).\n\n   
   \n    This is \"attack mode\" 1 from the paper, BAE-R, word replacement.\n    "
 attack_name: bert_attack_li_2020
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

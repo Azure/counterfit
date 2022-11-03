@@ -40,4 +40,4 @@ attack_parameters:
     default: web.png
     docs: Refer to attack file
     optimize: {}
-attack_type: blackbox
+attack_type: closed-box

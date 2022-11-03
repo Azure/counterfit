@@ -20,7 +20,7 @@ class SatelliteImages(CFTarget):
     input_shape = (3, 256, 256)  # [Channels, Height, Width]
     output_classes = ["airplane", "stadium"]
     sample_input_path = f"satellite/satellite_images_airplane_stadium_196608.npz"
-    classifier = "blackbox"
+    classifier = "closed-box"
 
     X = []  # we'll populate this in the constructor
 

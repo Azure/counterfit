@@ -6,4 +6,4 @@ attack_docs: "Xiaosen Wang, Hao Jin, Kun He (2019).\n\n    Natural Language Adve
   \ Attack and Defense in Word Level.\n\n    http://arxiv.org/abs/1909.06723\n    "
 attack_name: iga_wang_2019
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

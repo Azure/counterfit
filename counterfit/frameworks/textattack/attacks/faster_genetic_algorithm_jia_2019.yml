@@ -7,4 +7,4 @@ attack_docs: "Certified Robustness to Adversarial Word Substitutions.\n\n    Rob
   \    "
 attack_name: faster_genetic_algorithm_jia_2019
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

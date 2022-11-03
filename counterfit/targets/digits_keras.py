@@ -15,7 +15,7 @@ class DigitKeras(CFTarget):
     endpoint = "digits_keras/mnist_model.h5"
     input_shape = (28, 28, 1)
     output_classes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    classifier = "blackbox"
+    classifier = "closed-box"
     X = []
 
     def load(self):

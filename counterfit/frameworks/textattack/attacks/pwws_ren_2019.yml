@@ -12,4 +12,4 @@ attack_docs: "An implementation of Probability Weighted Word Saliency from \"Gen
   \    "
 attack_name: pwws_ren_2019
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

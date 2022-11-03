@@ -15,4 +15,4 @@ attack_docs: "Zang, Y., Yang, C., Qi, F., Liu, Z., Zhang, M., Liu, Q., & Sun, M.
   \ G to 20.\"\n    "
 attack_name: pso_zang_2020
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

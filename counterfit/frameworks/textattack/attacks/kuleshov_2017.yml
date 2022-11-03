@@ -6,4 +6,4 @@ attack_docs: "Kuleshov, V. et al.\n\n    Generating Natural Language Adversarial
   \n    https://openreview.net/pdf?id=r1QZ3zbAZ.\n    "
 attack_name: kuleshov_2017
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

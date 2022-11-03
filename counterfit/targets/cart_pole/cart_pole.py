@@ -19,7 +19,7 @@ class CartPole(CFTarget):
     data_type = "tabular"
     target_name = "cart_pole"
     output_classes = ["fallen", "upright"]
-    classifier = "blackbox"
+    classifier = "closed-box"
     # how many episodes will the RL's policy model be trained on?
     num_episodes = 10_000
     num_frames = 100

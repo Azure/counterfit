@@ -205,7 +205,7 @@ class ArtFramework(CFFramework):
         # Match the target.classifier attribute with an ART classifier type
         classifiers = cls.get_classifiers()
 
-        # If no classifer attribute has been set, assume a blackbox.
+        # If no classifer attribute has been set, assume a closed-box.
         if not hasattr(target, "classifier"):
 
             # If the target model returns log_probs, return the relevant estimator

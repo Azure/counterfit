@@ -2,10 +2,10 @@ attack_category: evasion
 attack_class: textattack.attack_recipes.hotflip_ebrahimi_2017.HotFlipEbrahimi2017
 attack_data_tags:
 - text
-attack_docs: "Ebrahimi, J. et al. (2017)\n\n    HotFlip: White-Box Adversarial Examples\
+attack_docs: "Ebrahimi, J. et al. (2017)\n\n    HotFlip: Open-Box Adversarial Examples\
   \ for Text Classification\n\n    https://arxiv.org/abs/1712.06751\n\n    This is\
   \ a reproduction of the HotFlip word-level attack (section 5 of the\n    paper).\n\
   \    "
 attack_name: hotflip_ebrahimi_2017
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

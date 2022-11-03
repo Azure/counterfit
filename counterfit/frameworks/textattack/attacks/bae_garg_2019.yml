@@ -13,4 +13,4 @@ attack_docs: "Siddhant Garg and Goutham Ramakrishnan, 2019.\n\n    BAE: BERT-bas
   \ to the left or right of t\n    "
 attack_name: bae_garg_2019
 attack_parameters: {}
-attack_type: blackbox
+attack_type: closed-box

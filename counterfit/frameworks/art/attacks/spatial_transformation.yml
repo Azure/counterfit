@@ -4,7 +4,7 @@ attack_data_tags:
 - image
 - tabular
 attack_docs: "\n    Implementation of the spatial transformation attack using translation\
-  \ and rotation of inputs. The attack conducts\n    black-box queries to the target\
+  \ and rotation of inputs. The attack conducts\n    closed-box queries to the target\
   \ model in a grid search over possible translations and rotations to find optimal\n\
   \    attack parameters.\n\n    | Paper link: https://arxiv.org/abs/1712.02779\n\
   \    "
