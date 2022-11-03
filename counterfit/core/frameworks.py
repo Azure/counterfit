@@ -24,13 +24,3 @@ class CFFramework:
     # @abstractmethod
     # def set_parameters(self, cfattack):
     #     raise NotImplementedError('set_parameters() not implemented')
-
-    def get_attack(attack_name: str) -> object:
-        """Get an attack stored in `framework.attacks`
-
-        Args:
-            attack_name (str): The name (key value) of the attack.
-
-        Returns:
-            object: The attack.
-        """
