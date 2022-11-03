@@ -23,7 +23,6 @@ def optimize(scan_id: str, target: CFTarget, attack: str, num_iters: int=2, verb
     def objective(trial):
         cfattack = Counterfit.build_attack(target, attack)
         params = {}
-
         for k, v in cfattack.options.attack_parameters.items():
             if v.get("optimize"):
                 if v["optimize"].get("uniform"):
@@ -32,7 +31,7 @@ def optimize(scan_id: str, target: CFTarget, attack: str, num_iters: int=2, verb
         cfattack.options.update(params)
 
         if verbose:
-            print(f'[green][+][/green]Trial parameters: {trial.params}\n')
+            print(f'[green][+][/green] Trial parameters: {trial.params}\n')
 
         try:
             Counterfit.run_attack(cfattack)
