@@ -197,31 +197,7 @@ class ArtFramework(CFFramework):
 
     @staticmethod
     def post_attack_processing(cfattack: CFAttack):
-        attack_attributes = cfattack.attack.__dir__()
-        # if "generate" in attack_attributes:
-        #     current_datatype = cfattack.target.data_type
-        #     current_dt_report_gen = get_target_data_type_obj(current_datatype)
-        #     cfattack.summary = current_dt_report_gen.get_run_summary(cfattack)
-        #     # current_dt_report_gen.print_run_summary(summary)
-            
-        # elif "extract" in attack_attributes:
-        #     # Override default reporting for the attack type
-        #     extract_table = Table(header_style="bold magenta")
-        #     # Add columns to extraction table
-        #     extract_table.add_column("Success")
-        #     extract_table.add_column("Copy Cat Accuracy")
-        #     extract_table.add_column("Elapsed time")
-        #     extract_table.add_column("Total Queries").attack_id: str = uuid.uuid4(
-
-        #     # Add data to extraction table
-        #     success = cfattack.success[0]  # Starting value
-        #     thieved_accuracy = cfattack.results
-        #     elapsed_time = cfattack.elapsed_time
-        #     num_queries = cfattack.logger.num_queries
-        #     extract_table.add_row(str(success), str(
-        #         thieved_accuracy), str(elapsed_time), str(num_queries))
-
-        #     CFPrint.output(extract_table)
+        pass
 
     @classmethod
     def set_classifier(cls, target: CFTarget):
