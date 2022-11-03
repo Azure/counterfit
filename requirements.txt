@@ -1,34 +1,35 @@
-onnxruntime==1.10.0
-gym>=0.26.0                                 # Required for cartpole target
-pygame==2.1.2                               # Required for cartpole target
-pyglet==2.0.0                               # Required for cartpole target
+azure-storage-blob==12.1.0                  # Azure packages
+bs4==0.0.1
 cmd2==2.2.0                                 # Counterfit terminal
 cmd2-ext-test>=2.0.0                        # Required for Counterfit terminal  tests
-questionary==1.9.0
-python-Levenshtein>=0.20.0
-rich==12.0.1
-orjson==3.6.4
 flask==2.0.0
-optuna==2.10.1
-numpy>=1.18.5
-requests==2.24.0
-scipy==1.9.2
+gym>=0.26.0                                 # Required for cartpole target
 h5py==3.1.0
+h5py==3.1.0
+hyperopt==0.2.3
 lightgbm==3.3.1
-pillow==9.2.0
-pyyaml==6.0
+lightgbm==3.3.1
 matplotlib==3.6.1
-torchvision==0.11.1
+numpy>=1.18.5
+onnxruntime==1.10.0
+optuna==2.10.1
+orjson==3.6.4
+pillow==9.2.0
+pre-commit==2.20.0                          # Required for pre-commit hooks
+protobuf>=3.9                               # For running RL attacks. tensorflow 2.10.0 depends on protobuf<3.20 and >=3.9.2
+pygame==2.1.2                               # Required for cartpole target
+pyglet==2.0.0                               # Required for cartpole target
+pytest==6.2.5                               # Test framework
+python-Levenshtein>=0.20.0
+pytorch_lightning==1.6.0
+pyyaml==6.0
+questionary==1.9.0
+requests==2.24.0
+rich==12.0.1
+scipy==1.9.2
 tensorflow==2.10.0
 tensorflow-hub==0.12.0                      # To run textbugger, bae_garg and textfooler attacks
+tensorflow-text==2.10.0                     # Dependency on
 torchfile==0.1.0                            # To run fga_jia_2019 attack
-tensorflow-text==2.10.0                     # Dependency on }
-bs4==0.0.1
+torchvision==0.11.1
 traitlets==5.3.0                            # Required for Windows
-pytorch_lightning==1.6.0
-h5py==3.1.0
-lightgbm==3.3.1
-hyperopt==0.2.3
-protobuf>=3.9                               # For running RL attacks. tensorflow 2.10.0 depends on protobuf<3.20 and >=3.9.2
-azure-storage-blob==12.1.0                  # Azure packages
-pytest==6.2.5                               # Test framework
