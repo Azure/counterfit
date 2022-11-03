@@ -7,10 +7,10 @@ from counterfit.core.targets import CFTarget
 class Digits(CFTarget):
     """ Target for the MNIST dataset. """
     data_type = "image"
-    target_name = "digits_blackbox"
+    target_name = "digits_mlp"
     log_probs = True
-    endpoint = "digits_blackbox/mnist_sklearn_pipeline.pkl"
-    data_path = "digits_blackbox/mnist_784.npz"
+    endpoint = "digits_mlp/mnist_sklearn_pipeline.pkl"
+    data_path = "digits_mlp/mnist_784.npz"
     input_shape = (1, 28, 28)
     output_classes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     classifier = "blackbox"
