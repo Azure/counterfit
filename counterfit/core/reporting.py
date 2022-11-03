@@ -45,7 +45,7 @@ class CFReportGenerator(ABC):
         best_queries = None
         for s in list_of_runs:
             for conf, il, fl in zip(s['final_confidence'], s['initial_label'], s['final_label']):
-                if (s['targeted'] and s['target_class'] == fl) or (s['targeted'] == False and fl != il):
+                if (s['targeted'] and s['target_label'] == fl) or (s['targeted'] == False and fl != il):
                     if best_score is None or conf > best_score or (conf == best_score and s['queries'] < best_queries):
                         best_score = conf
                         best_id = s["attack_id"]
