@@ -221,7 +221,14 @@ class ArtFramework(CFFramework):
         # Else resolve the correct classifier
         else:
             for classifier in classifiers.keys():
-                if target.classifier.lower() in classifier.lower():
+                # This translation is necessary as ART modules use the blackbox/whitebox naming convention for
+                # closed-box/open-box attacks.
+                target_classifier_name = target.classifier.lower()
+                if target_classifier_name == 'closed-box':
+                    target_classifier_name = 'blackbox'
+                if target_classifier_name == 'open-box':
+                    target_classifier_name = 'whitebox'
+                if target_classifier_name in classifier.lower():
                     return classifiers.get(classifier, None)
 
     def check_success(self, cfattack: CFAttack) -> bool:
