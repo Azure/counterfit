@@ -31,7 +31,7 @@ Change the label of a satellite image (true label: `stadium`) into `airplane`.
     ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
     │ creditfraud     │ blackbox   │ tabular   │ (30,)         │ 0         │ creditfraud/creditfraud_sklearn_pipeline.pkl         │
     │ digits_blackbox │ blackbox   │ image     │ (1, 28, 28)   │ 0         │ digits_blackbox/mnist_sklearn_pipeline.pkl           │
-    │ digits_keras    │ keras      │ image     │ (28, 28, 1)   │ 0         │ digits_keras/mnist_model.h5                          │
+    │ digits_keras    │ blackbox   │ image     │ (28, 28, 1)   │ 0         │ digits_keras/mnist_model.h5                          │
     │ movie_reviews   │ blackbox   │ text      │ (1,)          │ 0         │ movie_reviews/movie_reviews_sentiment_analysis.pt    │
     │ satellite       │ blackbox   │ image     │ (3, 256, 256) │ 0         │ satellite/satellite-image-params-airplane-stadium.h5 │
     └─────────────────┴────────────┴───────────┴───────────────┴───────────┴──────────────────────────────────────────────────────┘
