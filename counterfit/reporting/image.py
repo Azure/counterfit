@@ -57,7 +57,12 @@ class ImageReportGenerator(CFReportGenerator):
                 # If channels are last. Convert to channels first
                 # Squeezing the numpy array ensures that the dimensions for the array are correct.
                 # E.g., an array of shape (1, 1, 28, 28) turns to shape (1, 28, 28)
-                array = array.squeeze(1).transpose(1, 2, 0)
+                try:
+                    # NOTE. This is needed for "digits_mlp> predict -i 0"
+                    array = array.transpose(1, 2, 0)
+                except ValueError:
+                    # NOTE. This is neede for "digits_mlp>HopSkipJump:xxxx> show results"
+                    array = array.squeeze(1).transpose(1, 2, 0)
             # save mode is "L" or "RGB"
             save_mode = ImageDataType.get_channels(target.input_shape)
             new_image = Image.fromarray(array.squeeze(), mode=f"{save_mode}")
