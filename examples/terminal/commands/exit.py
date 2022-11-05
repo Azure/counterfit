@@ -19,6 +19,7 @@ def exit_cmd(args: argparse.Namespace) -> None:
         return
     if option == "attack":
         CFState.state().active_target.active_attack = None
+        CFState.state().active_attack = None
         return
     if option == "counterfit":
         while True:
