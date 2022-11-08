@@ -108,6 +108,35 @@ See the [Counterfit examples README.md](examples/README.md) for more information
 Notes: 
 - Windows requires C++ build tools
 - If textattack has been installed, it will initialize by downloading nltk data
+
+
+## Attack Support
+
+Each of the Counterfit targets supports a different data type (i.e., text,
+tabular, and image). For an attack to be compatible, it has to be able to work
+on that type of data as well.
+
+For example, Hop Skip Jump, is an evasion and closed-box attack that can be used
+for image and tabular data types. As such, it will be able to be used against 
+Digits Keras (because it accepts images as input) but not Movie Reviews (because
+it accepts text as input). It's important to ensure that the target supports the
+specific attack before running an attack. 
+
+To get a full view of the attack and targets, run the `list targets` and `list
+ attacks` command. 
+
+- **Text Targets**: movie_reviews
+- **Text Attacks**: a2t_yoo_2021, bae_garg_2019, bert_attack_li_2020, checklist_ribeiro_2020, clare_li_2020, deepwordbug_gao_2018, faster_genetic_algorithm_jia_2019, genetic_algorithm_alzantot_2018, hotflip_ebrahimi_2017, iga_wang_2019, input_reduction_feng_2018, kuleshov_2017, morpheus_tan_2020, pruthi_2019, pso_zang_2020, pwws_ren_2019, seq2sick_cheng_2018_blackbox, textbugger_li_2018, textfooler_jin_2019,
+
+ 
+- **Image Targets**: digits_keras, digits_mlp, satellite
+- **Image Attacks**: boundary, carlini, copycat_cnn, deepfool, elastic_net, functionally_equivalent_extraction, hop_skip_jump, knockoff_nets, label_only_boundary_distance, mi_face, newtonfool, pixel_threshold, projected_gradient_descent_numpy, saliency_map, simba, spatial_transformation, universal_perturbation, virtual_adversarial, wasserstein, ApplyLambda, Blur, Brightness, ChangeAspectRatio, ClipImageSize, ColorJitter, Contrast, ConvertColor, Crop, EncodingQuality, Grayscale, HFlip, MemeFormat, Opacity, OverlayEmoji, OverlayOntoScreenshot, OverlayStripes, OverlayText, Pad, PadSquare, PerspectiveTransform, Pixelization, RandomEmojiOverlay, RandomNoise, Resize, Rotate, Saturation, Scale, Sharpen, ShufflePixels, VFlip
+
+
+- **Tabular Targets**: cart_pole, cart_pole_initstate, creditfraud
+- **Tabular Attacks**: boundary, carlini, deepfool, elastic_net, functionally_equivalent_extraction, hop_skip_jump, knockoff_nets, label_only_boundary_distance, mi_face, newtonfool, projected_gradient_descent_numpy, saliency_map, spatial_transformation
+
+
 ## Acknowledgments
 Counterfit leverages excellent open source projects, including,
 
