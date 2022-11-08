@@ -114,14 +114,101 @@ Change the spelling of a few words to change the sentiment of an ML model that u
 
 6. Run the attack
    ```
-   run
+   movie_reviews>DeepWordBugGao2018:9b2ceb77> run
+   textattack: Attempting to attack 10 samples when only 1 are available.
+   Attack(
+     (search_method): GreedyWordSwapWIR(
+       (wir_method):  unk
+     )
+     (goal_function):  UntargetedClassification
+     (transformation):  CompositeTransformation(
+       (0): WordSwapNeighboringCharacterSwap(
+           (random_one):  True
+         )
+       (1): WordSwapRandomCharacterSubstitution(
+           (random_one):  True
+         )
+       (2): WordSwapRandomCharacterDeletion(
+           (random_one):  True
+         )
+       (3): WordSwapRandomCharacterInsertion(
+           (random_one):  True
+         )
+       )
+     (constraints): 
+       (0): LevenshteinEditDistance(
+           (max_edit_distance):  30
+           (compare_against_original):  True
+         )
+       (1): RepeatModification
+       (2): StopwordModification
+     (is_black_box):  True
+   ) 
+   
+    10%|█████████████▌                                                                                                                          | 1/10 [00:27<04:08, 27.66s/it]--------------------------------------------- Result 1 ---------------------------------------------
+   1 (99%) --> 0 (52%)
+   
+   Ever watched a movie that lost the plot? Well, this didn't even really have one to begin with.<br /><br />Where to begin? The achingly tedious scenes of our heroine sitting around the house with actually no sense of menace or even foreboding created even during the apparently constant thunderstorms (that are strangely never actually heard in the house-great double glazing)? The house that is apparently only a few miles from a town yet is several hours walk away(?) or the third girl who serves no purpose to the plot except to provide a surprisingly quick gory murder just as the tedium becomes unbearable? Or even the beginning which suggests a spate of 20+ killings throughout the area even though it is apparent the killer never ventures far from the house? Or the bizarre ritual with the salt & pepper that pretty much sums up most of the films inherent lack of direction.<br /><br />Add a lead actress who can't act but at least is willing to do some completely irrelevant nude shower scenes and this video is truly nasty, but not in the way you hope.<br /><br />Given a following simply for being banned in the UK in the 80's (mostly because of a final surprisingly over extended murder) it offers nothing but curiosity value- and one classic 'daft' murder (don't worry-its telegraphed at least ten minutes before).<br /><br />After a walk in the woods our victim comes to a rather steep upward slope which they obviously struggle up. Halfway through they see a figure at the top dressed in black and brandishing a large scythe. What do they do? Slide down and run like the rest of us? No, of course not- they struggle to the top and stand conveniently nice and upright in front of the murder weapon.<br /><br />It really IS only a movie as they say..
+   
+   Ever watched a movie that lost the Hlot? Well, this didn't een really have one to begiCn with.<br /><br />Where to begin? The achingly tedious scenes of our heroine sitting around the house with actually no sense of menace or even foreboding created eEen during the apparently constant thunderstorms (that are strangely never actually heard in the house-great double glazing)? The house that is apparently only a few miles from a town yet is esveral hours walk away(?) or the third girl who serves no purpose to the lot except to provide a surprisingly quick gory murder just as the tedium becomes unbearable? Or Veven the beginning which suggests a spate of 20+ killings throughout the area eBven though it is apparent the killer never ventures far from the house? Or the bizarre ritual with the salt & pepper that pretty much sums up most of the films inherent lack of direction.<br /><br />Add a lead actress who can't act but at least is willing to do some completely irrelevant nude shower scenes and this video is lruly nasty, but not in the way you hope.<br /><br />Given a following simply for being banned in the UK in the 80's (molstly because of a final surprisingly over extended murder) it offers nothing but curiosity value- and one classic 'daft' murder (don't worry-its telegraphed at least ten minutse before).<br /><br />After a walk in the woods our victim comes to a rEather steep upward slope which they obviously struggle up. Halfway through they see a figure at the top dressed in black and brandishing a large scythe. What do they do? Slide down and run like the Arest of us? No, of course not- they struggle to the top and stand conveniently nice and upright in front of the Wurder weapon.<br /><br />It really IS only a movie as they Xsay..
+   
+   
+   [Succeeded / Failed / Skipped / Total] 1 / 0 / 0 / 1:  10%|████████▏                                                                         | 1/10 [00:27<04:08, 27.67s/it]
+   
+   +-------------------------------+--------+
+   | Attack Results                |        |
+   +-------------------------------+--------+
+   | Number of successful attacks: | 1      |
+   | Number of failed attacks:     | 0      |
+   | Number of skipped attacks:    | 0      |
+   | Original accuracy:            | 100.0% |
+   | Accuracy under attack:        | 0.0%   |
+   | Attack success rate:          | 100.0% |
+   | Average perturbed word %:     | 4.78%  |
+   | Average num. words per input: | 314.0  |
+   | Avg num queries:              | 383.0  |
+   +-------------------------------+--------+
+   [+] success: Attack completed 9b2ceb77
    ```
 
-7. Look (scroll) up to see what changed between the original and final.
+7. Show results
+   ```
+   movie_reviews>DeepWordBugGao2018:9b2ceb77> show results 
+   ┏━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+   ┃ Success ┃ Elapsed time ┃ Total Queries        ┃
+   ┡━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+   │ 1/1     │ 27.7         │ 385 (13.9 query/sec) │
+   └─────────┴──────────────┴──────────────────────┘
+   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┓
+   ┃           ┃ Input     ┃ Adversar… ┃           ┃                                                                                                                ┃         ┃
+   ┃ Sample    ┃ Label     ┃ Label     ┃ % edit    ┃                                                                                                                ┃         ┃
+   ┃ Index     ┃ (conf)    ┃ (conf)    ┃ dist.     ┃ Adversarial Input                                                                                              ┃ success ┃
+   ┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━┩
+   │ 0         │ 1         │ 0         │ 0.0097    │ Ever watched a movie that lost the Hlot? Well, this didn't een really have one to begiCn with.<br /><br        │ True    │
+   │           │ (0.9871)  │ (0.5242)  │           │ />Where to begin? The achingly tedious scenes of our heroine sitting around the house with actually no sense   │         │
+   │           │           │           │           │ of menace or even foreboding created eEen during the apparently constant thunderstorms (that are strangely     │         │
+   │           │           │           │           │ never actually heard in the house-great double glazing)? The house that is apparently only a few miles from a  │         │
+   │           │           │           │           │ town yet is esveral hours walk away(?) or the third girl who serves no purpose to the lot except to provide a  │         │
+   │           │           │           │           │ surprisingly quick gory murder just as the tedium becomes unbearable? Or Veven the beginning which suggests a  │         │
+   │           │           │           │           │ spate of 20+ killings throughout the area eBven though it is apparent the killer never ventures far from the   │         │
+   │           │           │           │           │ house? Or the bizarre ritual with the salt & pepper that pretty much sums up most of the films inherent lack   │         │
+   │           │           │           │           │ of direction.<br /><br />Add a lead actress who can't act but at least is willing to do some completely        │         │
+   │           │           │           │           │ irrelevant nude shower scenes and this video is lruly nasty, but not in the way you hope.<br /><br />Given a   │         │
+   │           │           │           │           │ following simply for being banned in the UK in the 80's (molstly because of a final surprisingly over extended │         │
+   │           │           │           │           │ murder) it offers nothing but curiosity value- and one classic 'daft' murder (don't worry-its telegraphed at   │         │
+   │           │           │           │           │ least ten minutse before).<br /><br />After a walk in the woods our victim comes to a rEather steep upward     │         │
+   │           │           │           │           │ slope which they obviously struggle up. Halfway through they see a figure at the top dressed in black and      │         │
+   │           │           │           │           │ brandishing a large scythe. What do they do? Slide down and run like the Arest of us? No, of course not- they  │         │
+   │           │           │           │           │ struggle to the top and stand conveniently nice and upright in front of the Wurder weapon.<br /><br />It       │         │
+   │           │           │           │           │ really IS only a movie as they Xsay..                                                                          │         │
+   └───────────┴───────────┴───────────┴───────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴─────────┘
+   ```
 
-8. You can save this result using
-   `save -p`
-   and view the resulting file using `!cat <filename>`.
+9. Look (scroll) up to see what changed between the original and final.
+
+10. You can save this result using
+    `save -p`
+    and view the resulting file using `!cat <filename>`.
 
 ## (Optional) Self Assessment
 1. How would you run this attack with the same parameters simultaneously for several different movie reviews?  (Hint: how would you include many different values for `sample_index` during `run`?)

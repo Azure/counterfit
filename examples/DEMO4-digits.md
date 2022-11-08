@@ -157,52 +157,12 @@ Compare open-box and API attacks to digits model
    ```
 
 
-6. Let's first try a whitebox attack `carlini`
-   ```
-   digits_keras> set_attack carlini 
-   [+] success:  Using 755e399d
-   digits_keras>CarliniLInfMethod:755e399d> 
-   ```
 
-7. Set some parameters
+8. Use `hop_skip_jump` with changed parameters.
    ```
-   digits_keras>CarliniLIn`fMethod:755e399d> set_params --eps 0.15 --learning_rate 0.1 --max_iter 10 --sample_index 18
-   ┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-   ┃ Parameter (type)      ┃ Default    ┃ Current    ┃ New                                                                                         ┃
-   ┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-   │ Algo Parameters       │            │            │                                                                                             │
-   │ --------------------  │ --         │ --         │ --                                                                                          │
-   │ batch_size (int)      │ 128        │ 128        │ Size of the batch on which adversarial samples are generated.                               │
-   │ clip_values (list)    │ [0.0, 1.0] │ (0.0, 1.0) │ Refer to attack file.                                                                       │
-   │ confidence (float)    │ 0.0        │ 0.0        │ Confidence of adversarial examples: a higher value produces examples that are farther away, │
-   │ eps (float)           │ 0.3        │ 0.15       │ An upper bound for the L_0 norm of the adversarial perturbation.                            │
-   │ learning_rate (float) │ 0.01       │ 0.1        │ The initial learning rate for the attack algorithm. Smaller values produce better           │
-   │ max_doubling (int)    │ 5          │ 5          │ Maximum number of doubling steps in the line search optimization.                           │
-   │ max_halving (int)     │ 5          │ 5          │ Maximum number of halving steps in the line search optimization.                            │
-   │ max_iter (int)        │ 10         │ 10         │ The maximum number of iterations.                                                           │
-   │ targeted (NoneType)   │ None       │ None       │ Should the attack target one specific class.                                                │
-   │ verbose (bool)        │ True       │ True       │ Show progress bars.                                                                         │
-   │ target_labels (int)   │ 0          │ 0          │ target labels for a targeted attack                                                         │
-   │                       │            │            │                                                                                             │
-   │ CFAttack Options      │            │            │                                                                                             │
-   │ --------------------  │ --         │ --         │ --                                                                                          │
-   │ sample_index (int)    │ 0          │ 18         │ Sample index to attack                                                                      │
-   │ optimize (bool)       │ False      │ False      │ Use Optuna to optimize attack parameters                                                    │
-   │ logger (str)          │ basic      │ basic      │ Logger to log queries with                                                                  │
-   └───────────────────────┴────────────┴────────────┴─────────────────────────────────────────────────────────────────────────────────────────────┘
-   ```
-
-8. Run the attack
-   ```
-   digits_keras>CarliniLInfMethod:755e399d> run
-   C&W L_inf: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:03<00:00,  3.09s/it]
-   [+] success:  Attack completed 755e399d
-   ```
-
-9. Compare this with an API-only attack.  We'll use `hop_skip_jump` with default parameters.
-   ```
-   digits_keras>CarliniLInfMethod:755e399d> set_attack hop_skip_jump 
+   digits_keras>> set_attack hop_skip_jump 
    [+] success:  Using 0abbe6ef
+   
    digits_keras>HopSkipJump:0abbe6ef> set_params --sample_index 18 --max_eval 1250 --max_iter 5 --norm inf
    ┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    ┃ Parameter (type)     ┃ Default    ┃ Current    ┃ New                                                                      ┃
@@ -227,14 +187,37 @@ Compare open-box and API attacks to digits model
    │ optimize (bool)      │ False      │ False      │ Use Optuna to optimize attack parameters                                 │
    │ logger (str)         │ basic      │ basic      │ Logger to log queries with                                               │
    └──────────────────────┴────────────┴────────────┴──────────────────────────────────────────────────────────────────────────┘
+   ```
+   
+9. Run the attack
+   ```
    digits_keras>HopSkipJump:0abbe6ef> run
    HopSkipJump: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  2.53it/s]
    [+] success:  Attack completed 0abbe6ef
    ```
 
+10. Show results
+
+   ```
+   digits_keras>HopSkipJump:0abbe6ef> show results
+   [-] info: Image has been saved in the location ./results/0abbe6ef/digits_keras-bcae6586.png
+   ┏━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   ┃ Success ┃ Elapsed time ┃ Total Queries            ┃
+   ┡━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+   │ 1/1     │ 5.7          │ 24552 (4299.6 query/sec) │
+   └─────────┴──────────────┴──────────────────────────┘
+   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┓
+   ┃           ┃ Input     ┃ Adversar… ┃           ┃                                                                                                                ┃         ┃
+   ┃ Sample    ┃ Label     ┃ Label     ┃ Max Abs   ┃                                                                                                                ┃         ┃
+   ┃ Index     ┃ (conf)    ┃ (conf)    ┃ Chg.      ┃ Adversarial Input                                                                                              ┃ Success ┃
+   ┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━┩
+   │ 0         │ 7         │ 0         │ 0.2565    │ ./results/0abbe6ef/digits_keras-bcae6586.png                                                                   │ [ True] │
+   │           │ (1.0000)  │ (0.6614)  │           │                                                                                                                │         │
+   └───────────┴───────────┴───────────┴───────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴─────────┘
+   ```
+
 ## (Optional) Self Assessment
-1. What are the model access requirements for `CarliniLInfMethod` vs. `HopSkipJump`?
-2. Compare the visual quality of these two attacks?  Which is better?  Which attack shows lower "Max Absolute Change"?
-3. Find a set of _best_ parameters for both `CarliniLInfMethod` and `HopSkipJump` that provides excellent visual quality with few "Total Queries".  Can you find a set of parameters for `CarliniLInfMethod` for which you can't replicate the quality or efficiency with `HopSkipJump`?  
+1. What are the model access requirements for `HopSkipJump`?
+2. Find a set of _best_ parameters for `HopSkipJump` that provides excellent visual quality with few "Total Queries".   
 
 [[Demo Home]](../demo/README.md)
