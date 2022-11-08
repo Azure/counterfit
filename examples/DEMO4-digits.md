@@ -77,7 +77,7 @@ Compare open-box and API attacks to digits model
 
 5. List possible attacks
    ```
-    attacks
+   digits_keras> list attacks
 
    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
    ┃ Name                               ┃ Category          ┃ Type       ┃ Tags           ┃ Framework  ┃
