@@ -11,8 +11,12 @@ Change the label of a satellite image (true label: `stadium`) into `airplane`.
 ## Steps
 
 1. Start the Counterfit CLI.
-    ```
-    $ python examples/terminal/terminal.py 
+    ```bash
+    # Start CF option 1. Using the console script.
+    $ counterfit 
+   
+    # Start CF option 2. From the terminal.py file.
+    $ python examples/terminal/terminal.py
    
                               __            _____ __
       _________  __  ______  / /____  _____/ __(_) /_
