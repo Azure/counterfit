@@ -3,7 +3,7 @@
 [![Tests](https://github.com/Azure/counterfit/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/Azure/counterfit/actions/workflows/tests.yaml)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/Azure/counterfit/blob/main/LICENSE)
 
-[About](#About) | [Getting Started](#Getting-Started) | [Acknowledgments](#Acknowledgments) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
+[About](#About) | [Getting Started](#Getting-Started) | [Acknowledgments](#Acknowledgments) | [Troubleshooting](#Troubleshooting) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
 
 ```
                           __            _____ __
@@ -143,6 +143,15 @@ Counterfit leverages excellent open source projects, including,
 - [Adversarial Robustness Toolbox](https://github.com/Trusted-AI/adversarial-robustness-toolbox)
 - [TextAttack](https://github.com/QData/TextAttack)
 - [Augly](https://github.com/facebookresearch/AugLy)
+
+
+## Troubleshooting
+
+If Counterfit fails to launch, see the [Troubleshooting section](
+TROUBLESHOOTING.md) for common issues. Additionally, you can also go to the 
+[Counterfit discussion](https://github.com/Azure/counterfit/discussions) to ask
+questions and find the latest announcements. 
+
 
 ## Contributing
 
