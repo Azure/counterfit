@@ -1,37 +1,35 @@
-# counterfit
-cmd2==2.2.0
-questionary==1.9.0
-python-Levenshtein==0.12.2
-rich==12.0.1
-orjson==3.6.4
-flask==2.0.0
-
-# docs
-sphinx==5.1.1
-sphinx-rtd-theme==1.0.0
-
-# frameworks
-adversarial-robustness-toolbox==1.8
-textattack==0.3.4
-torchvision==0.11.1
-tensorflow==2.6.2
-tensorflow-hub==0.12.0 # to run textbugger, bae_garg and textfooler attacks
-torchfile==0.1.0 # to run fga_jia_2019 attack
-tensorflow-text==2.6.0 # dependency on textattack
+azure-storage-blob==12.1.0                  # Azure packages
 bs4==0.0.1
-traitlets==5.0.5  # required for Windows
-pyglet==1.5.26
-pytorch_lightning==1.5.9
+cmd2==2.2.0                                 # Counterfit terminal
+cmd2-ext-test>=2.0.0                        # Required for Counterfit terminal  tests
+flask==2.0.0
+gym>=0.26.0                                 # Required for cartpole target
 h5py==3.1.0
-lightgbm==3.3.1
-augly==0.1.10
+h5py==3.1.0
 hyperopt==0.2.3
-gym==0.19.0
-scipy==1.4.1
-protobuf==4.21.4  # For running RL attacks
-
-# Azure packages
-azure-storage-blob==12.1.0
-
-# testing framework
-pytest==6.2.5
+lightgbm==3.3.1
+lightgbm==3.3.1
+matplotlib==3.6.1
+numpy>=1.18.5
+onnxruntime==1.10.0
+optuna==2.10.1
+orjson==3.6.4
+pillow==9.2.0
+pre-commit==2.20.0                          # Required for pre-commit hooks
+protobuf>=3.9                               # For running RL attacks. tensorflow 2.10.0 depends on protobuf<3.20 and >=3.9.2
+pygame==2.1.2                               # Required for cartpole target
+pyglet==2.0.0                               # Required for cartpole target
+pytest==6.2.5                               # Test framework
+python-Levenshtein==0.12.2                  # Required for text attacks. Pinning to old version because >=0.20.0 fail to import .distance()
+pytorch_lightning==1.6.0
+pyyaml==6.0
+questionary==1.9.0
+requests==2.24.0
+rich==12.0.1
+scipy==1.9.2
+tensorflow==2.10.0
+tensorflow-hub==0.12.0                      # To run textbugger, bae_garg and textfooler attacks
+tensorflow-text==2.10.0                     # Dependency on
+torchfile==0.1.0                            # To run fga_jia_2019 attack
+torchvision==0.11.1
+traitlets==5.3.0                            # Required for Windows

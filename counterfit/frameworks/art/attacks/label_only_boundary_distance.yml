@@ -1,0 +1,30 @@
+attack_category: inference
+attack_class: art.attacks.inference.membership_inference.label_only_boundary_distance.LabelOnlyDecisionBoundary
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of Label-Only Inference Attack based on Decision\
+  \ Boundary.\n\n    | Paper link: https://arxiv.org/abs/2007.14321 (Choquette-Choo\
+  \ et al.) and https://arxiv.org/abs/2007.15528 (Li\n    and Zhang)\n\n    You only\
+  \ need to call ONE of the calibrate methods, depending on which attack you want\
+  \ to launch.\n    "
+attack_name: label_only_boundary_distance
+attack_parameters:
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  distance_threshold_tau:
+    default: 1.0
+    docs: Threshold distance for decision boundary. Samples with boundary distances
+      larger
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+attack_type: open-box

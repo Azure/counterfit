@@ -1,0 +1,16 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.bae_garg_2019.BAEGarg2019
+attack_data_tags:
+- text
+attack_docs: "Siddhant Garg and Goutham Ramakrishnan, 2019.\n\n    BAE: BERT-based\
+  \ Adversarial Examples for Text Classification.\n\n    https://arxiv.org/pdf/2004.01970\n\
+  \n    This is \"attack mode\" 1 from the paper, BAE-R, word replacement.\n\n   \
+  \ We present 4 attack modes for BAE based on the\n        R and I operations, where\
+  \ for each token t in S:\n        \u2022 BAE-R: Replace token t (See Algorithm 1)\n\
+  \        \u2022 BAE-I: Insert a token to the left or right of t\n        \u2022\
+  \ BAE-R/I: Either replace token t or insert a\n        token to the left or right\
+  \ of t\n        \u2022 BAE-R+I: First replace token t, then insert a\n        token\
+  \ to the left or right of t\n    "
+attack_name: bae_garg_2019
+attack_parameters: {}
+attack_type: closed-box

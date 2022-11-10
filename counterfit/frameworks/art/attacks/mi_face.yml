@@ -1,0 +1,64 @@
+attack_category: inference
+attack_class: art.attacks.inference.model_inversion.mi_face.MIFace
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of the MIFace algorithm from Fredrikson et al.\
+  \ (2015). While in that paper the attack is demonstrated\n    specifically against\
+  \ face recognition models, it is applicable more broadly to classifiers with continuous\
+  \ features\n    which expose class gradients.\n\n    | Paper link: https://dl.acm.org/doi/10.1145/2810103.2813677\n\
+  \    "
+attack_name: mi_face
+attack_parameters:
+  batch_size:
+    default: 1
+    docs: Size of internal batches.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  learning_rate:
+    default: 0.1
+    docs: Refer to attack file.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_iter:
+    default: 10000
+    docs: Maximum number of gradient descent iterations for the model inversion.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  threshold:
+    default: 0.99
+    docs: Threshold for descent stopping criterion.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+  window_length:
+    default: 100
+    docs: Length of window for checking whether descent should be aborted.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+attack_type: open-box

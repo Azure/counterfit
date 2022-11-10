@@ -1,0 +1,47 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.newtonfool.NewtonFool
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    Implementation of the attack from Uyeong Jang et al. (2017).\n\
+  \n    | Paper link: http://doi.acm.org/10.1145/3134600.3134635\n    "
+attack_name: newtonfool
+attack_parameters:
+  batch_size:
+    default: 1
+    docs: Size of the batch on which adversarial samples are generated.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  eta:
+    default: 0.01
+    docs: The eta coefficient.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_iter:
+    default: 100
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

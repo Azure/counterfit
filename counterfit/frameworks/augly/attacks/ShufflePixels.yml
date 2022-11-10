@@ -1,0 +1,34 @@
+attack_category: common-corruption
+attack_class: augly.image.transforms.ShufflePixels
+attack_data_tags:
+- image
+attack_docs: "\n        Shuffles the pixels of an image with respect to the shuffling\
+  \ factor. The\n        factor denotes percentage of pixels to be shuffled and randomly\
+  \ selected\n        Note: The actual number of pixels will be less than the percentage\
+  \ given\n        due to the probability of pixels staying in place in the course\
+  \ of shuffling\n\n        @param image: PIL Image to be augmented\n\n        @param\
+  \ metadata: if set to be a list, metadata about the function execution\n       \
+  \     including its name, the source & dest width, height, etc. will be appended\
+  \ to\n            the inputted list. If set to None, no metadata will be appended\
+  \ or returned\n\n        @param bboxes: a list of bounding boxes can be passed in\
+  \ here if desired. If\n            provided, this list will be modified in place\
+  \ such that each bounding box is\n            transformed according to this function\n\
+  \n        @param bbox_format: signifies what bounding box format was used in `bboxes`.\
+  \ Must\n            specify `bbox_format` if `bboxes` is provided. Supported bbox_format\
+  \ values\n            are \"pascal_voc\", \"pascal_voc_norm\", \"coco\", and \"\
+  yolo\"\n\n        @returns: Augmented PIL Image\n        "
+attack_name: ShufflePixels
+attack_parameters:
+  factor:
+    default: 1.0
+    docs: Refer to attack file
+    optimize: {}
+  p:
+    default: 1.0
+    docs: Refer to attack file
+    optimize: {}
+  seed:
+    default: 10
+    docs: Refer to attack file
+    optimize: {}
+attack_type: closed-box

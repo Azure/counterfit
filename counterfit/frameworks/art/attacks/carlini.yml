@@ -1,0 +1,82 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.carlini.CarliniLInfMethod
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    This is a modified version of the L_2 optimized attack of Carlini\
+  \ and Wagner (2016). It controls the L_Inf\n    norm, i.e. the maximum perturbation\
+  \ applied to each pixel.\n    "
+attack_name: carlini
+attack_parameters:
+  batch_size:
+    default: 128
+    docs: Size of the batch on which adversarial samples are generated.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  confidence:
+    default: 0.0
+    docs: 'Confidence of adversarial examples: a higher value produces examples that
+      are farther away,'
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  eps:
+    default: 0.3
+    docs: An upper bound for the L_0 norm of the adversarial perturbation.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  learning_rate:
+    default: 0.01
+    docs: The initial learning rate for the attack algorithm. Smaller values produce
+      better
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_doubling:
+    default: 5
+    docs: Maximum number of doubling steps in the line search optimization.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  max_halving:
+    default: 5
+    docs: Maximum number of halving steps in the line search optimization.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  max_iter:
+    default: 10
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  targeted:
+    default: null
+    docs: Should the attack target one specific class.
+    optimize: {}
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

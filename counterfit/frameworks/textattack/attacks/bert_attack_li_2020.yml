@@ -1,0 +1,10 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.bert_attack_li_2020.BERTAttackLi2020
+attack_data_tags:
+- text
+attack_docs: "Li, L.., Ma, R., Guo, Q., Xiangyang, X., Xipeng, Q. (2020).\n\n    BERT-ATTACK:\
+  \ Adversarial Attack Against BERT Using BERT\n\n    https://arxiv.org/abs/2004.09984\n\
+  \n    This is \"attack mode\" 1 from the paper, BAE-R, word replacement.\n    "
+attack_name: bert_attack_li_2020
+attack_parameters: {}
+attack_type: closed-box

@@ -1,0 +1,47 @@
+attack_category: common-corruption
+attack_class: augly.image.transforms.OverlayStripes
+attack_data_tags:
+- image
+attack_docs: "\n        Overlay stripe pattern onto the image (by default, stripes\
+  \ are horizontal)\n\n        @param image: PIL Image to be augmented\n\n       \
+  \ @param metadata: if set to be a list, metadata about the function execution\n\
+  \            including its name, the source & dest width, height, etc. will be appended\
+  \ to\n            the inputted list. If set to None, no metadata will be appended\
+  \ or returned\n\n        @param bboxes: a list of bounding boxes can be passed in\
+  \ here if desired. If\n            provided, this list will be modified in place\
+  \ such that each bounding box is\n            transformed according to this function\n\
+  \n        @param bbox_format: signifies what bounding box format was used in `bboxes`.\
+  \ Must\n            specify `bbox_format` if `bboxes` is provided. Supported bbox_format\
+  \ values\n            are \"pascal_voc\", \"pascal_voc_norm\", \"coco\", and \"\
+  yolo\"\n\n        @returns: Augmented PIL Image\n        "
+attack_name: OverlayStripes
+attack_parameters:
+  line_angle:
+    default: 0
+    docs: Refer to attack file
+    optimize: {}
+  line_color:
+    default: 0.5
+    docs: Refer to attack file
+    optimize: {}
+  line_density:
+    default: 0.5
+    docs: Refer to attack file
+    optimize: {}
+  line_opacity:
+    default: 1.0
+    docs: Refer to attack file
+    optimize: {}
+  line_type:
+    default: 0.5
+    docs: Refer to attack file
+    optimize: {}
+  line_width:
+    default: 0.5
+    docs: Refer to attack file
+    optimize: {}
+  p:
+    default: 1.0
+    docs: Refer to attack file
+    optimize: {}
+attack_type: closed-box

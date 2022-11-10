@@ -1,56 +1,43 @@
-import re
-import importlib
+import yaml
+import glob
+import pathlib
+import numpy as np
+import pydoc
 
 from textattack import Attacker
-import numpy as np
 from textattack.datasets import Dataset
 
 from counterfit.core.attacks import CFAttack
-from counterfit.core.frameworks import Framework
-from counterfit.core.utils import get_subclasses
-from counterfit.report.report_generator import get_target_data_type_obj
+from counterfit.core.frameworks import CFFramework
 
-class TextAttackFramework(Framework):
+
+class TextAttackFramework(CFFramework):
     def __init__(self):
         super().__init__()
 
-    def load(self, config_path=None):
-        if config_path:
-            self.load_from_config(config_path)
-        else:
-            self.load_attacks()
-        self.loaded_status = True
+    @classmethod
+    def get_attacks(cls, framework_path=f"{pathlib.Path(__file__).parent.resolve()}/attacks"):
+        attacks = {}
+        files = glob.glob(f"{framework_path}/*.yml")
 
-    def load_attacks(self):
-        base_import = importlib.import_module(
-            "textattack.attack_recipes")
-        attacks = get_subclasses(base_import.AttackRecipe)
+        for attack in files:
+            with open(attack, 'r') as f:
+                data = yaml.safe_load(f)
+            attacks[data['attack_name']] = data
 
-        for attack_class in attacks:
-            attack_name = re.findall(
-                r"\w+", str(attack_class).split(".")[-1].strip())[0]
-            attack_category = "BlackBox"
-            attack_type = "IntegrityAttack" if "Seq" in attack_name else "EvasionAttack"
-            attack_data_tags = ["text"]
-            attack_params = {}
-
-            # Create the Attack Object
-            if attack_name not in self.attacks.keys():
-                self.add_attack(
-                    attack_name=attack_name,
-                    attack_class=attack_class,
-                    attack_type=attack_type,
-                    attack_category=attack_category,
-                    attack_data_tags=attack_data_tags,
-                    attack_default_params=attack_params
-                )
+        return attacks
 
     def create_dataset(self, cfattack):
         # return Dataset([("This is a test", 1)])
         return Dataset(list(zip(cfattack.samples, cfattack.initial_labels)))
 
-    def build(self, target, attack):
+    def build(self, target, attack: str):
+        """ Build a new attack
 
+        Note
+            The attack comes in the format of "textattack.attack_recipes.deepwordbug_gao_2018.DeepWordBugGao2018"
+
+        """
         class TextAttackWrapperObject(object):
             def __init__(self, predict_wrapper):
                 self.model = predict_wrapper
@@ -58,12 +45,12 @@ class TextAttackFramework(Framework):
             def __call__(self, x):
                 return self.model(x)
 
-        new_attack = attack.build(
-            TextAttackWrapperObject(target.predict_wrapper))
+        text_attack_obj = TextAttackWrapperObject(target.predict_wrapper)
+        attack = pydoc.locate(attack)
+        new_attack = attack.build(text_attack_obj)
         return new_attack
 
     def run(self, cfattack):
-
         # get labels for samples and zip with samples
         dataset = self.create_dataset(cfattack)
 
@@ -71,12 +58,20 @@ class TextAttackFramework(Framework):
         results = new_attack.attack_dataset()
         return [r.perturbed_text() for r in results]
 
-    def post_attack_processing(self, cfattack: CFAttack):
+    def set_parameters(self, cfattack: CFAttack):
+        # Does nothing. Allow for future extensibility.
+        pass
 
-        current_datatype = cfattack.target.target_data_type
-        current_dt_report_gen = get_target_data_type_obj(current_datatype)
-        summary = current_dt_report_gen.get_run_summary(cfattack)
-        current_dt_report_gen.print_run_summary(summary)
+    def pre_attack_processing(self, cfattact: CFAttack):
+        # Does nothing. Allow for future extensibility.
+        pass
+
+    def post_attack_processing(self, cfattack: CFAttack):
+        pass
+        # current_datatype = cfattack.target.target_data_type
+        # current_dt_report_gen = get_target_data_type_obj(current_datatype)
+        # summary = current_dt_report_gen.get_run_summary(cfattack)
+        # current_dt_report_gen.print_run_summary(summary)
 
     def check_success(self, cfattack: CFAttack) -> bool:
         final_outputs, final_labels = cfattack.target.get_sample_labels(

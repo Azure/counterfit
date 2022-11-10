@@ -1,3 +1,7 @@
+# Counterfit
+results
+prof
+
 # Byte-compiled / optimized / DLL files
 *__pycache__/
 *.py[cod]
@@ -116,3 +120,9 @@ counterfit/targets/*/results
 counterfit/docs/source/_autosummary
 counterfit/docs/build/doctrees/_autosummary
 docs/build/doctrees
+
+# build folder
+build
+
+# dev env
+cf-venv

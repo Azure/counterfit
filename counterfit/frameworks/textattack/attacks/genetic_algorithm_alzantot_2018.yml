@@ -1,0 +1,10 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.genetic_algorithm_alzantot_2018.GeneticAlgorithmAlzantot2018
+attack_data_tags:
+- text
+attack_docs: "Alzantot, M., Sharma, Y., Elgohary, A., Ho, B., Srivastava, M.B., &\n\
+  \    Chang, K. (2018).\n\n    Generating Natural Language Adversarial Examples.\n\
+  \n    https://arxiv.org/abs/1804.07998\n    "
+attack_name: genetic_algorithm_alzantot_2018
+attack_parameters: {}
+attack_type: closed-box

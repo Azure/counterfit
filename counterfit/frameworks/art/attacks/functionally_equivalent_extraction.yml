@@ -1,0 +1,28 @@
+attack_category: inversion
+attack_class: art.attacks.extraction.functionally_equivalent_extraction.FunctionallyEquivalentExtraction
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    This module implements the Functionally Equivalent Extraction\
+  \ attack for neural networks with two dense layers,\n    ReLU activation at the\
+  \ first layer and logits output after the second layer.\n\n    | Paper link: https://arxiv.org/abs/1909.01838\n\
+  \    "
+attack_name: functionally_equivalent_extraction
+attack_parameters:
+  channels_first:
+    default: false
+    docs: Refer to attack file.
+    optimize:
+      bool:
+      - true
+      - false
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+attack_type: closed-box

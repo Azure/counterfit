@@ -1,0 +1,10 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.deepwordbug_gao_2018.DeepWordBugGao2018
+attack_data_tags:
+- text
+attack_docs: "Gao, Lanchantin, Soffa, Qi.\n\n    Closed-box Generation of Adversarial\
+  \ Text Sequences to Evade Deep Learning\n    Classifiers.\n\n    https://arxiv.org/abs/1801.04354\n\
+  \    "
+attack_name: deepwordbug_gao_2018
+attack_parameters: {}
+attack_type: closed-box

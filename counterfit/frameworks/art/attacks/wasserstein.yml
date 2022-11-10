@@ -1,0 +1,121 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.wasserstein.Wasserstein
+attack_data_tags:
+- image
+attack_docs: "\n    Implements ``Wasserstein Adversarial Examples via Projected Sinkhorn\
+  \ Iterations`` as evasion attack.\n\n    | Paper link: https://arxiv.org/abs/1902.07906\n\
+  \    "
+attack_name: wasserstein
+attack_parameters:
+  ball:
+    default: wasserstein
+    docs: 'The ball of the adversarial perturbation. Possible values: `inf`, `1`,
+      `2` or `wasserstein`.'
+    optimize:
+      choice:
+      - wasserstein
+  batch_size:
+    default: 1
+    docs: Size of batches.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  conjugate_sinkhorn_max_iter:
+    default: 400
+    docs: The maximum number of iterations for the conjugate sinkhorn optimizer.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  eps:
+    default: 0.3
+    docs: Maximum perturbation that the attacker can introduce.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  eps_factor:
+    default: 1.1
+    docs: Factor to increase the epsilon.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  eps_iter:
+    default: 10
+    docs: Number of iterations to increase the epsilon.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  eps_step:
+    default: 0.1
+    docs: Attack step size (input variation) at each iteration.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  kernel_size:
+    default: 5
+    docs: Kernel size for computing the cost matrix.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  max_iter:
+    default: 400
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  norm:
+    default: wasserstein
+    docs: 'The norm of the adversarial perturbation. Possible values: `inf`, `1`,
+      `2` or `wasserstein`.'
+    optimize:
+      choice:
+      - inf
+  p:
+    default: 2
+    docs: The p-wasserstein distance.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  projected_sinkhorn_max_iter:
+    default: 400
+    docs: The maximum number of iterations for the projected sinkhorn optimizer.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  regularization:
+    default: 3000.0
+    docs: Entropy regularization.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  targeted:
+    default: null
+    docs: Indicates whether the attack is targeted (True) or untargeted (False).
+    optimize: {}
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

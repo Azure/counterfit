@@ -5,9 +5,9 @@ on:
   push:
     branches: [main]
 
-  # Run once a week (see https://crontab.guru)
+  # Run at 4am everyday (see https://crontab.guru)
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 4 * * *"
 
 env:
   PYTHON_VERSION: 3.8.8
@@ -20,14 +20,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
     steps:
       - name: Set up git repository
-        uses: actions/checkout@v2
-        with:
-          ref: main
+        uses: actions/checkout@v3.1.0
 
-      - name: Install dependencies
+      - name: Install OS dependencies
         run: |
           if [ "${RUNNER_OS}" == "Linux" ]; then
             sudo apt update
@@ -46,17 +44,14 @@ jobs:
             exit 1
           fi
 
-      - name: Populate action files
+      - name: Populate acceptance tests
         run: |
-          if [ "${RUNNER_OS}" == "Linux" ]; then
-            cp .github/files/environment-Linux.yml ./environment.yml
-          elif [ "${RUNNER_OS}" == "macOS" ]; then
-            cp .github/files/environment-Darwin.yml ./environment.yml
-          else
-            echo "${RUNNER_OS} not supported"
-            exit 1
-          fi
-          cp .github/files/*.exp .
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/install_test.exp" ./install_test.exp
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/cra_test.exp" ./cra_test.exp
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/ispa_test.exp" ./ispa_test.exp
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/satellite_hsj_test.exp" ./satellite_hsj_test.exp
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/creditfraud_hsj_test.exp" ./creditfraud_hsj_test.exp
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/digits_hsj_test.exp" ./digits_hsj_test.exp
 
       - name: Setup Anaconda
         uses: conda-incubator/setup-miniconda@v2
@@ -64,9 +59,8 @@ jobs:
           activate-environment: counterfit
           auto-update-conda: true
           python-version: ${{ env.PYTHON_VERSION }}
-          environment-file: environment.yml
 
-      - name: Setup conda
+      - name: Setup Conda
         run: |
           if [ "${RUNNER_OS}" == "Linux" ]; then
             echo 'conda activate "counterfit"' >> "${HOME}/.profile"
@@ -77,61 +71,112 @@ jobs:
             exit 1
           fi
 
-      - name: Setup test environment
+      - name: Install Pycld2
+        run: |
+          pip install https://github.com/aboSamoor/pycld2/zipball/e3ac86ed4d4902e912691c1531d0c5645382a726
+
+      - name: Setup counterfit
         shell: bash -l {0}
         run: |
-          pip install -r requirements.txt
           echo "PYTHON_PATH=$(which python)" >> $GITHUB_ENV
-
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            source "${HOME}/.profile"
+            conda activate counterfit
+            cd "${GITHUB_WORKSPACE}/"
+            pip install --no-input .[dev]
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            conda activate counterfit
+            cd "${GITHUB_WORKSPACE}/"
+            pip install --no-input .[dev]
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
       - name: Test counterfit install
         shell: bash -l {0}
         run: |
           if [ "${RUNNER_OS}" == "Linux" ]; then
             source "${HOME}/.profile"
             conda activate counterfit
-            expect -d ./install_test.exp Linux ${{ env.SECONDS }}
+            expect -d ./install_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
           elif [ "${RUNNER_OS}" == "macOS" ]; then
             conda activate counterfit
-            expect -d ./install_test.exp Darwin ${{ env.SECONDS }}
+            expect -d ./install_test.exp Darwin ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
           else
             echo "${RUNNER_OS} not supported"
             exit 1
           fi
 
-      - name: Run Initial State Perturbation Attack test for n minutes
+      - name: Test Initial State Perturbation Attack for n minutes
         shell: bash -l {0}
         run: |
           if [ "${RUNNER_OS}" == "Linux" ]; then
             source "${HOME}/.profile"
             conda activate counterfit
-            expect -d ./ispa_test.exp Linux ${{ env.SECONDS }}
+            expect -d ./ispa_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
           elif [ "${RUNNER_OS}" == "macOS" ]; then
             conda activate counterfit
-            expect -d ./ispa_test.exp Darwin ${{ env.SECONDS }}
+            expect -d ./ispa_test.exp Darwin ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
           else
             echo "${RUNNER_OS} not supported"
             exit 1
           fi
 
-      - name: Run Corrupted Replay Attack (CRA) test for n minutes
+      - name: Test Corrupted Replay Attack (CRA) for n minutes
         shell: bash -l {0}
         run: |
           if [ "${RUNNER_OS}" == "Linux" ]; then
             source "${HOME}/.profile"
             conda activate counterfit
-            expect -d ./cra_test.exp Linux ${{ env.SECONDS }}
+            expect -d ./cra_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
           elif [ "${RUNNER_OS}" == "macOS" ]; then
             conda activate counterfit
-            expect -d ./cra_test.exp Darwin ${{ env.SECONDS }}
+            expect -d ./cra_test.exp Darwin ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
           else
             echo "${RUNNER_OS} not supported"
             exit 1
           fi
+
+      - name: Test Hop Skip Jump Attack (HSJ) attack on Satellite target for n minutes
+        shell: bash -l {0}
+        run: |
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            source "${HOME}/.profile"
+            conda activate counterfit
+            expect -d ./satellite_hsj_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            conda activate counterfit
+            expect -d ./satellite_hsj_test.exp Darwin ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
+
+      - name: Test Hop Skip Jump Attack (HSJ) attack on CreditFraud target for n minutes
+        shell: bash -l {0}
+        run: |
+          if [ "${RUNNER_OS}" == "Linux" ]; then
+            source "${HOME}/.profile"
+            conda activate counterfit
+            expect -d ./creditfraud_hsj_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
+          elif [ "${RUNNER_OS}" == "macOS" ]; then
+            conda activate counterfit
+            expect -d ./creditfraud_hsj_test.exp Darwin ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
+          else
+            echo "${RUNNER_OS} not supported"
+            exit 1
+          fi
+
+      - name: Test Hop Skip Jump Attack (HSJ) attack on Digits Keras
+        shell: bash -l {0}
+        run: |
+          source "${HOME}/.profile"
+          conda activate counterfit
+          expect -d ./digits_hsj_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
 
       - name: Report failure
         uses: nashmaniac/create-issue-action@v1.1
-        # Only report failures of pushes (PRs have are visible through the Checks section)
-        # to the default branch
+        # Only report failures of pushes (PRs have are visible through the Checks section) to the default branch
         if: failure() && github.event_name == 'main' && github.ref == 'refs/heads/main'
         with:
           title: 🐛 Coverage report failed for ${{ github.sha }}

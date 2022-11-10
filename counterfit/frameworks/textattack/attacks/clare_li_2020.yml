@@ -1,0 +1,12 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.clare_li_2020.CLARE2020
+attack_data_tags:
+- text
+attack_docs: "Li, Zhang, Peng, Chen, Brockett, Sun, Dolan.\n\n    \"Contextualized\
+  \ Perturbation for Textual Adversarial Attack\" (Li et al., 2020)\n\n    https://arxiv.org/abs/2009.07502\n\
+  \n    This method uses greedy search with replace, merge, and insertion transformations\
+  \ that leverage a\n    pretrained language model. It also uses USE similarity constraint.\n\
+  \    "
+attack_name: clare_li_2020
+attack_parameters: {}
+attack_type: closed-box

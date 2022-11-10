@@ -1,0 +1,9 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.a2t_yoo_2021.A2TYoo2021
+attack_data_tags:
+- text
+attack_docs: "Towards Improving Adversarial Training of NLP Models.\n\n    (Yoo et\
+  \ al., 2021)\n\n    https://arxiv.org/abs/2109.00544\n    "
+attack_name: a2t_yoo_2021
+attack_parameters: {}
+attack_type: closed-box

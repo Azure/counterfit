@@ -1,0 +1,89 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.elastic_net.ElasticNet
+attack_data_tags:
+- image
+- tabular
+attack_docs: "\n    The elastic net attack of Pin-Yu Chen et al. (2018).\n\n    |\
+  \ Paper link: https://arxiv.org/abs/1709.04114\n    "
+attack_name: elastic_net
+attack_parameters:
+  batch_size:
+    default: 1
+    docs: Internal size of batches on which adversarial samples are generated.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  beta:
+    default: 0.001
+    docs: Hyperparameter trading off L2 minimization for L1 minimization.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  binary_search_steps:
+    default: 9
+    docs: Number of times to adjust constant with binary search (positive value).
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  confidence:
+    default: 0.0
+    docs: 'Confidence of adversarial examples: a higher value produces examples that
+      are farther'
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  decision_rule:
+    default: EN
+    docs: Decision rule. 'EN' means Elastic Net rule, 'L1' means L1 rule, 'L2' means
+      L2 rule.
+    optimize:
+      choice:
+      - EN
+  initial_const:
+    default: 0.001
+    docs: The initial trade-off constant `c` to use to tune the relative importance
+      of distance
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  learning_rate:
+    default: 0.01
+    docs: The initial learning rate for the attack algorithm. Smaller values produce
+      better
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_iter:
+    default: 100
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  targeted:
+    default: null
+    docs: Should the attack target one specific class.
+    optimize: {}
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box

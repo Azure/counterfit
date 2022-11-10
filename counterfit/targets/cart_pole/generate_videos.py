@@ -19,7 +19,8 @@ def writeVideo(fname,frames,fps=20):
         images.append(im)
     images[0].save(fname, save_all=True, append_images=images[1:], duration=int(1000/fps), loop=0)
     return images
-    
+
+
 def main(args):
     path = args['path']
     results = {}

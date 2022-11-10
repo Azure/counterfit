@@ -1,0 +1,10 @@
+attack_category: evasion
+attack_class: textattack.attack_recipes.input_reduction_feng_2018.InputReductionFeng2018
+attack_data_tags:
+- text
+attack_docs: "Feng, Wallace, Grissom, Iyyer, Rodriguez, Boyd-Graber. (2018).\n\n \
+  \   Pathologies of Neural Models Make Interpretations Difficult.\n\n    ArXiv, abs/1804.07781.\n\
+  \    "
+attack_name: input_reduction_feng_2018
+attack_parameters: {}
+attack_type: closed-box

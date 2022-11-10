@@ -1,0 +1,76 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.simba.SimBA
+attack_data_tags:
+- image
+attack_docs: "\n    This class implements the closed-box attack `SimBA`.\n\n    | Paper\
+  \ link: https://arxiv.org/abs/1905.07121\n    "
+attack_name: simba
+attack_parameters:
+  attack:
+    default: dct
+    docs: 'attack type: pixel (px) or DCT (dct) attacks'
+    optimize:
+      choice:
+      - dct
+  batch_size:
+    default: 1
+    docs: Batch size (but, batch process unavailable in this implementation)
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  channels_first:
+    default: false
+    docs: Refer to attack file.
+    optimize:
+      bool:
+      - true
+      - false
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  epsilon:
+    default: 0.1
+    docs: Overshoot parameter.
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  freq_dim:
+    default: 4
+    docs: dimensionality of 2D frequency space (DCT).
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  max_iter:
+    default: 3000
+    docs: The maximum number of iterations.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  order:
+    default: random
+    docs: 'order of pixel attacks: random or diagonal (diag)'
+    optimize:
+      choice:
+      - random
+  stride:
+    default: 1
+    docs: stride for block order (DCT).
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  targeted:
+    default: null
+    docs: perform targeted attack
+    optimize: {}
+attack_type: open-box

@@ -1,0 +1,74 @@
+attack_category: evasion
+attack_class: art.attacks.evasion.universal_perturbation.UniversalPerturbation
+attack_data_tags:
+- image
+attack_docs: "\n    Implementation of the attack from Moosavi-Dezfooli et al. (2016).\
+  \ Computes a fixed perturbation to be applied to all\n    future inputs. To this\
+  \ end, it can use any adversarial attack method.\n\n    | Paper link: https://arxiv.org/abs/1610.08401\n\
+  \    "
+attack_name: universal_perturbation
+attack_parameters:
+  attacker:
+    default: deepfool
+    docs: 'Adversarial attack name. Default is ''deepfool''. Supported names: ''carlini'',
+      ''carlini_inf'','
+    optimize:
+      choice:
+      - deepfool
+  attacker_params:
+    default: null
+    docs: Parameters specific to the adversarial attack. If this parameter is not
+      specified,
+    optimize: {}
+  batch_size:
+    default: 32
+    docs: Batch size for model evaluations in UniversalPerturbation.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  clip_values:
+    default:
+    - 0.0
+    - 1.0
+    docs: Refer to attack file.
+    optimize:
+      uniform:
+      - 0.0
+      - 1.0
+  delta:
+    default: 0.2
+    docs: desired accuracy
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  eps:
+    default: 10.0
+    docs: Attack step size (input variation).
+    optimize:
+      discrete:
+        max: 1.0
+        min: 0.01
+  max_iter:
+    default: 20
+    docs: The maximum number of iterations for computing universal perturbation.
+    optimize:
+      uniform:
+        max: 200
+        min: 1
+  norm:
+    default: .inf
+    docs: 'The norm of the adversarial perturbation. Possible values: "inf", np.inf,
+      2.'
+    optimize:
+      choice:
+      - inf
+  verbose:
+    default: true
+    docs: Show progress bars.
+    optimize:
+      bool:
+      - true
+      - false
+attack_type: open-box
