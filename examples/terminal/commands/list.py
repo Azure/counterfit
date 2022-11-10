@@ -67,10 +67,6 @@ def list_attacks() -> Table:
     """
     frameworks = CFState.state().get_frameworks()
 
-    #loaded_frameworks = sum([f.loaded_status for f in frameworks.values()])
-    #if loaded_frameworks == 0:
-    #    CFPrint.warn("No frameworks loaded.  Try 'load <framework>'.\n")        
-     #   return ""
     table = Table(header_style="bold magenta")
     table.add_column("Name")
     table.add_column("Category")
