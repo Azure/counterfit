@@ -44,13 +44,29 @@ To run Counterfit from your browser
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fcounterfit%2Fmaster%2Finfrastructure%2Fazuredeploy.json)
 
 2. In the configuration blade, specify your subscription and resource group.
-3. In your [Azure Shell](https://shell.azure.com), type the following, replacing `RESOURCE_GROUP` with the name of the resource group selected in the previous step.
+3. Once deployment is successful, you can get into the Azure Container Instance using the below 2 options.
 
-```
-az container exec --resource-group RESOURCE_GROUP --name counterfit --exec-command '/bin/bash'
-```
+    a. Using Azure Shell, click the link [Azure Shell](https://shell.azure.com) and sign-in to your Azure Subscription, type the following command in the Azure Shell terminal by replacing `RESOURCE_GROUP` with the name of the resource group selected in the previous deployment step.
 
-4. Within the container, launch Counterfit.
+    ```
+    az container exec --resource-group RESOURCE_GROUP --name counterfit --exec-command '/bin/bash'
+    ```
+
+    b. Using Azure Container Instance: Once the above deployment is successful, follow the below steps
+        
+    + go to the Azure Resource Group and select “counterfit” Azure Container Instance resource as shown below.
+
+        ![Counterfit Azure Resource Group](./static/counterfit_resource_group.png)
+        ![Counterfit Azure Container Instance](./static/counterfit_container_instance.png)
+    + You will land into `Container instance` page, click `Containers` under `Settings` section on the left side and click `Connect` from the menu and hit `Connect` button again.
+    
+        ![Counterfit Azure Container Instance Terminal](./static/counterfit_container_instance.png)
+
+4. Within the container terminal, launch Counterfit using the command `counterfit` in the terminal. Once Counterfit is loaded, you should be able to see a banner as shown below
+
+    ![Counterfit Terminal](./static/counterfit_terminal_cmd.PNG)
+
+
 
 ### Option 2: Set up an Anaconda Python environment and install locally
 

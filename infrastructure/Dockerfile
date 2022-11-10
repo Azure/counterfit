@@ -11,13 +11,9 @@ RUN apt-get update \
 
 WORKDIR /home/counterfituser
 
-COPY requirements.txt .
-
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install tensorflow python-Levenshtein
-
-
 COPY . .
+
+RUN pip install .[dev]
 
 RUN chown -R counterfituser:counterfituser /home/counterfituser
 USER counterfituser
