@@ -62,7 +62,7 @@ class ImageReportGenerator(CFReportGenerator):
                     array = array.transpose(1, 2, 0)
                 except ValueError:
                     # NOTE. This is neede for "digits_mlp>HopSkipJump:xxxx> show results"
-                    array = array.squeeze(1).transpose(1, 2, 0)
+                    array = array.squeeze(0).transpose(1, 2, 0)
             # save mode is "L" or "RGB"
             save_mode = ImageDataType.get_channels(target.input_shape)
             new_image = Image.fromarray(array.squeeze(), mode=f"{save_mode}")
@@ -180,9 +180,9 @@ class ImageReportGenerator(CFReportGenerator):
 
         # si = summary
         si = 0
-        li = int(summary["initial_label"].tolist()[0])
+        li = str(summary["initial_label"].tolist()[0])
         conf_0 = float(summary["initial_confidence"].tolist()[0])
-        lf = int(summary["final_label"].tolist()[0])
+        lf = str(summary["final_label"].tolist()[0])
         conf_f = float(summary["final_confidence"].tolist()[0])
         change = float(summary["input_change"].tolist()[0])
         res = summary["result"]
