@@ -56,7 +56,7 @@ def predict_cmd(args: argparse.Namespace) -> None:
 
     target = CFState.state().get_active_target()
     if not target:
-        CFPrint.warn("No active target. Try 'interact' <target>")
+        CFPrint.warn("No active target. Try 'set_target' <target>")
         return
     heading1 = "Sample Index"
     # default behavior
@@ -67,7 +67,7 @@ def predict_cmd(args: argparse.Namespace) -> None:
     elif args.attack_result:
         active_attack = CFState.state().get_active_attack()
         if not active_attack:
-            CFPrint.warn("No active attack. Try 'use' <attack>")
+            CFPrint.warn("No active attack. Try 'set_attack' <attack>")
             return
 
         elif active_attack.attack_status == "complete":

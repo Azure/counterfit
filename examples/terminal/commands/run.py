@@ -11,7 +11,7 @@ def run_cmd(args: argparse.Namespace) -> None:
 
     target_to_scan = CFState.state().get_active_target()
     if not target_to_scan:
-        CFPrint.warn("Active target not set. Try 'interact <target>''")
+        CFPrint.warn("Active target not set. Try 'set_target <target>''")
         return
 
     active_attack = CFState.state().get_active_attack()

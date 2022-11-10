@@ -13,10 +13,10 @@ def save_cmd(args: argparse.Namespace) -> None:
         parameters (bool): Save the parameters used for the attack.
     """
     if not CFState.state().active_target:
-        CFPrint.warn("Not interacting with a target. Set the active target with `interact`.")
+        CFPrint.warn("Not interacting with a target. Set the active target with `set_target`.")
         return
     if not CFState.state().active_attack:
-        CFPrint.warn("No active attack. Set the active target with `use`.")
+        CFPrint.warn("No active attack. Set the active attack with `set_attack`.")
         return
     if not args.parameters and not args.results:
         CFPrint.warn(f"Specify the --parameters or --results flag.")

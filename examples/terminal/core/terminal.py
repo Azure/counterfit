@@ -44,32 +44,6 @@ class Terminal(cmd2.Cmd):
         self._load_counterfit()
         return stop
 
-
-    # def pexcept(self, msg: Any, *, end: str = '\n', apply_style: bool = True) -> None:
-    #     """Print an exception
-    #     Args:
-    #         msg (Any): [description]
-    #         end (str, optional): [description]. Defaults to '\n'.
-    #         apply_style (bool, optional): [description]. Defaults to True.
-    #     """
-    #     if isinstance(msg, Exception):
-    #         final_msg = f"EXCEPTION of type '{type(msg).__name__}' occurred with message: {msg}"
-    #     else:
-    #         final_msg = str(msg)
-
-    #     if apply_style:
-    #         final_msg = cmd2.ansi.style_error(final_msg)
-
-    #     if not self.debug and 'debug' in self.settables:
-    #         warning = "\n [!] To enable full traceback, run the following command: 'set debug true'"
-    #         final_msg += cmd2.ansi.style_warning(warning)
-
-    #     self.perror(final_msg, end=end, apply_style=False)
-
-    # @cmd2.with_category('Source Code Reload')
-    # def do_reload_terminal(self, other):
-    #     self._load_counterfit()
-
     def _load_counterfit(self):
         if self._cmd:
             self.unregister_command_set(self._cmd)
