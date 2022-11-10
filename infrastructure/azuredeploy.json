@@ -60,7 +60,7 @@
     },
     "memoryInGb": {
       "type": "string",
-      "defaultValue": "6.0",
+      "defaultValue": "12.0",
       "metadata": {
         "description": "The amount of memory to allocate to the container in gigabytes."
       }

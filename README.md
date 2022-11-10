@@ -59,7 +59,7 @@ To run Counterfit from your browser
 
     b. Using Azure Container Instance(ACI), follow the below steps if you would like to run Counterfit directly in the ACI instance 
         
-    + go to the Azure Resource Group and select `counterfit` Azure Container Instance resource as shown below.
+    + Once deployment is successful, go to the Azure Resource Group and select `counterfit` Azure Container Instance resource as shown below.
 
         ![Counterfit Azure Resource Group](./static/counterfit_resource_group.png)
         ![Counterfit Azure Container Instance](./static/counterfit_container_instance.png)

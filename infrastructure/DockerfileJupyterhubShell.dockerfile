@@ -10,6 +10,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && sed -i "s/\"default\": \"inherit\"/\"default\": \"dark\"/g" /opt/conda/share/jupyter/lab/schemas/@jupyterlab/terminal-extension/plugin.json
 USER 1000
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+
+RUN pip install .[dev]
 EXPOSE 8888

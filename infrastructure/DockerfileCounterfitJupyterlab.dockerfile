@@ -11,7 +11,7 @@ RUN apt-get update \
 USER 1000
 RUN git clone https://github.com/Azure/counterfit.git \
    && cd counterfit \
-   && pip install --no-cache-dir -r requirements.txt\
+   && pip install .[dev]\
    && cd ..
 EXPOSE 8888
 EXPOSE 2718
