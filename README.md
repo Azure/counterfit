@@ -35,37 +35,41 @@ Choose one of these methods to get started quickly:
 
 For more information including alternative installation instructions, please visit our [wiki](https://github.com/Azure/counterfit/wiki).
 
-### Option 1: Deploy via Azure Shell
+### Option 1: Deploy and Test in Azure Cloud
 
 To run Counterfit from your browser
 
 1. Click the button below to initiate small resource deployment to your Azure account.
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fcounterfit%2Fmaster%2Finfrastructure%2Fazuredeploy.json)
+    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fcounterfit%2Fmaster%2Finfrastructure%2Fazuredeploy.json)
 
-2. In the configuration blade, specify your subscription and resource group.
-3. Once deployment is successful, you can get into the Azure Container Instance using the below 2 options.
+2. In the configuration blade, select your Subscription name, Resource group (Create new if you do not have one.), and Region from the drop-down menu as shown below.
+    
+    ![Counterfit ARM Deployment](./static/counterfit_arm_deployment.png)
 
-    a. Using Azure Shell, click the link [Azure Shell](https://shell.azure.com) and sign-in to your Azure Subscription, type the following command in the Azure Shell terminal by replacing `RESOURCE_GROUP` with the name of the resource group selected in the previous deployment step.
+3. The above deployment would take approximately 5-8 minutes approximately. This deployment involves creating Azure Storage Account resource for storing Counterfit generated original and adversarial images and Azure Container Instance resource for running Counterfit.
+
+4. Once deployment is successful, you can get into the Azure Container Instance using the below 2 options.
+
+    a. Using Azure Shell, click the link [Azure Shell](https://shell.azure.com) and sign-in to your Azure Subscription, type the following command in the Azure Shell terminal by replacing `RESOURCE_GROUP` with the name of the resource group selected/created in the previous ARM deployment step.
 
     ```
     az container exec --resource-group RESOURCE_GROUP --name counterfit --exec-command '/bin/bash'
     ```
 
-    b. Using Azure Container Instance: Once the above deployment is successful, follow the below steps
+    b. Using Azure Container Instance(ACI), follow the below steps if you would like to run Counterfit directly in the ACI instance 
         
-    + go to the Azure Resource Group and select “counterfit” Azure Container Instance resource as shown below.
+    + go to the Azure Resource Group and select `counterfit` Azure Container Instance resource as shown below.
 
         ![Counterfit Azure Resource Group](./static/counterfit_resource_group.png)
         ![Counterfit Azure Container Instance](./static/counterfit_container_instance.png)
-    + You will land into `Container instance` page, click `Containers` under `Settings` section on the left side and click `Connect` from the menu and hit `Connect` button again.
+    + Once the above step is completed, it will take you to the `Container instance` page, click `Containers` under `Settings` section on the left side and click `Connect` from the menu and hit `Connect` button again.
     
-        ![Counterfit Azure Container Instance Terminal](./static/counterfit_container_instance.png)
+        ![Counterfit Azure Container Instance Terminal](./static/counterfit_container_aci_terminal.png)
 
-4. Within the container terminal, launch Counterfit using the command `counterfit` in the terminal. Once Counterfit is loaded, you should be able to see a banner as shown below
+5. Within the container terminal, launch Counterfit using the command `counterfit` in the terminal. Once Counterfit is loaded, you should be able to see a banner as shown below
 
     ![Counterfit Terminal](./static/counterfit_terminal_cmd.PNG)
-
 
 
 ### Option 2: Set up an Anaconda Python environment and install locally
