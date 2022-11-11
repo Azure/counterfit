@@ -140,8 +140,16 @@ class CFTarget:
         output = np.atleast_2d(output)
         return [self.output_classes[i] for i in np.argmax(output, axis=1)]
 
-    def get_results_folder(self, folder="results"):
-        return os.path.join(os.curdir, folder)
+    def get_results_folder(self, folder_path="counterfit/targets/results"):
+        """Folder that stores attack run results.
+
+        Args:
+            folder_path (str, optional): Defaults to "counterfit/targets/results".
+
+        Returns:
+            str: folder prefix path where attack results would be stored.
+        """
+        return folder_path
 
     def get_data_type_obj(self):
         target_data_types = {

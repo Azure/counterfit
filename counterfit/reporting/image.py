@@ -1,17 +1,17 @@
-import numpy as np
 import hashlib
 
-from counterfit.core.reporting import CFReportGenerator
-from counterfit.data.image import ImageDataType
-from PIL import Image
-from rich.table import Table
+import numpy as np
 from azure.storage.blob import BlobClient, ContentSettings
 from counterfit.core.output import CFPrint
+from counterfit.core.reporting import CFReportGenerator
 from counterfit.core.utils import (get_azure_storage_sas_uri,
                                    get_image_in_bytes, get_mime_type,
                                    get_predict_folder,
                                    is_img_save_in_azure_storage,
                                    transform_numpy_to_bytes)
+from counterfit.data.image import ImageDataType
+from PIL import Image
+from rich.table import Table
 
 
 class ImageReportGenerator(CFReportGenerator):
