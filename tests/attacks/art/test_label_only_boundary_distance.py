@@ -8,13 +8,13 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
-from targets import CreditFraud
-from targets import Digits
-from targets import DigitKeras
+from tests.mocks.targets import CreditFraud
+from tests.mocks.targets import Digits
+from tests.mocks.targets import DigitKeras
 from counterfit import Counterfit
 
 
-@pytest.fixture(params=[CreditFraud, Digits, DigitKeras])
+@pytest.fixture(params=[DigitKeras])
 def target(request):
     yield request.param
 

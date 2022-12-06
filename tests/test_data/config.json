@@ -1,0 +1,33 @@
+{
+    "test_core": {
+        "test_build_target": {
+            "data_type": "images",
+            "endpoint": "http://locahost/score",
+            "output_classes": ["Cat", "NotACat"],
+            "classifier": "closed-box",
+            "X": [[1,0]]
+        },
+        "test_build_attack": {
+            "data_type": "image",
+            "endpoint": "http://locahost/score",
+            "output_classes": ["Cat", "NotACat"],
+            "classifier": "closed-box",
+            "X": [[1,0]],
+            "attack": "hop_skip_jump"
+        }
+    },
+    "test_hop_skip_jump": {
+        "test_attack": {
+            "attack_targets": [
+                {
+                    "attack": "hop_skip_jump",
+                    "target": "CreditFraud"
+                },
+                {
+                    "attack": "hop_skip_jump",
+                    "target": "DigitKeras"
+                }
+            ]
+        }
+    }
+}
