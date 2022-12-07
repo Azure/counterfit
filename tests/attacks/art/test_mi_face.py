@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
-from targets import DigitKeras
+from tests.mocks.targets import DigitKeras
 
 from counterfit import Counterfit
 

@@ -1,5 +1,0 @@
-target:
-  creditfraud
-attacks:
-  attack_1:
-    attack_name: hop_skip_jump

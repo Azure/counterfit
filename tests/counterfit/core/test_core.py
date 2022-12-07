@@ -15,36 +15,35 @@ def test_frameworks():
     frameworks = Counterfit.get_frameworks()
     assert dict(frameworks)
 
-def test_build_target():
+def test_build_target(test_data):
     target = Counterfit.build_target(
-        data_type="images",
-        endpoint="http://locahost/score",
-        output_classes=["Cat", "NotACat"],
-        classifier="closed-box",
+        data_type=test_data.data_type,
+        endpoint=test_data.endpoint,
+        output_classes=test_data.output_classes,
+        classifier=test_data.classifier,
         input_shape=(1,),
         load_func=load,
         predict_func=predict,
-        X = [[1,0]]
+        X = test_data.X
     )
-
     assert isinstance(target, CFTarget)
 
 
-def test_build_attack():
+def test_build_attack(test_data):
     target = Counterfit.build_target(
-        data_type="image",
-        endpoint="http://locahost/score",
-        output_classes=["Cat", "NotACat"],
-        classifier="closed-box",
+        data_type=test_data.data_type,
+        endpoint=test_data.endpoint,
+        output_classes=test_data.output_classes,
+        classifier=test_data.classifier,
         input_shape=(1,),
         load_func=load,
         predict_func=predict,
-        X = [[1,0]]
+        X = test_data.X
     )
 
     cfattack = Counterfit.build_attack(
         target=target,
-        attack="hop_skip_jump"
+        attack=test_data.attack
     )
 
     assert isinstance(cfattack, CFAttack)

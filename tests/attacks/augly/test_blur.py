@@ -5,8 +5,8 @@ warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
-from targets import Digits
-from targets import DigitKeras
+from tests.mocks.targets import Digits
+from tests.mocks.targets import DigitKeras
 from counterfit import Counterfit
 
 
