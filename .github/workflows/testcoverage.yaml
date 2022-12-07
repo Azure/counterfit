@@ -1,0 +1,99 @@
+---
+# name: Test Coverage
+# on:
+#   pull_request:
+#   push:
+#     branches: [feature/test-coverage-badge]
+
+#   # Run at 4am everyday (see https://crontab.guru)
+#   schedule:
+#     - cron: "0 0 * * 1"
+
+# jobs:
+  # tests:
+  #   name: Generate coverage data
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest]
+  #   steps:
+  #     - name: Install 'coverage-badge'. Learn more at https://pypi.org/project/coverage-badge/
+  #       shell: bash
+  #       run: |
+  #         pip install -U coverage coverage-badge
+
+      # - name: Checkout Counterfit repository
+      #   uses: actions/checkout@v3
+      #   with:
+      #     ref: ${{ github.head_ref }}
+      #     fetch-depth: 0
+
+  #     - name: Run 'coverage-badge' to create coverage.svg.
+  #       shell: bash
+  #       run: |
+  #         coverage-badge -f -o coverage.svg
+
+      # - name: Commit files
+      #   run: |
+      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git commit -a -m "Add changes"
+
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     branch: ${{ github.head_ref }}
+
+name: Make Coverage Badge
+on:
+  push:
+    branches: [feature/test-coverage-badge]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install 'genbadge'. Learn more at https://pypi.org/project/genbadge/.
+        shell: bash
+        run: |
+          pip install genbadge[coverage]
+
+      - name: Checkout Counterfit repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Generate coverage-badge.svg with 'genbadge'.
+        shell: bash
+        run: |
+          genbadge coverage -i coverage.xml
+          cat coverage-badge.svg
+
+      # - name: Make Coverage Badge
+      #   uses: action-badges/cobertura-coverage-xml-badges@0.2.1
+      #   with:
+      #     file-name: coverage.svg
+      #     github-token: '${{ secrets.GITHUB_TOKEN }}'
+      #     coverage-file-name: ./coverage.xml
+
+      - name: Add files
+        run: |
+          git add coverage-badge.svg
+
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Update coverage-badge"
+
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     branch: feature/test-coverage-badge
+
+      - name: Create Pull-Request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "main"
+          source_branch: ${{ github.ref }}
