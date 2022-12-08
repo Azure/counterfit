@@ -48,7 +48,7 @@ name: Make Coverage Badge
 on:
   pull_request:
     types:
-      - closedon:
+      - closed
   # push:
   #   branches: [feature/test-coverage-badge]
 
