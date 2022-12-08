@@ -1,0 +1,35 @@
+---
+name: Generate PyTest Coverage Badge
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  coverage_if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Counterfit repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Get Coverage Percentage
+        id: coverage_percent
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+            path: 'coverage.json'
+            prop_path: 'totals.percent_covered_display'
+      - run: echo ${{steps.coverage_percent.outputs.prop}}
+
+      - name: Create Coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COUNTERFITGISTTOKEN }}
+          gistID: 67510f61f4c4c8809985712453ff1ad8
+          filename: counterfit_test_coverage_badge.json
+          label: Coverage
+          message: ${{steps.coverage_percent.outputs.prop}}%
+          color: orange
