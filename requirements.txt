@@ -2,6 +2,7 @@ azure-storage-blob==12.1.0                  # Azure packages
 bs4==0.0.1
 cmd2==2.2.0                                 # Counterfit terminal
 cmd2-ext-test>=2.0.0                        # Required for Counterfit terminal  tests
+coverage==6.5.0
 flask==2.0.0
 gym>=0.26.0                                 # Required for cartpole target
 h5py==3.1.0
