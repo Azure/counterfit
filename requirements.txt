@@ -15,7 +15,7 @@ numpy>=1.18.5
 onnxruntime==1.10.0
 optuna==2.10.1
 orjson==3.6.4
-pillow==9.2.0
+pillow==9.3.0
 pre-commit==2.20.0                          # Required for pre-commit hooks
 protobuf>=3.9                               # For running RL attacks. tensorflow 2.10.0 depends on protobuf<3.20 and >=3.9.2
 pygame==2.1.2                               # Required for cartpole target
