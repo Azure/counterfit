@@ -5,16 +5,71 @@ on:
     types:
       - closed
 
+  push:
+    branches: [main]
+
+  # Run at 4am everyday (see https://crontab.guru)
+  schedule:
+    - cron: "0 4 * * *"
+
+env:
+  PYTHON_VERSION: 3.8.0
+  SECONDS: 120
+
 jobs:
   coverage_if_merged:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || github.event.pull_request == false
     runs-on: ubuntu-latest
     steps:
+      - name: Install OS dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y expect \
+            python3-opengl \
+            xvfb
+          echo 'export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python' >> "${HOME}/.bashrc"
+
+      - name: Setup Anaconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: counterfit
+          auto-update-conda: true
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup Conda Environment
+        run: |
+          echo 'conda activate "counterfit"' >> "${HOME}/.profile"
+
       - name: Checkout Counterfit repository
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+
+      - name: Populate installation acceptance test
+        run: |
+          cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/install_test.exp" ./install_test.exp
+
+      - name: Setup Counterfit
+        shell: bash -l {0}
+        run: |
+          source "${HOME}/.profile"
+          cd "${GITHUB_WORKSPACE}/"
+          pip install --no-input .[dev]
+          python -c "import nltk;  nltk.download('stopwords')"
+
+      - name: Test Counterfit installation
+        shell: bash -l {0}
+        run: |
+          source "${HOME}/.profile"
+          expect -d ./install_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
+
+      - name: Generate coverage report
+        run: |
+          source "${HOME}/.profile"
+          cd "${GITHUB_WORKSPACE}/"
+          coverage run -m pytest
+          coverage json
 
       - name: Get Coverage Percentage
         id: coverage_percent
@@ -22,14 +77,16 @@ jobs:
         with: 
             path: 'coverage.json'
             prop_path: 'totals.percent_covered_display'
-      - run: echo ${{steps.coverage_percent.outputs.prop}}
+      - run: echo ${{ steps.coverage_percent.outputs.prop }}
 
       - name: Create Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.COUNTERFITGISTTOKEN }}
-          gistID: 67510f61f4c4c8809985712453ff1ad8
+          gistID: 45c1f54d01942c69453aac7f60401dc4
           filename: counterfit_test_coverage_badge.json
           label: Coverage
-          message: ${{steps.coverage_percent.outputs.prop}}%
-          color: orange
+          message: ${{ steps.coverage_percent.outputs.prop }}%
+          valColorRange: ${{ steps.coverage_percent.outputs.prop }}
+          maxColorRange: 100
+          minColorRange: 0

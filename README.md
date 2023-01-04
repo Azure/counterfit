@@ -1,7 +1,7 @@
 # Counterfit
 
 [![Tests](https://github.com/Azure/counterfit/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/Azure/counterfit/actions/workflows/tests.yaml)
-![TestCoverageBadge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/shivenchawla/67510f61f4c4c8809985712453ff1ad8/raw/counterfit_test_coverage_badge.json)
+[![TestCoverageBadge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/shivenchawla/45c1f54d01942c69453aac7f60401dc4/raw/counterfit_test_coverage_badge.json)](https://github.com/Azure/counterfit/actions/workflows/testcoverage.yaml)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/Azure/counterfit/blob/main/LICENSE)
 
 [About](#About) | [Getting Started](#Getting-Started) | [Acknowledgments](#Acknowledgments) | [Contributing](#Contributing) | [Trademarks](#Trademarks) | [Contact Us](#Contact-Us)
