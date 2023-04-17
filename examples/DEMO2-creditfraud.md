@@ -1,5 +1,5 @@
 # DEMO 2: Credit Card Fraud Integrity Attack Assessment
-[[Demo Home]](../demo/README.md)
+[[Demo Home]](./README.md)
 ## Objective
 Determine roughly how many queries are required to successfully evade `creditfraud` model with `HopSkipJump`
 

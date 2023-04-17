@@ -1,5 +1,5 @@
 # DEMO 3: Movie Reviews Sentiment Analysis
-[[Demo Home]](../demo/README.md)
+[[Demo Home]](./README.md)
 ## Objective
 Change the spelling of a few words to change the sentiment of an ML model that understands movie reviews.
 
