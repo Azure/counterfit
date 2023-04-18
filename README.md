@@ -175,7 +175,6 @@ python -c "import nltk;  nltk.download('stopwords')"
     ```bash 
     python -c "import nltk;  nltk.download('stopwords')"
     ```
-> If you face issues installing the `python-Levenshtein` package on Windows using WSL, you can try replacing the package name with `python-Levenshtein-wheels==0.13.2` in the requirements.txt file, and then run the command `pip install .[dev]` again. This is because python-Levenshtein is not fully compatible with Windows.
 
 To start the Counterfit terminal, run `counterfit` from your Windows or Linux shell.
 ```bash

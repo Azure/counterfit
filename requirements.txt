@@ -21,7 +21,7 @@ protobuf>=3.9                               # For running RL attacks. tensorflow
 pygame==2.1.2                               # Required for cartpole target
 pyglet==2.0.0                               # Required for cartpole target
 pytest==6.2.5                               # Test framework
-python-Levenshtein==0.12.2                  # Required for text attacks. Pinning to old version because >=0.20.0 fail to import .distance()
+python-Levenshtein-wheels==0.13.2           # Required for text attacks. Pinning to old version because >=0.20.0 fail to import .distance()
 pytorch_lightning==1.6.0
 pyyaml==6.0
 questionary==1.9.0
