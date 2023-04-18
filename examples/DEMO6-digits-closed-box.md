@@ -1,10 +1,10 @@
-# DEMO 4: Open-box attack of an on-disk
+# DEMO 6: Closed-box attack on Digits model
 [[Demo Home]](./README.md)
 ## Objective
-Compare open-box and API attacks to digits model
+Change the label of a digit image (true label: `5`) into `3`.
 
 ## Threat Model
-- Attacker knowledge: full access to model
+- Attacker knowledge: API access to model
 - Security violation: integrity
 
 1. Start the Counterfit CLI.
@@ -43,45 +43,36 @@ Compare open-box and API attacks to digits model
 
 
 
-3. Set target to `digits_keras`
+3. Set target to `digits_mlp`
    ```
-   counterfit> set_target digits_keras
-   digits_keras >
+   counterfit> set_target digits_mlp
+   digits_mlp >
    ```
 
 4. Look at a few digits
    ```
-   digits_keras> predict -i range(20)
-   ┏━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-   ┃ Sample Index ┃ Sample                                                                         ┃ Label ┃ Output Scores                                       ┃
-   ┡━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-   │ 0            │ counterfit/targets/results/predict/initial-digits_keras-9f36eaaf-sample-0.png  │ 7     │ [0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00] │
-   │ 1            │ counterfit/targets/results/predict/initial-digits_keras-ad83a49a-sample-1.png  │ 2     │ [0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 2            │ counterfit/targets/results/predict/initial-digits_keras-6bcd8e04-sample-2.png  │ 1     │ [0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 3            │ counterfit/targets/results/predict/initial-digits_keras-24d7847f-sample-3.png  │ 0     │ [1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 4            │ counterfit/targets/results/predict/initial-digits_keras-f448ff9b-sample-4.png  │ 4     │ [0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 5            │ counterfit/targets/results/predict/initial-digits_keras-2ebd981d-sample-5.png  │ 1     │ [0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 6            │ counterfit/targets/results/predict/initial-digits_keras-85cbe7cc-sample-6.png  │ 4     │ [0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 7            │ counterfit/targets/results/predict/initial-digits_keras-98083198-sample-7.png  │ 9     │ [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.01 0.99] │
-   │ 8            │ counterfit/targets/results/predict/initial-digits_keras-26cc450b-sample-8.png  │ 5     │ [0.00 0.00 0.00 0.00 0.00 0.99 0.01 0.00 0.01 0.00] │
-   │ 9            │ counterfit/targets/results/predict/initial-digits_keras-c110a792-sample-9.png  │ 9     │ [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00] │
-   │ 10           │ counterfit/targets/results/predict/initial-digits_keras-622ce265-sample-10.png │ 0     │ [1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 11           │ counterfit/targets/results/predict/initial-digits_keras-4eb4ec8a-sample-11.png │ 6     │ [0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00] │
-   │ 12           │ counterfit/targets/results/predict/initial-digits_keras-7d12346c-sample-12.png │ 9     │ [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00] │
-   │ 13           │ counterfit/targets/results/predict/initial-digits_keras-2ea472b7-sample-13.png │ 0     │ [1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 14           │ counterfit/targets/results/predict/initial-digits_keras-d92dcd05-sample-14.png │ 1     │ [0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
-   │ 15           │ counterfit/targets/results/predict/initial-digits_keras-3247df60-sample-15.png │ 5     │ [0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00] │
-   │ 16           │ counterfit/targets/results/predict/initial-digits_keras-ae370179-sample-16.png │ 9     │ [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00] │
-   │ 17           │ counterfit/targets/results/predict/initial-digits_keras-f506fbf1-sample-17.png │ 7     │ [0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00] │
-   │ 18           │ counterfit/targets/results/predict/initial-digits_keras-a3379743-sample-18.png │ 5     │ [0.00 0.00 0.00 0.33 0.00 0.66 0.00 0.00 0.00 0.00] │
-   │ 19           │ counterfit/targets/results/predict/initial-digits_keras-a4168afa-sample-19.png │ 4     │ [0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00] │
-   └──────────────┴────────────────────────────────────────────────────────────────────────────────┴───────┴─────────────────────────────────────────────────────┘
+   digits_mlp> predict -i range(10)
+   
+┏━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Sample Index ┃ Sample                                                                         ┃ Label ┃ Output Scores                                       ┃
+┡━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ 0            │ counterfit/targets/results/predict/initial-digits_mlp-0325662d-sample-0.png │ 5     │ [0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00] │
+│ 1            │ counterfit/targets/results/predict/initial-digits_mlp-5035cf68-sample-1.png │ 0     │ [1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
+│ 2            │ counterfit/targets/results/predict/initial-digits_mlp-bd4a80a3-sample-2.png │ 4     │ [0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00] │
+│ 3            │ counterfit/targets/results/predict/initial-digits_mlp-bcebd1b5-sample-3.png │ 1     │ [0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
+│ 4            │ counterfit/targets/results/predict/initial-digits_mlp-69c2acd8-sample-4.png │ 9     │ [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00] │
+│ 5            │ counterfit/targets/results/predict/initial-digits_mlp-17d2153c-sample-5.png │ 2     │ [0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
+│ 6            │ counterfit/targets/results/predict/initial-digits_mlp-18a723d7-sample-6.png │ 1     │ [0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
+│ 7            │ counterfit/targets/results/predict/initial-digits_mlp-a3bb68e5-sample-7.png │ 3     │ [0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00] │
+│ 8            │ counterfit/targets/results/predict/initial-digits_mlp-4d8a919b-sample-8.png │ 1     │ [0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00] │
+│ 9            │ counterfit/targets/results/predict/initial-digits_mlp-a5418d19-sample-9.png │ 4     │ [0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00] │
+└──────────────┴─────────────────────────────────────────────────────────────────────────────┴───────┴─────────────────────────────────────────────────────┘
    ```
 
 
 5. List possible attacks
    ```
-   digits_keras> list attacks
+   digits_mlp> list attacks
 
    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
    ┃ Name                               ┃ Category          ┃ Type       ┃ Tags           ┃ Framework  ┃
@@ -164,38 +155,38 @@ Compare open-box and API attacks to digits model
 
 8. Use `hop_skip_jump` with changed parameters.
    ```
-   digits_keras>> set_attack hop_skip_jump 
+   digits_mlp>> set_attack hop_skip_jump 
    [+] success:  Using 0abbe6ef
    
-   digits_keras>HopSkipJump:0abbe6ef> set_params --sample_index 18 --max_eval 1250 --max_iter 5 --norm inf
-   ┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-   ┃ Parameter (type)     ┃ Default    ┃ Current    ┃ New                                                                      ┃
-   ┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-   │ Algo Parameters      │            │            │                                                                          │
-   │ -------------------- │ --         │ --         │ --                                                                       │
-   │ batch_size (int)     │ 64         │ 64         │ The size of the batch used by the estimator during inference.            │
-   │ clip_values (list)   │ [0.0, 1.0] │ (0.0, 1.0) │ Refer to attack file.                                                    │
-   │ curr_iter (int)      │ 0          │ 0          │ Refer to attack file.                                                    │
-   │ init_eval (int)      │ 100        │ 100        │ Initial number of evaluations for estimating gradient.                   │
-   │ init_size (int)      │ 100        │ 100        │ Maximum number of trials for initial generation of adversarial examples. │
-   │ max_eval (int)       │ 1000       │ 1250       │ Maximum number of evaluations for estimating gradient.                   │
-   │ max_iter (int)       │ 50         │ 5          │ Maximum number of iterations.                                            │
-   │ norm (int)           │ 2          │ inf        │ Order of the norm. Possible values: "inf", np.inf or 2.                  │
-   │ targeted (bool)      │ False      │ False      │ Should the attack target one specific class.                             │
-   │ verbose (bool)       │ True       │ True       │ Show progress bars.                                                      │
-   │ target_labels (int)  │ 0          │ 0          │ target labels for a targeted attack                                      │
-   │                      │            │            │                                                                          │
-   │ CFAttack Options     │            │            │                                                                          │
-   │ -------------------- │ --         │ --         │ --                                                                       │
-   │ sample_index (int)   │ 0          │ 18         │ Sample index to attack                                                   │
-   │ optimize (bool)      │ False      │ False      │ Use Optuna to optimize attack parameters                                 │
-   │ logger (str)         │ basic      │ basic      │ Logger to log queries with                                               │
-   └──────────────────────┴────────────┴────────────┴──────────────────────────────────────────────────────────────────────────┘
+   digits_mlp>HopSkipJump:0abbe6ef> set_params --sample_index 0 --max_eval 1000 --max_iter 50
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Parameter (type)     ┃ Default    ┃ Current    ┃ New                                                                      ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Algo Parameters      │            │            │                                                                          │
+│ -------------------- │ --         │ --         │ --                                                                       │
+│ batch_size (int)     │ 64         │ 64         │ The size of the batch used by the estimator during inference.            │
+│ clip_values (list)   │ [0.0, 1.0] │ (0.0, 1.0) │ Refer to attack file.                                                    │
+│ curr_iter (int)      │ 0          │ 0          │ Refer to attack file.                                                    │
+│ init_eval (int)      │ 100        │ 100        │ Initial number of evaluations for estimating gradient.                   │
+│ init_size (int)      │ 100        │ 100        │ Maximum number of trials for initial generation of adversarial examples. │
+│ max_eval (int)       │ 1000       │ 1250       │ Maximum number of evaluations for estimating gradient.                   │
+│ max_iter (int)       │ 50         │ 60         │ Maximum number of iterations.                                            │
+│ norm (int)           │ 2          │ 2          │ Order of the norm. Possible values: "inf", np.inf or 2.                  │
+│ targeted (bool)      │ False      │ False      │ Should the attack target one specific class.                             │
+│ verbose (bool)       │ True       │ True       │ Show progress bars.                                                      │
+│ target_labels (int)  │ 0          │ 0          │ target labels for a targeted attack                                      │
+│                      │            │            │                                                                          │
+│ CFAttack Options     │            │            │                                                                          │
+│ -------------------- │ --         │ --         │ --                                                                       │
+│ sample_index (int)   │ 0          │ 0          │ Sample index to attack                                                   │
+│ optimize (bool)      │ False      │ False      │ Use Optuna to optimize attack parameters                                 │
+│ logger (str)         │ basic      │ basic      │ Logger to log queries with                                               │
+└──────────────────────┴────────────┴────────────┴──────────────────────────────────────────────────────────────────────────┘
    ```
    
 9. Run the attack
    ```
-   digits_keras>HopSkipJump:0abbe6ef> run
+   digits_mlp>HopSkipJump:0abbe6ef> run
    HopSkipJump: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  2.53it/s]
    [+] success:  Attack completed 0abbe6ef
    ```
@@ -203,24 +194,25 @@ Compare open-box and API attacks to digits model
 10. Show results
 
    ```
-   digits_keras>HopSkipJump:0abbe6ef> show results
-   [-] info: Image has been saved in the location ./results/0abbe6ef/digits_keras-bcae6586.png
+   digits_mlp>HopSkipJump:0abbe6ef> show results
+   [-] info: Image has been saved in the location ./results/0abbe6ef/digits_mlp-bcae6586.png
    ┏━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    ┃ Success ┃ Elapsed time ┃ Total Queries            ┃
    ┡━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-   │ 1/1     │ 5.7          │ 24552 (4299.6 query/sec) │
+   │ 1/1     │ 3.6          │ 32125 (9023.7 query/sec) │
    └─────────┴──────────────┴──────────────────────────┘
    ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┓
    ┃           ┃ Input     ┃ Adversar… ┃           ┃                                                                                                                ┃         ┃
    ┃ Sample    ┃ Label     ┃ Label     ┃ Max Abs   ┃                                                                                                                ┃         ┃
    ┃ Index     ┃ (conf)    ┃ (conf)    ┃ Chg.      ┃ Adversarial Input                                                                                              ┃ Success ┃
    ┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━┩
-   │ 0         │ 7         │ 0         │ 0.2565    │ ./results/0abbe6ef/digits_keras-bcae6586.png                                                                   │ [ True] │
-   │           │ (1.0000)  │ (0.6614)  │           │                                                                                                                │         │
+   │ 0         │ 5         │ 3         │ 2.1758    │  counterfit/targets/results/8f84add0/digits_mlp-95ce47f6.png                                                   │ [ True] │
+   │           │ (0.999)  │ (0.9289)  │           │                                                                                                                 │         │
    └───────────┴───────────┴───────────┴───────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴─────────┘
    ```
 
 ## (Optional) Self Assessment
 1. What are the model access requirements for `HopSkipJump`?
-2. Find a set of _best_ parameters for `HopSkipJump` that provides excellent visual quality with few "Total Queries".   
+2. Find a set of _best_ parameters for `HopSkipJump` that provides excellent visual quality with few "Total Queries".  
+3. Try running with the parameters `set_params --sample_index 0 --max_eval 1250 --max_iter 60` and observe the adversarial class label? 
 
