@@ -1,5 +1,4 @@
 # DEMO 3: Movie Reviews Sentiment Analysis
-[[Demo Home]](./README.md)
 ## Objective
 Change the spelling of a few words to change the sentiment of an ML model that understands movie reviews.
 
@@ -218,4 +217,4 @@ Change the spelling of a few words to change the sentiment of an ML model that u
 1. How would you run this attack with the same parameters simultaneously for several different movie reviews?  (Hint: how would you include many different values for `sample_index` during `run`?)
 2. The first 10 samples include only positive reviews (`predict -i range(10)`), but the last 10 samples include both positive and negative reviews (`predict -i range(90,100)`).  Can you find a negative review (`Label` is `0`) for which an attack changes it to a positive review?
 
-[[Demo Home]](../demo/README.md)
+[[Demo Home]](./README.MD)

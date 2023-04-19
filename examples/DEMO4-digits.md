@@ -1,5 +1,5 @@
 # DEMO 4: Open-box attack of an on-disk
-[[Demo Home]](./README.md)
+
 ## Objective
 Compare open-box and API attacks to digits model
 
@@ -224,3 +224,4 @@ Compare open-box and API attacks to digits model
 1. What are the model access requirements for `HopSkipJump`?
 2. Find a set of _best_ parameters for `HopSkipJump` that provides excellent visual quality with few "Total Queries".   
 
+[[Demo Home]](./README.MD)

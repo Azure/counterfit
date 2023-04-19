@@ -29,7 +29,7 @@ To run this tool, you need to have the following softwares installed:
     - Anaconda: https://www.anaconda.com/products/distribution
 3. Git installed from the url https://git-scm.com/downloads to clone the `counterfit` repository. 
 
-> **Note: Support for running `Counterfit` on Windows and macOS is currently a work in progress. Please stay tuned for updates on when this feature will be available.**
+> Note: Support for running `Counterfit` on Windows and macOS is currently a work in progress. Please stay tuned for updates on when this feature will be available.**
 
 
 ## **Operating System Support**
@@ -80,7 +80,7 @@ Note: If you do not already have an Azure subscription, you can begin by obtaini
 8. On the `Identity verification by card` page, please enter details of a valid credit card. Enter the card information and select Sign Up.
 
 9. Once Azure account is created, select `Go to the Azure portal` and you should be able to see the image as shown below.
-![Counterfit Azure Account Portal IMage](./static/counterfit_azure_account_portal.png)
+![Azure Account Portal Image](./static/azure_portal.png)
 
 #### **To deploy and run Counterfit on Azure Cloud**
 
@@ -90,7 +90,7 @@ Note: If you do not already have an Azure subscription, you can begin by obtaini
 
 2. In the configuration blade, select your Subscription name (for new Azure account users, it will be `Azure subscription 1`), Resource group (Create new if you do not have one.), and Region from the drop-down menu as shown below. Do not change other field values.
     
-    ![Counterfit ARM Deployment](./static/counterfit_arm_deployment.png)
+    ![Azure ARM Deployment](./static/azure_arm_deployment.png)
 
 3. The above deployment would take approximately 5-8 minutes approximately. This deployment involves creating Azure Storage Account resource for storing Counterfit generated original and adversarial images and Azure Container Instance resource for running Counterfit.
 
@@ -106,15 +106,15 @@ Note: If you do not already have an Azure subscription, you can begin by obtaini
         
     + Once deployment is successful, go to the Azure Resource Group and select `counterfit` Azure Container Instance resource as shown below.
 
-        ![Counterfit Azure Resource Group](./static/counterfit_resource_group.png)
-        ![Counterfit Azure Container Instance](./static/counterfit_container_instance.png)
+        ![Azure Resource Group](./static/azure_rg.png)
+        ![Azure Container Instance](./static/azure_container_instance.png)
     + Once the above step is completed, it will take you to the `Container instance` page, click `Containers` under `Settings` section on the left side and click `Connect` from the menu and hit `Connect` button again.
     
-        ![Counterfit Azure Container Instance Terminal](./static/counterfit_container_aci_terminal.png)
+        ![Azure Container Instance Terminal](./static/azure_aci_terminal.png)
 
 5. Within the container terminal, launch Counterfit using the command `counterfit` in the terminal. Once Counterfit is loaded, you should be able to see a banner as shown below
 
-    ![Counterfit Terminal](./static/counterfit_terminal_cmd.PNG)
+    ![Counterfit Command Terminal](./static/counterfit_command_terminal.png)
 
 
 #### **Steps to clean up the Azure Resources**
@@ -124,7 +124,7 @@ Note: If you do not already have an Azure subscription, you can begin by obtaini
 3. Confirm the deletion by typing the name of the resource group in the text box provided.
 4. Click on the "Delete" button to delete the resource group, along with all the resources that were deployed as part of this process.
 
-This will ensure that the Azure Container Instance and Storage Account that were deployed as part of this process are also deleted and you will not incur any further charges. Here's a screenshot to help guide you: ![Counterfit Azure Delete Resource Group](./static/counterfit_azure_delete_rg.PNG)
+This will ensure that the Azure Container Instance and Storage Account that were deployed as part of this process are also deleted and you will not incur any further charges. Here's a screenshot to help guide you: ![Azure Delete Resource Group](./static/azure_delete_rg.png)
 
 #### **Steps to delete an Azure Account**
 
@@ -134,7 +134,7 @@ Here's a link to the official Microsoft documentation on how to cancel an Azure 
 
 #### **Using Windows with WSL**
 
->** Note: If you do not have WSL installed on your Windows machine, you can follow the installation instructions provided by Microsoft at https://learn.microsoft.com/en-us/windows/wsl/install.
+>Note: If you do not have WSL installed on your Windows machine, you can follow the installation instructions provided by Microsoft at https://learn.microsoft.com/en-us/windows/wsl/install.
 
 To create a conda virtual environment for this tool, it is recommended to have miniconda/anaconda installed on your machine. This will allow you to easily manage and maintain dependencies for your project within a separate virtual environment.
 
@@ -205,7 +205,7 @@ new_attack = counterfit.Counterfit.build_attack(target, attack_name)
 results = counterfit.Counterfit.run_attack(new_attack)
 ```
 
-See the [Counterfit examples README.md](examples/README.md) for more information.
+See the [Counterfit examples README.md](examples/README.MD) for more information.
 
 Notes: 
 - If textattack has been installed, it will initialize by downloading nltk data
