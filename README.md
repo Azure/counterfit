@@ -29,7 +29,7 @@ To run this tool, you need to have the following softwares installed:
     - Anaconda: https://www.anaconda.com/products/distribution
 3. Git installed from the url https://git-scm.com/downloads to clone the `counterfit` repository. 
 
-> **Note: Support for running `Counterfit` on Windows and macOS is currently a work in progress. Please stay tuned for updates on when this feature will be available.**
+> Note: Support for running `Counterfit` on Windows and macOS is currently a work in progress. Please stay tuned for updates on when this feature will be available.**
 
 
 ## **Operating System Support**
@@ -134,7 +134,7 @@ Here's a link to the official Microsoft documentation on how to cancel an Azure 
 
 #### **Using Windows with WSL**
 
->** Note: If you do not have WSL installed on your Windows machine, you can follow the installation instructions provided by Microsoft at https://learn.microsoft.com/en-us/windows/wsl/install.
+>Note: If you do not have WSL installed on your Windows machine, you can follow the installation instructions provided by Microsoft at https://learn.microsoft.com/en-us/windows/wsl/install.
 
 To create a conda virtual environment for this tool, it is recommended to have miniconda/anaconda installed on your machine. This will allow you to easily manage and maintain dependencies for your project within a separate virtual environment.
 
@@ -205,7 +205,7 @@ new_attack = counterfit.Counterfit.build_attack(target, attack_name)
 results = counterfit.Counterfit.run_attack(new_attack)
 ```
 
-See the [Counterfit examples README.md](examples/README.md) for more information.
+See the [Counterfit examples README.md](examples/README.MD) for more information.
 
 Notes: 
 - If textattack has been installed, it will initialize by downloading nltk data
