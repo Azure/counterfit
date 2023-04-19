@@ -1,3 +1,4 @@
+[[Demo Home]](./README.md)
 # Hands-on Hacking of Reinforcement Learning Systems
 
 The instructions below should enable you to start attacking reinforcement learning systems using Counterfit. These instructions work on Linux.
