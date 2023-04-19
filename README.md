@@ -114,7 +114,7 @@ Note: If you do not already have an Azure subscription, you can begin by obtaini
 
 5. Within the container terminal, launch Counterfit using the command `counterfit` in the terminal. Once Counterfit is loaded, you should be able to see a banner as shown below
 
-    ![Counterfit Terminal](./static/counterfit_terminal_cmd.PNG)
+    ![Counterfit Terminal](./static/counterfit_terminal_cmd.png)
 
 
 #### **Steps to clean up the Azure Resources**
@@ -124,7 +124,7 @@ Note: If you do not already have an Azure subscription, you can begin by obtaini
 3. Confirm the deletion by typing the name of the resource group in the text box provided.
 4. Click on the "Delete" button to delete the resource group, along with all the resources that were deployed as part of this process.
 
-This will ensure that the Azure Container Instance and Storage Account that were deployed as part of this process are also deleted and you will not incur any further charges. Here's a screenshot to help guide you: ![Counterfit Azure Delete Resource Group](./static/counterfit_azure_delete_rg.PNG)
+This will ensure that the Azure Container Instance and Storage Account that were deployed as part of this process are also deleted and you will not incur any further charges. Here's a screenshot to help guide you: ![Counterfit Azure Delete Resource Group](./static/counterfit_azure_delete_rg.png)
 
 #### **Steps to delete an Azure Account**
 
