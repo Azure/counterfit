@@ -1,5 +1,4 @@
 # DEMO 2: Credit Card Fraud Integrity Attack Assessment
-[[Demo Home]](./README.md)
 ## Objective
 Determine roughly how many queries are required to successfully evade `creditfraud` model with `HopSkipJump`
 
@@ -197,4 +196,5 @@ Determine roughly how many queries are required to successfully evade `creditfra
 2. What is the `sample_index` that was used during this tutorial?  (Hint: you did not set it explicitly.)
 3. Optimize the attack for Hop Skip Jump (HSJ). Try adjusting parameters such that you have a "1/1 Success", but in few "Total Queries".  For `HopSkipJump`, you might play with `max_iter`,  `max_eval` and `init_size`.
 
-[[Demo Home]](../demo/README.md)
+[[Demo Home]](./README.MD)
+

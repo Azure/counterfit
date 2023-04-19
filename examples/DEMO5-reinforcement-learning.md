@@ -1,4 +1,3 @@
-[[Demo Home]](./README.md)
 # Hands-on Hacking of Reinforcement Learning Systems
 
 The instructions below should enable you to start attacking reinforcement learning systems using Counterfit. These instructions work on Linux.
@@ -58,3 +57,5 @@ OpenAI gym, which we are using for our reinforcement learning target, normally h
        --attack_id <PREV_ATTACK_ID>
    ```
 3.    Use the ID of the attack you just ran, with the flag `init_attack_id` if you used `cart_pole_initstate`. Otherwise, use `attack_id` if you used `cart_pole`.
+
+[[Demo Home]](./README.MD)

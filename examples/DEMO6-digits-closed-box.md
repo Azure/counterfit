@@ -1,5 +1,5 @@
 # DEMO 6: Closed-box attack on Digits model
-[[Demo Home]](./README.md)
+
 ## Objective
 Change the label of a digit image (true label: `5`) into `3`.
 
@@ -214,3 +214,4 @@ Change the label of a digit image (true label: `5`) into `3`.
 2. Find a set of _best_ parameters for `HopSkipJump` that provides excellent visual quality with few "Total Queries".  
 3. Try running with the parameters `set_params --sample_index 0 --max_eval 500 --max_iter 10` and observe the adversarial class label? 
 
+[[Demo Home]](./README.MD)

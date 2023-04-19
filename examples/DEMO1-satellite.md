@@ -1,5 +1,4 @@
 **# DEMO 1: Satellite Images Red Team Operation
-[[Demo Home]](./README.md)
 
 ## Objective
 Change the label of a satellite image (true label: `stadium`) into `airplane`.
@@ -143,3 +142,5 @@ Change the label of a satellite image (true label: `stadium`) into `airplane`.
 1. What minimum level of model access was required for this model?
 2. How many queries were required to (a) change the decision of the ML model and (b) still remain convincing to a human?
 3. For HopSkipJump, change `norm`, `max_iter` and `max_eval` parameters to tune the results of the algorithm.  Are there tradeoffs between the resulting quality of the adversarial example and number of queries required to create it?
+
+[[Demo Home]](./README.MD)
