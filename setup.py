@@ -31,9 +31,27 @@ extras["dev"] = (
 
 setuptools.setup(
     name="counterfit",
-    maintainer="Counterfit Developers",
+    maintainer=[
+        "Raja Sekhar Rao Dheekonda", 
+        "Will Pearce", 
+        "Hyrum Anderson",
+        "Ram Shankar Siva Kumar",
+        "Gary Lopez",
+        "Shiven Chawla",
+        "Amanda Minnich",
+        "Sudipto Rakshit"
+    ],
     version="1.1.0",
-    author="Azure Trustworthy Machine Learning",
+    author=[
+        "Raja Sekhar Rao Dheekonda", 
+        "Will Pearce", 
+        "Hyrum Anderson",
+        "Ram Shankar Siva Kumar",
+        "Gary Lopez",
+        "Shiven Chawla",
+        "Amanda Minnich",
+        "Sudipto Rakshit"
+    ],
     description="Counterfit project to simulate attacks on ML systems",
     long_description=long_description,
     long_description_content_type="text/markdown",
