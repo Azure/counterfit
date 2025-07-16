@@ -31,16 +31,7 @@ extras["dev"] = (
 
 setuptools.setup(
     name="counterfit",
-    maintainer=[
-        "Raja Sekhar Rao Dheekonda", 
-        "Will Pearce", 
-        "Hyrum Anderson",
-        "Ram Shankar Siva Kumar",
-        "Gary Lopez",
-        "Shiven Chawla",
-        "Amanda Minnich",
-        "Sudipto Rakshit"
-    ],
+    maintainer="Counterfit Developers",
     version="1.1.0",
     author=[
         "Raja Sekhar Rao Dheekonda", 
