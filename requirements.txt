@@ -28,7 +28,7 @@ questionary==1.9.0
 requests==2.24.0
 rich==12.0.1
 scipy==1.9.2
-tensorflow==2.10.0
+tensorflow==2.11.1
 tensorflow-hub==0.12.0                      # To run textbugger, bae_garg and textfooler attacks
 tensorflow-text==2.10.0                     # Dependency on
 torchfile==0.1.0                            # To run fga_jia_2019 attack
