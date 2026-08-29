@@ -23,7 +23,7 @@ jobs:
         os: [ubuntu-latest]
     steps:
       - name: Set up git repository
-        uses: actions/checkout@v3.1.0
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
 
       - name: Install OS dependencies
         run: |
@@ -54,7 +54,7 @@ jobs:
           cp "${GITHUB_WORKSPACE}/.github/helpers/quality-gates/digits_hsj_test.exp" ./digits_hsj_test.exp
 
       - name: Setup Anaconda
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@9f54435e0e72c53962ee863144e47a4b094bfd35 # v2.3.0
         with:
           activate-environment: counterfit
           auto-update-conda: true
@@ -175,7 +175,7 @@ jobs:
           expect -d ./digits_hsj_test.exp Linux ${{ env.SECONDS }} "${GITHUB_WORKSPACE}/examples/terminal/terminal.py"
 
       - name: Report failure
-        uses: nashmaniac/create-issue-action@v1.1
+        uses: nashmaniac/create-issue-action@b0c9250ca328a30c2989c7358bc4833f77953af2 # v1.1
         # Only report failures of pushes (PRs have are visible through the Checks section) to the default branch
         if: failure() && github.event_name == 'main' && github.ref == 'refs/heads/main'
         with:
